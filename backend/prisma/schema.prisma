@@ -29,6 +29,8 @@ enum PokemonType {
   DARK
   STEEL
   FAIRY
+
+  @@map("pokemon_type")
 }
 
 model Game {
@@ -36,45 +38,50 @@ model Game {
   identifier String   @unique // slug matching PokeAPI's "version" identifier, e.g. "leaf-green"
   name       String // display name, e.g. "LeafGreen"
   generation Int
-  createdAt  DateTime @default(now())
+  createdAt  DateTime @default(now()) @map("created_at")
 
   routes Route[]
   runs   Run[]
+
+  @@map("games")
 }
 
 model Route {
   id         String   @id @default(uuid(7))
-  gameId     String
+  gameId     String   @map("game_id")
   game       Game     @relation(fields: [gameId], references: [id])
   identifier String // PokeAPI location-area slug
   name       String // e.g. "Route 1"
   order      Int // progression order within the game
-  createdAt  DateTime @default(now())
+  createdAt  DateTime @default(now()) @map("created_at")
 
   routeSpecies RouteSpecies[]
   encounters   Encounter[]
 
   @@unique([gameId, identifier])
+  @@map("routes")
 }
 
 model Species {
   id            String       @id @default(uuid(7))
   identifier    String       @unique // PokeAPI slug, e.g. "bulbasaur"
   name          String
-  pokedexNumber Int
-  typePrimary   PokemonType
-  typeSecondary PokemonType?
+  pokedexNumber Int          @map("pokedex_number")
+  typePrimary   PokemonType  @map("type_primary")
+  typeSecondary PokemonType? @map("type_secondary")
 
   evolvesFromId   String?
   evolvesFrom     Species?  @relation("Evolution", fields: [evolvesFromId], references: [id])
   evolvesTo       Species[] @relation("Evolution")
-  evolutionMethod String? // "level-up", "trade", "use-item", etc. — how this species evolves from its parent
-  evolutionDetail String? // free-form: "level 16", "thunder-stone"
+  evolutionMethod String?   @map("evolution_method") // "level-up", "trade", "use-item", etc. — how this species evolves from its parent
+  evolutionDetail String?   @map("evolution_detail") // free-form: "level 16", "thunder-stone"
 
-  createdAt DateTime @default(now())
+  createdAt DateTime @default(now()) @map("created_at")
 
   routeSpecies RouteSpecies[]
   encounters   Encounter[]
+
+  @@map("species")
 }
 
 // The curated "normally found here" list for a Route — not a constraint on
@@ -82,26 +89,29 @@ model Species {
 // on the full Species list remaining searchable independent of this table).
 model RouteSpecies {
   id        String  @id @default(uuid(7))
-  routeId   String
+  routeId   String  @map("route_id")
   route     Route   @relation(fields: [routeId], references: [id])
-  speciesId String
+  speciesId String  @map("species_id")
   species   Species @relation(fields: [speciesId], references: [id])
   method    String? // PokeAPI encounter method slug, e.g. "walk", "old-rod"
 
   @@unique([routeId, speciesId, method])
+  @@map("route_species")
 }
 
 model User {
   id          String   @id @default(uuid(7))
   email       String   @unique
-  displayName String
-  avatarUrl   String?
-  createdAt   DateTime @default(now())
+  displayName String   @map("display_name")
+  avatarUrl   String?  @map("avatar_url")
+  createdAt   DateTime @default(now()) @map("created_at")
 
   authAccounts AuthAccount[]
   runs         Run[]
   legacies     Legacy[]
   createdRules Rule[]
+
+  @@map("users")
 }
 
 // Auth identity is split from User so a single account can eventually link
@@ -109,24 +119,29 @@ model User {
 // email — some providers don't guarantee a verified/returned email.
 model AuthAccount {
   id                String   @id @default(uuid(7))
-  userId            String
+  userId            String   @map("user_id")
   user              User     @relation(fields: [userId], references: [id])
   provider          String // "google" | "github"
-  providerAccountId String
-  createdAt         DateTime @default(now())
+  providerAccountId String   @map("provider_account_id")
+  createdAt         DateTime @default(now()) @map("created_at")
 
   @@unique([provider, providerAccountId])
+  @@map("auth_accounts")
 }
 
 enum RunStatus {
   ACTIVE
   FAILED
   COMPLETED
+
+  @@map("run_status")
 }
 
 enum RuleKind {
   ENFORCED // has real app logic, e.g. type-lock
   INFORMATIONAL // tracking/reminder only, no enforcement
+
+  @@map("rule_kind")
 }
 
 // Catalog of rules a Run can opt into. Seeded with built-in rules
@@ -139,42 +154,47 @@ model Rule {
   name        String
   description String
   kind        RuleKind
-  createdById String? // null = built-in, visible to all users; set = custom rule, visible only to its creator
+  createdById String?  @map("created_by_id") // null = built-in, visible to all users; set = custom rule, visible only to its creator
   createdBy   User?    @relation(fields: [createdById], references: [id])
-  createdAt   DateTime @default(now())
+  createdAt   DateTime @default(now()) @map("created_at")
 
   runRules RunRule[]
+
+  @@map("rules")
 }
 
 // A Run's selected rules. Legacy mode is a separate axis (Run.legacyId),
 // not represented here.
 model RunRule {
   id     String @id @default(uuid(7))
-  runId  String
+  runId  String @map("run_id")
   run    Run    @relation(fields: [runId], references: [id])
-  ruleId String
+  ruleId String @map("rule_id")
   rule   Rule   @relation(fields: [ruleId], references: [id])
   config Json? // rule-specific settings, e.g. an informational item-limit rule's count
 
   @@unique([runId, ruleId])
+  @@map("run_rules")
 }
 
 model Run {
   id        String    @id @default(uuid(7))
-  userId    String
+  userId    String    @map("user_id")
   user      User      @relation(fields: [userId], references: [id])
-  gameId    String
+  gameId    String    @map("game_id")
   game      Game      @relation(fields: [gameId], references: [id])
-  legacyId  String?
+  legacyId  String?   @map("legacy_id")
   legacy    Legacy?   @relation(fields: [legacyId], references: [id])
   status    RunStatus @default(ACTIVE)
   name      String?
-  startedAt DateTime  @default(now())
-  endedAt   DateTime?
+  startedAt DateTime  @default(now()) @map("started_at")
+  endedAt   DateTime? @map("ended_at")
 
   encounters       Encounter[]
   partyMemberships PartyMembership[]
   runRules         RunRule[]
+
+  @@map("runs")
 }
 
 // Groups a chain of Runs on the same Game where a failed run hands off to a
@@ -183,14 +203,16 @@ model Run {
 // by construction, not by a denormalized/enforced field.
 model Legacy {
   id        String   @id @default(uuid(7))
-  userId    String
+  userId    String   @map("user_id")
   user      User     @relation(fields: [userId], references: [id])
   name      String?
   points    Int      @default(0) // denormalized cache of the sum of pointTransactions.amount
-  createdAt DateTime @default(now())
+  createdAt DateTime @default(now()) @map("created_at")
 
   runs              Run[]
   pointTransactions LegacyPointTransaction[]
+
+  @@map("legacies")
 }
 
 // Source-of-truth audit log backing Legacy.points. Point values per action
@@ -198,17 +220,21 @@ model Legacy {
 // "why do I have N points" answerable.
 model LegacyPointTransaction {
   id        String   @id @default(uuid(7))
-  legacyId  String
+  legacyId  String   @map("legacy_id")
   legacy    Legacy   @relation(fields: [legacyId], references: [id])
-  runId     String? // which run in the chain earned/spent it
+  runId     String?  @map("run_id") // which run in the chain earned/spent it
   amount    Int // positive = earned, negative = spent
   reason    String // "catch", "gym-win", "rival-win", "reencounter", "resurrect"
-  createdAt DateTime @default(now())
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("legacy_point_transactions")
 }
 
 enum VitalStatus {
   ALIVE
   DEAD
+
+  @@map("vital_status")
 }
 
 // One row per encounter opportunity a user logs for a run. Usually one per
@@ -217,23 +243,24 @@ enum VitalStatus {
 // from the route's wild encounter).
 model Encounter {
   id          String       @id @default(uuid(7))
-  runId       String
+  runId       String       @map("run_id")
   run         Run          @relation(fields: [runId], references: [id])
-  routeId     String
+  routeId     String       @map("route_id")
   route       Route        @relation(fields: [routeId], references: [id])
-  speciesId   String?
+  speciesId   String?      @map("species_id")
   species     Species?     @relation(fields: [speciesId], references: [id])
   label       String       @default("Wild Encounter")
   order       Float
   caught      Boolean      @default(false)
   nickname    String?
-  vitalStatus VitalStatus?
-  lockedType  PokemonType? // type-lock rule: chosen at catch time for dual-typed species, permanent thereafter
-  createdAt   DateTime     @default(now())
+  vitalStatus VitalStatus? @map("vital_status")
+  lockedType  PokemonType? @map("locked_type") // type-lock rule: chosen at catch time for dual-typed species, permanent thereafter
+  createdAt   DateTime     @default(now()) @map("created_at")
 
   partyMembership PartyMembership?
 
   @@unique([runId, routeId, label])
+  @@map("encounters")
 }
 
 // Existence of a row = the encounter's Pokemon is currently in the active
@@ -242,9 +269,11 @@ model Encounter {
 // share a table.
 model PartyMembership {
   id          String    @id @default(uuid(7))
-  runId       String
+  runId       String    @map("run_id")
   run         Run       @relation(fields: [runId], references: [id])
-  encounterId String    @unique
+  encounterId String    @unique @map("encounter_id")
   encounter   Encounter @relation(fields: [encounterId], references: [id])
-  createdAt   DateTime  @default(now())
+  createdAt   DateTime  @default(now()) @map("created_at")
+
+  @@map("party_memberships")
 }
