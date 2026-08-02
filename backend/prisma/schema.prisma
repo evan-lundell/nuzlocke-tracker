@@ -1,0 +1,89 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum PokemonType {
+  NORMAL
+  FIRE
+  WATER
+  ELECTRIC
+  GRASS
+  ICE
+  FIGHTING
+  POISON
+  GROUND
+  FLYING
+  PSYCHIC
+  BUG
+  ROCK
+  GHOST
+  DRAGON
+  DARK
+  STEEL
+  FAIRY
+}
+
+model Game {
+  id         String   @id @default(uuid(7))
+  identifier String   @unique // slug matching PokeAPI's "version" identifier, e.g. "leaf-green"
+  name       String // display name, e.g. "LeafGreen"
+  generation Int
+  createdAt  DateTime @default(now())
+
+  routes Route[]
+}
+
+model Route {
+  id         String   @id @default(uuid(7))
+  gameId     String
+  game       Game     @relation(fields: [gameId], references: [id])
+  identifier String // PokeAPI location-area slug
+  name       String // e.g. "Route 1"
+  order      Int // progression order within the game
+  createdAt  DateTime @default(now())
+
+  routeSpecies RouteSpecies[]
+
+  @@unique([gameId, identifier])
+}
+
+model Species {
+  id            String       @id @default(uuid(7))
+  identifier    String       @unique // PokeAPI slug, e.g. "bulbasaur"
+  name          String
+  pokedexNumber Int
+  typePrimary   PokemonType
+  typeSecondary PokemonType?
+
+  evolvesFromId   String?
+  evolvesFrom     Species?  @relation("Evolution", fields: [evolvesFromId], references: [id])
+  evolvesTo       Species[] @relation("Evolution")
+  evolutionMethod String? // "level-up", "trade", "use-item", etc. — how this species evolves from its parent
+  evolutionDetail String? // free-form: "level 16", "thunder-stone"
+
+  createdAt DateTime @default(now())
+
+  routeSpecies RouteSpecies[]
+}
+
+// The curated "normally found here" list for a Route — not a constraint on
+// what a user can actually log as an encounter (randomizer support relies
+// on the full Species list remaining searchable independent of this table).
+model RouteSpecies {
+  id        String  @id @default(uuid(7))
+  routeId   String
+  route     Route   @relation(fields: [routeId], references: [id])
+  speciesId String
+  species   Species @relation(fields: [speciesId], references: [id])
+  method    String? // PokeAPI encounter method slug, e.g. "walk", "old-rod"
+
+  @@unique([routeId, speciesId, method])
+}
