@@ -61,8 +61,8 @@ There is currently no single command that starts both apps together — run them
 
 - **Backend**: NestJS (TypeScript)
 - **Frontend**: React + Vite (TypeScript SPA — not Next.js; NestJS is already the API layer, so a second server-rendering layer would be redundant)
-- **Database**: PostgreSQL (not yet added to the repo)
-- **ORM**: Prisma (not yet added to the repo)
+- **Database**: PostgreSQL (schema designed, not yet provisioned — see Current status)
+- **ORM**: Prisma (added to `backend/`, schema in progress)
 - **Auth**: NestJS's Passport integration, OAuth via Google/GitHub — no email/password login planned for v1
 - **Deploy target**: not finalized; leaning toward Railway or Fly.io
 
@@ -70,4 +70,12 @@ TypeScript was chosen over Go for this project specifically so the whole stack s
 
 ## Current status
 
-Initial scaffold for `backend/` and `frontend/` is in place and committed; both boot/build clean, but contain no application logic beyond the framework defaults. No database, ORM, or auth is wired up yet. Next planned step: data model design — a Prisma schema for the core entities (users, games, routes, encounters, runs, rules), including how enforced vs. informational rules are represented.
+Initial scaffold for `backend/` and `frontend/` is in place and committed; both boot/build clean, but contain no application logic beyond the framework defaults. No database is provisioned and no migration has been run yet — schema design is in progress ahead of that.
+
+Prisma is added to `backend/` (v7, using the new `prisma-client` generator, output to `backend/generated/prisma`; config lives in `backend/prisma.config.ts` rather than `package.json`). `DATABASE_URL` in `backend/.env` is still a placeholder.
+
+Schema design work, in Git history/branch order:
+- On `main`: reference data seeded from PokeAPI — `Game`, `Route`, `Species` (regional variants are sibling rows sharing a `pokedexNumber`; evolution modeled as a self-referencing `evolvesFrom` tree, which also serves as the "same dupe family" check), `RouteSpecies` (a non-binding "normally found here" list per route — logged encounters can still reference any species, for randomizer support).
+- On branch `schema/user-run-legacy` (not yet merged): `User`/`AuthAccount` (auth identity split out to support linking multiple OAuth providers later), `Run`/`Legacy` (a `Legacy` groups a chain of runs on one game where a failed run hands off to a successor with carried-over points), `Encounter` (one row per logged encounter; keyed on `(run, route, label)` so users can log extra ad hoc encounters per route, e.g. a static Snorlax tracked separately from the route's wild encounter), `PartyMembership` (active-party membership tracked as row existence, kept separate from `Encounter` since team composition changes far more often than the encounter log).
+
+Not yet designed: the rules system itself (how enforced vs. informational rules are represented, type-lock's `lockedType` field on `Encounter`, Legacy's points ledger and rule-loosening mechanic, user-authored custom rules) — this is the next planned step. After that: provisioning a real Postgres instance and running the first migration.
