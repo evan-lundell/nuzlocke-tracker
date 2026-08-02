@@ -39,6 +39,7 @@ model Game {
   createdAt  DateTime @default(now())
 
   routes Route[]
+  runs   Run[]
 }
 
 model Route {
@@ -51,6 +52,7 @@ model Route {
   createdAt  DateTime @default(now())
 
   routeSpecies RouteSpecies[]
+  encounters   Encounter[]
 
   @@unique([gameId, identifier])
 }
@@ -72,6 +74,7 @@ model Species {
   createdAt DateTime @default(now())
 
   routeSpecies RouteSpecies[]
+  encounters   Encounter[]
 }
 
 // The curated "normally found here" list for a Route — not a constraint on
@@ -86,4 +89,110 @@ model RouteSpecies {
   method    String? // PokeAPI encounter method slug, e.g. "walk", "old-rod"
 
   @@unique([routeId, speciesId, method])
+}
+
+model User {
+  id          String   @id @default(uuid(7))
+  email       String   @unique
+  displayName String
+  avatarUrl   String?
+  createdAt   DateTime @default(now())
+
+  authAccounts AuthAccount[]
+  runs         Run[]
+  legacies     Legacy[]
+}
+
+// Auth identity is split from User so a single account can eventually link
+// multiple OAuth providers. Deduped on (provider, providerAccountId), not
+// email — some providers don't guarantee a verified/returned email.
+model AuthAccount {
+  id                String   @id @default(uuid(7))
+  userId            String
+  user              User     @relation(fields: [userId], references: [id])
+  provider          String // "google" | "github"
+  providerAccountId String
+  createdAt         DateTime @default(now())
+
+  @@unique([provider, providerAccountId])
+}
+
+enum RunStatus {
+  ACTIVE
+  FAILED
+  COMPLETED
+}
+
+model Run {
+  id        String    @id @default(uuid(7))
+  userId    String
+  user      User      @relation(fields: [userId], references: [id])
+  gameId    String
+  game      Game      @relation(fields: [gameId], references: [id])
+  legacyId  String?
+  legacy    Legacy?   @relation(fields: [legacyId], references: [id])
+  status    RunStatus @default(ACTIVE)
+  name      String?
+  startedAt DateTime  @default(now())
+  endedAt   DateTime?
+
+  encounters       Encounter[]
+  partyMemberships PartyMembership[]
+}
+
+// Groups a chain of Runs on the same Game where a failed run hands off to a
+// successor (with carried-over points and, by default, the same rules).
+// Deliberately has no gameId of its own — every run in the chain shares one
+// by construction, not by a denormalized/enforced field.
+model Legacy {
+  id        String   @id @default(uuid(7))
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  name      String?
+  points    Int      @default(0)
+  createdAt DateTime @default(now())
+
+  runs Run[]
+}
+
+enum VitalStatus {
+  ALIVE
+  DEAD
+}
+
+// One row per encounter opportunity a user logs for a run. Usually one per
+// route, but @@unique includes label so users can add extra ad hoc
+// encounters to the same route (e.g. a static Snorlax tracked separately
+// from the route's wild encounter).
+model Encounter {
+  id          String       @id @default(uuid(7))
+  runId       String
+  run         Run          @relation(fields: [runId], references: [id])
+  routeId     String
+  route       Route        @relation(fields: [routeId], references: [id])
+  speciesId   String?
+  species     Species?     @relation(fields: [speciesId], references: [id])
+  label       String       @default("Wild Encounter")
+  order       Float
+  caught      Boolean      @default(false)
+  nickname    String?
+  vitalStatus VitalStatus?
+  createdAt   DateTime     @default(now())
+
+  partyMembership PartyMembership?
+
+  @@unique([runId, routeId, label])
+}
+
+// Existence of a row = the encounter's Pokemon is currently in the active
+// party. Absence = boxed. Kept separate from Encounter so "what happened"
+// (stable log) and "what's on my team right now" (frequently mutated) don't
+// share a table.
+model PartyMembership {
+  id          String    @id @default(uuid(7))
+  runId       String
+  run         Run       @relation(fields: [runId], references: [id])
+  encounterId String    @unique
+  encounter   Encounter @relation(fields: [encounterId], references: [id])
+  createdAt   DateTime  @default(now())
 }
