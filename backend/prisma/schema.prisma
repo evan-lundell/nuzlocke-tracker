@@ -101,6 +101,7 @@ model User {
   authAccounts AuthAccount[]
   runs         Run[]
   legacies     Legacy[]
+  createdRules Rule[]
 }
 
 // Auth identity is split from User so a single account can eventually link
@@ -123,6 +124,41 @@ enum RunStatus {
   COMPLETED
 }
 
+enum RuleKind {
+  ENFORCED // has real app logic, e.g. type-lock
+  INFORMATIONAL // tracking/reminder only, no enforcement
+}
+
+// Catalog of rules a Run can opt into. Seeded with built-in rules
+// (createdById null); user-authored custom rules (necessarily
+// INFORMATIONAL, since enforcement requires real app logic) reuse the same
+// table by setting createdById.
+model Rule {
+  id          String   @id @default(uuid(7))
+  key         String?  @unique // stable identifier built-in app logic switches on, e.g. "type-lock"; null for user-authored rules, which have no app logic to hook into and are never referenced by key
+  name        String
+  description String
+  kind        RuleKind
+  createdById String? // null = built-in, visible to all users; set = custom rule, visible only to its creator
+  createdBy   User?    @relation(fields: [createdById], references: [id])
+  createdAt   DateTime @default(now())
+
+  runRules RunRule[]
+}
+
+// A Run's selected rules. Legacy mode is a separate axis (Run.legacyId),
+// not represented here.
+model RunRule {
+  id     String @id @default(uuid(7))
+  runId  String
+  run    Run    @relation(fields: [runId], references: [id])
+  ruleId String
+  rule   Rule   @relation(fields: [ruleId], references: [id])
+  config Json? // rule-specific settings, e.g. an informational item-limit rule's count
+
+  @@unique([runId, ruleId])
+}
+
 model Run {
   id        String    @id @default(uuid(7))
   userId    String
@@ -138,6 +174,7 @@ model Run {
 
   encounters       Encounter[]
   partyMemberships PartyMembership[]
+  runRules         RunRule[]
 }
 
 // Groups a chain of Runs on the same Game where a failed run hands off to a
@@ -149,10 +186,24 @@ model Legacy {
   userId    String
   user      User     @relation(fields: [userId], references: [id])
   name      String?
-  points    Int      @default(0)
+  points    Int      @default(0) // denormalized cache of the sum of pointTransactions.amount
   createdAt DateTime @default(now())
 
-  runs Run[]
+  runs              Run[]
+  pointTransactions LegacyPointTransaction[]
+}
+
+// Source-of-truth audit log backing Legacy.points. Point values per action
+// aren't final yet, so a ledger keeps re-tuning them low-risk and makes
+// "why do I have N points" answerable.
+model LegacyPointTransaction {
+  id        String   @id @default(uuid(7))
+  legacyId  String
+  legacy    Legacy   @relation(fields: [legacyId], references: [id])
+  runId     String? // which run in the chain earned/spent it
+  amount    Int // positive = earned, negative = spent
+  reason    String // "catch", "gym-win", "rival-win", "reencounter", "resurrect"
+  createdAt DateTime @default(now())
 }
 
 enum VitalStatus {
@@ -177,6 +228,7 @@ model Encounter {
   caught      Boolean      @default(false)
   nickname    String?
   vitalStatus VitalStatus?
+  lockedType  PokemonType? // type-lock rule: chosen at catch time for dual-typed species, permanent thereafter
   createdAt   DateTime     @default(now())
 
   partyMembership PartyMembership?
