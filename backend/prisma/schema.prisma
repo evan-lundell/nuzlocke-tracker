@@ -2,8 +2,9 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client"
-  output   = "../generated/prisma"
+  provider     = "prisma-client"
+  output       = "../generated/prisma"
+  moduleFormat = "cjs"
 }
 
 datasource db {
@@ -35,7 +36,7 @@ enum PokemonType {
 
 model Game {
   id         String   @id @default(uuid(7))
-  identifier String   @unique // slug matching PokeAPI's "version" identifier, e.g. "leaf-green"
+  identifier String   @unique // slug matching PokeAPI's "version" identifier, e.g. "leafgreen"
   name       String // display name, e.g. "LeafGreen"
   generation Int
   createdAt  DateTime @default(now()) @map("created_at")
@@ -70,7 +71,7 @@ model Species {
   typePrimary   PokemonType  @map("type_primary")
   typeSecondary PokemonType? @map("type_secondary")
 
-  evolvesFromId   String?
+  evolvesFromId   String?   @map("evolves_from_id")
   evolvesFrom     Species?  @relation("Evolution", fields: [evolvesFromId], references: [id])
   evolvesTo       Species[] @relation("Evolution")
   evolutionMethod String?   @map("evolution_method") // "level-up", "trade", "use-item", etc. — how this species evolves from its parent
