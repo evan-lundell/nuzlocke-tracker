@@ -135,13 +135,6 @@ function englishName(names: PokeApiName[], fallbackSlug: string): string {
     .join(" ");
 }
 
-function formatAreaSuffix(suffix: string): string {
-  return suffix
-    .split("-")
-    .map((word) => (/^b?\d+f$/i.test(word) ? word.toUpperCase() : word[0].toUpperCase() + word.slice(1)))
-    .join(" ");
-}
-
 function evolutionDetailText(detail: EvolutionDetail): string | null {
   const parts: string[] = [];
   if (detail.min_level != null) parts.push(`level ${detail.min_level}`);
@@ -259,71 +252,66 @@ async function seedRoutesAndEncounters(gameId: string, pokemonNameToSpeciesIdent
     fetchJson<PokeApiLocation>(loc.url),
   );
 
-  interface CandidateArea {
+  // Route granularity is per-location, not per-location-area: the game shows
+  // one banner name per location regardless of floor/sub-area (nuzlocke
+  // convention keys off that banner, e.g. Mt. Moon's 3 floors are one
+  // encounter, not three). So a location's areas are combined into a single
+  // candidate route, with encounters pooled across all of them.
+  interface CandidateRoute {
     identifier: string;
     name: string;
-    locationIdentifier: string;
     encounters: PokemonEncounter[];
   }
 
-  const candidateAreas: CandidateArea[] = [];
+  const candidateRoutes: CandidateRoute[] = [];
 
-  await mapPool(
-    locations.flatMap((loc) => loc.areas.map((area) => ({ loc, area }))),
-    CONCURRENCY,
-    async ({ loc, area }) => {
-      const detail = await fetchJson<PokeApiLocationArea>(area.url);
-      const leafgreenEncounters = detail.pokemon_encounters.filter((pe) =>
-        pe.version_details.some((vd) => vd.version.name === GAME_IDENTIFIER),
-      );
-      if (leafgreenEncounters.length === 0) return;
+  await mapPool(locations, CONCURRENCY, async (loc) => {
+    const areaDetails = await mapPool(loc.areas, CONCURRENCY, (area) =>
+      fetchJson<PokeApiLocationArea>(area.url),
+    );
+    const leafgreenEncounters = areaDetails
+      .flatMap((detail) => detail.pokemon_encounters)
+      .filter((pe) => pe.version_details.some((vd) => vd.version.name === GAME_IDENTIFIER));
+    if (leafgreenEncounters.length === 0) return;
 
-      const suffix = detail.name.startsWith(`${loc.name}-`)
-        ? detail.name.slice(loc.name.length + 1)
-        : detail.name;
-      const baseName = englishName(loc.names, loc.name);
-      const name = suffix === "area" || suffix === "" ? baseName : `${baseName} (${formatAreaSuffix(suffix)})`;
+    candidateRoutes.push({
+      identifier: loc.name,
+      name: englishName(loc.names, loc.name),
+      encounters: leafgreenEncounters,
+    });
+  });
 
-      candidateAreas.push({
-        identifier: detail.name,
-        name,
-        locationIdentifier: loc.name,
-        encounters: leafgreenEncounters,
-      });
-    },
-  );
-
-  console.log(`Found ${candidateAreas.length} location-areas with leafgreen encounters.`);
+  console.log(`Found ${candidateRoutes.length} locations with leafgreen encounters.`);
 
   const orderIndex = new Map(LEAFGREEN_ROUTE_ORDER.map((identifier, i) => [identifier, i]));
-  for (const area of candidateAreas) {
-    if (!orderIndex.has(area.identifier)) {
-      console.warn(`WARNING: ${area.identifier} not in LEAFGREEN_ROUTE_ORDER, sorting last`);
+  for (const route of candidateRoutes) {
+    if (!orderIndex.has(route.identifier)) {
+      console.warn(`WARNING: ${route.identifier} not in LEAFGREEN_ROUTE_ORDER, sorting last`);
     }
   }
 
   console.log("Upserting routes...");
-  const routeIdByAreaIdentifier = new Map<string, string>();
-  for (const area of candidateAreas) {
-    const order = orderIndex.get(area.identifier) ?? LEAFGREEN_ROUTE_ORDER.length + 1;
+  const routeIdByIdentifier = new Map<string, string>();
+  for (const candidate of candidateRoutes) {
+    const order = orderIndex.get(candidate.identifier) ?? LEAFGREEN_ROUTE_ORDER.length + 1;
     const route = await prisma.route.upsert({
-      where: { gameId_identifier: { gameId, identifier: area.identifier } },
-      create: { gameId, identifier: area.identifier, name: area.name, order },
-      update: { name: area.name, order },
+      where: { gameId_identifier: { gameId, identifier: candidate.identifier } },
+      create: { gameId, identifier: candidate.identifier, name: candidate.name, order },
+      update: { name: candidate.name, order },
     });
-    routeIdByAreaIdentifier.set(area.identifier, route.id);
+    routeIdByIdentifier.set(candidate.identifier, route.id);
   }
 
   console.log("Upserting route species (encounters)...");
   let routeSpeciesCount = 0;
-  for (const area of candidateAreas) {
-    const routeId = routeIdByAreaIdentifier.get(area.identifier)!;
+  for (const candidate of candidateRoutes) {
+    const routeId = routeIdByIdentifier.get(candidate.identifier)!;
     const methodsBySpecies = new Map<string, Set<string>>();
 
-    for (const encounter of area.encounters) {
+    for (const encounter of candidate.encounters) {
       const speciesIdentifier = pokemonNameToSpeciesIdentifier.get(encounter.pokemon.name);
       if (!speciesIdentifier) {
-        console.warn(`WARNING: no species mapped for pokemon "${encounter.pokemon.name}" in ${area.identifier}`);
+        console.warn(`WARNING: no species mapped for pokemon "${encounter.pokemon.name}" in ${candidate.identifier}`);
         continue;
       }
       const methods = methodsBySpecies.get(speciesIdentifier) ?? new Set<string>();
@@ -347,7 +335,7 @@ async function seedRoutesAndEncounters(gameId: string, pokemonNameToSpeciesIdent
     }
   }
 
-  console.log(`Seeded ${candidateAreas.length} routes and ${routeSpeciesCount} route-species rows.`);
+  console.log(`Seeded ${candidateRoutes.length} routes and ${routeSpeciesCount} route-species rows.`);
 }
 
 async function main() {

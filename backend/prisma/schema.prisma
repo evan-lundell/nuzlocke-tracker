@@ -51,7 +51,7 @@ model Route {
   id         String   @id @default(uuid(7))
   gameId     String   @map("game_id")
   game       Game     @relation(fields: [gameId], references: [id])
-  identifier String // PokeAPI location-area slug
+  identifier String // PokeAPI location slug (not location-area — the game shows one banner per location regardless of floor/sub-area, matching nuzlocke convention of one encounter per named area)
   name       String // e.g. "Route 1"
   order      Int // progression order within the game
   createdAt  DateTime @default(now()) @map("created_at")
