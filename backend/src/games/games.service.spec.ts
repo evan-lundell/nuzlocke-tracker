@@ -47,7 +47,10 @@ describe('GamesService', () => {
 
     it('returns routes for an existing game ordered by order', async () => {
       const game = { id: 'game-1' };
-      const routes = [{ id: 'r1', order: 0 }, { id: 'r2', order: 1 }];
+      const routes = [
+        { id: 'r1', order: 0 },
+        { id: 'r2', order: 1 },
+      ];
       prisma.game.findUnique.mockResolvedValue(game);
       prisma.route.findMany.mockResolvedValue(routes);
 
