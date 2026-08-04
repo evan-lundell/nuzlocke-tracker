@@ -2,6 +2,7 @@ import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { Strategy, Profile } from 'passport-github2';
 import { AuthService } from '../auth.service';
+import { OAuthStateStore } from '../oauth-state-store';
 
 // passport-github2's typings don't model the extra fields `allRawEmails`
 // adds to profile.emails (primary/verified) — they exist at runtime but
@@ -24,6 +25,9 @@ export class GithubStrategy extends PassportStrategy(Strategy, 'github') {
       callbackURL: process.env.GITHUB_CALLBACK_URL || 'not-configured',
       scope: ['user:email'],
       allRawEmails: true,
+      // Cookie-backed state store mitigates OAuth login CSRF — see
+      // OAuthStateStore for why this isn't the built-in session-based one.
+      store: new OAuthStateStore('github_oauth_state'),
     });
   }
 

@@ -7,12 +7,13 @@ import { GoogleStrategy } from './strategies/google.strategy';
 import { GithubStrategy } from './strategies/github.strategy';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
 import { DEFAULT_JWT_EXPIRES_IN_SECONDS } from './auth.constants';
+import { requireEnv } from '../config/require-env';
 
 @Module({
   imports: [
     PassportModule,
     JwtModule.register({
-      secret: process.env.JWT_SECRET,
+      secret: requireEnv('JWT_SECRET'),
       signOptions: {
         expiresIn: Number(
           process.env.JWT_EXPIRES_IN_SECONDS ?? DEFAULT_JWT_EXPIRES_IN_SECONDS,

@@ -32,6 +32,10 @@ describe('AuthController', () => {
     controller = new AuthController(service as unknown as AuthService);
   });
 
+  afterEach(() => {
+    delete process.env.FRONTEND_ORIGIN;
+  });
+
   const asRequest = (user: object) =>
     ({ user }) as unknown as OAuthCallbackRequest;
   const asResponse = () => res as unknown as Response;
@@ -50,6 +54,17 @@ describe('AuthController', () => {
         'signed.jwt.token',
         expect.objectContaining({ httpOnly: true }),
       );
+      expect(res.redirect).toHaveBeenCalledWith('http://localhost:5173');
+    });
+
+    it('redirects to only the first origin when FRONTEND_ORIGIN lists several', async () => {
+      const user = { id: 'user-1', email: 'ash@pallet.town' };
+      service.signToken.mockResolvedValue('signed.jwt.token');
+      process.env.FRONTEND_ORIGIN =
+        'http://localhost:5173,https://staging.example.com';
+
+      await controller.googleCallback(asRequest(user), asResponse());
+
       expect(res.redirect).toHaveBeenCalledWith('http://localhost:5173');
     });
   });

@@ -5,6 +5,7 @@ import type { User } from '../../generated/prisma/client';
 import { AuthService } from './auth.service';
 import { AUTH_COOKIE_NAME } from './auth.constants';
 import { getAuthCookieOptions } from './cookie-options';
+import { getPrimaryFrontendOrigin } from '../config/frontend-origins';
 import { CurrentUser } from './decorators/current-user.decorator';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
 import type { OAuthCallbackRequest } from './types/authenticated-request.type';
@@ -55,6 +56,6 @@ export class AuthController {
   private async completeLogin(user: User, res: Response) {
     const token = await this.authService.signToken(user);
     res.cookie(AUTH_COOKIE_NAME, token, getAuthCookieOptions());
-    res.redirect(process.env.FRONTEND_ORIGIN ?? '/');
+    res.redirect(getPrimaryFrontendOrigin());
   }
 }

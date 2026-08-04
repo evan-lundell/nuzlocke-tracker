@@ -2,6 +2,7 @@ import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { Strategy, Profile } from 'passport-google-oauth20';
 import { AuthService } from '../auth.service';
+import { OAuthStateStore } from '../oauth-state-store';
 
 @Injectable()
 export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
@@ -14,6 +15,9 @@ export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
       clientSecret: process.env.GOOGLE_CLIENT_SECRET || 'not-configured',
       callbackURL: process.env.GOOGLE_CALLBACK_URL || 'not-configured',
       scope: ['email', 'profile'],
+      // Cookie-backed state store mitigates OAuth login CSRF — see
+      // OAuthStateStore for why this isn't the built-in session-based one.
+      store: new OAuthStateStore('google_oauth_state'),
     });
   }
 
