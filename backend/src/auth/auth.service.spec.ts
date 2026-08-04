@@ -9,11 +9,7 @@ import { OAuthProfileInput } from './types/oauth-profile.type';
 describe('AuthService', () => {
   let service: AuthService;
   let prisma: {
-    authAccount: {
-      findUnique: jest.Mock;
-      findUniqueOrThrow: jest.Mock;
-      create: jest.Mock;
-    };
+    authAccount: { findUnique: jest.Mock; create: jest.Mock };
     user: { findUnique: jest.Mock; create: jest.Mock };
   };
   let jwtService: { signAsync: jest.Mock };
@@ -29,11 +25,7 @@ describe('AuthService', () => {
 
   beforeEach(async () => {
     prisma = {
-      authAccount: {
-        findUnique: jest.fn(),
-        findUniqueOrThrow: jest.fn(),
-        create: jest.fn(),
-      },
+      authAccount: { findUnique: jest.fn(), create: jest.fn() },
       user: { findUnique: jest.fn(), create: jest.fn() },
     };
     jwtService = { signAsync: jest.fn() };
@@ -116,8 +108,56 @@ describe('AuthService', () => {
       expect(prisma.authAccount.create).not.toHaveBeenCalled();
     });
 
-    it('recovers from a concurrent create race by re-fetching the AuthAccount', async () => {
+    it('recovers from a concurrent race on the AuthAccount constraint by retrying', async () => {
+      // Same (provider, providerAccountId) signs in twice at once: both see
+      // no existing AuthAccount/User, the loser's user.create violates the
+      // AuthAccount unique constraint, and retrying finds the winner's row.
       const user = { id: 'user-5', email: input.email };
+      prisma.authAccount.findUnique
+        .mockResolvedValueOnce(null)
+        .mockResolvedValueOnce({ user });
+      prisma.user.findUnique.mockResolvedValue(null);
+      prisma.user.create.mockRejectedValue(
+        new Prisma.PrismaClientKnownRequestError('duplicate', {
+          code: 'P2002',
+          clientVersion: 'test',
+        }),
+      );
+
+      await expect(service.findOrCreateUser(input)).resolves.toBe(user);
+      expect(prisma.authAccount.findUnique).toHaveBeenCalledTimes(2);
+    });
+
+    it('recovers from a concurrent race on the User.email constraint by retrying', async () => {
+      // Two different providers sign in as the same brand-new email at
+      // once: the loser's user.create violates User.email (not the
+      // AuthAccount constraint, since its own AuthAccount was never
+      // created), so a fetch scoped only to the AuthAccount key would find
+      // nothing. Retrying re-runs both lookups and finds the now-existing
+      // user by email instead.
+      const existingUser = { id: 'user-6', email: input.email };
+      prisma.authAccount.findUnique.mockResolvedValue(null);
+      prisma.user.findUnique
+        .mockResolvedValueOnce(null)
+        .mockResolvedValueOnce(existingUser);
+      prisma.user.create.mockRejectedValue(
+        new Prisma.PrismaClientKnownRequestError('duplicate', {
+          code: 'P2002',
+          clientVersion: 'test',
+        }),
+      );
+
+      await expect(service.findOrCreateUser(input)).resolves.toBe(existingUser);
+      expect(prisma.authAccount.create).toHaveBeenCalledWith({
+        data: {
+          provider: input.provider,
+          providerAccountId: input.providerAccountId,
+          userId: existingUser.id,
+        },
+      });
+    });
+
+    it('does not retry a second time if the race recovery attempt also throws P2002', async () => {
       prisma.authAccount.findUnique.mockResolvedValue(null);
       prisma.user.findUnique.mockResolvedValue(null);
       prisma.user.create.mockRejectedValue(
@@ -126,9 +166,11 @@ describe('AuthService', () => {
           clientVersion: 'test',
         }),
       );
-      prisma.authAccount.findUniqueOrThrow.mockResolvedValue({ user });
 
-      await expect(service.findOrCreateUser(input)).resolves.toBe(user);
+      await expect(service.findOrCreateUser(input)).rejects.toThrow(
+        Prisma.PrismaClientKnownRequestError,
+      );
+      expect(prisma.authAccount.findUnique).toHaveBeenCalledTimes(2);
     });
   });
 

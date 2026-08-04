@@ -18,7 +18,14 @@ export class AuthService {
     private readonly jwtService: JwtService,
   ) {}
 
-  async findOrCreateUser(input: OAuthProfileInput): Promise<User> {
+  findOrCreateUser(input: OAuthProfileInput): Promise<User> {
+    return this.findOrCreateUserAttempt(input, /* allowRetry */ true);
+  }
+
+  private async findOrCreateUserAttempt(
+    input: OAuthProfileInput,
+    allowRetry: boolean,
+  ): Promise<User> {
     const {
       provider,
       providerAccountId,
@@ -64,16 +71,17 @@ export class AuthService {
       return existingUser;
     } catch (error) {
       if (
+        allowRetry &&
         error instanceof Prisma.PrismaClientKnownRequestError &&
         error.code === PRISMA_UNIQUE_CONSTRAINT_VIOLATION
       ) {
-        const account = await this.prisma.authAccount.findUniqueOrThrow({
-          where: {
-            provider_providerAccountId: { provider, providerAccountId },
-          },
-          include: { user: true },
-        });
-        return account.user;
+        // A concurrent request won the race, but on *either* the AuthAccount
+        // (provider, providerAccountId) constraint or the User.email one —
+        // e.g. two different providers signing in as the same brand-new
+        // email at once. Re-running the lookups from scratch (rather than
+        // assuming which constraint fired) resolves correctly either way;
+        // allowRetry=false bounds this to a single retry.
+        return this.findOrCreateUserAttempt(input, false);
       }
       throw error;
     }
