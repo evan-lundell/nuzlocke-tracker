@@ -1,0 +1,42 @@
+name: Backend CI
+
+on:
+  push:
+    branches: [main]
+    paths: ["backend/**", ".github/workflows/backend-ci.yml"]
+  pull_request:
+    paths: ["backend/**", ".github/workflows/backend-ci.yml"]
+
+concurrency:
+  group: backend-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    working-directory: backend
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: npm
+          cache-dependency-path: backend/package-lock.json
+
+      - run: npm ci
+
+      # The generated Prisma client is gitignored and required for the
+      # build/test to type-check; schema generation needs no DB connection.
+      - run: npx prisma generate
+
+      # Run eslint directly rather than `npm run lint`, which passes --fix
+      # and would auto-fix issues instead of failing the check.
+      - run: npx eslint "{src,apps,libs,test}/**/*.ts"
+
+      - run: npm test
+
+      - run: npm run build
