@@ -11,7 +11,7 @@ import { VitalStatus } from '../../../generated/prisma/client';
 
 export class UpdateEncounterDto {
   @IsOptional()
-  @IsUUID(7)
+  @IsUUID('7')
   speciesId?: string;
 
   @IsOptional()

@@ -275,6 +275,21 @@ describe('EncountersService', () => {
         service.update('user-1', 'run-1', 'enc-1', { label: 'Static' }),
       ).rejects.toThrow(ConflictException);
     });
+
+    it('falls back to the existing label in the conflict message when the update omits one', async () => {
+      prisma.run.findFirst.mockResolvedValue({ id: 'run-1' });
+      prisma.encounter.findFirst.mockResolvedValue({
+        id: 'enc-1',
+        label: 'Wild Encounter',
+      });
+      prisma.encounter.update.mockRejectedValue(duplicateError());
+
+      await expect(
+        service.update('user-1', 'run-1', 'enc-1', { caught: true }),
+      ).rejects.toThrow(
+        'An encounter labeled "Wild Encounter" already exists for this route',
+      );
+    });
   });
 
   describe('remove', () => {

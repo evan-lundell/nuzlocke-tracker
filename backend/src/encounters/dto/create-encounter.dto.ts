@@ -10,11 +10,11 @@ import {
 import { VitalStatus } from '../../../generated/prisma/client';
 
 export class CreateEncounterDto {
-  @IsUUID(7)
+  @IsUUID('7')
   routeId: string;
 
   @IsOptional()
-  @IsUUID(7)
+  @IsUUID('7')
   speciesId?: string;
 
   @IsOptional()

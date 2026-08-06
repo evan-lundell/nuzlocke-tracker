@@ -83,7 +83,7 @@ export class EncountersService {
     dto: UpdateEncounterDto,
   ) {
     await this.assertRunOwnership(userId, runId);
-    await this.findEncounterOrThrow(runId, id);
+    const existing = await this.findEncounterOrThrow(runId, id);
 
     if (dto.speciesId) {
       const species = await this.prisma.species.findUnique({
@@ -106,7 +106,7 @@ export class EncountersService {
         error.code === PRISMA_UNIQUE_CONSTRAINT_VIOLATION
       ) {
         throw new ConflictException(
-          `An encounter labeled "${dto.label}" already exists for this route`,
+          `An encounter labeled "${dto.label ?? existing.label}" already exists for this route`,
         );
       }
       throw error;
