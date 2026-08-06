@@ -10,7 +10,7 @@ describe('RunsService', () => {
     rule: { findMany: jest.Mock };
     run: {
       findMany: jest.Mock;
-      findUnique: jest.Mock;
+      findFirst: jest.Mock;
     };
     $transaction: jest.Mock;
   };
@@ -27,7 +27,7 @@ describe('RunsService', () => {
     prisma = {
       game: { findUnique: jest.fn() },
       rule: { findMany: jest.fn() },
-      run: { findMany: jest.fn(), findUnique: jest.fn() },
+      run: { findMany: jest.fn(), findFirst: jest.fn() },
       $transaction: jest.fn((cb: (tx: unknown) => unknown) => cb(tx)),
     };
 
@@ -73,15 +73,21 @@ describe('RunsService', () => {
       expect(prisma.$transaction).not.toHaveBeenCalled();
     });
 
-    it('throws BadRequestException when a rule belongs to another user', async () => {
+    it('throws BadRequestException when a rule is not visible to the user, without distinguishing why', async () => {
       prisma.game.findUnique.mockResolvedValue({ id: 'game-1' });
-      prisma.rule.findMany.mockResolvedValue([
-        { id: 'rule-1', createdById: 'someone-else' },
-      ]);
+      // The query itself scopes to visible rules, so a rule owned by
+      // someone else simply never comes back here.
+      prisma.rule.findMany.mockResolvedValue([]);
 
       await expect(
         service.create('user-1', { gameId: 'game-1', ruleIds: ['rule-1'] }),
       ).rejects.toThrow(BadRequestException);
+      expect(prisma.rule.findMany).toHaveBeenCalledWith({
+        where: {
+          id: { in: ['rule-1'] },
+          OR: [{ createdById: null }, { createdById: 'user-1' }],
+        },
+      });
       expect(prisma.$transaction).not.toHaveBeenCalled();
     });
 
@@ -126,27 +132,28 @@ describe('RunsService', () => {
 
   describe('findOneForUser', () => {
     it('throws NotFoundException when the run does not exist', async () => {
-      prisma.run.findUnique.mockResolvedValue(null);
+      prisma.run.findFirst.mockResolvedValue(null);
 
       await expect(
         service.findOneForUser('user-1', 'missing-run'),
       ).rejects.toThrow(NotFoundException);
     });
 
-    it('throws NotFoundException when the run belongs to another user', async () => {
-      prisma.run.findUnique.mockResolvedValue({
-        id: 'run-1',
-        userId: 'someone-else',
-      });
+    it('scopes the query to the run id and user id, not filtering in memory', async () => {
+      prisma.run.findFirst.mockResolvedValue(null);
 
       await expect(service.findOneForUser('user-1', 'run-1')).rejects.toThrow(
         NotFoundException,
       );
+      expect(prisma.run.findFirst).toHaveBeenCalledWith({
+        where: { id: 'run-1', userId: 'user-1' },
+        include: { game: true, runRules: { include: { rule: true } } },
+      });
     });
 
     it('returns the run when it belongs to the user', async () => {
       const run = { id: 'run-1', userId: 'user-1' };
-      prisma.run.findUnique.mockResolvedValue(run);
+      prisma.run.findFirst.mockResolvedValue(run);
 
       await expect(service.findOneForUser('user-1', 'run-1')).resolves.toBe(
         run,

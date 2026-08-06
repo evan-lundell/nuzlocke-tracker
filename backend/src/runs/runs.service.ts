@@ -48,11 +48,11 @@ export class RunsService {
   }
 
   async findOneForUser(userId: string, runId: string) {
-    const run = await this.prisma.run.findUnique({
-      where: { id: runId },
+    const run = await this.prisma.run.findFirst({
+      where: { id: runId, userId },
       include: { game: true, runRules: { include: { rule: true } } },
     });
-    if (!run || run.userId !== userId) {
+    if (!run) {
       throw new NotFoundException(`Run ${runId} not found`);
     }
     return run;
@@ -60,21 +60,16 @@ export class RunsService {
 
   private async assertRulesSelectable(userId: string, ruleIds: string[]) {
     const rules = await this.prisma.rule.findMany({
-      where: { id: { in: ruleIds } },
+      where: {
+        id: { in: ruleIds },
+        OR: [{ createdById: null }, { createdById: userId }],
+      },
     });
     const foundIds = new Set(rules.map((rule) => rule.id));
-    const missingIds = ruleIds.filter((id) => !foundIds.has(id));
-    if (missingIds.length > 0) {
+    const notSelectable = ruleIds.filter((id) => !foundIds.has(id));
+    if (notSelectable.length > 0) {
       throw new BadRequestException(
-        `Rule(s) not found: ${missingIds.join(', ')}`,
-      );
-    }
-    const notVisible = rules.filter(
-      (rule) => rule.createdById !== null && rule.createdById !== userId,
-    );
-    if (notVisible.length > 0) {
-      throw new BadRequestException(
-        `Rule(s) not available: ${notVisible.map((rule) => rule.id).join(', ')}`,
+        `Rule(s) not selectable: ${notSelectable.join(', ')}`,
       );
     }
   }
