@@ -115,6 +115,21 @@ describe('PartyService', () => {
       });
     });
 
+    it('creates the party membership for a caught encounter with no vitalStatus set', async () => {
+      prisma.run.findFirst.mockResolvedValue({ id: 'run-1' });
+      prisma.encounter.findFirst.mockResolvedValue({
+        id: 'enc-1',
+        caught: true,
+        vitalStatus: null,
+      });
+      const membership = { id: 'mem-1', runId: 'run-1', encounterId: 'enc-1' };
+      prisma.partyMembership.create.mockResolvedValue(membership);
+
+      await expect(
+        service.create('user-1', 'run-1', { encounterId: 'enc-1' }),
+      ).resolves.toBe(membership);
+    });
+
     it('throws ConflictException when the encounter is already in the party', async () => {
       prisma.run.findFirst.mockResolvedValue({ id: 'run-1' });
       prisma.encounter.findFirst.mockResolvedValue({

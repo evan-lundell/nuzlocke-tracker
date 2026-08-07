@@ -25,9 +25,9 @@ export class PartyService {
         `Encounter ${dto.encounterId} not found for this run`,
       );
     }
-    if (!encounter.caught || encounter.vitalStatus !== 'ALIVE') {
+    if (!encounter.caught || encounter.vitalStatus === 'DEAD') {
       throw new BadRequestException(
-        'Only a caught, alive encounter can be added to the party',
+        'Only a caught, non-dead encounter can be added to the party',
       );
     }
 
