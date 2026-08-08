@@ -4,18 +4,24 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { Prisma, Run } from '../../generated/prisma/client';
+import { Prisma } from '../../generated/prisma/client';
 import { PrismaService } from '../prisma/prisma.service';
+import { RunOwnershipService } from '../runs/run-ownership.service';
 import { AddPartyMembershipDto } from './dto/add-party-membership.dto';
+import { isPartyEligible } from './party-eligibility';
 
 const PRISMA_UNIQUE_CONSTRAINT_VIOLATION = 'P2002';
+const MAX_PARTY_SIZE = 6;
 
 @Injectable()
 export class PartyService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly runOwnership: RunOwnershipService,
+  ) {}
 
   async create(userId: string, runId: string, dto: AddPartyMembershipDto) {
-    await this.assertRunOwnership(userId, runId);
+    await this.runOwnership.assertOwnership(userId, runId);
 
     const encounter = await this.prisma.encounter.findFirst({
       where: { id: dto.encounterId, runId },
@@ -25,9 +31,18 @@ export class PartyService {
         `Encounter ${dto.encounterId} not found for this run`,
       );
     }
-    if (!encounter.caught || encounter.vitalStatus === 'DEAD') {
+    if (!isPartyEligible(encounter)) {
       throw new BadRequestException(
         'Only a caught, non-dead encounter can be added to the party',
+      );
+    }
+
+    const partySize = await this.prisma.partyMembership.count({
+      where: { runId },
+    });
+    if (partySize >= MAX_PARTY_SIZE) {
+      throw new ConflictException(
+        `Party is already at the maximum of ${MAX_PARTY_SIZE}`,
       );
     }
 
@@ -50,7 +65,7 @@ export class PartyService {
   }
 
   async findAllForRun(userId: string, runId: string) {
-    await this.assertRunOwnership(userId, runId);
+    await this.runOwnership.assertOwnership(userId, runId);
     return this.prisma.partyMembership.findMany({
       where: { runId },
       include: { encounter: { include: { species: true, route: true } } },
@@ -59,7 +74,7 @@ export class PartyService {
   }
 
   async remove(userId: string, runId: string, encounterId: string) {
-    await this.assertRunOwnership(userId, runId);
+    await this.runOwnership.assertOwnership(userId, runId);
     const membership = await this.prisma.partyMembership.findFirst({
       where: { encounterId, runId },
     });
@@ -69,18 +84,5 @@ export class PartyService {
       );
     }
     await this.prisma.partyMembership.delete({ where: { id: membership.id } });
-  }
-
-  private async assertRunOwnership(
-    userId: string,
-    runId: string,
-  ): Promise<Run> {
-    const run = await this.prisma.run.findFirst({
-      where: { id: runId, userId },
-    });
-    if (!run) {
-      throw new NotFoundException(`Run ${runId} not found`);
-    }
-    return run;
   }
 }

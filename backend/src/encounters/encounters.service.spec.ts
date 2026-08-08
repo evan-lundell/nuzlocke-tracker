@@ -2,12 +2,12 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { ConflictException, NotFoundException } from '@nestjs/common';
 import { EncountersService } from './encounters.service';
 import { PrismaService } from '../prisma/prisma.service';
+import { RunOwnershipService } from '../runs/run-ownership.service';
 import { Prisma } from '../../generated/prisma/client';
 
 describe('EncountersService', () => {
   let service: EncountersService;
   let prisma: {
-    run: { findFirst: jest.Mock };
     route: { findUnique: jest.Mock };
     species: { findUnique: jest.Mock };
     encounter: {
@@ -19,6 +19,7 @@ describe('EncountersService', () => {
     };
     partyMembership: { deleteMany: jest.Mock };
   };
+  let runOwnership: { assertOwnership: jest.Mock };
 
   const duplicateError = () =>
     new Prisma.PrismaClientKnownRequestError('duplicate', {
@@ -28,7 +29,6 @@ describe('EncountersService', () => {
 
   beforeEach(async () => {
     prisma = {
-      run: { findFirst: jest.fn() },
       route: { findUnique: jest.fn() },
       species: { findUnique: jest.fn() },
       encounter: {
@@ -40,11 +40,17 @@ describe('EncountersService', () => {
       },
       partyMembership: { deleteMany: jest.fn() },
     };
+    runOwnership = {
+      assertOwnership: jest
+        .fn()
+        .mockResolvedValue({ id: 'run-1', gameId: 'g-1' }),
+    };
 
     const module: TestingModule = await Test.createTestingModule({
       providers: [
         EncountersService,
         { provide: PrismaService, useValue: prisma },
+        { provide: RunOwnershipService, useValue: runOwnership },
       ],
     }).compile();
 
@@ -53,18 +59,20 @@ describe('EncountersService', () => {
 
   describe('create', () => {
     it('throws NotFoundException when the run does not exist or is not owned by the user', async () => {
-      prisma.run.findFirst.mockResolvedValue(null);
+      runOwnership.assertOwnership.mockRejectedValue(
+        new NotFoundException('Run run-1 not found'),
+      );
 
       await expect(
         service.create('user-1', 'run-1', { routeId: 'route-1' }),
       ).rejects.toThrow(NotFoundException);
-      expect(prisma.run.findFirst).toHaveBeenCalledWith({
-        where: { id: 'run-1', userId: 'user-1' },
-      });
+      expect(runOwnership.assertOwnership).toHaveBeenCalledWith(
+        'user-1',
+        'run-1',
+      );
     });
 
     it("throws NotFoundException when the route doesn't belong to the run's game", async () => {
-      prisma.run.findFirst.mockResolvedValue({ id: 'run-1', gameId: 'g-1' });
       prisma.route.findUnique.mockResolvedValue({
         id: 'route-1',
         gameId: 'g-2',
@@ -77,7 +85,6 @@ describe('EncountersService', () => {
     });
 
     it('throws NotFoundException when speciesId does not exist', async () => {
-      prisma.run.findFirst.mockResolvedValue({ id: 'run-1', gameId: 'g-1' });
       prisma.route.findUnique.mockResolvedValue({
         id: 'route-1',
         gameId: 'g-1',
@@ -94,7 +101,6 @@ describe('EncountersService', () => {
     });
 
     it("defaults order to the route's order when omitted", async () => {
-      prisma.run.findFirst.mockResolvedValue({ id: 'run-1', gameId: 'g-1' });
       prisma.route.findUnique.mockResolvedValue({
         id: 'route-1',
         gameId: 'g-1',
@@ -122,7 +128,6 @@ describe('EncountersService', () => {
     });
 
     it('uses the provided order instead of the default', async () => {
-      prisma.run.findFirst.mockResolvedValue({ id: 'run-1', gameId: 'g-1' });
       prisma.route.findUnique.mockResolvedValue({
         id: 'route-1',
         gameId: 'g-1',
@@ -150,7 +155,6 @@ describe('EncountersService', () => {
     });
 
     it('throws ConflictException when the (run, route, label) combination already exists', async () => {
-      prisma.run.findFirst.mockResolvedValue({ id: 'run-1', gameId: 'g-1' });
       prisma.route.findUnique.mockResolvedValue({
         id: 'route-1',
         gameId: 'g-1',
@@ -166,7 +170,9 @@ describe('EncountersService', () => {
 
   describe('findAllForRun', () => {
     it('throws NotFoundException when the run is not owned by the user', async () => {
-      prisma.run.findFirst.mockResolvedValue(null);
+      runOwnership.assertOwnership.mockRejectedValue(
+        new NotFoundException('Run run-1 not found'),
+      );
 
       await expect(service.findAllForRun('user-1', 'run-1')).rejects.toThrow(
         NotFoundException,
@@ -174,7 +180,6 @@ describe('EncountersService', () => {
     });
 
     it('returns encounters for the run ordered by order asc', async () => {
-      prisma.run.findFirst.mockResolvedValue({ id: 'run-1' });
       const encounters = [{ id: 'enc-1' }];
       prisma.encounter.findMany.mockResolvedValue(encounters);
 
@@ -191,7 +196,9 @@ describe('EncountersService', () => {
 
   describe('findOneForRun', () => {
     it('throws NotFoundException when the run is not owned by the user', async () => {
-      prisma.run.findFirst.mockResolvedValue(null);
+      runOwnership.assertOwnership.mockRejectedValue(
+        new NotFoundException('Run run-1 not found'),
+      );
 
       await expect(
         service.findOneForRun('user-1', 'run-1', 'enc-1'),
@@ -199,7 +206,6 @@ describe('EncountersService', () => {
     });
 
     it('throws NotFoundException when the encounter does not belong to the run', async () => {
-      prisma.run.findFirst.mockResolvedValue({ id: 'run-1' });
       prisma.encounter.findFirst.mockResolvedValue(null);
 
       await expect(
@@ -212,7 +218,6 @@ describe('EncountersService', () => {
     });
 
     it('returns the encounter when found', async () => {
-      prisma.run.findFirst.mockResolvedValue({ id: 'run-1' });
       const encounter = { id: 'enc-1' };
       prisma.encounter.findFirst.mockResolvedValue(encounter);
 
@@ -224,7 +229,9 @@ describe('EncountersService', () => {
 
   describe('update', () => {
     it('throws NotFoundException when the run is not owned by the user', async () => {
-      prisma.run.findFirst.mockResolvedValue(null);
+      runOwnership.assertOwnership.mockRejectedValue(
+        new NotFoundException('Run run-1 not found'),
+      );
 
       await expect(
         service.update('user-1', 'run-1', 'enc-1', { caught: true }),
@@ -232,7 +239,6 @@ describe('EncountersService', () => {
     });
 
     it('throws NotFoundException when the encounter does not belong to the run', async () => {
-      prisma.run.findFirst.mockResolvedValue({ id: 'run-1' });
       prisma.encounter.findFirst.mockResolvedValue(null);
 
       await expect(
@@ -241,7 +247,6 @@ describe('EncountersService', () => {
     });
 
     it('throws NotFoundException when the new speciesId does not exist', async () => {
-      prisma.run.findFirst.mockResolvedValue({ id: 'run-1' });
       prisma.encounter.findFirst.mockResolvedValue({ id: 'enc-1' });
       prisma.species.findUnique.mockResolvedValue(null);
 
@@ -253,9 +258,8 @@ describe('EncountersService', () => {
     });
 
     it('updates the encounter', async () => {
-      prisma.run.findFirst.mockResolvedValue({ id: 'run-1' });
       prisma.encounter.findFirst.mockResolvedValue({ id: 'enc-1' });
-      const updated = { id: 'enc-1', caught: true };
+      const updated = { id: 'enc-1', caught: true, vitalStatus: 'ALIVE' };
       prisma.encounter.update.mockResolvedValue(updated);
 
       await expect(
@@ -266,10 +270,23 @@ describe('EncountersService', () => {
         data: { caught: true },
         include: { species: true, route: true },
       });
+      expect(prisma.partyMembership.deleteMany).not.toHaveBeenCalled();
+    });
+
+    it('removes any party membership when the update makes the encounter unfit for the party', async () => {
+      prisma.encounter.findFirst.mockResolvedValue({ id: 'enc-1' });
+      const updated = { id: 'enc-1', caught: true, vitalStatus: 'DEAD' };
+      prisma.encounter.update.mockResolvedValue(updated);
+
+      await expect(
+        service.update('user-1', 'run-1', 'enc-1', { vitalStatus: 'DEAD' }),
+      ).resolves.toBe(updated);
+      expect(prisma.partyMembership.deleteMany).toHaveBeenCalledWith({
+        where: { encounterId: 'enc-1' },
+      });
     });
 
     it('throws ConflictException when relabeling collides with an existing encounter', async () => {
-      prisma.run.findFirst.mockResolvedValue({ id: 'run-1' });
       prisma.encounter.findFirst.mockResolvedValue({ id: 'enc-1' });
       prisma.encounter.update.mockRejectedValue(duplicateError());
 
@@ -279,7 +296,6 @@ describe('EncountersService', () => {
     });
 
     it('falls back to the existing label in the conflict message when the update omits one', async () => {
-      prisma.run.findFirst.mockResolvedValue({ id: 'run-1' });
       prisma.encounter.findFirst.mockResolvedValue({
         id: 'enc-1',
         label: 'Wild Encounter',
@@ -296,7 +312,9 @@ describe('EncountersService', () => {
 
   describe('remove', () => {
     it('throws NotFoundException when the run is not owned by the user', async () => {
-      prisma.run.findFirst.mockResolvedValue(null);
+      runOwnership.assertOwnership.mockRejectedValue(
+        new NotFoundException('Run run-1 not found'),
+      );
 
       await expect(service.remove('user-1', 'run-1', 'enc-1')).rejects.toThrow(
         NotFoundException,
@@ -304,7 +322,6 @@ describe('EncountersService', () => {
     });
 
     it('throws NotFoundException when the encounter does not belong to the run', async () => {
-      prisma.run.findFirst.mockResolvedValue({ id: 'run-1' });
       prisma.encounter.findFirst.mockResolvedValue(null);
 
       await expect(service.remove('user-1', 'run-1', 'enc-1')).rejects.toThrow(
@@ -313,7 +330,6 @@ describe('EncountersService', () => {
     });
 
     it('deletes any party membership before deleting the encounter', async () => {
-      prisma.run.findFirst.mockResolvedValue({ id: 'run-1' });
       prisma.encounter.findFirst.mockResolvedValue({ id: 'enc-1' });
       prisma.encounter.delete.mockResolvedValue({ id: 'enc-1' });
 

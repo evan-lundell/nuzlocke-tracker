@@ -6,20 +6,22 @@ import {
 } from '@nestjs/common';
 import { PartyService } from './party.service';
 import { PrismaService } from '../prisma/prisma.service';
+import { RunOwnershipService } from '../runs/run-ownership.service';
 import { Prisma } from '../../generated/prisma/client';
 
 describe('PartyService', () => {
   let service: PartyService;
   let prisma: {
-    run: { findFirst: jest.Mock };
     encounter: { findFirst: jest.Mock };
     partyMembership: {
       create: jest.Mock;
       findMany: jest.Mock;
       findFirst: jest.Mock;
       delete: jest.Mock;
+      count: jest.Mock;
     };
   };
+  let runOwnership: { assertOwnership: jest.Mock };
 
   const duplicateError = () =>
     new Prisma.PrismaClientKnownRequestError('duplicate', {
@@ -29,18 +31,25 @@ describe('PartyService', () => {
 
   beforeEach(async () => {
     prisma = {
-      run: { findFirst: jest.fn() },
       encounter: { findFirst: jest.fn() },
       partyMembership: {
         create: jest.fn(),
         findMany: jest.fn(),
         findFirst: jest.fn(),
         delete: jest.fn(),
+        count: jest.fn().mockResolvedValue(0),
       },
+    };
+    runOwnership = {
+      assertOwnership: jest.fn().mockResolvedValue({ id: 'run-1' }),
     };
 
     const module: TestingModule = await Test.createTestingModule({
-      providers: [PartyService, { provide: PrismaService, useValue: prisma }],
+      providers: [
+        PartyService,
+        { provide: PrismaService, useValue: prisma },
+        { provide: RunOwnershipService, useValue: runOwnership },
+      ],
     }).compile();
 
     service = module.get<PartyService>(PartyService);
@@ -48,18 +57,20 @@ describe('PartyService', () => {
 
   describe('create', () => {
     it('throws NotFoundException when the run does not exist or is not owned by the user', async () => {
-      prisma.run.findFirst.mockResolvedValue(null);
+      runOwnership.assertOwnership.mockRejectedValue(
+        new NotFoundException('Run run-1 not found'),
+      );
 
       await expect(
         service.create('user-1', 'run-1', { encounterId: 'enc-1' }),
       ).rejects.toThrow(NotFoundException);
-      expect(prisma.run.findFirst).toHaveBeenCalledWith({
-        where: { id: 'run-1', userId: 'user-1' },
-      });
+      expect(runOwnership.assertOwnership).toHaveBeenCalledWith(
+        'user-1',
+        'run-1',
+      );
     });
 
     it('throws NotFoundException when the encounter does not belong to the run', async () => {
-      prisma.run.findFirst.mockResolvedValue({ id: 'run-1' });
       prisma.encounter.findFirst.mockResolvedValue(null);
 
       await expect(
@@ -71,7 +82,6 @@ describe('PartyService', () => {
     });
 
     it('throws BadRequestException when the encounter has not been caught', async () => {
-      prisma.run.findFirst.mockResolvedValue({ id: 'run-1' });
       prisma.encounter.findFirst.mockResolvedValue({
         id: 'enc-1',
         caught: false,
@@ -84,7 +94,6 @@ describe('PartyService', () => {
     });
 
     it('throws BadRequestException when the encounter is dead', async () => {
-      prisma.run.findFirst.mockResolvedValue({ id: 'run-1' });
       prisma.encounter.findFirst.mockResolvedValue({
         id: 'enc-1',
         caught: true,
@@ -96,8 +105,24 @@ describe('PartyService', () => {
       ).rejects.toThrow(BadRequestException);
     });
 
+    it('throws ConflictException when the party already has 6 members', async () => {
+      prisma.encounter.findFirst.mockResolvedValue({
+        id: 'enc-1',
+        caught: true,
+        vitalStatus: 'ALIVE',
+      });
+      prisma.partyMembership.count.mockResolvedValue(6);
+
+      await expect(
+        service.create('user-1', 'run-1', { encounterId: 'enc-1' }),
+      ).rejects.toThrow(ConflictException);
+      expect(prisma.partyMembership.count).toHaveBeenCalledWith({
+        where: { runId: 'run-1' },
+      });
+      expect(prisma.partyMembership.create).not.toHaveBeenCalled();
+    });
+
     it('creates the party membership for a caught, alive encounter', async () => {
-      prisma.run.findFirst.mockResolvedValue({ id: 'run-1' });
       prisma.encounter.findFirst.mockResolvedValue({
         id: 'enc-1',
         caught: true,
@@ -116,7 +141,6 @@ describe('PartyService', () => {
     });
 
     it('creates the party membership for a caught encounter with no vitalStatus set', async () => {
-      prisma.run.findFirst.mockResolvedValue({ id: 'run-1' });
       prisma.encounter.findFirst.mockResolvedValue({
         id: 'enc-1',
         caught: true,
@@ -131,7 +155,6 @@ describe('PartyService', () => {
     });
 
     it('throws ConflictException when the encounter is already in the party', async () => {
-      prisma.run.findFirst.mockResolvedValue({ id: 'run-1' });
       prisma.encounter.findFirst.mockResolvedValue({
         id: 'enc-1',
         caught: true,
@@ -147,7 +170,9 @@ describe('PartyService', () => {
 
   describe('findAllForRun', () => {
     it('throws NotFoundException when the run is not owned by the user', async () => {
-      prisma.run.findFirst.mockResolvedValue(null);
+      runOwnership.assertOwnership.mockRejectedValue(
+        new NotFoundException('Run run-1 not found'),
+      );
 
       await expect(service.findAllForRun('user-1', 'run-1')).rejects.toThrow(
         NotFoundException,
@@ -155,7 +180,6 @@ describe('PartyService', () => {
     });
 
     it('returns party memberships for the run ordered by createdAt asc', async () => {
-      prisma.run.findFirst.mockResolvedValue({ id: 'run-1' });
       const memberships = [{ id: 'mem-1' }];
       prisma.partyMembership.findMany.mockResolvedValue(memberships);
 
@@ -172,7 +196,9 @@ describe('PartyService', () => {
 
   describe('remove', () => {
     it('throws NotFoundException when the run is not owned by the user', async () => {
-      prisma.run.findFirst.mockResolvedValue(null);
+      runOwnership.assertOwnership.mockRejectedValue(
+        new NotFoundException('Run run-1 not found'),
+      );
 
       await expect(service.remove('user-1', 'run-1', 'enc-1')).rejects.toThrow(
         NotFoundException,
@@ -180,7 +206,6 @@ describe('PartyService', () => {
     });
 
     it('throws NotFoundException when the encounter is not in the party for this run', async () => {
-      prisma.run.findFirst.mockResolvedValue({ id: 'run-1' });
       prisma.partyMembership.findFirst.mockResolvedValue(null);
 
       await expect(service.remove('user-1', 'run-1', 'enc-1')).rejects.toThrow(
@@ -192,7 +217,6 @@ describe('PartyService', () => {
     });
 
     it('deletes the party membership', async () => {
-      prisma.run.findFirst.mockResolvedValue({ id: 'run-1' });
       prisma.partyMembership.findFirst.mockResolvedValue({ id: 'mem-1' });
       prisma.partyMembership.delete.mockResolvedValue({ id: 'mem-1' });
 

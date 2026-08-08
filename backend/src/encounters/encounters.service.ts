@@ -3,19 +3,24 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { Prisma, Run } from '../../generated/prisma/client';
+import { Prisma } from '../../generated/prisma/client';
 import { PrismaService } from '../prisma/prisma.service';
+import { RunOwnershipService } from '../runs/run-ownership.service';
 import { CreateEncounterDto } from './dto/create-encounter.dto';
 import { UpdateEncounterDto } from './dto/update-encounter.dto';
+import { isPartyEligible } from '../party/party-eligibility';
 
 const PRISMA_UNIQUE_CONSTRAINT_VIOLATION = 'P2002';
 
 @Injectable()
 export class EncountersService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly runOwnership: RunOwnershipService,
+  ) {}
 
   async create(userId: string, runId: string, dto: CreateEncounterDto) {
-    const run = await this.assertRunOwnership(userId, runId);
+    const run = await this.runOwnership.assertOwnership(userId, runId);
 
     const route = await this.prisma.route.findUnique({
       where: { id: dto.routeId },
@@ -63,7 +68,7 @@ export class EncountersService {
   }
 
   async findAllForRun(userId: string, runId: string) {
-    await this.assertRunOwnership(userId, runId);
+    await this.runOwnership.assertOwnership(userId, runId);
     return this.prisma.encounter.findMany({
       where: { runId },
       orderBy: { order: 'asc' },
@@ -72,7 +77,7 @@ export class EncountersService {
   }
 
   async findOneForRun(userId: string, runId: string, id: string) {
-    await this.assertRunOwnership(userId, runId);
+    await this.runOwnership.assertOwnership(userId, runId);
     return this.findEncounterOrThrow(runId, id);
   }
 
@@ -82,7 +87,7 @@ export class EncountersService {
     id: string,
     dto: UpdateEncounterDto,
   ) {
-    await this.assertRunOwnership(userId, runId);
+    await this.runOwnership.assertOwnership(userId, runId);
     const existing = await this.findEncounterOrThrow(runId, id);
 
     if (dto.speciesId) {
@@ -95,11 +100,17 @@ export class EncountersService {
     }
 
     try {
-      return await this.prisma.encounter.update({
+      const updated = await this.prisma.encounter.update({
         where: { id },
         data: dto,
         include: { species: true, route: true },
       });
+      if (!isPartyEligible(updated)) {
+        await this.prisma.partyMembership.deleteMany({
+          where: { encounterId: id },
+        });
+      }
+      return updated;
     } catch (error) {
       if (
         error instanceof Prisma.PrismaClientKnownRequestError &&
@@ -114,25 +125,12 @@ export class EncountersService {
   }
 
   async remove(userId: string, runId: string, id: string) {
-    await this.assertRunOwnership(userId, runId);
+    await this.runOwnership.assertOwnership(userId, runId);
     await this.findEncounterOrThrow(runId, id);
     await this.prisma.partyMembership.deleteMany({
       where: { encounterId: id },
     });
     await this.prisma.encounter.delete({ where: { id } });
-  }
-
-  private async assertRunOwnership(
-    userId: string,
-    runId: string,
-  ): Promise<Run> {
-    const run = await this.prisma.run.findFirst({
-      where: { id: runId, userId },
-    });
-    if (!run) {
-      throw new NotFoundException(`Run ${runId} not found`);
-    }
-    return run;
   }
 
   private async findEncounterOrThrow(runId: string, id: string) {
