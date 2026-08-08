@@ -7,6 +7,7 @@ import { RoutesModule } from './routes/routes.module';
 import { AuthModule } from './auth/auth.module';
 import { RunsModule } from './runs/runs.module';
 import { EncountersModule } from './encounters/encounters.module';
+import { PartyModule } from './party/party.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { EncountersModule } from './encounters/encounters.module';
     AuthModule,
     RunsModule,
     EncountersModule,
+    PartyModule,
   ],
   controllers: [AppController],
   providers: [AppService],
