@@ -116,6 +116,9 @@ export class EncountersService {
   async remove(userId: string, runId: string, id: string) {
     await this.assertRunOwnership(userId, runId);
     await this.findEncounterOrThrow(runId, id);
+    await this.prisma.partyMembership.deleteMany({
+      where: { encounterId: id },
+    });
     await this.prisma.encounter.delete({ where: { id } });
   }
 

@@ -17,6 +17,7 @@ describe('EncountersService', () => {
       update: jest.Mock;
       delete: jest.Mock;
     };
+    partyMembership: { deleteMany: jest.Mock };
   };
 
   const duplicateError = () =>
@@ -37,6 +38,7 @@ describe('EncountersService', () => {
         update: jest.fn(),
         delete: jest.fn(),
       },
+      partyMembership: { deleteMany: jest.fn() },
     };
 
     const module: TestingModule = await Test.createTestingModule({
@@ -310,12 +312,15 @@ describe('EncountersService', () => {
       );
     });
 
-    it('deletes the encounter', async () => {
+    it('deletes any party membership before deleting the encounter', async () => {
       prisma.run.findFirst.mockResolvedValue({ id: 'run-1' });
       prisma.encounter.findFirst.mockResolvedValue({ id: 'enc-1' });
       prisma.encounter.delete.mockResolvedValue({ id: 'enc-1' });
 
       await service.remove('user-1', 'run-1', 'enc-1');
+      expect(prisma.partyMembership.deleteMany).toHaveBeenCalledWith({
+        where: { encounterId: 'enc-1' },
+      });
       expect(prisma.encounter.delete).toHaveBeenCalledWith({
         where: { id: 'enc-1' },
       });
