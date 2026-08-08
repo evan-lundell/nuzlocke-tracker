@@ -3,10 +3,10 @@ import { api } from '../../lib/api';
 import type { Encounter, VitalStatus } from '../../lib/types';
 
 export interface EncounterFormValues {
-  speciesId?: string;
+  speciesId?: string | null;
   caught: boolean;
-  nickname?: string;
-  vitalStatus?: VitalStatus;
+  nickname?: string | null;
+  vitalStatus?: VitalStatus | null;
 }
 
 export function useSaveEncounter(runId: string) {

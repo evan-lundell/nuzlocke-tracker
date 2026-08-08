@@ -40,14 +40,21 @@ export function EncounterForm({
   const uniqueSpecies = routeSpecies
     ? [...new Map(routeSpecies.map((entry) => [entry.speciesId, entry.species])).values()]
     : [];
+  // The existing encounter's species may not be one of the route's normally
+  // found species (randomizer support, see CLAUDE.md) — keep it selectable
+  // so editing doesn't silently show "Unknown" for an already-logged catch.
+  const existingSpecies = existingEncounter?.species;
+  if (existingSpecies && !uniqueSpecies.some((s) => s.id === existingSpecies.id)) {
+    uniqueSpecies.push(existingSpecies);
+  }
 
   function handleSubmit(event: FormEvent) {
     event.preventDefault();
     const values: EncounterFormValues = {
-      speciesId: speciesId || undefined,
+      speciesId: speciesId || null,
       caught,
-      nickname: nickname.trim() || undefined,
-      vitalStatus: caught ? vitalStatus || undefined : undefined,
+      nickname: nickname.trim() || null,
+      vitalStatus: caught ? vitalStatus || null : null,
     };
 
     if (existingEncounter) {

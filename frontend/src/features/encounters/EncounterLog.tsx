@@ -1,6 +1,7 @@
 import { useGameRoutes } from '../games/useGameRoutes';
 import { useEncounters } from './useEncounters';
 import { EncounterRow } from './EncounterRow';
+import type { Encounter } from '../../lib/types';
 
 interface EncounterLogProps {
   runId: string;
@@ -39,9 +40,18 @@ export function EncounterLog({ runId, gameId }: EncounterLogProps) {
     );
   }
 
-  const encounterByRoute = new Map(
-    encounters.map((encounter) => [encounter.routeId, encounter]),
-  );
+  // A route can have multiple ad hoc encounters (schema allows it, e.g. a
+  // static Snorlax logged separately from the wild encounter), but this
+  // row-per-route UI only shows one per route. Prefer the default "Wild
+  // Encounter" deterministically rather than an arbitrary last-one-wins —
+  // showing/editing ad hoc encounters is a future UI addition, not yet built.
+  const encounterByRoute = new Map<string, Encounter>();
+  for (const encounter of encounters) {
+    const current = encounterByRoute.get(encounter.routeId);
+    if (!current || (encounter.label === 'Wild Encounter' && current.label !== 'Wild Encounter')) {
+      encounterByRoute.set(encounter.routeId, encounter);
+    }
+  }
 
   return (
     <ul>
