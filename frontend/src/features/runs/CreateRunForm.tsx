@@ -4,7 +4,12 @@ import { useGames } from '../games/useGames';
 import { useCreateRun } from './useCreateRun';
 
 export function CreateRunForm() {
-  const { data: games, isPending: gamesPending } = useGames();
+  const {
+    data: games,
+    isPending: gamesPending,
+    isError: gamesIsError,
+    error: gamesError,
+  } = useGames();
   const createRun = useCreateRun();
   const [gameId, setGameId] = useState('');
   const [name, setName] = useState('');
@@ -43,6 +48,11 @@ export function CreateRunForm() {
             </option>
           ))}
         </select>
+        {gamesIsError && (
+          <span className="text-sm text-red-600 dark:text-red-400">
+            {gamesError.message}
+          </span>
+        )}
       </label>
 
       <label className="flex flex-col gap-1 text-sm">

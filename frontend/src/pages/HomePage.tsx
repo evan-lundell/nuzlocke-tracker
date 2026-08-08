@@ -4,10 +4,18 @@ import { RunsList } from '../features/runs/RunsList';
 import { CreateRunForm } from '../features/runs/CreateRunForm';
 
 export function HomePage() {
-  const { data: user, isPending } = useCurrentUser();
+  const { data: user, isPending, isError, error } = useCurrentUser();
 
   if (isPending) {
     return <p className="p-6 text-sm">Loading…</p>;
+  }
+
+  if (isError) {
+    return (
+      <p className="p-6 text-sm text-red-600 dark:text-red-400">
+        {error.message}
+      </p>
+    );
   }
 
   if (!user) {

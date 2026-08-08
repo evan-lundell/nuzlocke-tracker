@@ -7,8 +7,8 @@ export function useLogout() {
   return useMutation({
     mutationFn: () => api.post<void>('/auth/logout'),
     onSuccess: () => {
-      queryClient.setQueryData(['currentUser'], null);
       queryClient.clear();
+      queryClient.setQueryData(['currentUser'], null);
     },
   });
 }
