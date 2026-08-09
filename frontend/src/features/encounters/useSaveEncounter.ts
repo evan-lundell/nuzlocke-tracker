@@ -12,8 +12,14 @@ export interface EncounterFormValues {
 export function useSaveEncounter(runId: string) {
   const queryClient = useQueryClient();
 
+  // Encounters and party overlap: e.g. marking an encounter DEAD or
+  // uncaught makes the backend cascade-delete its PartyMembership row
+  // (see EncountersService.update), so the party cache must invalidate too.
   const invalidate = () =>
-    queryClient.invalidateQueries({ queryKey: ['runs', runId, 'encounters'] });
+    Promise.all([
+      queryClient.invalidateQueries({ queryKey: ['runs', runId, 'encounters'] }),
+      queryClient.invalidateQueries({ queryKey: ['runs', runId, 'party'] }),
+    ]);
 
   const create = useMutation({
     mutationFn: (input: EncounterFormValues & { routeId: string }) =>
