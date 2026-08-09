@@ -66,3 +66,11 @@ export interface Encounter {
   nickname: string | null;
   vitalStatus: VitalStatus | null;
 }
+
+export interface PartyMembership {
+  id: string;
+  runId: string;
+  encounterId: string;
+  createdAt: string;
+  encounter: Encounter;
+}
