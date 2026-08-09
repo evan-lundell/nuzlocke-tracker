@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { EncounterForm } from './EncounterForm';
+import { speciesDisplayName } from '../../lib/encounterDisplay';
 import type { Encounter, GameRoute } from '../../lib/types';
 
 interface EncounterRowProps {
@@ -43,7 +44,7 @@ export function EncounterRow({ runId, route, encounter }: EncounterRowProps) {
 }
 
 function summarize(encounter: Encounter): string {
-  const parts = [encounter.species?.name ?? 'Unknown species'];
+  const parts = [speciesDisplayName(encounter)];
   parts.push(encounter.caught ? 'Caught' : 'Not caught');
   if (encounter.nickname) parts.push(`"${encounter.nickname}"`);
   if (encounter.vitalStatus === 'DEAD') parts.push('Dead');

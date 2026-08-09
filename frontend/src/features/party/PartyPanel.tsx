@@ -1,6 +1,8 @@
 import { useParty } from './useParty';
 import { usePartyMutations } from './usePartyMutations';
 import { useEncounters } from '../encounters/useEncounters';
+import { isPartyEligible, MAX_PARTY_SIZE } from './partyEligibility';
+import { speciesDisplayName } from '../../lib/encounterDisplay';
 import type { Encounter } from '../../lib/types';
 
 interface PartyPanelProps {
@@ -41,11 +43,10 @@ export function PartyPanel({ runId }: PartyPanelProps) {
   }
 
   const partyEncounterIds = new Set(party.map((member) => member.encounterId));
+  const partyIsFull = party.length >= MAX_PARTY_SIZE;
   const eligible = encounters.filter(
     (encounter) =>
-      encounter.caught &&
-      encounter.vitalStatus !== 'DEAD' &&
-      !partyEncounterIds.has(encounter.id),
+      isPartyEligible(encounter) && !partyEncounterIds.has(encounter.id),
   );
 
   return (
@@ -63,7 +64,10 @@ export function PartyPanel({ runId }: PartyPanelProps) {
             <button
               type="button"
               onClick={() => removeFromParty.mutate(member.encounterId)}
-              disabled={removeFromParty.isPending}
+              disabled={
+                removeFromParty.isPending &&
+                removeFromParty.variables === member.encounterId
+              }
               className="shrink-0 rounded-md border border-neutral-300 px-2 py-1 text-xs hover:bg-neutral-50 dark:border-neutral-700 dark:hover:bg-neutral-800"
             >
               Remove
@@ -83,7 +87,13 @@ export function PartyPanel({ runId }: PartyPanelProps) {
         </p>
       )}
 
-      {eligible.length > 0 && (
+      {partyIsFull && (
+        <p className="text-sm text-neutral-500">
+          Party is full ({MAX_PARTY_SIZE}/{MAX_PARTY_SIZE}).
+        </p>
+      )}
+
+      {!partyIsFull && eligible.length > 0 && (
         <div>
           <h3 className="mb-1 text-sm font-medium text-neutral-500">
             Add to party
@@ -98,7 +108,9 @@ export function PartyPanel({ runId }: PartyPanelProps) {
                 <button
                   type="button"
                   onClick={() => addToParty.mutate(encounter.id)}
-                  disabled={addToParty.isPending}
+                  disabled={
+                    addToParty.isPending && addToParty.variables === encounter.id
+                  }
                   className="shrink-0 rounded-md border border-neutral-300 px-2 py-1 text-xs hover:bg-neutral-50 dark:border-neutral-700 dark:hover:bg-neutral-800"
                 >
                   Add
@@ -115,7 +127,7 @@ export function PartyPanel({ runId }: PartyPanelProps) {
 function describeEncounter(encounter: Encounter) {
   return (
     <span>
-      {encounter.nickname || encounter.species?.name || 'Unknown species'}
+      {encounter.nickname || speciesDisplayName(encounter)}
       <span className="ml-2 text-neutral-500">({encounter.route.name})</span>
     </span>
   );
