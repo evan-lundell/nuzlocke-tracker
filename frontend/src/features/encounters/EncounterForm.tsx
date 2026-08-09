@@ -27,7 +27,12 @@ export function EncounterForm({
     isError: speciesIsError,
     error: speciesError,
   } = useRouteSpecies(route.id, true);
-  const { data: allSpecies } = useSpecies();
+  const {
+    data: allSpecies,
+    isPending: allSpeciesPending,
+    isError: allSpeciesIsError,
+    error: allSpeciesError,
+  } = useSpecies();
   const { create, update } = useSaveEncounter(runId);
 
   const [selectedSpecies, setSelectedSpecies] = useState<Species | null>(
@@ -45,16 +50,16 @@ export function EncounterForm({
   const routeOptions = routeSpecies
     ? [...new Map(routeSpecies.map((entry) => [entry.speciesId, entry.species])).values()]
     : [];
-  // The selected species (from an existing encounter, or picked via search)
-  // may not be one of the route's normally found species (randomizer
-  // support, see CLAUDE.md) — keep it selectable in the dropdown so it
-  // doesn't silently show "Unknown" once chosen.
+  // The originally-logged species and/or whatever's currently selected may
+  // not be one of the route's normally found species (randomizer support,
+  // see CLAUDE.md) — keep both selectable in the dropdown so switching away
+  // and back doesn't require re-searching, and so it never silently shows
+  // "Unknown" for an already-logged catch.
   const dropdownOptions = [...routeOptions];
-  if (
-    selectedSpecies &&
-    !dropdownOptions.some((species) => species.id === selectedSpecies.id)
-  ) {
-    dropdownOptions.push(selectedSpecies);
+  for (const species of [existingEncounter?.species, selectedSpecies]) {
+    if (species && !dropdownOptions.some((s) => s.id === species.id)) {
+      dropdownOptions.push(species);
+    }
   }
 
   const trimmedQuery = speciesQuery.trim().toLowerCase();
@@ -97,6 +102,7 @@ export function EncounterForm({
               dropdownOptions.find((s) => s.id === event.target.value) ??
               null;
             setSelectedSpecies(species);
+            setSpeciesQuery('');
           }}
           disabled={speciesPending}
           className="rounded-md border border-neutral-300 px-2 py-1 dark:border-neutral-700 dark:bg-neutral-900"
@@ -119,9 +125,22 @@ export function EncounterForm({
           type="text"
           value={speciesQuery}
           onChange={(event) => setSpeciesQuery(event.target.value)}
+          onKeyDown={(event) => {
+            // Enter here means "confirm this search", not "submit the
+            // encounter form" — the user picks a result by clicking it.
+            if (event.key === 'Enter') event.preventDefault();
+          }}
           placeholder="e.g. Charizard"
           className="rounded-md border border-neutral-300 px-2 py-1 dark:border-neutral-700 dark:bg-neutral-900"
         />
+        {trimmedQuery && allSpeciesPending && (
+          <p className="text-xs text-neutral-500">Loading species…</p>
+        )}
+        {trimmedQuery && allSpeciesIsError && (
+          <p className="text-xs text-red-600 dark:text-red-400">
+            {allSpeciesError.message}
+          </p>
+        )}
         {searchResults.length > 0 && (
           <ul className="flex max-h-32 flex-col overflow-y-auto rounded-md border border-neutral-300 dark:border-neutral-700">
             {searchResults.map((species) => (
