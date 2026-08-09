@@ -25,3 +25,44 @@ export interface Run {
   startedAt: string;
   endedAt: string | null;
 }
+
+export interface GameRoute {
+  id: string;
+  gameId: string;
+  identifier: string;
+  name: string;
+  order: number;
+}
+
+export interface Species {
+  id: string;
+  identifier: string;
+  name: string;
+  pokedexNumber: number;
+  typePrimary: string;
+  typeSecondary: string | null;
+}
+
+export interface RouteSpeciesEntry {
+  id: string;
+  routeId: string;
+  speciesId: string;
+  species: Species;
+  method: string | null;
+}
+
+export type VitalStatus = 'ALIVE' | 'DEAD';
+
+export interface Encounter {
+  id: string;
+  runId: string;
+  routeId: string;
+  route: GameRoute;
+  speciesId: string | null;
+  species: Species | null;
+  label: string;
+  order: number;
+  caught: boolean;
+  nickname: string | null;
+  vitalStatus: VitalStatus | null;
+}

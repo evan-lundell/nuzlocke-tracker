@@ -1,5 +1,6 @@
 import { Link, useParams } from 'react-router-dom';
 import { useRun } from '../features/runs/useRun';
+import { EncounterLog } from '../features/encounters/EncounterLog';
 
 export function RunDetailPage() {
   const { runId } = useParams<{ runId: string }>();
@@ -30,8 +31,13 @@ export function RunDetailPage() {
         <dt className="text-neutral-500">Started</dt>
         <dd>{new Date(run.startedAt).toLocaleDateString()}</dd>
       </dl>
+      <section>
+        <h2 className="mb-2 text-lg font-semibold">Encounters</h2>
+        <EncounterLog runId={run.id} gameId={run.gameId} />
+      </section>
+
       <p className="text-sm text-neutral-500">
-        Encounter log and party management are coming soon.
+        Party management is coming soon.
       </p>
     </div>
   );
