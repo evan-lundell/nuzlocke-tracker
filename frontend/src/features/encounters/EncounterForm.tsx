@@ -125,12 +125,14 @@ export function EncounterForm({
       event.preventDefault();
       if (totalOptionCount === 0) return;
       setIsSpeciesListOpen(true);
-      setHighlightedIndex(
-        (index) => (index - 1 + totalOptionCount) % totalOptionCount,
+      setHighlightedIndex((index) =>
+        index <= 0 ? totalOptionCount - 1 : index - 1,
       );
     } else if (event.key === 'Enter') {
-      // Enter here means "confirm the highlighted option", not "submit the
-      // encounter form" — with nothing highlighted, it's a no-op.
+      // While the list is closed, Enter should submit the form like any
+      // other field. While it's open, Enter means "confirm the highlighted
+      // option" instead — with nothing highlighted, it's a no-op.
+      if (!isSpeciesListOpen) return;
       event.preventDefault();
       if (highlightedIndex === -1) return;
       if (showUnknownOption && highlightedIndex === UNKNOWN_INDEX) {

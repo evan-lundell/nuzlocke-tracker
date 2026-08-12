@@ -203,9 +203,11 @@ function QuickActions({
   onEvolve,
   isMutating,
 }: QuickActionsProps) {
-  const evolutionOptions = (allSpecies ?? []).filter(
-    (species) => species.evolvesFromId === encounter.speciesId,
-  );
+  const evolutionOptions = encounter.speciesId
+    ? (allSpecies ?? []).filter(
+        (species) => species.evolvesFromId === encounter.speciesId,
+      )
+    : [];
 
   return (
     <>
