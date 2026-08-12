@@ -338,7 +338,29 @@ async function seedRoutesAndEncounters(gameId: string, pokemonNameToSpeciesIdent
   console.log(`Seeded ${candidateRoutes.length} routes and ${routeSpeciesCount} route-species rows.`);
 }
 
+async function seedRules() {
+  await prisma.rule.upsert({
+    where: { key: "type-lock" },
+    create: {
+      key: "type-lock",
+      name: "Type-lock",
+      description:
+        "The active party cannot contain duplicate types. For dual-typed Pokémon, the player chooses one of its two types at the moment of catching, and the Pokémon is permanently locked to that single type from then on.",
+      kind: "ENFORCED",
+    },
+    update: {
+      name: "Type-lock",
+      description:
+        "The active party cannot contain duplicate types. For dual-typed Pokémon, the player chooses one of its two types at the moment of catching, and the Pokémon is permanently locked to that single type from then on.",
+      kind: "ENFORCED",
+    },
+  });
+  console.log("Seeded rules.");
+}
+
 async function main() {
+  await seedRules();
+
   console.log(`Upserting Game "${GAME_NAME}"...`);
   const versionGroup = await fetchJson<PokeApiVersionGroup>(`${POKEAPI_BASE}/version-group/firered-leafgreen`);
   const generationMatch = /\/generation\/(\d+)\/?$/.exec(versionGroup.generation.url);

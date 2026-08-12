@@ -6,7 +6,11 @@ import {
   IsUUID,
   MaxLength,
 } from 'class-validator';
-import { EncounterStatus, VitalStatus } from '../../../generated/prisma/client';
+import {
+  EncounterStatus,
+  PokemonType,
+  VitalStatus,
+} from '../../../generated/prisma/client';
 
 export class CreateEncounterDto {
   @IsUUID('7')
@@ -37,4 +41,8 @@ export class CreateEncounterDto {
   @IsOptional()
   @IsEnum(VitalStatus)
   vitalStatus?: VitalStatus;
+
+  @IsOptional()
+  @IsEnum(PokemonType)
+  lockedType?: PokemonType;
 }

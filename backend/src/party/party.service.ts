@@ -7,8 +7,10 @@ import {
 import { Prisma } from '../../generated/prisma/client';
 import { PrismaService } from '../prisma/prisma.service';
 import { RunOwnershipService } from '../runs/run-ownership.service';
+import { RulesService } from '../rules/rules.service';
 import { AddPartyMembershipDto } from './dto/add-party-membership.dto';
 import { isPartyEligible } from './party-eligibility';
+import { effectiveType, hasTypeClash, TYPE_LOCK_RULE_KEY } from './type-lock';
 
 const PRISMA_UNIQUE_CONSTRAINT_VIOLATION = 'P2002';
 const MAX_PARTY_SIZE = 6;
@@ -18,6 +20,7 @@ export class PartyService {
   constructor(
     private readonly prisma: PrismaService,
     private readonly runOwnership: RunOwnershipService,
+    private readonly rulesService: RulesService,
   ) {}
 
   async create(userId: string, runId: string, dto: AddPartyMembershipDto) {
@@ -25,6 +28,7 @@ export class PartyService {
 
     const encounter = await this.prisma.encounter.findFirst({
       where: { id: dto.encounterId, runId },
+      include: { species: true },
     });
     if (!encounter) {
       throw new NotFoundException(
@@ -44,6 +48,10 @@ export class PartyService {
       throw new ConflictException(
         `Party is already at the maximum of ${MAX_PARTY_SIZE}`,
       );
+    }
+
+    if (await this.rulesService.isRuleActiveForRun(runId, TYPE_LOCK_RULE_KEY)) {
+      await this.assertNoTypeClash(runId, encounter);
     }
 
     try {
@@ -84,5 +92,29 @@ export class PartyService {
       );
     }
     await this.prisma.partyMembership.delete({ where: { id: membership.id } });
+  }
+
+  private async assertNoTypeClash(
+    runId: string,
+    encounter: Prisma.EncounterGetPayload<{ include: { species: true } }>,
+  ) {
+    if (!encounter.species) return; // unknown species — nothing to enforce
+
+    const newType = effectiveType(encounter, encounter.species);
+    if (!newType) {
+      throw new BadRequestException(
+        'Choose a locked type for this dual-typed Pokémon before adding it to the party (type-lock rule)',
+      );
+    }
+
+    const partyMembers = await this.prisma.partyMembership.findMany({
+      where: { runId },
+      include: { encounter: { include: { species: true } } },
+    });
+    if (hasTypeClash(newType, partyMembers)) {
+      throw new ConflictException(
+        `Party already has a ${newType.toLowerCase()}-type Pokémon (type-lock rule)`,
+      );
+    }
   }
 }

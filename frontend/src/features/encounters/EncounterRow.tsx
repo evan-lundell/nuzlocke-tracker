@@ -7,9 +7,15 @@ interface EncounterRowProps {
   runId: string;
   route: GameRoute;
   encounter?: Encounter;
+  typeLocked: boolean;
 }
 
-export function EncounterRow({ runId, route, encounter }: EncounterRowProps) {
+export function EncounterRow({
+  runId,
+  route,
+  encounter,
+  typeLocked,
+}: EncounterRowProps) {
   const [isEditing, setIsEditing] = useState(false);
 
   if (isEditing) {
@@ -20,6 +26,7 @@ export function EncounterRow({ runId, route, encounter }: EncounterRowProps) {
           runId={runId}
           route={route}
           existingEncounter={encounter}
+          typeLocked={typeLocked}
           onDone={() => setIsEditing(false)}
         />
       </li>

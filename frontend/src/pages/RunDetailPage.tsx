@@ -2,6 +2,7 @@ import { Link, useParams } from 'react-router-dom';
 import { useRun } from '../features/runs/useRun';
 import { EncounterLog } from '../features/encounters/EncounterLog';
 import { PartyPanel } from '../features/party/PartyPanel';
+import { isTypeLocked } from '../lib/rules';
 
 export function RunDetailPage() {
   const { runId } = useParams<{ runId: string }>();
@@ -39,7 +40,11 @@ export function RunDetailPage() {
 
       <section>
         <h2 className="mb-2 text-lg font-semibold">Encounters</h2>
-        <EncounterLog runId={run.id} gameId={run.gameId} />
+        <EncounterLog
+          runId={run.id}
+          gameId={run.gameId}
+          typeLocked={isTypeLocked(run)}
+        />
       </section>
     </div>
   );

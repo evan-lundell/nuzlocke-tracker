@@ -1,14 +1,21 @@
 import {
+  BadRequestException,
   ConflictException,
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { Prisma } from '../../generated/prisma/client';
+import { PokemonType, Prisma, Species } from '../../generated/prisma/client';
 import { PrismaService } from '../prisma/prisma.service';
 import { RunOwnershipService } from '../runs/run-ownership.service';
+import { RulesService } from '../rules/rules.service';
 import { CreateEncounterDto } from './dto/create-encounter.dto';
 import { UpdateEncounterDto } from './dto/update-encounter.dto';
 import { isPartyEligible } from '../party/party-eligibility';
+import {
+  effectiveType,
+  hasTypeClash,
+  TYPE_LOCK_RULE_KEY,
+} from '../party/type-lock';
 
 const PRISMA_UNIQUE_CONSTRAINT_VIOLATION = 'P2002';
 
@@ -17,6 +24,7 @@ export class EncountersService {
   constructor(
     private readonly prisma: PrismaService,
     private readonly runOwnership: RunOwnershipService,
+    private readonly rulesService: RulesService,
   ) {}
 
   async create(userId: string, runId: string, dto: CreateEncounterDto) {
@@ -31,13 +39,17 @@ export class EncountersService {
       );
     }
 
+    let species: Species | null = null;
     if (dto.speciesId) {
-      const species = await this.prisma.species.findUnique({
+      species = await this.prisma.species.findUnique({
         where: { id: dto.speciesId },
       });
       if (!species) {
         throw new NotFoundException(`Species ${dto.speciesId} not found`);
       }
+    }
+    if (dto.lockedType !== undefined) {
+      this.assertValidLockedType(species, dto.lockedType);
     }
 
     try {
@@ -51,6 +63,7 @@ export class EncountersService {
           status: dto.status,
           nickname: dto.nickname,
           vitalStatus: dto.vitalStatus,
+          lockedType: dto.lockedType,
         },
         include: { species: true, route: true },
       });
@@ -90,13 +103,32 @@ export class EncountersService {
     await this.runOwnership.assertOwnership(userId, runId);
     const existing = await this.findEncounterOrThrow(runId, id);
 
+    let species = existing.species;
     if (dto.speciesId) {
-      const species = await this.prisma.species.findUnique({
+      species = await this.prisma.species.findUnique({
         where: { id: dto.speciesId },
       });
       if (!species) {
         throw new NotFoundException(`Species ${dto.speciesId} not found`);
       }
+    }
+    if (dto.lockedType !== undefined) {
+      this.assertValidLockedType(species, dto.lockedType, existing.lockedType);
+    }
+
+    const speciesChanged =
+      dto.speciesId !== undefined && dto.speciesId !== existing.speciesId;
+    if (speciesChanged) {
+      // Evolving a species already in the party can silently change its
+      // type-lock effective type (e.g. a single-typed Pokémon evolving into
+      // a different single type) — re-check the same invariant PartyService
+      // enforces on add, since this update path bypasses it entirely.
+      await this.assertPartyTypeLockAllowsSpeciesChange(
+        runId,
+        id,
+        species,
+        dto.lockedType ?? existing.lockedType,
+      );
     }
 
     try {
@@ -131,6 +163,67 @@ export class EncountersService {
       where: { encounterId: id },
     });
     await this.prisma.encounter.delete({ where: { id } });
+  }
+
+  private assertValidLockedType(
+    species: Pick<Species, 'typePrimary' | 'typeSecondary'> | null,
+    lockedType: PokemonType,
+    existingLockedType?: PokemonType | null,
+  ) {
+    if (!species || !species.typeSecondary) {
+      throw new BadRequestException(
+        'A locked type can only be set for a dual-typed species',
+      );
+    }
+    if (
+      lockedType !== species.typePrimary &&
+      lockedType !== species.typeSecondary
+    ) {
+      throw new BadRequestException(
+        `Locked type must be one of this species' types (${species.typePrimary}, ${species.typeSecondary})`,
+      );
+    }
+    if (existingLockedType && existingLockedType !== lockedType) {
+      throw new BadRequestException(
+        'Locked type is permanent once set and cannot be changed',
+      );
+    }
+  }
+
+  private async assertPartyTypeLockAllowsSpeciesChange(
+    runId: string,
+    encounterId: string,
+    species: Species | null,
+    lockedType: PokemonType | null,
+  ) {
+    const membership = await this.prisma.partyMembership.findUnique({
+      where: { encounterId },
+    });
+    if (!membership) return; // not currently in the party — nothing to protect
+
+    if (
+      !(await this.rulesService.isRuleActiveForRun(runId, TYPE_LOCK_RULE_KEY))
+    ) {
+      return;
+    }
+    if (!species) return; // unknown species — can't determine a type to check
+
+    const newType = effectiveType({ lockedType }, species);
+    if (!newType) {
+      throw new BadRequestException(
+        'This evolution is dual-typed — choose a locked type before it can stay in the party (type-lock rule)',
+      );
+    }
+
+    const otherPartyMembers = await this.prisma.partyMembership.findMany({
+      where: { runId, encounterId: { not: encounterId } },
+      include: { encounter: { include: { species: true } } },
+    });
+    if (hasTypeClash(newType, otherPartyMembers)) {
+      throw new ConflictException(
+        `Party already has a ${newType.toLowerCase()}-type Pokémon (type-lock rule)`,
+      );
+    }
   }
 
   private async findEncounterOrThrow(runId: string, id: string) {

@@ -43,7 +43,7 @@ export class RunsService {
     return this.prisma.run.findMany({
       where: { userId },
       orderBy: { startedAt: 'desc' },
-      include: { game: true },
+      include: { game: true, runRules: { include: { rule: true } } },
     });
   }
 

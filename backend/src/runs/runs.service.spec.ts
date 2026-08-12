@@ -125,7 +125,7 @@ describe('RunsService', () => {
       expect(prisma.run.findMany).toHaveBeenCalledWith({
         where: { userId: 'user-1' },
         orderBy: { startedAt: 'desc' },
-        include: { game: true },
+        include: { game: true, runRules: { include: { rule: true } } },
       });
     });
   });
