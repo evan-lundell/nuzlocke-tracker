@@ -119,7 +119,7 @@ describe('EncountersService', () => {
           speciesId: undefined,
           label: undefined,
           order: 7,
-          caught: undefined,
+          status: undefined,
           nickname: undefined,
           vitalStatus: undefined,
         },
@@ -146,7 +146,7 @@ describe('EncountersService', () => {
           speciesId: undefined,
           label: undefined,
           order: 7.5,
-          caught: undefined,
+          status: undefined,
           nickname: undefined,
           vitalStatus: undefined,
         },
@@ -234,7 +234,7 @@ describe('EncountersService', () => {
       );
 
       await expect(
-        service.update('user-1', 'run-1', 'enc-1', { caught: true }),
+        service.update('user-1', 'run-1', 'enc-1', { status: 'CAUGHT' }),
       ).rejects.toThrow(NotFoundException);
     });
 
@@ -242,7 +242,7 @@ describe('EncountersService', () => {
       prisma.encounter.findFirst.mockResolvedValue(null);
 
       await expect(
-        service.update('user-1', 'run-1', 'enc-1', { caught: true }),
+        service.update('user-1', 'run-1', 'enc-1', { status: 'CAUGHT' }),
       ).rejects.toThrow(NotFoundException);
     });
 
@@ -259,15 +259,15 @@ describe('EncountersService', () => {
 
     it('updates the encounter', async () => {
       prisma.encounter.findFirst.mockResolvedValue({ id: 'enc-1' });
-      const updated = { id: 'enc-1', caught: true, vitalStatus: 'ALIVE' };
+      const updated = { id: 'enc-1', status: 'CAUGHT', vitalStatus: 'ALIVE' };
       prisma.encounter.update.mockResolvedValue(updated);
 
       await expect(
-        service.update('user-1', 'run-1', 'enc-1', { caught: true }),
+        service.update('user-1', 'run-1', 'enc-1', { status: 'CAUGHT' }),
       ).resolves.toBe(updated);
       expect(prisma.encounter.update).toHaveBeenCalledWith({
         where: { id: 'enc-1' },
-        data: { caught: true },
+        data: { status: 'CAUGHT' },
         include: { species: true, route: true },
       });
       expect(prisma.partyMembership.deleteMany).not.toHaveBeenCalled();
@@ -275,11 +275,24 @@ describe('EncountersService', () => {
 
     it('removes any party membership when the update makes the encounter unfit for the party', async () => {
       prisma.encounter.findFirst.mockResolvedValue({ id: 'enc-1' });
-      const updated = { id: 'enc-1', caught: true, vitalStatus: 'DEAD' };
+      const updated = { id: 'enc-1', status: 'CAUGHT', vitalStatus: 'DEAD' };
       prisma.encounter.update.mockResolvedValue(updated);
 
       await expect(
         service.update('user-1', 'run-1', 'enc-1', { vitalStatus: 'DEAD' }),
+      ).resolves.toBe(updated);
+      expect(prisma.partyMembership.deleteMany).toHaveBeenCalledWith({
+        where: { encounterId: 'enc-1' },
+      });
+    });
+
+    it('removes any party membership when the status changes to MISSED', async () => {
+      prisma.encounter.findFirst.mockResolvedValue({ id: 'enc-1' });
+      const updated = { id: 'enc-1', status: 'MISSED', vitalStatus: null };
+      prisma.encounter.update.mockResolvedValue(updated);
+
+      await expect(
+        service.update('user-1', 'run-1', 'enc-1', { status: 'MISSED' }),
       ).resolves.toBe(updated);
       expect(prisma.partyMembership.deleteMany).toHaveBeenCalledWith({
         where: { encounterId: 'enc-1' },
@@ -303,7 +316,7 @@ describe('EncountersService', () => {
       prisma.encounter.update.mockRejectedValue(duplicateError());
 
       await expect(
-        service.update('user-1', 'run-1', 'enc-1', { caught: true }),
+        service.update('user-1', 'run-1', 'enc-1', { status: 'CAUGHT' }),
       ).rejects.toThrow(
         'An encounter labeled "Wild Encounter" already exists for this route',
       );

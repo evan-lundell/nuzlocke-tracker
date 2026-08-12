@@ -53,6 +53,8 @@ export interface RouteSpeciesEntry {
 
 export type VitalStatus = 'ALIVE' | 'DEAD';
 
+export type EncounterStatus = 'PENDING' | 'CAUGHT' | 'MISSED';
+
 export interface Encounter {
   id: string;
   runId: string;
@@ -62,7 +64,7 @@ export interface Encounter {
   species: Species | null;
   label: string;
   order: number;
-  caught: boolean;
+  status: EncounterStatus;
   nickname: string | null;
   vitalStatus: VitalStatus | null;
 }

@@ -238,25 +238,37 @@ enum VitalStatus {
   @@map("vital_status")
 }
 
+// PENDING = not yet resolved (default). CAUGHT/MISSED are the two terminal
+// outcomes of a route's one-shot wild encounter — MISSED covers however it
+// went wrong (ran, fainted it, ran out of balls); the tracker doesn't
+// distinguish which.
+enum EncounterStatus {
+  PENDING
+  CAUGHT
+  MISSED
+
+  @@map("encounter_status")
+}
+
 // One row per encounter opportunity a user logs for a run. Usually one per
 // route, but @@unique includes label so users can add extra ad hoc
 // encounters to the same route (e.g. a static Snorlax tracked separately
 // from the route's wild encounter).
 model Encounter {
-  id          String       @id @default(uuid(7))
-  runId       String       @map("run_id")
-  run         Run          @relation(fields: [runId], references: [id])
-  routeId     String       @map("route_id")
-  route       Route        @relation(fields: [routeId], references: [id])
-  speciesId   String?      @map("species_id")
-  species     Species?     @relation(fields: [speciesId], references: [id])
-  label       String       @default("Wild Encounter")
+  id          String          @id @default(uuid(7))
+  runId       String          @map("run_id")
+  run         Run             @relation(fields: [runId], references: [id])
+  routeId     String          @map("route_id")
+  route       Route           @relation(fields: [routeId], references: [id])
+  speciesId   String?         @map("species_id")
+  species     Species?        @relation(fields: [speciesId], references: [id])
+  label       String          @default("Wild Encounter")
   order       Float
-  caught      Boolean      @default(false)
+  status      EncounterStatus @default(PENDING)
   nickname    String?
-  vitalStatus VitalStatus? @map("vital_status")
-  lockedType  PokemonType? @map("locked_type") // type-lock rule: chosen at catch time for dual-typed species, permanent thereafter
-  createdAt   DateTime     @default(now()) @map("created_at")
+  vitalStatus VitalStatus?    @map("vital_status")
+  lockedType  PokemonType?    @map("locked_type") // type-lock rule: chosen at catch time for dual-typed species, permanent thereafter
+  createdAt   DateTime        @default(now()) @map("created_at")
 
   partyMembership PartyMembership?
 

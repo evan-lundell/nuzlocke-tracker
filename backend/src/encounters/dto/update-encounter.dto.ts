@@ -1,5 +1,4 @@
 import {
-  IsBoolean,
   IsEnum,
   IsNumber,
   IsOptional,
@@ -7,7 +6,7 @@ import {
   IsUUID,
   MaxLength,
 } from 'class-validator';
-import { VitalStatus } from '../../../generated/prisma/client';
+import { EncounterStatus, VitalStatus } from '../../../generated/prisma/client';
 
 export class UpdateEncounterDto {
   @IsOptional()
@@ -24,8 +23,8 @@ export class UpdateEncounterDto {
   order?: number;
 
   @IsOptional()
-  @IsBoolean()
-  caught?: boolean;
+  @IsEnum(EncounterStatus)
+  status?: EncounterStatus;
 
   @IsOptional()
   @IsString()

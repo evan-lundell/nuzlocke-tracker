@@ -1,10 +1,10 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { api } from '../../lib/api';
-import type { Encounter, VitalStatus } from '../../lib/types';
+import type { Encounter, EncounterStatus, VitalStatus } from '../../lib/types';
 
 export interface EncounterFormValues {
   speciesId?: string | null;
-  caught: boolean;
+  status: EncounterStatus;
   nickname?: string | null;
   vitalStatus?: VitalStatus | null;
 }
@@ -12,9 +12,9 @@ export interface EncounterFormValues {
 export function useSaveEncounter(runId: string) {
   const queryClient = useQueryClient();
 
-  // Encounters and party overlap: e.g. marking an encounter DEAD or
-  // uncaught makes the backend cascade-delete its PartyMembership row
-  // (see EncountersService.update), so the party cache must invalidate too.
+  // Encounters and party overlap: e.g. marking an encounter DEAD, MISSED,
+  // or back to PENDING makes the backend cascade-delete its PartyMembership
+  // row (see EncountersService.update), so the party cache must invalidate too.
   const invalidate = () =>
     Promise.all([
       queryClient.invalidateQueries({ queryKey: ['runs', runId, 'encounters'] }),

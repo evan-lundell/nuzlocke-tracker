@@ -4,7 +4,13 @@ import { useRouteSpecies } from '../routes/useRouteSpecies';
 import { useSpecies } from '../species/useSpecies';
 import { useSaveEncounter } from './useSaveEncounter';
 import type { EncounterFormValues } from './useSaveEncounter';
-import type { Encounter, GameRoute, Species, VitalStatus } from '../../lib/types';
+import type {
+  Encounter,
+  EncounterStatus,
+  GameRoute,
+  Species,
+  VitalStatus,
+} from '../../lib/types';
 
 const SEARCH_RESULTS_LIMIT = 10;
 const UNKNOWN_INDEX = 0;
@@ -50,7 +56,9 @@ export function EncounterForm({
   );
   const [isSpeciesListOpen, setIsSpeciesListOpen] = useState(false);
   const [highlightedIndex, setHighlightedIndex] = useState(-1);
-  const [caught, setCaught] = useState(existingEncounter?.caught ?? false);
+  const [status, setStatus] = useState<EncounterStatus>(
+    existingEncounter?.status ?? 'PENDING',
+  );
   const [nickname, setNickname] = useState(existingEncounter?.nickname ?? '');
   const [vitalStatus, setVitalStatus] = useState<VitalStatus | ''>(
     existingEncounter?.vitalStatus ?? '',
@@ -141,9 +149,9 @@ export function EncounterForm({
     event.preventDefault();
     const values: EncounterFormValues = {
       speciesId: selectedSpecies?.id ?? null,
-      caught,
+      status,
       nickname: nickname.trim() || null,
-      vitalStatus: caught ? vitalStatus || null : null,
+      vitalStatus: status === 'CAUGHT' ? vitalStatus || null : null,
     };
 
     if (existingEncounter) {
@@ -234,13 +242,17 @@ export function EncounterForm({
         )}
       </div>
 
-      <label className="flex items-center gap-2 text-sm">
-        <input
-          type="checkbox"
-          checked={caught}
-          onChange={(event) => setCaught(event.target.checked)}
-        />
-        Caught
+      <label className="flex flex-col gap-1 text-sm">
+        Status
+        <select
+          value={status}
+          onChange={(event) => setStatus(event.target.value as EncounterStatus)}
+          className="rounded-md border border-neutral-300 px-2 py-1 dark:border-neutral-700 dark:bg-neutral-900"
+        >
+          <option value="PENDING">Pending</option>
+          <option value="CAUGHT">Caught</option>
+          <option value="MISSED">Missed</option>
+        </select>
       </label>
 
       <label className="flex flex-col gap-1 text-sm">
@@ -255,13 +267,13 @@ export function EncounterForm({
       </label>
 
       <label className="flex flex-col gap-1 text-sm">
-        Status
+        Health
         <select
           value={vitalStatus}
           onChange={(event) =>
             setVitalStatus(event.target.value as VitalStatus | '')
           }
-          disabled={!caught}
+          disabled={status !== 'CAUGHT'}
           className="rounded-md border border-neutral-300 px-2 py-1 dark:border-neutral-700 dark:bg-neutral-900"
         >
           <option value="">Alive</option>
