@@ -1,7 +1,7 @@
 import { Encounter } from '../../generated/prisma/client';
 
 export function isPartyEligible(
-  encounter: Pick<Encounter, 'caught' | 'vitalStatus'>,
+  encounter: Pick<Encounter, 'status' | 'vitalStatus'>,
 ): boolean {
-  return encounter.caught && encounter.vitalStatus !== 'DEAD';
+  return encounter.status === 'CAUGHT' && encounter.vitalStatus !== 'DEAD';
 }

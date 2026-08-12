@@ -71,9 +71,9 @@ describe('EncountersController', () => {
 
   describe('update', () => {
     it('delegates to EncountersService.update', async () => {
-      const encounter = { id: 'enc-1', caught: true };
+      const encounter = { id: 'enc-1', status: 'CAUGHT' };
       service.update.mockResolvedValue(encounter);
-      const dto = { caught: true };
+      const dto = { status: 'CAUGHT' as const };
 
       await expect(
         controller.update(user, 'run-1', 'enc-1', dto),

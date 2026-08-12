@@ -48,7 +48,7 @@ export class EncountersService {
           speciesId: dto.speciesId,
           label: dto.label,
           order: dto.order ?? route.order,
-          caught: dto.caught,
+          status: dto.status,
           nickname: dto.nickname,
           vitalStatus: dto.vitalStatus,
         },

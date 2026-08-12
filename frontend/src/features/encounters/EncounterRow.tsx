@@ -45,8 +45,14 @@ export function EncounterRow({ runId, route, encounter }: EncounterRowProps) {
 
 function summarize(encounter: Encounter): string {
   const parts = [speciesDisplayName(encounter)];
-  parts.push(encounter.caught ? 'Caught' : 'Not caught');
+  parts.push(STATUS_LABELS[encounter.status]);
   if (encounter.nickname) parts.push(`"${encounter.nickname}"`);
   if (encounter.vitalStatus === 'DEAD') parts.push('Dead');
   return parts.join(' — ');
 }
+
+const STATUS_LABELS: Record<Encounter['status'], string> = {
+  PENDING: 'Not caught',
+  CAUGHT: 'Caught',
+  MISSED: 'Missed',
+};
