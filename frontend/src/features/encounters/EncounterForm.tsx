@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import type { FormEvent } from 'react';
+import type { FormEvent, KeyboardEvent } from 'react';
 import { useRouteSpecies } from '../routes/useRouteSpecies';
 import { useSpecies } from '../species/useSpecies';
 import { useSaveEncounter } from './useSaveEncounter';
@@ -7,6 +7,13 @@ import type { EncounterFormValues } from './useSaveEncounter';
 import type { Encounter, GameRoute, Species, VitalStatus } from '../../lib/types';
 
 const SEARCH_RESULTS_LIMIT = 10;
+const UNKNOWN_INDEX = 0;
+
+function comboboxOptionClassName(highlighted: boolean) {
+  return `w-full px-2 py-1 text-left hover:bg-neutral-50 dark:hover:bg-neutral-800 ${
+    highlighted ? 'bg-neutral-100 dark:bg-neutral-800' : ''
+  }`;
+}
 
 interface EncounterFormProps {
   runId: string;
@@ -38,7 +45,11 @@ export function EncounterForm({
   const [selectedSpecies, setSelectedSpecies] = useState<Species | null>(
     existingEncounter?.species ?? null,
   );
-  const [speciesQuery, setSpeciesQuery] = useState('');
+  const [speciesQuery, setSpeciesQuery] = useState(
+    existingEncounter?.species?.name ?? '',
+  );
+  const [isSpeciesListOpen, setIsSpeciesListOpen] = useState(false);
+  const [highlightedIndex, setHighlightedIndex] = useState(-1);
   const [caught, setCaught] = useState(existingEncounter?.caught ?? false);
   const [nickname, setNickname] = useState(existingEncounter?.nickname ?? '');
   const [vitalStatus, setVitalStatus] = useState<VitalStatus | ''>(
@@ -63,11 +74,68 @@ export function EncounterForm({
   }
 
   const trimmedQuery = speciesQuery.trim().toLowerCase();
-  const searchResults = trimmedQuery
+  // Typing searches across every species (randomizer support); an empty
+  // query falls back to the route's normally-found list.
+  const speciesOptions = trimmedQuery
     ? (allSpecies ?? [])
         .filter((species) => species.name.toLowerCase().includes(trimmedQuery))
         .slice(0, SEARCH_RESULTS_LIMIT)
-    : [];
+    : dropdownOptions;
+  const showUnknownOption = trimmedQuery === '';
+  const totalOptionCount = speciesOptions.length + (showUnknownOption ? 1 : 0);
+
+  function selectSpecies(species: Species) {
+    setSelectedSpecies(species);
+    setSpeciesQuery(species.name);
+    setIsSpeciesListOpen(false);
+    setHighlightedIndex(-1);
+  }
+
+  function clearSpecies() {
+    setSelectedSpecies(null);
+    setSpeciesQuery('');
+    setIsSpeciesListOpen(false);
+    setHighlightedIndex(-1);
+  }
+
+  // Closing without picking an option reverts the visible text to the
+  // committed selection — typing only drives the search list, it never
+  // silently changes (or clears) what's actually selected.
+  function closeSpeciesList() {
+    setIsSpeciesListOpen(false);
+    setHighlightedIndex(-1);
+    setSpeciesQuery(selectedSpecies?.name ?? '');
+  }
+
+  function handleSpeciesKeyDown(event: KeyboardEvent<HTMLInputElement>) {
+    if (event.key === 'ArrowDown') {
+      event.preventDefault();
+      if (totalOptionCount === 0) return;
+      setIsSpeciesListOpen(true);
+      setHighlightedIndex((index) => (index + 1) % totalOptionCount);
+    } else if (event.key === 'ArrowUp') {
+      event.preventDefault();
+      if (totalOptionCount === 0) return;
+      setIsSpeciesListOpen(true);
+      setHighlightedIndex(
+        (index) => (index - 1 + totalOptionCount) % totalOptionCount,
+      );
+    } else if (event.key === 'Enter') {
+      // Enter here means "confirm the highlighted option", not "submit the
+      // encounter form" — with nothing highlighted, it's a no-op.
+      event.preventDefault();
+      if (highlightedIndex === -1) return;
+      if (showUnknownOption && highlightedIndex === UNKNOWN_INDEX) {
+        clearSpecies();
+        return;
+      }
+      const species =
+        speciesOptions[highlightedIndex - (showUnknownOption ? 1 : 0)];
+      if (species) selectSpecies(species);
+    } else if (event.key === 'Escape') {
+      closeSpeciesList();
+    }
+  }
 
   function handleSubmit(event: FormEvent) {
     event.preventDefault();
@@ -93,71 +161,76 @@ export function EncounterForm({
       onSubmit={handleSubmit}
       className="flex flex-wrap items-end gap-3 rounded-md border border-neutral-300 p-3 dark:border-neutral-700"
     >
-      <label className="flex flex-col gap-1 text-sm">
-        Species
-        <select
-          value={selectedSpecies?.id ?? ''}
-          onChange={(event) => {
-            const species =
-              dropdownOptions.find((s) => s.id === event.target.value) ??
-              null;
-            setSelectedSpecies(species);
-            setSpeciesQuery('');
-          }}
-          disabled={speciesPending}
-          className="rounded-md border border-neutral-300 px-2 py-1 dark:border-neutral-700 dark:bg-neutral-900"
-        >
-          <option value="">{speciesPending ? 'Loading…' : 'Unknown'}</option>
-          {dropdownOptions.map((species) => (
-            <option key={species.id} value={species.id}>
-              {species.name}
-            </option>
-          ))}
-        </select>
-      </label>
-
-      <div className="flex w-full flex-col gap-1 text-sm">
-        <label htmlFor={`species-search-${route.id}`}>
-          Search all species (randomizer)
-        </label>
+      <div className="relative flex w-full flex-col gap-1 text-sm sm:w-64">
+        <label htmlFor={`species-search-${route.id}`}>Species</label>
         <input
           id={`species-search-${route.id}`}
           type="text"
+          role="combobox"
+          aria-expanded={isSpeciesListOpen}
+          aria-controls={`species-listbox-${route.id}`}
+          aria-autocomplete="list"
+          autoComplete="off"
           value={speciesQuery}
-          onChange={(event) => setSpeciesQuery(event.target.value)}
-          onKeyDown={(event) => {
-            // Enter here means "confirm this search", not "submit the
-            // encounter form" — the user picks a result by clicking it.
-            if (event.key === 'Enter') event.preventDefault();
+          disabled={speciesPending}
+          onChange={(event) => {
+            setSpeciesQuery(event.target.value);
+            setIsSpeciesListOpen(true);
+            setHighlightedIndex(-1);
           }}
-          placeholder="e.g. Charizard"
+          onFocus={() => setIsSpeciesListOpen(true)}
+          onBlur={closeSpeciesList}
+          onKeyDown={handleSpeciesKeyDown}
+          placeholder={speciesPending ? 'Loading…' : 'e.g. Charizard'}
           className="rounded-md border border-neutral-300 px-2 py-1 dark:border-neutral-700 dark:bg-neutral-900"
         />
-        {trimmedQuery && allSpeciesPending && (
-          <p className="text-xs text-neutral-500">Loading species…</p>
+        {isSpeciesListOpen && (
+          <ul
+            id={`species-listbox-${route.id}`}
+            role="listbox"
+            className="absolute top-full z-10 mt-1 max-h-48 w-full overflow-y-auto rounded-md border border-neutral-300 bg-white shadow-md dark:border-neutral-700 dark:bg-neutral-900"
+          >
+            {showUnknownOption && (
+              <li role="option" aria-selected={highlightedIndex === UNKNOWN_INDEX}>
+                <button
+                  type="button"
+                  onMouseDown={(event) => event.preventDefault()}
+                  onClick={clearSpecies}
+                  className={comboboxOptionClassName(
+                    highlightedIndex === UNKNOWN_INDEX,
+                  )}
+                >
+                  Unknown
+                </button>
+              </li>
+            )}
+            {speciesOptions.map((species, index) => {
+              const itemIndex = index + (showUnknownOption ? 1 : 0);
+              return (
+                <li key={species.id} role="option" aria-selected={highlightedIndex === itemIndex}>
+                  <button
+                    type="button"
+                    onMouseDown={(event) => event.preventDefault()}
+                    onClick={() => selectSpecies(species)}
+                    className={comboboxOptionClassName(highlightedIndex === itemIndex)}
+                  >
+                    {species.name}
+                  </button>
+                </li>
+              );
+            })}
+            {trimmedQuery && allSpeciesPending && (
+              <li className="px-2 py-1 text-neutral-500">Loading species…</li>
+            )}
+            {trimmedQuery && !allSpeciesPending && speciesOptions.length === 0 && (
+              <li className="px-2 py-1 text-neutral-500">No matches</li>
+            )}
+          </ul>
         )}
         {trimmedQuery && allSpeciesIsError && (
           <p className="text-xs text-red-600 dark:text-red-400">
             {allSpeciesError.message}
           </p>
-        )}
-        {searchResults.length > 0 && (
-          <ul className="flex max-h-32 flex-col overflow-y-auto rounded-md border border-neutral-300 dark:border-neutral-700">
-            {searchResults.map((species) => (
-              <li key={species.id}>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setSelectedSpecies(species);
-                    setSpeciesQuery('');
-                  }}
-                  className="w-full px-2 py-1 text-left hover:bg-neutral-50 dark:hover:bg-neutral-800"
-                >
-                  {species.name}
-                </button>
-              </li>
-            ))}
-          </ul>
         )}
       </div>
 
