@@ -41,6 +41,7 @@ export interface Species {
   pokedexNumber: number;
   typePrimary: string;
   typeSecondary: string | null;
+  evolvesFromId: string | null;
 }
 
 export interface RouteSpeciesEntry {
