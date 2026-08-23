@@ -5,6 +5,7 @@ import {
 } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { CreateRunDto } from './dto/create-run.dto';
+import { Prisma } from '../../generated/prisma/client';
 
 @Injectable()
 export class RunsService {
@@ -35,7 +36,7 @@ export class RunsService {
           data: rules.map(({ ruleId, config }) => ({
             runId: run.id,
             ruleId,
-            config,
+            config: config as Prisma.InputJsonValue | undefined,
           })),
         });
       }
