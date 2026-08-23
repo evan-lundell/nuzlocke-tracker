@@ -48,7 +48,7 @@ describe('RunsService', () => {
       expect(prisma.$transaction).not.toHaveBeenCalled();
     });
 
-    it('creates a run with no rules when ruleIds is omitted', async () => {
+    it('creates a run with no rules when rules is omitted', async () => {
       prisma.game.findUnique.mockResolvedValue({ id: 'game-1' });
       tx.run.create.mockResolvedValue({ id: 'run-1' });
       const run = { id: 'run-1', runRules: [] };
@@ -68,7 +68,10 @@ describe('RunsService', () => {
       prisma.rule.findMany.mockResolvedValue([]);
 
       await expect(
-        service.create('user-1', { gameId: 'game-1', ruleIds: ['rule-1'] }),
+        service.create('user-1', {
+          gameId: 'game-1',
+          rules: [{ ruleId: 'rule-1' }],
+        }),
       ).rejects.toThrow(BadRequestException);
       expect(prisma.$transaction).not.toHaveBeenCalled();
     });
@@ -80,7 +83,10 @@ describe('RunsService', () => {
       prisma.rule.findMany.mockResolvedValue([]);
 
       await expect(
-        service.create('user-1', { gameId: 'game-1', ruleIds: ['rule-1'] }),
+        service.create('user-1', {
+          gameId: 'game-1',
+          rules: [{ ruleId: 'rule-1' }],
+        }),
       ).rejects.toThrow(BadRequestException);
       expect(prisma.rule.findMany).toHaveBeenCalledWith({
         where: {
@@ -104,13 +110,17 @@ describe('RunsService', () => {
       await expect(
         service.create('user-1', {
           gameId: 'game-1',
-          ruleIds: ['rule-1', 'rule-2', 'rule-1'],
+          rules: [
+            { ruleId: 'rule-1' },
+            { ruleId: 'rule-2', config: { mode: 'PRIMARY' } },
+            { ruleId: 'rule-1' },
+          ],
         }),
       ).resolves.toBe(run);
       expect(tx.runRule.createMany).toHaveBeenCalledWith({
         data: [
-          { runId: 'run-1', ruleId: 'rule-1' },
-          { runId: 'run-1', ruleId: 'rule-2' },
+          { runId: 'run-1', ruleId: 'rule-1', config: undefined },
+          { runId: 'run-1', ruleId: 'rule-2', config: { mode: 'PRIMARY' } },
         ],
       });
     });
@@ -125,7 +135,7 @@ describe('RunsService', () => {
       expect(prisma.run.findMany).toHaveBeenCalledWith({
         where: { userId: 'user-1' },
         orderBy: { startedAt: 'desc' },
-        include: { game: true },
+        include: { game: true, runRules: { include: { rule: true } } },
       });
     });
   });

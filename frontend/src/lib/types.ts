@@ -14,6 +14,23 @@ export interface Game {
 
 export type RunStatus = 'ACTIVE' | 'FAILED' | 'COMPLETED';
 
+export type RuleKind = 'ENFORCED' | 'INFORMATIONAL';
+
+export interface Rule {
+  id: string;
+  key: string | null;
+  name: string;
+  description: string;
+  kind: RuleKind;
+}
+
+export interface RunRule {
+  id: string;
+  ruleId: string;
+  config: unknown;
+  rule: Rule;
+}
+
 export interface Run {
   id: string;
   userId: string;
@@ -24,6 +41,7 @@ export interface Run {
   name: string | null;
   startedAt: string;
   endedAt: string | null;
+  runRules: RunRule[];
 }
 
 export interface GameRoute {
@@ -68,6 +86,7 @@ export interface Encounter {
   status: EncounterStatus;
   nickname: string | null;
   vitalStatus: VitalStatus | null;
+  lockedType: string | null;
 }
 
 export interface PartyMembership {

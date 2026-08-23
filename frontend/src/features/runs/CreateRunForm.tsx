@@ -1,7 +1,10 @@
 import { useState } from 'react';
 import type { FormEvent } from 'react';
 import { useGames } from '../games/useGames';
+import { useRules } from '../rules/useRules';
 import { useCreateRun } from './useCreateRun';
+import { isTypeLockRule } from '../../lib/rules';
+import type { TypeLockMode } from '../../lib/rules';
 
 export function CreateRunForm() {
   const {
@@ -10,16 +13,48 @@ export function CreateRunForm() {
     isError: gamesIsError,
     error: gamesError,
   } = useGames();
+  const { data: rules } = useRules();
   const createRun = useCreateRun();
   const [gameId, setGameId] = useState('');
   const [name, setName] = useState('');
+  const [selectedRuleIds, setSelectedRuleIds] = useState<string[]>([]);
+  const [typeLockMode, setTypeLockMode] = useState<TypeLockMode>('PICK');
+
+  const typeLockRule = rules?.find(isTypeLockRule);
+  const typeLockSelected = !!typeLockRule && selectedRuleIds.includes(typeLockRule.id);
+
+  function toggleRule(ruleId: string) {
+    setSelectedRuleIds((current) =>
+      current.includes(ruleId)
+        ? current.filter((id) => id !== ruleId)
+        : [...current, ruleId],
+    );
+  }
 
   function handleSubmit(event: FormEvent) {
     event.preventDefault();
     if (!gameId) return;
     createRun.mutate(
-      { gameId, name: name.trim() || undefined },
-      { onSuccess: () => setName('') },
+      {
+        gameId,
+        name: name.trim() || undefined,
+        rules: selectedRuleIds.length
+          ? selectedRuleIds.map((ruleId) => ({
+              ruleId,
+              config:
+                typeLockRule && ruleId === typeLockRule.id
+                  ? { mode: typeLockMode }
+                  : undefined,
+            }))
+          : undefined,
+      },
+      {
+        onSuccess: () => {
+          setName('');
+          setSelectedRuleIds([]);
+          setTypeLockMode('PICK');
+        },
+      },
     );
   }
 
@@ -66,6 +101,64 @@ export function CreateRunForm() {
           className="rounded-md border border-neutral-300 px-3 py-2 dark:border-neutral-700 dark:bg-neutral-900"
         />
       </label>
+
+      {rules && rules.length > 0 && (
+        <fieldset className="flex flex-col gap-2 text-sm">
+          <legend className="mb-1">Rules</legend>
+          {rules.map((rule) => (
+            <label key={rule.id} className="flex items-start gap-2">
+              <input
+                type="checkbox"
+                checked={selectedRuleIds.includes(rule.id)}
+                onChange={() => toggleRule(rule.id)}
+                className="mt-1"
+              />
+              <span>
+                <span className="font-medium">{rule.name}</span>
+                <span className="block text-xs text-neutral-500">
+                  {rule.description}
+                </span>
+              </span>
+            </label>
+          ))}
+        </fieldset>
+      )}
+
+      {typeLockSelected && (
+        <fieldset className="flex flex-col gap-2 pl-6 text-sm">
+          <legend className="mb-1">Type-lock mode</legend>
+          <label className="flex items-start gap-2">
+            <input
+              type="radio"
+              name="type-lock-mode"
+              checked={typeLockMode === 'PICK'}
+              onChange={() => setTypeLockMode('PICK')}
+              className="mt-1"
+            />
+            <span>
+              <span className="font-medium">Pick</span>
+              <span className="block text-xs text-neutral-500">
+                Choose one of a dual-typed catch&apos;s two types yourself.
+              </span>
+            </span>
+          </label>
+          <label className="flex items-start gap-2">
+            <input
+              type="radio"
+              name="type-lock-mode"
+              checked={typeLockMode === 'PRIMARY'}
+              onChange={() => setTypeLockMode('PRIMARY')}
+              className="mt-1"
+            />
+            <span>
+              <span className="font-medium">Primary type</span>
+              <span className="block text-xs text-neutral-500">
+                Dual-typed catches auto-lock to their primary type.
+              </span>
+            </span>
+          </label>
+        </fieldset>
+      )}
 
       {createRun.isError && (
         <p className="text-sm text-red-600 dark:text-red-400">

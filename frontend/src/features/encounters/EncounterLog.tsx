@@ -6,9 +6,10 @@ import type { Encounter } from '../../lib/types';
 interface EncounterLogProps {
   runId: string;
   gameId: string;
+  typeLocked: boolean;
 }
 
-export function EncounterLog({ runId, gameId }: EncounterLogProps) {
+export function EncounterLog({ runId, gameId, typeLocked }: EncounterLogProps) {
   const {
     data: routes,
     isPending: routesPending,
@@ -61,6 +62,7 @@ export function EncounterLog({ runId, gameId }: EncounterLogProps) {
           runId={runId}
           route={route}
           encounter={encounterByRoute.get(route.id)}
+          typeLocked={typeLocked}
         />
       ))}
     </ul>

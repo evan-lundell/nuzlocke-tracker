@@ -7,6 +7,7 @@ import {
 import { PartyService } from './party.service';
 import { PrismaService } from '../prisma/prisma.service';
 import { RunOwnershipService } from '../runs/run-ownership.service';
+import { RulesService } from '../rules/rules.service';
 import { Prisma } from '../../generated/prisma/client';
 
 describe('PartyService', () => {
@@ -22,6 +23,7 @@ describe('PartyService', () => {
     };
   };
   let runOwnership: { assertOwnership: jest.Mock };
+  let rulesService: { isRuleActiveForRun: jest.Mock };
 
   const duplicateError = () =>
     new Prisma.PrismaClientKnownRequestError('duplicate', {
@@ -43,12 +45,16 @@ describe('PartyService', () => {
     runOwnership = {
       assertOwnership: jest.fn().mockResolvedValue({ id: 'run-1' }),
     };
+    rulesService = {
+      isRuleActiveForRun: jest.fn().mockResolvedValue(false),
+    };
 
     const module: TestingModule = await Test.createTestingModule({
       providers: [
         PartyService,
         { provide: PrismaService, useValue: prisma },
         { provide: RunOwnershipService, useValue: runOwnership },
+        { provide: RulesService, useValue: rulesService },
       ],
     }).compile();
 
@@ -78,6 +84,7 @@ describe('PartyService', () => {
       ).rejects.toThrow(NotFoundException);
       expect(prisma.encounter.findFirst).toHaveBeenCalledWith({
         where: { id: 'enc-1', runId: 'run-1' },
+        include: { species: true },
       });
     });
 
@@ -177,6 +184,115 @@ describe('PartyService', () => {
       await expect(
         service.create('user-1', 'run-1', { encounterId: 'enc-1' }),
       ).rejects.toThrow(ConflictException);
+    });
+
+    describe('type-lock rule', () => {
+      it('skips the type check when the rule is not active on the run', async () => {
+        rulesService.isRuleActiveForRun.mockResolvedValue(false);
+        prisma.encounter.findFirst.mockResolvedValue({
+          id: 'enc-1',
+          status: 'CAUGHT',
+          vitalStatus: 'ALIVE',
+          lockedType: null,
+          species: { typePrimary: 'FIRE', typeSecondary: null },
+        });
+        prisma.partyMembership.findMany.mockResolvedValue([
+          {
+            encounter: {
+              lockedType: null,
+              species: { typePrimary: 'FIRE', typeSecondary: null },
+            },
+          },
+        ]);
+        const membership = { id: 'mem-1' };
+        prisma.partyMembership.create.mockResolvedValue(membership);
+
+        await expect(
+          service.create('user-1', 'run-1', { encounterId: 'enc-1' }),
+        ).resolves.toBe(membership);
+        expect(prisma.partyMembership.findMany).not.toHaveBeenCalled();
+      });
+
+      it('throws BadRequestException when a dual-typed species has no lockedType chosen', async () => {
+        rulesService.isRuleActiveForRun.mockResolvedValue(true);
+        prisma.encounter.findFirst.mockResolvedValue({
+          id: 'enc-1',
+          status: 'CAUGHT',
+          vitalStatus: 'ALIVE',
+          lockedType: null,
+          species: { typePrimary: 'FIRE', typeSecondary: 'FLYING' },
+        });
+
+        await expect(
+          service.create('user-1', 'run-1', { encounterId: 'enc-1' }),
+        ).rejects.toThrow(BadRequestException);
+      });
+
+      it('throws ConflictException when the effective type clashes with an existing party member', async () => {
+        rulesService.isRuleActiveForRun.mockResolvedValue(true);
+        prisma.encounter.findFirst.mockResolvedValue({
+          id: 'enc-1',
+          status: 'CAUGHT',
+          vitalStatus: 'ALIVE',
+          lockedType: null,
+          species: { typePrimary: 'WATER', typeSecondary: null },
+        });
+        prisma.partyMembership.findMany.mockResolvedValue([
+          {
+            encounter: {
+              lockedType: null,
+              species: { typePrimary: 'WATER', typeSecondary: null },
+            },
+          },
+        ]);
+
+        await expect(
+          service.create('user-1', 'run-1', { encounterId: 'enc-1' }),
+        ).rejects.toThrow(ConflictException);
+      });
+
+      it('allows the add when the effective type does not clash', async () => {
+        rulesService.isRuleActiveForRun.mockResolvedValue(true);
+        prisma.encounter.findFirst.mockResolvedValue({
+          id: 'enc-1',
+          status: 'CAUGHT',
+          vitalStatus: 'ALIVE',
+          lockedType: 'FLYING',
+          species: { typePrimary: 'FIRE', typeSecondary: 'FLYING' },
+        });
+        prisma.partyMembership.findMany.mockResolvedValue([
+          {
+            encounter: {
+              lockedType: null,
+              species: { typePrimary: 'WATER', typeSecondary: null },
+            },
+          },
+        ]);
+        const membership = { id: 'mem-1' };
+        prisma.partyMembership.create.mockResolvedValue(membership);
+
+        await expect(
+          service.create('user-1', 'run-1', { encounterId: 'enc-1' }),
+        ).resolves.toBe(membership);
+      });
+
+      it('skips the type check when the species is unknown', async () => {
+        rulesService.isRuleActiveForRun.mockResolvedValue(true);
+        prisma.encounter.findFirst.mockResolvedValue({
+          id: 'enc-1',
+          status: 'CAUGHT',
+          vitalStatus: 'ALIVE',
+          lockedType: null,
+          species: null,
+        });
+        const membership = { id: 'mem-1' };
+        prisma.partyMembership.create.mockResolvedValue(membership);
+
+        await expect(
+          service.create('user-1', 'run-1', { encounterId: 'enc-1' }),
+        ).resolves.toBe(membership);
+        expect(prisma.partyMembership.findMany).not.toHaveBeenCalled();
+      });
     });
   });
 

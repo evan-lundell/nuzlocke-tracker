@@ -1,10 +1,22 @@
 import {
   IsArray,
+  IsObject,
   IsOptional,
   IsString,
   IsUUID,
   MaxLength,
+  ValidateNested,
 } from 'class-validator';
+import { Type } from 'class-transformer';
+
+export class RunRuleSelectionDto {
+  @IsUUID(7)
+  ruleId: string;
+
+  @IsOptional()
+  @IsObject()
+  config?: Record<string, unknown>;
+}
 
 export class CreateRunDto {
   @IsUUID(7)
@@ -17,6 +29,7 @@ export class CreateRunDto {
 
   @IsOptional()
   @IsArray()
-  @IsUUID(7, { each: true })
-  ruleIds?: string[];
+  @ValidateNested({ each: true })
+  @Type(() => RunRuleSelectionDto)
+  rules?: RunRuleSelectionDto[];
 }

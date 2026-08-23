@@ -9,6 +9,7 @@ import { RunsModule } from './runs/runs.module';
 import { EncountersModule } from './encounters/encounters.module';
 import { PartyModule } from './party/party.module';
 import { SpeciesModule } from './species/species.module';
+import { RulesModule } from './rules/rules.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { SpeciesModule } from './species/species.module';
     EncountersModule,
     PartyModule,
     SpeciesModule,
+    RulesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

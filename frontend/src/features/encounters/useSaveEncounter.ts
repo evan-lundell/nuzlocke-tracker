@@ -7,6 +7,7 @@ export interface EncounterFormValues {
   status: EncounterStatus;
   nickname?: string | null;
   vitalStatus?: VitalStatus | null;
+  lockedType?: string;
 }
 
 export function useSaveEncounter(runId: string) {

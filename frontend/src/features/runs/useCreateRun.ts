@@ -5,6 +5,7 @@ import type { Run } from '../../lib/types';
 export interface CreateRunInput {
   gameId: string;
   name?: string;
+  rules?: { ruleId: string; config?: Record<string, unknown> }[];
 }
 
 export function useCreateRun() {

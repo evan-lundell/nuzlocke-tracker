@@ -25,6 +25,7 @@ interface EncounterFormProps {
   runId: string;
   route: GameRoute;
   existingEncounter?: Encounter;
+  typeLocked: boolean;
   onDone: () => void;
 }
 
@@ -32,6 +33,7 @@ export function EncounterForm({
   runId,
   route,
   existingEncounter,
+  typeLocked,
   onDone,
 }: EncounterFormProps) {
   const {
@@ -63,8 +65,13 @@ export function EncounterForm({
   const [vitalStatus, setVitalStatus] = useState<VitalStatus | ''>(
     existingEncounter?.vitalStatus ?? '',
   );
+  const [lockedType, setLockedType] = useState(
+    existingEncounter?.lockedType ?? '',
+  );
 
   const mutation = existingEncounter ? update : create;
+  const showLockedTypeField =
+    typeLocked && Boolean(selectedSpecies?.typeSecondary);
 
   const routeOptions = routeSpecies
     ? [...new Map(routeSpecies.map((entry) => [entry.speciesId, entry.species])).values()]
@@ -97,6 +104,14 @@ export function EncounterForm({
     setSpeciesQuery(species.name);
     setIsSpeciesListOpen(false);
     setHighlightedIndex(-1);
+    // A previously chosen locked type may not apply to the newly selected
+    // species (different types, or no longer dual-typed) — only keep it
+    // when re-selecting the same species this form already had.
+    setLockedType(
+      species.id === existingEncounter?.species?.id
+        ? (existingEncounter?.lockedType ?? '')
+        : '',
+    );
   }
 
   function clearSpecies() {
@@ -154,6 +169,7 @@ export function EncounterForm({
       status,
       nickname: nickname.trim() || null,
       vitalStatus: status === 'CAUGHT' ? vitalStatus || null : null,
+      ...(showLockedTypeField && lockedType ? { lockedType } : {}),
     };
 
     if (existingEncounter) {
@@ -282,6 +298,32 @@ export function EncounterForm({
           <option value="DEAD">Dead</option>
         </select>
       </label>
+
+      {showLockedTypeField && selectedSpecies && (
+        <label className="flex flex-col gap-1 text-sm">
+          Locked type
+          {existingEncounter?.lockedType ? (
+            <span className="px-2 py-1">{existingEncounter.lockedType}</span>
+          ) : (
+            <select
+              value={lockedType}
+              onChange={(event) => setLockedType(event.target.value)}
+              disabled={status !== 'CAUGHT'}
+              className="rounded-md border border-neutral-300 px-2 py-1 dark:border-neutral-700 dark:bg-neutral-900"
+            >
+              <option value="">Choose…</option>
+              <option value={selectedSpecies.typePrimary}>
+                {selectedSpecies.typePrimary}
+              </option>
+              {selectedSpecies.typeSecondary && (
+                <option value={selectedSpecies.typeSecondary}>
+                  {selectedSpecies.typeSecondary}
+                </option>
+              )}
+            </select>
+          )}
+        </label>
+      )}
 
       {speciesIsError && (
         <p className="w-full text-sm text-red-600 dark:text-red-400">
