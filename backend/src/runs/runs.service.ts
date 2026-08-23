@@ -18,7 +18,10 @@ export class RunsService {
       throw new NotFoundException(`Game ${dto.gameId} not found`);
     }
 
-    const ruleIds = [...new Set(dto.ruleIds ?? [])];
+    const rules = [
+      ...new Map((dto.rules ?? []).map((rule) => [rule.ruleId, rule])).values(),
+    ];
+    const ruleIds = rules.map((rule) => rule.ruleId);
     if (ruleIds.length > 0) {
       await this.assertRulesSelectable(userId, ruleIds);
     }
@@ -27,9 +30,13 @@ export class RunsService {
       const run = await tx.run.create({
         data: { userId, gameId: dto.gameId, name: dto.name },
       });
-      if (ruleIds.length > 0) {
+      if (rules.length > 0) {
         await tx.runRule.createMany({
-          data: ruleIds.map((ruleId) => ({ runId: run.id, ruleId })),
+          data: rules.map(({ ruleId, config }) => ({
+            runId: run.id,
+            ruleId,
+            config,
+          })),
         });
       }
       return tx.run.findUniqueOrThrow({

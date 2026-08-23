@@ -18,4 +18,11 @@ export class RulesService {
     });
     return runRule !== null;
   }
+
+  getRunRule(runId: string, key: string) {
+    return this.prisma.runRule.findFirst({
+      where: { runId, rule: { key } },
+      select: { config: true },
+    });
+  }
 }

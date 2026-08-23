@@ -14,6 +14,7 @@ import { isPartyEligible } from '../party/party-eligibility';
 import {
   effectiveType,
   hasTypeClash,
+  parseTypeLockMode,
   TYPE_LOCK_RULE_KEY,
 } from '../party/type-lock';
 
@@ -51,6 +52,11 @@ export class EncountersService {
     if (dto.lockedType !== undefined) {
       this.assertValidLockedType(species, dto.lockedType);
     }
+    const autoLockedType =
+      dto.lockedType === undefined
+        ? await this.resolvePrimaryModeLockedType(runId, species)
+        : undefined;
+    const lockedTypeToPersist = dto.lockedType ?? autoLockedType;
 
     try {
       return await this.prisma.encounter.create({
@@ -63,7 +69,7 @@ export class EncountersService {
           status: dto.status,
           nickname: dto.nickname,
           vitalStatus: dto.vitalStatus,
-          lockedType: dto.lockedType,
+          lockedType: lockedTypeToPersist,
         },
         include: { species: true, route: true },
       });
@@ -115,6 +121,15 @@ export class EncountersService {
     if (dto.lockedType !== undefined) {
       this.assertValidLockedType(species, dto.lockedType, existing.lockedType);
     }
+    const autoLockedType =
+      dto.lockedType === undefined
+        ? await this.resolvePrimaryModeLockedType(
+            runId,
+            species,
+            existing.lockedType,
+          )
+        : undefined;
+    const lockedTypeToPersist = dto.lockedType ?? autoLockedType;
 
     const speciesChanged =
       dto.speciesId !== undefined && dto.speciesId !== existing.speciesId;
@@ -127,14 +142,14 @@ export class EncountersService {
         runId,
         id,
         species,
-        dto.lockedType ?? existing.lockedType,
+        lockedTypeToPersist ?? existing.lockedType,
       );
     }
 
     try {
       const updated = await this.prisma.encounter.update({
         where: { id },
-        data: dto,
+        data: { ...dto, lockedType: lockedTypeToPersist },
         include: { species: true, route: true },
       });
       if (!isPartyEligible(updated)) {
@@ -188,6 +203,25 @@ export class EncountersService {
         'Locked type is permanent once set and cannot be changed',
       );
     }
+  }
+
+  // In PRIMARY mode, the player never picks a type — a dual-typed catch
+  // with no locked type yet is auto-locked to its primary type instead.
+  private async resolvePrimaryModeLockedType(
+    runId: string,
+    species: Species | null,
+    existingLockedType?: PokemonType | null,
+  ): Promise<PokemonType | undefined> {
+    if (!species?.typeSecondary || existingLockedType) return undefined;
+
+    const runRule = await this.rulesService.getRunRule(
+      runId,
+      TYPE_LOCK_RULE_KEY,
+    );
+    if (!runRule || parseTypeLockMode(runRule.config) !== 'PRIMARY') {
+      return undefined;
+    }
+    return species.typePrimary;
   }
 
   private async assertPartyTypeLockAllowsSpeciesChange(

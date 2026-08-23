@@ -29,7 +29,7 @@ describe('EncountersService', () => {
     };
   };
   let runOwnership: { assertOwnership: jest.Mock };
-  let rulesService: { isRuleActiveForRun: jest.Mock };
+  let rulesService: { isRuleActiveForRun: jest.Mock; getRunRule: jest.Mock };
 
   const duplicateError = () =>
     new Prisma.PrismaClientKnownRequestError('duplicate', {
@@ -61,6 +61,7 @@ describe('EncountersService', () => {
     };
     rulesService = {
       isRuleActiveForRun: jest.fn().mockResolvedValue(false),
+      getRunRule: jest.fn().mockResolvedValue(null),
     };
 
     const module: TestingModule = await Test.createTestingModule({

@@ -3,6 +3,8 @@ import type { FormEvent } from 'react';
 import { useGames } from '../games/useGames';
 import { useRules } from '../rules/useRules';
 import { useCreateRun } from './useCreateRun';
+import { isTypeLockRule } from '../../lib/rules';
+import type { TypeLockMode } from '../../lib/rules';
 
 export function CreateRunForm() {
   const {
@@ -16,6 +18,10 @@ export function CreateRunForm() {
   const [gameId, setGameId] = useState('');
   const [name, setName] = useState('');
   const [selectedRuleIds, setSelectedRuleIds] = useState<string[]>([]);
+  const [typeLockMode, setTypeLockMode] = useState<TypeLockMode>('PICK');
+
+  const typeLockRule = rules?.find(isTypeLockRule);
+  const typeLockSelected = !!typeLockRule && selectedRuleIds.includes(typeLockRule.id);
 
   function toggleRule(ruleId: string) {
     setSelectedRuleIds((current) =>
@@ -32,12 +38,21 @@ export function CreateRunForm() {
       {
         gameId,
         name: name.trim() || undefined,
-        ruleIds: selectedRuleIds.length ? selectedRuleIds : undefined,
+        rules: selectedRuleIds.length
+          ? selectedRuleIds.map((ruleId) => ({
+              ruleId,
+              config:
+                typeLockRule && ruleId === typeLockRule.id
+                  ? { mode: typeLockMode }
+                  : undefined,
+            }))
+          : undefined,
       },
       {
         onSuccess: () => {
           setName('');
           setSelectedRuleIds([]);
+          setTypeLockMode('PICK');
         },
       },
     );
@@ -106,6 +121,42 @@ export function CreateRunForm() {
               </span>
             </label>
           ))}
+        </fieldset>
+      )}
+
+      {typeLockSelected && (
+        <fieldset className="flex flex-col gap-2 pl-6 text-sm">
+          <legend className="mb-1">Type-lock mode</legend>
+          <label className="flex items-start gap-2">
+            <input
+              type="radio"
+              name="type-lock-mode"
+              checked={typeLockMode === 'PICK'}
+              onChange={() => setTypeLockMode('PICK')}
+              className="mt-1"
+            />
+            <span>
+              <span className="font-medium">Pick</span>
+              <span className="block text-xs text-neutral-500">
+                Choose one of a dual-typed catch&apos;s two types yourself.
+              </span>
+            </span>
+          </label>
+          <label className="flex items-start gap-2">
+            <input
+              type="radio"
+              name="type-lock-mode"
+              checked={typeLockMode === 'PRIMARY'}
+              onChange={() => setTypeLockMode('PRIMARY')}
+              className="mt-1"
+            />
+            <span>
+              <span className="font-medium">Primary type</span>
+              <span className="block text-xs text-neutral-500">
+                Dual-typed catches auto-lock to their primary type.
+              </span>
+            </span>
+          </label>
         </fieldset>
       )}
 

@@ -55,4 +55,28 @@ describe('RulesService', () => {
       ).resolves.toBe(false);
     });
   });
+
+  describe('getRunRule', () => {
+    it('returns the config when a matching RunRule exists', async () => {
+      prisma.runRule.findFirst.mockResolvedValue({
+        config: { mode: 'PRIMARY' },
+      });
+
+      await expect(service.getRunRule('run-1', 'type-lock')).resolves.toEqual({
+        config: { mode: 'PRIMARY' },
+      });
+      expect(prisma.runRule.findFirst).toHaveBeenCalledWith({
+        where: { runId: 'run-1', rule: { key: 'type-lock' } },
+        select: { config: true },
+      });
+    });
+
+    it('returns null when no matching RunRule exists', async () => {
+      prisma.runRule.findFirst.mockResolvedValue(null);
+
+      await expect(
+        service.getRunRule('run-1', 'type-lock'),
+      ).resolves.toBeNull();
+    });
+  });
 });

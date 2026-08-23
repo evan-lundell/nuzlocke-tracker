@@ -40,3 +40,19 @@ export function hasTypeClash(
         candidateType,
   );
 }
+
+// PICK (default): the player chooses one of a dual-typed catch's two types.
+// PRIMARY: the app auto-locks dual-typed catches to their primary type,
+// no player decision required.
+export type TypeLockMode = 'PRIMARY' | 'PICK';
+
+export function parseTypeLockMode(config: unknown): TypeLockMode {
+  if (
+    config &&
+    typeof config === 'object' &&
+    (config as { mode?: unknown }).mode === 'PRIMARY'
+  ) {
+    return 'PRIMARY';
+  }
+  return 'PICK';
+}
