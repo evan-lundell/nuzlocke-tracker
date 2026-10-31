@@ -1,4 +1,4 @@
-import { and, eq, isNotNull, isNull, or, sql } from "drizzle-orm";
+import { and, eq, inArray, isNotNull, isNull, or, sql } from "drizzle-orm";
 import type { Db } from "#/db/client.server";
 import {
 	type EncounterOutcome,
@@ -102,7 +102,7 @@ export function listRunLocations(db: Db, runId: number) {
 }
 
 export function listCaught(db: Db, runId: number) {
-	return db
+	const caught = db
 		.select({
 			id: encounters.id,
 			speciesId: encounters.speciesId,
@@ -120,6 +120,30 @@ export function listCaught(db: Db, runId: number) {
 		.where(and(eq(encounters.runId, runId), eq(encounters.outcome, "caught")))
 		.orderBy(encounters.createdAt, encounters.id)
 		.all();
+
+	// What each caught species can evolve into (several for e.g. Eevee)
+	const speciesIds = [
+		...new Set(caught.flatMap((c) => (c.speciesId ? [c.speciesId] : []))),
+	];
+	const evolutions = speciesIds.length
+		? db
+				.select({
+					id: species.id,
+					name: species.name,
+					types: species.types,
+					evolvesFromId: species.evolvesFromId,
+				})
+				.from(species)
+				.where(inArray(species.evolvesFromId, speciesIds))
+				.orderBy(species.id)
+				.all()
+		: [];
+	return caught.map((c) => ({
+		...c,
+		evolutions: evolutions
+			.filter((e) => e.evolvesFromId === c.speciesId)
+			.map(({ evolvesFromId: _, ...e }) => e),
+	}));
 }
 
 export function saveEncounter(
@@ -267,4 +291,52 @@ export function setPokemonState(
 			.where(eq(encounters.id, input.encounterId))
 			.run();
 	});
+}
+
+/**
+ * Evolves a caught Pokémon in place. The rule type carries over when the
+ * evolution still has it; a dual-type evolution can switch to its other type.
+ */
+export function evolvePokemon(
+	db: Db,
+	input: { encounterId: number; speciesId: number; ruleType: string | null },
+) {
+	const enc = db
+		.select({
+			speciesId: encounters.speciesId,
+			outcome: encounters.outcome,
+			state: encounters.state,
+			ruleType: encounters.ruleType,
+		})
+		.from(encounters)
+		.where(eq(encounters.id, input.encounterId))
+		.get();
+	if (!enc) throw new Error("Encounter not found");
+	if (enc.outcome !== "caught" || enc.state === "dead") {
+		throw new Error("Only living caught Pokémon can evolve");
+	}
+	const target = db
+		.select({ types: species.types, evolvesFromId: species.evolvesFromId })
+		.from(species)
+		.where(eq(species.id, input.speciesId))
+		.get();
+	if (
+		!target ||
+		enc.speciesId === null ||
+		target.evolvesFromId !== enc.speciesId
+	) {
+		throw new Error("That isn't an evolution of this Pokémon");
+	}
+
+	db.update(encounters)
+		.set({
+			speciesId: input.speciesId,
+			ruleType: resolveRuleType(
+				enc.state,
+				target.types,
+				input.ruleType ?? enc.ruleType,
+			),
+		})
+		.where(eq(encounters.id, input.encounterId))
+		.run();
 }

@@ -137,11 +137,15 @@ async function fetchSpecies() {
 				id: number;
 				name: string;
 				names: LocalizedName[];
+				evolves_from_species: NamedRef | null;
 			}>(s.url);
 			return {
 				id: data.id,
 				slug: data.name,
 				name: englishName(data.names, data.name),
+				evolvesFromId: data.evolves_from_species
+					? idFromUrl(data.evolves_from_species.url)
+					: null,
 			};
 		},
 		"species",

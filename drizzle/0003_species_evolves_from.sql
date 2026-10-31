@@ -1,0 +1,1 @@
+ALTER TABLE `species` ADD `evolves_from_id` integer;

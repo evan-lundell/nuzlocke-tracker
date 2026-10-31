@@ -24,7 +24,37 @@ export const fixture = {
 	species: [
 		{ id: 1, slug: "bulbasaur", name: "Bulbasaur", types: ["grass", "poison"] },
 		{ id: 16, slug: "pidgey", name: "Pidgey", types: ["normal", "flying"] },
+		{
+			id: 17,
+			slug: "pidgeotto",
+			name: "Pidgeotto",
+			types: ["normal", "flying"],
+			evolvesFromId: 16,
+		},
 		{ id: 19, slug: "rattata", name: "Rattata", types: ["normal"] },
+		{ id: 129, slug: "magikarp", name: "Magikarp", types: ["water"] },
+		{
+			id: 130,
+			slug: "gyarados",
+			name: "Gyarados",
+			types: ["water", "flying"],
+			evolvesFromId: 129,
+		},
+		{ id: 133, slug: "eevee", name: "Eevee", types: ["normal"] },
+		{
+			id: 134,
+			slug: "vaporeon",
+			name: "Vaporeon",
+			types: ["water"],
+			evolvesFromId: 133,
+		},
+		{
+			id: 135,
+			slug: "jolteon",
+			name: "Jolteon",
+			types: ["electric"],
+			evolvesFromId: 133,
+		},
 	],
 	locations: [
 		{ slug: "kanto-route-1", name: "Route 1", games: ["firered", "leafgreen"] },

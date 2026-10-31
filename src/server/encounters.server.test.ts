@@ -4,6 +4,7 @@ import { listGameLocations, setLocationOrder } from "./admin.server";
 import {
 	addCustomLocation,
 	compareLocations,
+	evolvePokemon,
 	listCaught,
 	listRunLocations,
 	resolveRuleType,
@@ -241,6 +242,75 @@ describe("encounters", () => {
 		// single-type species pick their own type
 		saveEncounter(db, { ...base, speciesId: 19, outcome: "caught" });
 		expect(listCaught(db, runId)[0]).toMatchObject({ ruleType: "normal" });
+	});
+});
+
+describe("evolution", () => {
+	function catchOne(speciesId: number, ruleType: string | null = null) {
+		const { db, runId } = setup();
+		const loc = addCustomLocation(db, { runId, name: "Spot", sortOrder: null });
+		saveEncounter(db, {
+			runId,
+			locationId: loc.id,
+			speciesId,
+			nickname: "",
+			outcome: "caught",
+			ruleType,
+		});
+		const mon = listCaught(db, runId)[0];
+		return { db, runId, mon };
+	}
+
+	it("lists every evolution option", () => {
+		const { mon } = catchOne(133);
+		expect(mon.evolutions.map((e) => e.name)).toEqual(["Vaporeon", "Jolteon"]);
+		expect(catchOne(19).mon.evolutions).toEqual([]);
+	});
+
+	it("keeps the rule type by default and lets a dual type switch", () => {
+		const { db, runId, mon } = catchOne(129);
+		expect(mon.ruleType).toBe("water");
+		evolvePokemon(db, { encounterId: mon.id, speciesId: 130, ruleType: null });
+		expect(listCaught(db, runId)[0]).toMatchObject({
+			speciesName: "Gyarados",
+			ruleType: "water",
+		});
+
+		const again = catchOne(129);
+		evolvePokemon(again.db, {
+			encounterId: again.mon.id,
+			speciesId: 130,
+			ruleType: "flying",
+		});
+		expect(listCaught(again.db, again.runId)[0].ruleType).toBe("flying");
+	});
+
+	it("takes the new type when evolving into a single type", () => {
+		const { db, runId, mon } = catchOne(133);
+		evolvePokemon(db, { encounterId: mon.id, speciesId: 135, ruleType: null });
+		expect(listCaught(db, runId)[0]).toMatchObject({
+			speciesName: "Jolteon",
+			ruleType: "electric",
+		});
+	});
+
+	it("rejects species that aren't an evolution, and dead Pokémon", () => {
+		const { db, mon } = catchOne(16, "flying");
+		expect(() =>
+			evolvePokemon(db, {
+				encounterId: mon.id,
+				speciesId: 130,
+				ruleType: null,
+			}),
+		).toThrow(/isn't an evolution/);
+		setPokemonState(db, {
+			encounterId: mon.id,
+			state: "dead",
+			causeOfDeath: "",
+		});
+		expect(() =>
+			evolvePokemon(db, { encounterId: mon.id, speciesId: 17, ruleType: null }),
+		).toThrow(/Only living/);
 	});
 });
 

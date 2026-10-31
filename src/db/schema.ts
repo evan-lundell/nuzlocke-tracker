@@ -22,6 +22,8 @@ export const species = sqliteTable("species", {
 	slug: text("slug").notNull().unique(),
 	name: text("name").notNull(),
 	types: text("types", { mode: "json" }).$type<string[]>().notNull(),
+	// the species this one evolves from; null for base forms
+	evolvesFromId: integer("evolves_from_id"),
 });
 
 export const locations = sqliteTable(

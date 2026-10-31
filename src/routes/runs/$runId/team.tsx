@@ -1,7 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
-import { ArchiveIcon, SkullIcon, UsersIcon } from "lucide-react";
+import { ArchiveIcon, SkullIcon, SparklesIcon, UsersIcon } from "lucide-react";
 import { useState } from "react";
+import { RuleTypePicker } from "#/components/rule-type-picker";
 import { Sprite } from "#/components/sprite";
 import { TypeBadge } from "#/components/type-badge";
 import { Button } from "#/components/ui/button";
@@ -16,7 +17,12 @@ import { Input } from "#/components/ui/input";
 import { Label } from "#/components/ui/label";
 import type { PokemonState } from "#/db/schema";
 import { useAction } from "#/lib/use-action";
-import { getCaughtFn, setPokemonStateFn } from "#/server/encounters.functions";
+import { cn } from "#/lib/utils";
+import {
+	evolvePokemonFn,
+	getCaughtFn,
+	setPokemonStateFn,
+} from "#/server/encounters.functions";
 
 export const Route = createFileRoute("/runs/$runId/team")({
 	loader: ({ params }) =>
@@ -41,7 +47,9 @@ const MOVES = {
 function TeamPage() {
 	const caught = Route.useLoaderData();
 	const [setState, pending] = useAction(useServerFn(setPokemonStateFn));
+	const [evolve, evolving] = useAction(useServerFn(evolvePokemonFn));
 	const [dying, setDying] = useState<Mon | null>(null);
+	const [evolvingMon, setEvolvingMon] = useState<Mon | null>(null);
 
 	const move = (mon: Mon, state: PokemonState) => {
 		if (state === "dead") {
@@ -79,8 +87,9 @@ function TeamPage() {
 									<MonCard
 										key={mon.id}
 										mon={mon}
-										disabled={pending}
+										disabled={pending || evolving}
 										onMove={(state) => move(mon, state)}
+										onEvolve={() => setEvolvingMon(mon)}
 									/>
 								))
 							)}
@@ -88,6 +97,20 @@ function TeamPage() {
 					);
 				})}
 			</div>
+
+			<EvolveDialog
+				key={evolvingMon?.id}
+				mon={evolvingMon}
+				pending={evolving}
+				onClose={() => setEvolvingMon(null)}
+				onConfirm={async (speciesId, ruleType) => {
+					if (!evolvingMon) return;
+					await evolve({
+						data: { encounterId: evolvingMon.id, speciesId, ruleType },
+					});
+					setEvolvingMon(null);
+				}}
+			/>
 
 			<CauseOfDeathDialog
 				mon={dying}
@@ -108,10 +131,12 @@ function MonCard({
 	mon,
 	disabled,
 	onMove,
+	onEvolve,
 }: {
 	mon: Mon;
 	disabled: boolean;
 	onMove: (state: PokemonState) => void;
+	onEvolve: () => void;
 }) {
 	const title = mon.nickname || mon.speciesName || "Unknown";
 
@@ -166,8 +191,113 @@ function MonCard({
 							</Button>
 						);
 					})}
+				{mon.state !== "dead" && mon.evolutions.length > 0 && (
+					<Button
+						size="sm"
+						variant="ghost"
+						className="ml-auto h-7 px-2 text-xs"
+						disabled={disabled}
+						onClick={onEvolve}
+					>
+						<SparklesIcon /> Evolve
+					</Button>
+				)}
 			</div>
 		</div>
+	);
+}
+
+function EvolveDialog({
+	mon,
+	pending,
+	onClose,
+	onConfirm,
+}: {
+	mon: Mon | null;
+	pending: boolean;
+	onClose: () => void;
+	onConfirm: (speciesId: number, ruleType: string | null) => Promise<void>;
+}) {
+	const options = mon?.evolutions ?? [];
+	const [targetId, setTargetId] = useState<number | null>(
+		options.length === 1 ? options[0].id : null,
+	);
+	const target = options.find((o) => o.id === targetId);
+	// Keep the current rule type when the evolution still has it
+	const [ruleType, setRuleType] = useState<string | null>(null);
+	const keptType =
+		mon?.ruleType && target?.types.includes(mon.ruleType) ? mon.ruleType : null;
+	const chosenType =
+		target?.types.length === 1 ? target.types[0] : (ruleType ?? keptType);
+	const name = mon?.nickname || mon?.speciesName || "Pokémon";
+
+	return (
+		<Dialog open={mon !== null} onOpenChange={(open) => !open && onClose()}>
+			<DialogContent>
+				<form
+					className="space-y-4"
+					onSubmit={async (e) => {
+						e.preventDefault();
+						if (target && chosenType) await onConfirm(target.id, chosenType);
+					}}
+				>
+					<DialogHeader>
+						<DialogTitle>Evolve {name}</DialogTitle>
+					</DialogHeader>
+
+					{options.length > 1 && (
+						<fieldset className="grid grid-cols-2 gap-2">
+							<legend className="mb-2 text-sm font-medium">Evolves into</legend>
+							{options.map((o) => (
+								<button
+									key={o.id}
+									type="button"
+									aria-pressed={o.id === targetId}
+									onClick={() => {
+										setTargetId(o.id);
+										setRuleType(null);
+									}}
+									className={cn(
+										"flex items-center gap-2 rounded-lg border p-2 text-left text-sm hover:bg-accent focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none",
+										o.id === targetId && "border-foreground/70 bg-accent",
+									)}
+								>
+									<Sprite speciesId={o.id} name={o.name} />
+									<span className="truncate">{o.name}</span>
+								</button>
+							))}
+						</fieldset>
+					)}
+
+					{target && (
+						<div className="space-y-2">
+							{options.length === 1 && (
+								<div className="flex items-center gap-2">
+									<Sprite speciesId={target.id} name={target.name} />
+									<span className="font-medium">{target.name}</span>
+								</div>
+							)}
+							{target.types.length > 1 && (
+								<div className="space-y-1">
+									<Label>Type that counts for the type rule</Label>
+									<RuleTypePicker
+										types={target.types}
+										value={chosenType}
+										onChange={setRuleType}
+									/>
+								</div>
+							)}
+						</div>
+					)}
+
+					<DialogFooter>
+						<Button type="submit" disabled={!target || !chosenType || pending}>
+							<SparklesIcon /> Evolve
+						</Button>
+					</DialogFooter>
+				</form>
+			</DialogContent>
+		</Dialog>
 	);
 }
 
