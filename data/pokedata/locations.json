@@ -1,0 +1,5848 @@
+[
+	{
+		"slug": "abandoned-ship",
+		"name": "Abandoned Ship",
+		"games": [
+			"emerald",
+			"ruby",
+			"sapphire"
+		]
+	},
+	{
+		"slug": "abundant-shrine",
+		"name": "Abundant Shrine",
+		"games": [
+			"black",
+			"black-2",
+			"white",
+			"white-2"
+		]
+	},
+	{
+		"slug": "accumula-town",
+		"name": "Accumula Town",
+		"games": [
+			"black-2",
+			"white-2"
+		]
+	},
+	{
+		"slug": "acuity-lakefront",
+		"name": "Acuity Lakefront",
+		"games": [
+			"diamond",
+			"pearl",
+			"platinum"
+		]
+	},
+	{
+		"slug": "aether-paradise",
+		"name": "Aether Paradise",
+		"games": [
+			"moon",
+			"sun"
+		]
+	},
+	{
+		"slug": "akala-outskirts",
+		"name": "Akala Outskirts",
+		"games": [
+			"moon",
+			"sun",
+			"ultra-moon",
+			"ultra-sun"
+		]
+	},
+	{
+		"slug": "alola-berry-fields",
+		"name": "Alola Berry Fields",
+		"games": [
+			"moon",
+			"sun",
+			"ultra-moon",
+			"ultra-sun"
+		]
+	},
+	{
+		"slug": "alola-route-1",
+		"name": "Route 1",
+		"games": [
+			"moon",
+			"sun",
+			"ultra-moon",
+			"ultra-sun"
+		]
+	},
+	{
+		"slug": "alola-route-10",
+		"name": "Route 10",
+		"games": [
+			"moon",
+			"sun",
+			"ultra-moon",
+			"ultra-sun"
+		]
+	},
+	{
+		"slug": "alola-route-11",
+		"name": "Route 11",
+		"games": [
+			"moon",
+			"sun",
+			"ultra-moon",
+			"ultra-sun"
+		]
+	},
+	{
+		"slug": "alola-route-12",
+		"name": "Route 12",
+		"games": [
+			"moon",
+			"sun",
+			"ultra-moon",
+			"ultra-sun"
+		]
+	},
+	{
+		"slug": "alola-route-13",
+		"name": "Route 13",
+		"games": [
+			"moon",
+			"sun",
+			"ultra-moon",
+			"ultra-sun"
+		]
+	},
+	{
+		"slug": "alola-route-14",
+		"name": "Route 14",
+		"games": [
+			"moon",
+			"sun",
+			"ultra-moon",
+			"ultra-sun"
+		]
+	},
+	{
+		"slug": "alola-route-15",
+		"name": "Route 15",
+		"games": [
+			"moon",
+			"sun",
+			"ultra-moon",
+			"ultra-sun"
+		]
+	},
+	{
+		"slug": "alola-route-16",
+		"name": "Route 16",
+		"games": [
+			"moon",
+			"sun",
+			"ultra-moon",
+			"ultra-sun"
+		]
+	},
+	{
+		"slug": "alola-route-17",
+		"name": "Route 17",
+		"games": [
+			"moon",
+			"sun",
+			"ultra-moon",
+			"ultra-sun"
+		]
+	},
+	{
+		"slug": "alola-route-2",
+		"name": "Route 2",
+		"games": [
+			"moon",
+			"sun",
+			"ultra-moon",
+			"ultra-sun"
+		]
+	},
+	{
+		"slug": "alola-route-3",
+		"name": "Route 3",
+		"games": [
+			"moon",
+			"sun",
+			"ultra-moon",
+			"ultra-sun"
+		]
+	},
+	{
+		"slug": "alola-route-4",
+		"name": "Route 4",
+		"games": [
+			"moon",
+			"sun",
+			"ultra-moon",
+			"ultra-sun"
+		]
+	},
+	{
+		"slug": "alola-route-5",
+		"name": "Route 5",
+		"games": [
+			"moon",
+			"sun",
+			"ultra-moon",
+			"ultra-sun"
+		]
+	},
+	{
+		"slug": "alola-route-6",
+		"name": "Route 6",
+		"games": [
+			"moon",
+			"sun",
+			"ultra-moon",
+			"ultra-sun"
+		]
+	},
+	{
+		"slug": "alola-route-7",
+		"name": "Route 7",
+		"games": [
+			"moon",
+			"sun",
+			"ultra-moon",
+			"ultra-sun"
+		]
+	},
+	{
+		"slug": "alola-route-8",
+		"name": "Route 8",
+		"games": [
+			"moon",
+			"sun",
+			"ultra-moon",
+			"ultra-sun"
+		]
+	},
+	{
+		"slug": "alola-route-9",
+		"name": "Route 9",
+		"games": [
+			"moon",
+			"sun",
+			"ultra-moon",
+			"ultra-sun"
+		]
+	},
+	{
+		"slug": "altar-of-the-moone",
+		"name": "Altar of the Moone",
+		"games": [
+			"moon"
+		]
+	},
+	{
+		"slug": "altar-of-the-sunne",
+		"name": "Altar of the Sunne",
+		"games": [
+			"sun"
+		]
+	},
+	{
+		"slug": "ambrette-town",
+		"name": "Ambrette Town",
+		"games": [
+			"x",
+			"y"
+		]
+	},
+	{
+		"slug": "ancient-poni-path",
+		"name": "Ancient Poni Path",
+		"games": [
+			"moon",
+			"sun",
+			"ultra-moon",
+			"ultra-sun"
+		]
+	},
+	{
+		"slug": "ancient-tomb",
+		"name": "Ancient Tomb",
+		"games": [
+			"alpha-sapphire",
+			"emerald",
+			"omega-ruby",
+			"ruby",
+			"sapphire"
+		]
+	},
+	{
+		"slug": "aquacorde-town",
+		"name": "Aquacorde Town",
+		"games": [
+			"x",
+			"y"
+		]
+	},
+	{
+		"slug": "artisan-cave",
+		"name": "Artisan Cave",
+		"games": [
+			"emerald"
+		]
+	},
+	{
+		"slug": "aspertia-city",
+		"name": "Aspertia City",
+		"games": [
+			"black-2",
+			"white-2"
+		]
+	},
+	{
+		"slug": "axews-eye",
+		"name": "Axew's Eye",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "azalea-town",
+		"name": "Azalea Town",
+		"games": [
+			"crystal",
+			"gold",
+			"heartgold",
+			"silver",
+			"soulsilver"
+		]
+	},
+	{
+		"slug": "azure-bay",
+		"name": "Azure Bay",
+		"games": [
+			"x",
+			"y"
+		]
+	},
+	{
+		"slug": "ballimere-lake",
+		"name": "Ballimere Lake",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "ballonlea",
+		"name": "Ballonlea",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "battle-resort",
+		"name": "Battle Resort",
+		"games": [
+			"alpha-sapphire",
+			"omega-ruby"
+		]
+	},
+	{
+		"slug": "bell-tower",
+		"name": "Bell Tower",
+		"games": [
+			"crystal",
+			"gold",
+			"heartgold",
+			"silver",
+			"soulsilver"
+		]
+	},
+	{
+		"slug": "berry-forest",
+		"name": "Berry Forest",
+		"games": [
+			"firered",
+			"leafgreen"
+		]
+	},
+	{
+		"slug": "birth-island",
+		"name": "Birth Island",
+		"games": [
+			"emerald",
+			"firered",
+			"leafgreen"
+		]
+	},
+	{
+		"slug": "blackthorn-city",
+		"name": "Blackthorn City",
+		"games": [
+			"crystal",
+			"gold",
+			"heartgold",
+			"silver",
+			"soulsilver"
+		]
+	},
+	{
+		"slug": "blush-mountain",
+		"name": "Blush Mountain",
+		"games": [
+			"moon",
+			"sun",
+			"ultra-moon",
+			"ultra-sun"
+		]
+	},
+	{
+		"slug": "bond-bridge",
+		"name": "Bond Bridge",
+		"games": [
+			"firered",
+			"leafgreen"
+		]
+	},
+	{
+		"slug": "brawlers-cave",
+		"name": "Brawlers' Cave",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "bridge-field",
+		"name": "Bridge Field",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "brooklet-hill",
+		"name": "Brooklet Hill",
+		"games": [
+			"moon",
+			"sun",
+			"ultra-moon",
+			"ultra-sun"
+		]
+	},
+	{
+		"slug": "burned-tower",
+		"name": "Burned Tower",
+		"games": [
+			"crystal",
+			"gold",
+			"heartgold",
+			"silver",
+			"soulsilver"
+		]
+	},
+	{
+		"slug": "canalave-city",
+		"name": "Canalave City",
+		"games": [
+			"diamond",
+			"pearl",
+			"platinum"
+		]
+	},
+	{
+		"slug": "canyon-entrance",
+		"name": "Canyon Entrance",
+		"games": [
+			"firered",
+			"leafgreen"
+		]
+	},
+	{
+		"slug": "cape-brink",
+		"name": "Cape Brink",
+		"games": [
+			"firered",
+			"leafgreen"
+		]
+	},
+	{
+		"slug": "castelia-city",
+		"name": "Castelia City",
+		"games": [
+			"black",
+			"black-2",
+			"white",
+			"white-2"
+		]
+	},
+	{
+		"slug": "castelia-sewers",
+		"name": "Castelia Sewers",
+		"games": [
+			"black-2",
+			"white-2"
+		]
+	},
+	{
+		"slug": "cave-of-origin",
+		"name": "Cave of Origin",
+		"games": [
+			"alpha-sapphire",
+			"emerald",
+			"omega-ruby",
+			"ruby",
+			"sapphire"
+		]
+	},
+	{
+		"slug": "celadon-city",
+		"name": "Celadon City",
+		"games": [
+			"blue",
+			"crystal",
+			"firered",
+			"gold",
+			"heartgold",
+			"leafgreen",
+			"lets-go-eevee",
+			"lets-go-pikachu",
+			"red",
+			"silver",
+			"soulsilver",
+			"yellow"
+		]
+	},
+	{
+		"slug": "celestial-tower",
+		"name": "Celestial Tower",
+		"games": [
+			"black",
+			"black-2",
+			"white",
+			"white-2"
+		]
+	},
+	{
+		"slug": "celestic-town",
+		"name": "Celestic Town",
+		"games": [
+			"diamond",
+			"pearl",
+			"platinum"
+		]
+	},
+	{
+		"slug": "cerulean-cave",
+		"name": "Cerulean Cave",
+		"games": [
+			"blue",
+			"firered",
+			"heartgold",
+			"leafgreen",
+			"lets-go-eevee",
+			"lets-go-pikachu",
+			"red",
+			"soulsilver",
+			"yellow"
+		]
+	},
+	{
+		"slug": "cerulean-city",
+		"name": "Cerulean City",
+		"games": [
+			"blue",
+			"crystal",
+			"firered",
+			"gold",
+			"heartgold",
+			"leafgreen",
+			"lets-go-eevee",
+			"lets-go-pikachu",
+			"red",
+			"silver",
+			"soulsilver",
+			"yellow"
+		]
+	},
+	{
+		"slug": "challenge-beach",
+		"name": "Challenge Beach",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "challenge-road",
+		"name": "Challenge Road",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "challengers-cave",
+		"name": "Challenger's Cave",
+		"games": [
+			"black",
+			"white"
+		]
+	},
+	{
+		"slug": "chargestone-cave",
+		"name": "Chargestone Cave",
+		"games": [
+			"black",
+			"black-2",
+			"white",
+			"white-2"
+		]
+	},
+	{
+		"slug": "cherrygrove-city",
+		"name": "Cherrygrove City",
+		"games": [
+			"crystal",
+			"gold",
+			"heartgold",
+			"silver",
+			"soulsilver"
+		]
+	},
+	{
+		"slug": "cianwood-city",
+		"name": "Cianwood City",
+		"games": [
+			"crystal",
+			"gold",
+			"heartgold",
+			"silver",
+			"soulsilver"
+		]
+	},
+	{
+		"slug": "cinnabar-island",
+		"name": "Cinnabar Island",
+		"games": [
+			"blue",
+			"crystal",
+			"firered",
+			"gold",
+			"heartgold",
+			"leafgreen",
+			"lets-go-eevee",
+			"lets-go-pikachu",
+			"red",
+			"silver",
+			"soulsilver",
+			"yellow"
+		]
+	},
+	{
+		"slug": "circhester",
+		"name": "Circhester",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "clay-tunnel",
+		"name": "Clay Tunnel",
+		"games": [
+			"black-2",
+			"white-2"
+		]
+	},
+	{
+		"slug": "cold-storage",
+		"name": "Cold Storage",
+		"games": [
+			"black",
+			"white"
+		]
+	},
+	{
+		"slug": "connecting-cave",
+		"name": "Connecting Cave",
+		"games": [
+			"x",
+			"y"
+		]
+	},
+	{
+		"slug": "courageous-cavern",
+		"name": "Courageous Cavern",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "couriway-town",
+		"name": "Couriway Town",
+		"games": [
+			"x",
+			"y"
+		]
+	},
+	{
+		"slug": "crescent-isle",
+		"name": "Crescent Isle",
+		"games": [
+			"alpha-sapphire",
+			"omega-ruby"
+		]
+	},
+	{
+		"slug": "crown-shrine",
+		"name": "Crown Shrine",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "cyllage-city",
+		"name": "Cyllage City",
+		"games": [
+			"x",
+			"y"
+		]
+	},
+	{
+		"slug": "dappled-grove",
+		"name": "Dappled Grove",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "dark-cave",
+		"name": "Dark Cave",
+		"games": [
+			"crystal",
+			"gold",
+			"heartgold",
+			"silver",
+			"soulsilver"
+		]
+	},
+	{
+		"slug": "desert-resort",
+		"name": "Desert Resort",
+		"games": [
+			"black",
+			"black-2",
+			"white",
+			"white-2"
+		]
+	},
+	{
+		"slug": "desert-ruins",
+		"name": "Desert Ruins",
+		"games": [
+			"alpha-sapphire",
+			"emerald",
+			"omega-ruby",
+			"ruby",
+			"sapphire"
+		]
+	},
+	{
+		"slug": "desert-underpass",
+		"name": "Desert Underpass",
+		"games": [
+			"emerald"
+		]
+	},
+	{
+		"slug": "dewford-town",
+		"name": "Dewford Town",
+		"games": [
+			"emerald",
+			"ruby",
+			"sapphire"
+		]
+	},
+	{
+		"slug": "digletts-cave",
+		"name": "Diglett's Cave",
+		"games": [
+			"blue",
+			"crystal",
+			"firered",
+			"gold",
+			"heartgold",
+			"leafgreen",
+			"lets-go-eevee",
+			"lets-go-pikachu",
+			"red",
+			"silver",
+			"soulsilver",
+			"yellow"
+		]
+	},
+	{
+		"slug": "digletts-tunnel",
+		"name": "Diglett’s Tunnel",
+		"games": [
+			"moon",
+			"sun",
+			"ultra-moon",
+			"ultra-sun"
+		]
+	},
+	{
+		"slug": "dilford-chamber",
+		"name": "Dilford Chamber",
+		"games": [
+			"firered",
+			"leafgreen"
+		]
+	},
+	{
+		"slug": "distortion-world",
+		"name": "Distortion World",
+		"games": [
+			"platinum"
+		]
+	},
+	{
+		"slug": "dividing-peak-tunnel",
+		"name": "Dividing Peak Tunnel",
+		"games": [
+			"ultra-moon",
+			"ultra-sun"
+		]
+	},
+	{
+		"slug": "dragons-den",
+		"name": "Dragon's Den",
+		"games": [
+			"crystal",
+			"gold",
+			"heartgold",
+			"silver",
+			"soulsilver"
+		]
+	},
+	{
+		"slug": "dragonspiral-tower",
+		"name": "Dragonspiral Tower",
+		"games": [
+			"black",
+			"black-2",
+			"white",
+			"white-2"
+		]
+	},
+	{
+		"slug": "dreamyard",
+		"name": "Dreamyard",
+		"games": [
+			"black",
+			"black-2",
+			"white",
+			"white-2"
+		]
+	},
+	{
+		"slug": "driftveil-city",
+		"name": "Driftveil City",
+		"games": [
+			"black",
+			"black-2",
+			"white",
+			"white-2"
+		]
+	},
+	{
+		"slug": "driftveil-drawbridge",
+		"name": "Driftveil Drawbridge",
+		"games": [
+			"black",
+			"black-2",
+			"white",
+			"white-2"
+		]
+	},
+	{
+		"slug": "dusty-bowl",
+		"name": "Dusty Bowl",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "dyna-tree-hill",
+		"name": "Dyna Tree Hill",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "east-lake-axewell",
+		"name": "East Lake Axewell",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "ecruteak-city",
+		"name": "Ecruteak City",
+		"games": [
+			"crystal",
+			"gold",
+			"heartgold",
+			"silver",
+			"soulsilver"
+		]
+	},
+	{
+		"slug": "embedded-tower",
+		"name": "Embedded Tower",
+		"games": [
+			"heartgold",
+			"soulsilver"
+		]
+	},
+	{
+		"slug": "energy-plant",
+		"name": "Energy Plant",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "eterna-city",
+		"name": "Eterna City",
+		"games": [
+			"diamond",
+			"pearl",
+			"platinum"
+		]
+	},
+	{
+		"slug": "eterna-forest",
+		"name": "Eterna Forest",
+		"games": [
+			"diamond",
+			"pearl",
+			"platinum"
+		]
+	},
+	{
+		"slug": "ever-grande-city",
+		"name": "Ever Grande City",
+		"games": [
+			"emerald",
+			"ruby",
+			"sapphire"
+		]
+	},
+	{
+		"slug": "exeggutor-island",
+		"name": "Exeggutor Island",
+		"games": [
+			"moon",
+			"sun",
+			"ultra-moon",
+			"ultra-sun"
+		]
+	},
+	{
+		"slug": "fabled-cave",
+		"name": "Fabled Cave",
+		"games": [
+			"alpha-sapphire",
+			"omega-ruby"
+		]
+	},
+	{
+		"slug": "fallarbor-town",
+		"name": "Fallarbor Town",
+		"games": [
+			"alpha-sapphire",
+			"omega-ruby"
+		]
+	},
+	{
+		"slug": "faraway-island",
+		"name": "Faraway Island",
+		"games": [
+			"emerald"
+		]
+	},
+	{
+		"slug": "fields-of-honor",
+		"name": "Fields of Honor",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "fiery-path",
+		"name": "Fiery Path",
+		"games": [
+			"alpha-sapphire",
+			"emerald",
+			"omega-ruby",
+			"ruby",
+			"sapphire"
+		]
+	},
+	{
+		"slug": "five-island",
+		"name": "Five Island",
+		"games": [
+			"firered",
+			"leafgreen"
+		]
+	},
+	{
+		"slug": "five-isle-meadow",
+		"name": "Five Isle Meadow",
+		"games": [
+			"firered",
+			"leafgreen"
+		]
+	},
+	{
+		"slug": "floaroma-meadow",
+		"name": "Floaroma Meadow",
+		"games": [
+			"diamond",
+			"pearl",
+			"platinum"
+		]
+	},
+	{
+		"slug": "floccesy-ranch",
+		"name": "Floccesy Ranch",
+		"games": [
+			"black-2",
+			"white-2"
+		]
+	},
+	{
+		"slug": "floccesy-town",
+		"name": "Floccesy Town",
+		"games": [
+			"black-2",
+			"white-2"
+		]
+	},
+	{
+		"slug": "flower-paradise",
+		"name": "Flower Paradise",
+		"games": [
+			"diamond",
+			"pearl",
+			"platinum"
+		]
+	},
+	{
+		"slug": "forest-of-focus",
+		"name": "Forest of Focus",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "fortree-city",
+		"name": "Fortree City",
+		"games": [
+			"emerald",
+			"ruby",
+			"sapphire"
+		]
+	},
+	{
+		"slug": "four-island",
+		"name": "Four Island",
+		"games": [
+			"firered",
+			"leafgreen"
+		]
+	},
+	{
+		"slug": "freezington",
+		"name": "Freezington",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "friend-safari",
+		"name": "Friend Safari",
+		"games": [
+			"x",
+			"y"
+		]
+	},
+	{
+		"slug": "frigid-sea",
+		"name": "Frigid Sea",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "frost-cavern",
+		"name": "Frost Cavern",
+		"games": [
+			"x",
+			"y"
+		]
+	},
+	{
+		"slug": "frostpoint-field",
+		"name": "Frostpoint Field",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "fuchsia-city",
+		"name": "Fuchsia City",
+		"games": [
+			"blue",
+			"crystal",
+			"firered",
+			"gold",
+			"heartgold",
+			"leafgreen",
+			"lets-go-eevee",
+			"lets-go-pikachu",
+			"red",
+			"silver",
+			"soulsilver",
+			"yellow"
+		]
+	},
+	{
+		"slug": "fuego-ironworks",
+		"name": "Fuego Ironworks",
+		"games": [
+			"diamond",
+			"pearl",
+			"platinum"
+		]
+	},
+	{
+		"slug": "galar-battle-tower",
+		"name": "Battle Tower",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "galar-iceberg-ruins",
+		"name": "Iceberg Ruins",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "galar-iron-ruins",
+		"name": "Iron Ruins",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "galar-mine",
+		"name": "Galar Mine",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "galar-mine-no-2",
+		"name": "Galar Mine No. 2",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "galar-rock-peak-ruins",
+		"name": "Rock Peak Ruins",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "galar-route-1",
+		"name": "Route 1",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "galar-route-10",
+		"name": "Route 10",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "galar-route-2",
+		"name": "Route 2",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "galar-route-3",
+		"name": "Route 3",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "galar-route-4",
+		"name": "Route 4",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "galar-route-5",
+		"name": "Route 5",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "galar-route-6",
+		"name": "Route 6",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "galar-route-7",
+		"name": "Route 7",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "galar-route-8",
+		"name": "Route 8",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "galar-route-9",
+		"name": "Route 9",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "galar-wild-area-max-dens",
+		"name": "Max Dens in the Galar Wild Area",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "giant-chasm",
+		"name": "Giant Chasm",
+		"games": [
+			"black",
+			"black-2",
+			"white",
+			"white-2"
+		]
+	},
+	{
+		"slug": "giants-bed",
+		"name": "Giant's Bed",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "giants-cap",
+		"name": "Giant's Cap",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "giants-foot",
+		"name": "Giant's Foot",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "giants-mirror",
+		"name": "Giant's Mirror",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "giants-seat",
+		"name": "Giant's Seat",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "glacier-room",
+		"name": "Glacier Room",
+		"games": [
+			"black-2",
+			"white-2"
+		]
+	},
+	{
+		"slug": "glimwood-tangle",
+		"name": "Glimwood Tangle",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "glittering-cave",
+		"name": "Glittering Cave",
+		"games": [
+			"x",
+			"y"
+		]
+	},
+	{
+		"slug": "gnarled-den",
+		"name": "Gnarled Den",
+		"games": [
+			"alpha-sapphire",
+			"omega-ruby"
+		]
+	},
+	{
+		"slug": "goldenrod-city",
+		"name": "Goldenrod City",
+		"games": [
+			"crystal",
+			"gold",
+			"heartgold",
+			"silver",
+			"soulsilver"
+		]
+	},
+	{
+		"slug": "granite-cave",
+		"name": "Granite Cave",
+		"games": [
+			"alpha-sapphire",
+			"emerald",
+			"omega-ruby",
+			"ruby",
+			"sapphire"
+		]
+	},
+	{
+		"slug": "great-marsh",
+		"name": "Great Marsh",
+		"games": [
+			"diamond",
+			"pearl",
+			"platinum"
+		]
+	},
+	{
+		"slug": "green-path",
+		"name": "Green Path",
+		"games": [
+			"firered",
+			"leafgreen"
+		]
+	},
+	{
+		"slug": "guidance-chamber",
+		"name": "Guidance Chamber",
+		"games": [
+			"black",
+			"black-2",
+			"white",
+			"white-2"
+		]
+	},
+	{
+		"slug": "haina-desert",
+		"name": "Haina Desert",
+		"games": [
+			"moon",
+			"sun",
+			"ultra-moon",
+			"ultra-sun"
+		]
+	},
+	{
+		"slug": "hammerlocke",
+		"name": "Hammerlocke",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "hammerlocke-hills",
+		"name": "Hammerlocke Hills",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "hano-beach",
+		"name": "Hano Beach",
+		"games": [
+			"moon",
+			"sun",
+			"ultra-moon",
+			"ultra-sun"
+		]
+	},
+	{
+		"slug": "hauoli-cemetery",
+		"name": "Hau’oli Cemetery",
+		"games": [
+			"moon",
+			"sun",
+			"ultra-moon",
+			"ultra-sun"
+		]
+	},
+	{
+		"slug": "hauoli-city",
+		"name": "Hau'oli City",
+		"games": [
+			"moon",
+			"sun",
+			"ultra-moon",
+			"ultra-sun"
+		]
+	},
+	{
+		"slug": "heahea-beach",
+		"name": "Heahea Beach",
+		"games": [
+			"ultra-moon",
+			"ultra-sun"
+		]
+	},
+	{
+		"slug": "heahea-city",
+		"name": "Heahea City",
+		"games": [
+			"ultra-moon",
+			"ultra-sun"
+		]
+	},
+	{
+		"slug": "hearthome-city",
+		"name": "Hearthome City",
+		"games": [
+			"diamond",
+			"pearl",
+			"platinum"
+		]
+	},
+	{
+		"slug": "hoenn-altering-cave",
+		"name": "Altering Cave",
+		"games": [
+			"emerald"
+		]
+	},
+	{
+		"slug": "hoenn-battle-frontier",
+		"name": "Hoenn Battle Frontier",
+		"games": [
+			"emerald"
+		]
+	},
+	{
+		"slug": "hoenn-pokecenter",
+		"name": "hoenn-pokecenter",
+		"games": [
+			"emerald",
+			"ruby",
+			"sapphire"
+		]
+	},
+	{
+		"slug": "hoenn-route-101",
+		"name": "Route 101",
+		"games": [
+			"alpha-sapphire",
+			"emerald",
+			"omega-ruby",
+			"ruby",
+			"sapphire"
+		]
+	},
+	{
+		"slug": "hoenn-route-102",
+		"name": "Route 102",
+		"games": [
+			"alpha-sapphire",
+			"emerald",
+			"omega-ruby",
+			"ruby",
+			"sapphire"
+		]
+	},
+	{
+		"slug": "hoenn-route-103",
+		"name": "Route 103",
+		"games": [
+			"alpha-sapphire",
+			"emerald",
+			"omega-ruby",
+			"ruby",
+			"sapphire"
+		]
+	},
+	{
+		"slug": "hoenn-route-104",
+		"name": "Route 104",
+		"games": [
+			"alpha-sapphire",
+			"emerald",
+			"omega-ruby",
+			"ruby",
+			"sapphire"
+		]
+	},
+	{
+		"slug": "hoenn-route-105",
+		"name": "Route 105",
+		"games": [
+			"emerald",
+			"ruby",
+			"sapphire"
+		]
+	},
+	{
+		"slug": "hoenn-route-106",
+		"name": "Route 106",
+		"games": [
+			"emerald",
+			"ruby",
+			"sapphire"
+		]
+	},
+	{
+		"slug": "hoenn-route-107",
+		"name": "Route 107",
+		"games": [
+			"emerald",
+			"ruby",
+			"sapphire"
+		]
+	},
+	{
+		"slug": "hoenn-route-108",
+		"name": "Route 108",
+		"games": [
+			"emerald",
+			"ruby",
+			"sapphire"
+		]
+	},
+	{
+		"slug": "hoenn-route-109",
+		"name": "Route 109",
+		"games": [
+			"emerald",
+			"ruby",
+			"sapphire"
+		]
+	},
+	{
+		"slug": "hoenn-route-110",
+		"name": "Route 110",
+		"games": [
+			"alpha-sapphire",
+			"emerald",
+			"omega-ruby",
+			"ruby",
+			"sapphire"
+		]
+	},
+	{
+		"slug": "hoenn-route-111",
+		"name": "Route 111",
+		"games": [
+			"alpha-sapphire",
+			"emerald",
+			"omega-ruby",
+			"ruby",
+			"sapphire"
+		]
+	},
+	{
+		"slug": "hoenn-route-112",
+		"name": "Route 112",
+		"games": [
+			"alpha-sapphire",
+			"emerald",
+			"omega-ruby",
+			"ruby",
+			"sapphire"
+		]
+	},
+	{
+		"slug": "hoenn-route-113",
+		"name": "Route 113",
+		"games": [
+			"alpha-sapphire",
+			"emerald",
+			"omega-ruby",
+			"ruby",
+			"sapphire"
+		]
+	},
+	{
+		"slug": "hoenn-route-114",
+		"name": "Route 114",
+		"games": [
+			"alpha-sapphire",
+			"emerald",
+			"omega-ruby",
+			"ruby",
+			"sapphire"
+		]
+	},
+	{
+		"slug": "hoenn-route-115",
+		"name": "Route 115",
+		"games": [
+			"alpha-sapphire",
+			"emerald",
+			"omega-ruby",
+			"ruby",
+			"sapphire"
+		]
+	},
+	{
+		"slug": "hoenn-route-116",
+		"name": "Route 116",
+		"games": [
+			"alpha-sapphire",
+			"emerald",
+			"omega-ruby",
+			"ruby",
+			"sapphire"
+		]
+	},
+	{
+		"slug": "hoenn-route-117",
+		"name": "Route 117",
+		"games": [
+			"alpha-sapphire",
+			"emerald",
+			"omega-ruby",
+			"ruby",
+			"sapphire"
+		]
+	},
+	{
+		"slug": "hoenn-route-118",
+		"name": "Route 118",
+		"games": [
+			"alpha-sapphire",
+			"emerald",
+			"omega-ruby",
+			"ruby",
+			"sapphire"
+		]
+	},
+	{
+		"slug": "hoenn-route-119",
+		"name": "Route 119",
+		"games": [
+			"alpha-sapphire",
+			"emerald",
+			"omega-ruby",
+			"ruby",
+			"sapphire"
+		]
+	},
+	{
+		"slug": "hoenn-route-120",
+		"name": "Route 120",
+		"games": [
+			"alpha-sapphire",
+			"emerald",
+			"omega-ruby",
+			"ruby",
+			"sapphire"
+		]
+	},
+	{
+		"slug": "hoenn-route-121",
+		"name": "Route 121",
+		"games": [
+			"alpha-sapphire",
+			"emerald",
+			"omega-ruby",
+			"ruby",
+			"sapphire"
+		]
+	},
+	{
+		"slug": "hoenn-route-122",
+		"name": "Route 122",
+		"games": [
+			"emerald",
+			"ruby",
+			"sapphire"
+		]
+	},
+	{
+		"slug": "hoenn-route-123",
+		"name": "Route 123",
+		"games": [
+			"alpha-sapphire",
+			"emerald",
+			"omega-ruby",
+			"ruby",
+			"sapphire"
+		]
+	},
+	{
+		"slug": "hoenn-route-124",
+		"name": "Route 124",
+		"games": [
+			"emerald",
+			"ruby",
+			"sapphire"
+		]
+	},
+	{
+		"slug": "hoenn-route-125",
+		"name": "Route 125",
+		"games": [
+			"emerald",
+			"ruby",
+			"sapphire"
+		]
+	},
+	{
+		"slug": "hoenn-route-126",
+		"name": "Route 126",
+		"games": [
+			"emerald",
+			"ruby",
+			"sapphire"
+		]
+	},
+	{
+		"slug": "hoenn-route-127",
+		"name": "Route 127",
+		"games": [
+			"emerald",
+			"ruby",
+			"sapphire"
+		]
+	},
+	{
+		"slug": "hoenn-route-128",
+		"name": "Route 128",
+		"games": [
+			"emerald",
+			"ruby",
+			"sapphire"
+		]
+	},
+	{
+		"slug": "hoenn-route-129",
+		"name": "Route 129",
+		"games": [
+			"emerald",
+			"ruby",
+			"sapphire"
+		]
+	},
+	{
+		"slug": "hoenn-route-130",
+		"name": "Route 130",
+		"games": [
+			"emerald",
+			"ruby",
+			"sapphire"
+		]
+	},
+	{
+		"slug": "hoenn-route-131",
+		"name": "Route 131",
+		"games": [
+			"emerald",
+			"ruby",
+			"sapphire"
+		]
+	},
+	{
+		"slug": "hoenn-route-132",
+		"name": "Route 132",
+		"games": [
+			"emerald",
+			"ruby",
+			"sapphire"
+		]
+	},
+	{
+		"slug": "hoenn-route-133",
+		"name": "Route 133",
+		"games": [
+			"emerald",
+			"ruby",
+			"sapphire"
+		]
+	},
+	{
+		"slug": "hoenn-route-134",
+		"name": "Route 134",
+		"games": [
+			"emerald",
+			"ruby",
+			"sapphire"
+		]
+	},
+	{
+		"slug": "hoenn-safari-zone",
+		"name": "Safari Zone",
+		"games": [
+			"alpha-sapphire",
+			"emerald",
+			"omega-ruby",
+			"ruby",
+			"sapphire"
+		]
+	},
+	{
+		"slug": "hoenn-victory-road",
+		"name": "Victory Road",
+		"games": [
+			"alpha-sapphire",
+			"emerald",
+			"omega-ruby",
+			"ruby",
+			"sapphire"
+		]
+	},
+	{
+		"slug": "honeycalm-island",
+		"name": "Honeycalm Island",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "honeycalm-sea",
+		"name": "Honeycalm Sea",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "hulbury",
+		"name": "Hulbury",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "humilau-city",
+		"name": "Humilau City",
+		"games": [
+			"black-2",
+			"white-2"
+		]
+	},
+	{
+		"slug": "ice-path",
+		"name": "Ice Path",
+		"games": [
+			"crystal",
+			"gold",
+			"heartgold",
+			"silver",
+			"soulsilver"
+		]
+	},
+	{
+		"slug": "icefall-cave",
+		"name": "Icefall Cave",
+		"games": [
+			"firered",
+			"leafgreen"
+		]
+	},
+	{
+		"slug": "icirrus-city",
+		"name": "Icirrus City",
+		"games": [
+			"black",
+			"black-2",
+			"white",
+			"white-2"
+		]
+	},
+	{
+		"slug": "iki-town",
+		"name": "Iki Town",
+		"games": [
+			"moon",
+			"sun"
+		]
+	},
+	{
+		"slug": "ilex-forest",
+		"name": "Ilex Forest",
+		"games": [
+			"crystal",
+			"gold",
+			"heartgold",
+			"silver",
+			"soulsilver"
+		]
+	},
+	{
+		"slug": "indigo-plateau",
+		"name": "Indigo Plateau",
+		"games": [
+			"lets-go-eevee",
+			"lets-go-pikachu"
+		]
+	},
+	{
+		"slug": "insular-sea",
+		"name": "Insular Sea",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "iron-island",
+		"name": "Iron Island",
+		"games": [
+			"diamond",
+			"pearl",
+			"platinum"
+		]
+	},
+	{
+		"slug": "iron-room",
+		"name": "Iron Room",
+		"games": [
+			"black-2",
+			"white-2"
+		]
+	},
+	{
+		"slug": "island-cave",
+		"name": "Island Cave",
+		"games": [
+			"alpha-sapphire",
+			"emerald",
+			"omega-ruby",
+			"ruby",
+			"sapphire"
+		]
+	},
+	{
+		"slug": "isle-of-armor-caves",
+		"name": "Random caves across the Isle of Armor",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "jagged-pass",
+		"name": "Jagged Pass",
+		"games": [
+			"alpha-sapphire",
+			"emerald",
+			"omega-ruby",
+			"ruby",
+			"sapphire"
+		]
+	},
+	{
+		"slug": "johto-pokemart",
+		"name": "johto-pokemart",
+		"games": [
+			"heartgold",
+			"soulsilver"
+		]
+	},
+	{
+		"slug": "johto-route-29",
+		"name": "Route 29",
+		"games": [
+			"crystal",
+			"gold",
+			"heartgold",
+			"silver",
+			"soulsilver"
+		]
+	},
+	{
+		"slug": "johto-route-30",
+		"name": "Route 30",
+		"games": [
+			"crystal",
+			"gold",
+			"heartgold",
+			"silver",
+			"soulsilver"
+		]
+	},
+	{
+		"slug": "johto-route-31",
+		"name": "Route 31",
+		"games": [
+			"crystal",
+			"gold",
+			"heartgold",
+			"silver",
+			"soulsilver"
+		]
+	},
+	{
+		"slug": "johto-route-32",
+		"name": "Route 32",
+		"games": [
+			"crystal",
+			"gold",
+			"heartgold",
+			"silver",
+			"soulsilver"
+		]
+	},
+	{
+		"slug": "johto-route-33",
+		"name": "Route 33",
+		"games": [
+			"crystal",
+			"gold",
+			"heartgold",
+			"silver",
+			"soulsilver"
+		]
+	},
+	{
+		"slug": "johto-route-34",
+		"name": "Route 34",
+		"games": [
+			"crystal",
+			"gold",
+			"heartgold",
+			"silver",
+			"soulsilver"
+		]
+	},
+	{
+		"slug": "johto-route-35",
+		"name": "Route 35",
+		"games": [
+			"crystal",
+			"gold",
+			"heartgold",
+			"silver",
+			"soulsilver"
+		]
+	},
+	{
+		"slug": "johto-route-36",
+		"name": "Route 36",
+		"games": [
+			"crystal",
+			"gold",
+			"heartgold",
+			"silver",
+			"soulsilver"
+		]
+	},
+	{
+		"slug": "johto-route-37",
+		"name": "Route 37",
+		"games": [
+			"crystal",
+			"gold",
+			"heartgold",
+			"silver",
+			"soulsilver"
+		]
+	},
+	{
+		"slug": "johto-route-38",
+		"name": "Route 38",
+		"games": [
+			"crystal",
+			"gold",
+			"heartgold",
+			"silver",
+			"soulsilver"
+		]
+	},
+	{
+		"slug": "johto-route-39",
+		"name": "Route 39",
+		"games": [
+			"crystal",
+			"gold",
+			"heartgold",
+			"silver",
+			"soulsilver"
+		]
+	},
+	{
+		"slug": "johto-route-42",
+		"name": "Route 42",
+		"games": [
+			"crystal",
+			"gold",
+			"heartgold",
+			"silver",
+			"soulsilver"
+		]
+	},
+	{
+		"slug": "johto-route-43",
+		"name": "Route 43",
+		"games": [
+			"crystal",
+			"gold",
+			"heartgold",
+			"silver",
+			"soulsilver"
+		]
+	},
+	{
+		"slug": "johto-route-44",
+		"name": "Route 44",
+		"games": [
+			"crystal",
+			"gold",
+			"heartgold",
+			"silver",
+			"soulsilver"
+		]
+	},
+	{
+		"slug": "johto-route-45",
+		"name": "Route 45",
+		"games": [
+			"crystal",
+			"gold",
+			"heartgold",
+			"silver",
+			"soulsilver"
+		]
+	},
+	{
+		"slug": "johto-route-46",
+		"name": "Route 46",
+		"games": [
+			"crystal",
+			"gold",
+			"heartgold",
+			"silver",
+			"soulsilver"
+		]
+	},
+	{
+		"slug": "johto-route-47",
+		"name": "Route 47",
+		"games": [
+			"heartgold",
+			"soulsilver"
+		]
+	},
+	{
+		"slug": "johto-route-48",
+		"name": "Route 48",
+		"games": [
+			"heartgold",
+			"soulsilver"
+		]
+	},
+	{
+		"slug": "johto-safari-zone",
+		"name": "Johto Safari Zone",
+		"games": [
+			"heartgold",
+			"soulsilver"
+		]
+	},
+	{
+		"slug": "johto-sea-route-40",
+		"name": "Sea Route 40",
+		"games": [
+			"crystal",
+			"gold",
+			"heartgold",
+			"silver",
+			"soulsilver"
+		]
+	},
+	{
+		"slug": "johto-sea-route-41",
+		"name": "Sea Route 41",
+		"games": [
+			"crystal",
+			"gold",
+			"heartgold",
+			"silver",
+			"soulsilver"
+		]
+	},
+	{
+		"slug": "kalae-bay",
+		"name": "Kala’e Bay",
+		"games": [
+			"moon",
+			"sun",
+			"ultra-moon",
+			"ultra-sun"
+		]
+	},
+	{
+		"slug": "kalos-berry-fields",
+		"name": "kalos-berry-fields",
+		"games": [
+			"x",
+			"y"
+		]
+	},
+	{
+		"slug": "kalos-route-10",
+		"name": "Route 10",
+		"games": [
+			"x",
+			"y"
+		]
+	},
+	{
+		"slug": "kalos-route-11",
+		"name": "Route 11",
+		"games": [
+			"x",
+			"y"
+		]
+	},
+	{
+		"slug": "kalos-route-12",
+		"name": "Route 12",
+		"games": [
+			"x",
+			"y"
+		]
+	},
+	{
+		"slug": "kalos-route-13",
+		"name": "Route 13",
+		"games": [
+			"x",
+			"y"
+		]
+	},
+	{
+		"slug": "kalos-route-14",
+		"name": "Route 14",
+		"games": [
+			"x",
+			"y"
+		]
+	},
+	{
+		"slug": "kalos-route-15",
+		"name": "Route 15",
+		"games": [
+			"x",
+			"y"
+		]
+	},
+	{
+		"slug": "kalos-route-16",
+		"name": "Route 16",
+		"games": [
+			"x",
+			"y"
+		]
+	},
+	{
+		"slug": "kalos-route-17",
+		"name": "Route 17",
+		"games": [
+			"x",
+			"y"
+		]
+	},
+	{
+		"slug": "kalos-route-18",
+		"name": "Route 18",
+		"games": [
+			"x",
+			"y"
+		]
+	},
+	{
+		"slug": "kalos-route-19",
+		"name": "Route 19",
+		"games": [
+			"x",
+			"y"
+		]
+	},
+	{
+		"slug": "kalos-route-2",
+		"name": "Route 2",
+		"games": [
+			"x",
+			"y"
+		]
+	},
+	{
+		"slug": "kalos-route-20",
+		"name": "Route 20",
+		"games": [
+			"x",
+			"y"
+		]
+	},
+	{
+		"slug": "kalos-route-21",
+		"name": "Route 21",
+		"games": [
+			"x",
+			"y"
+		]
+	},
+	{
+		"slug": "kalos-route-22",
+		"name": "Route 22",
+		"games": [
+			"x",
+			"y"
+		]
+	},
+	{
+		"slug": "kalos-route-3",
+		"name": "Route 3",
+		"games": [
+			"x",
+			"y"
+		]
+	},
+	{
+		"slug": "kalos-route-4",
+		"name": "Route 4",
+		"games": [
+			"x",
+			"y"
+		]
+	},
+	{
+		"slug": "kalos-route-5",
+		"name": "Route 5",
+		"games": [
+			"x",
+			"y"
+		]
+	},
+	{
+		"slug": "kalos-route-6",
+		"name": "Route 6",
+		"games": [
+			"x",
+			"y"
+		]
+	},
+	{
+		"slug": "kalos-route-7",
+		"name": "Route 7",
+		"games": [
+			"x",
+			"y"
+		]
+	},
+	{
+		"slug": "kalos-route-8",
+		"name": "Route 8",
+		"games": [
+			"x",
+			"y"
+		]
+	},
+	{
+		"slug": "kalos-route-9",
+		"name": "Route 9",
+		"games": [
+			"x",
+			"y"
+		]
+	},
+	{
+		"slug": "kalos-victory-road",
+		"name": "Victory Road",
+		"games": [
+			"x",
+			"y"
+		]
+	},
+	{
+		"slug": "kanto-altering-cave",
+		"name": "Altering Cave",
+		"games": [
+			"firered",
+			"leafgreen"
+		]
+	},
+	{
+		"slug": "kanto-pokecenter",
+		"name": "kanto-pokecenter",
+		"games": [
+			"firered",
+			"leafgreen"
+		]
+	},
+	{
+		"slug": "kanto-power-plant",
+		"name": "Kanto Power Plant",
+		"games": [
+			"blue",
+			"crystal",
+			"firered",
+			"heartgold",
+			"leafgreen",
+			"lets-go-eevee",
+			"lets-go-pikachu",
+			"red",
+			"soulsilver",
+			"yellow"
+		]
+	},
+	{
+		"slug": "kanto-route-1",
+		"name": "Route 1",
+		"games": [
+			"blue",
+			"crystal",
+			"firered",
+			"gold",
+			"heartgold",
+			"leafgreen",
+			"lets-go-eevee",
+			"lets-go-pikachu",
+			"red",
+			"silver",
+			"soulsilver",
+			"yellow"
+		]
+	},
+	{
+		"slug": "kanto-route-10",
+		"name": "Route 10",
+		"games": [
+			"blue",
+			"crystal",
+			"firered",
+			"gold",
+			"heartgold",
+			"leafgreen",
+			"lets-go-eevee",
+			"lets-go-pikachu",
+			"red",
+			"silver",
+			"soulsilver",
+			"yellow"
+		]
+	},
+	{
+		"slug": "kanto-route-11",
+		"name": "Route 11",
+		"games": [
+			"blue",
+			"crystal",
+			"firered",
+			"gold",
+			"heartgold",
+			"leafgreen",
+			"lets-go-eevee",
+			"lets-go-pikachu",
+			"red",
+			"silver",
+			"soulsilver",
+			"yellow"
+		]
+	},
+	{
+		"slug": "kanto-route-12",
+		"name": "Route 12",
+		"games": [
+			"blue",
+			"crystal",
+			"firered",
+			"gold",
+			"heartgold",
+			"leafgreen",
+			"lets-go-eevee",
+			"lets-go-pikachu",
+			"red",
+			"silver",
+			"soulsilver",
+			"yellow"
+		]
+	},
+	{
+		"slug": "kanto-route-13",
+		"name": "Route 13",
+		"games": [
+			"blue",
+			"crystal",
+			"firered",
+			"gold",
+			"heartgold",
+			"leafgreen",
+			"lets-go-eevee",
+			"lets-go-pikachu",
+			"red",
+			"silver",
+			"soulsilver",
+			"yellow"
+		]
+	},
+	{
+		"slug": "kanto-route-14",
+		"name": "Route 14",
+		"games": [
+			"blue",
+			"crystal",
+			"firered",
+			"gold",
+			"heartgold",
+			"leafgreen",
+			"lets-go-eevee",
+			"lets-go-pikachu",
+			"red",
+			"silver",
+			"soulsilver",
+			"yellow"
+		]
+	},
+	{
+		"slug": "kanto-route-15",
+		"name": "Route 15",
+		"games": [
+			"blue",
+			"crystal",
+			"firered",
+			"gold",
+			"heartgold",
+			"leafgreen",
+			"lets-go-eevee",
+			"lets-go-pikachu",
+			"red",
+			"silver",
+			"soulsilver",
+			"yellow"
+		]
+	},
+	{
+		"slug": "kanto-route-16",
+		"name": "Route 16",
+		"games": [
+			"blue",
+			"crystal",
+			"firered",
+			"gold",
+			"heartgold",
+			"leafgreen",
+			"lets-go-eevee",
+			"lets-go-pikachu",
+			"red",
+			"silver",
+			"soulsilver",
+			"yellow"
+		]
+	},
+	{
+		"slug": "kanto-route-17",
+		"name": "Route 17",
+		"games": [
+			"blue",
+			"crystal",
+			"firered",
+			"gold",
+			"heartgold",
+			"leafgreen",
+			"lets-go-eevee",
+			"lets-go-pikachu",
+			"red",
+			"silver",
+			"soulsilver",
+			"yellow"
+		]
+	},
+	{
+		"slug": "kanto-route-18",
+		"name": "Route 18",
+		"games": [
+			"blue",
+			"crystal",
+			"firered",
+			"gold",
+			"heartgold",
+			"leafgreen",
+			"lets-go-eevee",
+			"lets-go-pikachu",
+			"red",
+			"silver",
+			"soulsilver",
+			"yellow"
+		]
+	},
+	{
+		"slug": "kanto-route-2",
+		"name": "Route 2",
+		"games": [
+			"blue",
+			"crystal",
+			"firered",
+			"gold",
+			"heartgold",
+			"leafgreen",
+			"lets-go-eevee",
+			"lets-go-pikachu",
+			"red",
+			"silver",
+			"soulsilver",
+			"yellow"
+		]
+	},
+	{
+		"slug": "kanto-route-22",
+		"name": "Route 22",
+		"games": [
+			"blue",
+			"crystal",
+			"firered",
+			"gold",
+			"heartgold",
+			"leafgreen",
+			"lets-go-eevee",
+			"lets-go-pikachu",
+			"red",
+			"silver",
+			"soulsilver",
+			"yellow"
+		]
+	},
+	{
+		"slug": "kanto-route-23",
+		"name": "Route 23",
+		"games": [
+			"blue",
+			"firered",
+			"leafgreen",
+			"lets-go-eevee",
+			"lets-go-pikachu",
+			"red",
+			"yellow"
+		]
+	},
+	{
+		"slug": "kanto-route-24",
+		"name": "Route 24",
+		"games": [
+			"blue",
+			"crystal",
+			"firered",
+			"gold",
+			"heartgold",
+			"leafgreen",
+			"lets-go-eevee",
+			"lets-go-pikachu",
+			"red",
+			"silver",
+			"soulsilver",
+			"yellow"
+		]
+	},
+	{
+		"slug": "kanto-route-25",
+		"name": "Route 25",
+		"games": [
+			"blue",
+			"crystal",
+			"firered",
+			"gold",
+			"heartgold",
+			"leafgreen",
+			"lets-go-eevee",
+			"lets-go-pikachu",
+			"red",
+			"silver",
+			"soulsilver",
+			"yellow"
+		]
+	},
+	{
+		"slug": "kanto-route-26",
+		"name": "Route 26",
+		"games": [
+			"crystal",
+			"gold",
+			"heartgold",
+			"silver",
+			"soulsilver"
+		]
+	},
+	{
+		"slug": "kanto-route-27",
+		"name": "Route 27",
+		"games": [
+			"crystal",
+			"gold",
+			"heartgold",
+			"silver",
+			"soulsilver"
+		]
+	},
+	{
+		"slug": "kanto-route-28",
+		"name": "Route 28",
+		"games": [
+			"crystal",
+			"gold",
+			"heartgold",
+			"silver",
+			"soulsilver"
+		]
+	},
+	{
+		"slug": "kanto-route-3",
+		"name": "Route 3",
+		"games": [
+			"blue",
+			"crystal",
+			"firered",
+			"gold",
+			"heartgold",
+			"leafgreen",
+			"lets-go-eevee",
+			"lets-go-pikachu",
+			"red",
+			"silver",
+			"soulsilver",
+			"yellow"
+		]
+	},
+	{
+		"slug": "kanto-route-4",
+		"name": "Route 4",
+		"games": [
+			"blue",
+			"crystal",
+			"firered",
+			"gold",
+			"heartgold",
+			"leafgreen",
+			"lets-go-eevee",
+			"lets-go-pikachu",
+			"red",
+			"silver",
+			"soulsilver",
+			"yellow"
+		]
+	},
+	{
+		"slug": "kanto-route-5",
+		"name": "Route 5",
+		"games": [
+			"blue",
+			"crystal",
+			"firered",
+			"gold",
+			"heartgold",
+			"leafgreen",
+			"lets-go-eevee",
+			"lets-go-pikachu",
+			"red",
+			"silver",
+			"soulsilver",
+			"yellow"
+		]
+	},
+	{
+		"slug": "kanto-route-6",
+		"name": "Route 6",
+		"games": [
+			"blue",
+			"crystal",
+			"firered",
+			"gold",
+			"heartgold",
+			"leafgreen",
+			"lets-go-eevee",
+			"lets-go-pikachu",
+			"red",
+			"silver",
+			"soulsilver",
+			"yellow"
+		]
+	},
+	{
+		"slug": "kanto-route-7",
+		"name": "Route 7",
+		"games": [
+			"blue",
+			"crystal",
+			"firered",
+			"gold",
+			"heartgold",
+			"leafgreen",
+			"lets-go-eevee",
+			"lets-go-pikachu",
+			"red",
+			"silver",
+			"soulsilver",
+			"yellow"
+		]
+	},
+	{
+		"slug": "kanto-route-8",
+		"name": "Route 8",
+		"games": [
+			"blue",
+			"crystal",
+			"firered",
+			"gold",
+			"heartgold",
+			"leafgreen",
+			"lets-go-eevee",
+			"lets-go-pikachu",
+			"red",
+			"silver",
+			"soulsilver",
+			"yellow"
+		]
+	},
+	{
+		"slug": "kanto-route-9",
+		"name": "Route 9",
+		"games": [
+			"blue",
+			"crystal",
+			"firered",
+			"gold",
+			"heartgold",
+			"leafgreen",
+			"lets-go-eevee",
+			"lets-go-pikachu",
+			"red",
+			"silver",
+			"soulsilver",
+			"yellow"
+		]
+	},
+	{
+		"slug": "kanto-safari-zone",
+		"name": "Safari Zone",
+		"games": [
+			"blue",
+			"firered",
+			"leafgreen",
+			"red",
+			"yellow"
+		]
+	},
+	{
+		"slug": "kanto-sea-route-19",
+		"name": "Sea Route 19",
+		"games": [
+			"blue",
+			"crystal",
+			"firered",
+			"gold",
+			"heartgold",
+			"leafgreen",
+			"lets-go-eevee",
+			"lets-go-pikachu",
+			"red",
+			"silver",
+			"soulsilver",
+			"yellow"
+		]
+	},
+	{
+		"slug": "kanto-sea-route-20",
+		"name": "Sea Route 20",
+		"games": [
+			"blue",
+			"crystal",
+			"firered",
+			"gold",
+			"heartgold",
+			"leafgreen",
+			"lets-go-eevee",
+			"lets-go-pikachu",
+			"red",
+			"silver",
+			"soulsilver",
+			"yellow"
+		]
+	},
+	{
+		"slug": "kanto-sea-route-21",
+		"name": "Sea Route 21",
+		"games": [
+			"blue",
+			"crystal",
+			"firered",
+			"gold",
+			"heartgold",
+			"leafgreen",
+			"lets-go-eevee",
+			"lets-go-pikachu",
+			"red",
+			"silver",
+			"soulsilver",
+			"yellow"
+		]
+	},
+	{
+		"slug": "kanto-underground-path",
+		"name": "Kanto Underground Path",
+		"games": [
+			"blue",
+			"firered",
+			"leafgreen",
+			"red",
+			"yellow"
+		]
+	},
+	{
+		"slug": "kanto-victory-road-1",
+		"name": "Victory Road",
+		"games": [
+			"crystal",
+			"gold",
+			"heartgold",
+			"lets-go-eevee",
+			"lets-go-pikachu",
+			"silver",
+			"soulsilver"
+		]
+	},
+	{
+		"slug": "kanto-victory-road-2",
+		"name": "Victory Road",
+		"games": [
+			"blue",
+			"firered",
+			"leafgreen",
+			"red",
+			"yellow"
+		]
+	},
+	{
+		"slug": "kindle-road",
+		"name": "Kindle Road",
+		"games": [
+			"firered",
+			"leafgreen"
+		]
+	},
+	{
+		"slug": "konikoni-city",
+		"name": "Konikoni City",
+		"games": [
+			"moon",
+			"sun",
+			"ultra-moon",
+			"ultra-sun"
+		]
+	},
+	{
+		"slug": "lake-acuity",
+		"name": "Lake Acuity",
+		"games": [
+			"diamond",
+			"pearl",
+			"platinum"
+		]
+	},
+	{
+		"slug": "lake-of-outrage",
+		"name": "Lake of Outrage",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "lake-of-rage",
+		"name": "Lake of Rage",
+		"games": [
+			"crystal",
+			"gold",
+			"heartgold",
+			"silver",
+			"soulsilver"
+		]
+	},
+	{
+		"slug": "lake-of-the-moone",
+		"name": "Lake of the Moone",
+		"games": [
+			"moon",
+			"ultra-moon"
+		]
+	},
+	{
+		"slug": "lake-of-the-sunne",
+		"name": "Lake of the Sunne",
+		"games": [
+			"sun",
+			"ultra-sun"
+		]
+	},
+	{
+		"slug": "lake-valor",
+		"name": "Lake Valor",
+		"games": [
+			"diamond",
+			"pearl",
+			"platinum"
+		]
+	},
+	{
+		"slug": "lake-verity",
+		"name": "Lake Verity",
+		"games": [
+			"diamond",
+			"pearl",
+			"platinum"
+		]
+	},
+	{
+		"slug": "lakeside-cave",
+		"name": "Lakeside Cave",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "lavaridge-town",
+		"name": "Lavaridge Town",
+		"games": [
+			"alpha-sapphire",
+			"emerald",
+			"omega-ruby",
+			"ruby",
+			"sapphire"
+		]
+	},
+	{
+		"slug": "lavender-town",
+		"name": "Lavender Town",
+		"games": [
+			"lets-go-eevee",
+			"lets-go-pikachu"
+		]
+	},
+	{
+		"slug": "laverre-city",
+		"name": "Laverre City",
+		"games": [
+			"x",
+			"y"
+		]
+	},
+	{
+		"slug": "liberty-garden",
+		"name": "Liberty Garden",
+		"games": [
+			"black",
+			"white"
+		]
+	},
+	{
+		"slug": "lilycove-city",
+		"name": "Lilycove City",
+		"games": [
+			"alpha-sapphire",
+			"emerald",
+			"omega-ruby",
+			"ruby",
+			"sapphire"
+		]
+	},
+	{
+		"slug": "liptoo-chamber",
+		"name": "Liptoo Chamber",
+		"games": [
+			"firered",
+			"leafgreen"
+		]
+	},
+	{
+		"slug": "littleroot-town",
+		"name": "Littleroot Town",
+		"games": [
+			"emerald"
+		]
+	},
+	{
+		"slug": "loop-lagoon",
+		"name": "Loop Lagoon",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "lost-cave",
+		"name": "Lost Cave",
+		"games": [
+			"firered",
+			"leafgreen"
+		]
+	},
+	{
+		"slug": "lost-hotel",
+		"name": "Lost Hotel",
+		"games": [
+			"x",
+			"y"
+		]
+	},
+	{
+		"slug": "lost-tower",
+		"name": "Lost Tower",
+		"games": [
+			"diamond",
+			"pearl",
+			"platinum"
+		]
+	},
+	{
+		"slug": "lostlorn-forest",
+		"name": "Lostlorn Forest",
+		"games": [
+			"black",
+			"black-2",
+			"white",
+			"white-2"
+		]
+	},
+	{
+		"slug": "lumiose-city",
+		"name": "Lumiose City",
+		"games": [
+			"x",
+			"y"
+		]
+	},
+	{
+		"slug": "lush-jungle",
+		"name": "Lush Jungle",
+		"games": [
+			"moon",
+			"sun",
+			"ultra-moon",
+			"ultra-sun"
+		]
+	},
+	{
+		"slug": "magma-hideout",
+		"name": "Magma Hideout",
+		"games": [
+			"emerald"
+		]
+	},
+	{
+		"slug": "mahalo-trail",
+		"name": "Mahalo Trail",
+		"games": [
+			"ultra-moon",
+			"ultra-sun"
+		]
+	},
+	{
+		"slug": "malie-city",
+		"name": "Malie City",
+		"games": [
+			"moon",
+			"sun",
+			"ultra-moon",
+			"ultra-sun"
+		]
+	},
+	{
+		"slug": "malie-garden",
+		"name": "Malie Garden",
+		"games": [
+			"moon",
+			"sun",
+			"ultra-moon",
+			"ultra-sun"
+		]
+	},
+	{
+		"slug": "maniac-tunnel",
+		"name": "Maniac Tunnel",
+		"games": [
+			"diamond",
+			"pearl",
+			"platinum"
+		]
+	},
+	{
+		"slug": "marine-cave",
+		"name": "Marine Cave",
+		"games": [
+			"emerald"
+		]
+	},
+	{
+		"slug": "marvelous-bridge",
+		"name": "Marvelous Bridge",
+		"games": [
+			"black",
+			"black-2",
+			"white",
+			"white-2"
+		]
+	},
+	{
+		"slug": "master-dojo",
+		"name": "Master Dojo",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "max-lair",
+		"name": "Max Lair",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "meetup-spot",
+		"name": "Meetup Spot",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "melemele-meadow",
+		"name": "Melemele Meadow",
+		"games": [
+			"moon",
+			"sun",
+			"ultra-moon",
+			"ultra-sun"
+		]
+	},
+	{
+		"slug": "melemele-sea",
+		"name": "Melemele Sea",
+		"games": [
+			"moon",
+			"sun",
+			"ultra-moon",
+			"ultra-sun"
+		]
+	},
+	{
+		"slug": "memorial-hill",
+		"name": "Memorial Hill",
+		"games": [
+			"moon",
+			"sun",
+			"ultra-moon",
+			"ultra-sun"
+		]
+	},
+	{
+		"slug": "memorial-pillar",
+		"name": "Memorial Pillar",
+		"games": [
+			"firered",
+			"leafgreen"
+		]
+	},
+	{
+		"slug": "meteor-falls",
+		"name": "Meteor Falls",
+		"games": [
+			"alpha-sapphire",
+			"emerald",
+			"omega-ruby",
+			"ruby",
+			"sapphire"
+		]
+	},
+	{
+		"slug": "mirage-island",
+		"name": "mirage-island",
+		"games": [
+			"emerald",
+			"ruby",
+			"sapphire"
+		]
+	},
+	{
+		"slug": "mirage-spot-cave",
+		"name": "Mirage Cave",
+		"games": [
+			"alpha-sapphire",
+			"omega-ruby"
+		]
+	},
+	{
+		"slug": "mirage-spot-forest",
+		"name": "Mirage Forest",
+		"games": [
+			"alpha-sapphire",
+			"omega-ruby"
+		]
+	},
+	{
+		"slug": "mirage-spot-island",
+		"name": "Mirage Island",
+		"games": [
+			"alpha-sapphire",
+			"omega-ruby"
+		]
+	},
+	{
+		"slug": "mirage-spot-mountain",
+		"name": "Mirage Mountain",
+		"games": [
+			"alpha-sapphire",
+			"omega-ruby"
+		]
+	},
+	{
+		"slug": "mirage-tower",
+		"name": "Mirage Tower",
+		"games": [
+			"emerald"
+		]
+	},
+	{
+		"slug": "mistralton-cave",
+		"name": "Mistralton Cave",
+		"games": [
+			"black",
+			"black-2",
+			"white",
+			"white-2"
+		]
+	},
+	{
+		"slug": "monean-chamber",
+		"name": "Monean Chamber",
+		"games": [
+			"firered",
+			"leafgreen"
+		]
+	},
+	{
+		"slug": "moor-of-icirrus",
+		"name": "Moor of Icirrus",
+		"games": [
+			"black",
+			"black-2",
+			"white",
+			"white-2"
+		]
+	},
+	{
+		"slug": "mossdeep-city",
+		"name": "Mossdeep City",
+		"games": [
+			"alpha-sapphire",
+			"emerald",
+			"omega-ruby",
+			"ruby",
+			"sapphire"
+		]
+	},
+	{
+		"slug": "mossdeep-space-center",
+		"name": "Mossdeep Space Center",
+		"games": [
+			"alpha-sapphire",
+			"omega-ruby"
+		]
+	},
+	{
+		"slug": "motostoke",
+		"name": "Motostoke",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "motostoke-outskirts",
+		"name": "Motostoke Outskirts",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "motostoke-riverbank",
+		"name": "Motostoke Riverbank",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "mount-hokulani",
+		"name": "Mount Hokulani",
+		"games": [
+			"moon",
+			"sun",
+			"ultra-moon",
+			"ultra-sun"
+		]
+	},
+	{
+		"slug": "mount-lanakila",
+		"name": "Mount Lanakila",
+		"games": [
+			"moon",
+			"sun",
+			"ultra-moon",
+			"ultra-sun"
+		]
+	},
+	{
+		"slug": "mt-coronet",
+		"name": "Mt. Coronet",
+		"games": [
+			"diamond",
+			"pearl",
+			"platinum"
+		]
+	},
+	{
+		"slug": "mt-ember",
+		"name": "Mt. Ember",
+		"games": [
+			"firered",
+			"leafgreen"
+		]
+	},
+	{
+		"slug": "mt-moon",
+		"name": "Mt. Moon",
+		"games": [
+			"blue",
+			"crystal",
+			"firered",
+			"gold",
+			"heartgold",
+			"leafgreen",
+			"lets-go-eevee",
+			"lets-go-pikachu",
+			"red",
+			"silver",
+			"soulsilver",
+			"yellow"
+		]
+	},
+	{
+		"slug": "mt-mortar",
+		"name": "Mt. Mortar",
+		"games": [
+			"crystal",
+			"gold",
+			"heartgold",
+			"silver",
+			"soulsilver"
+		]
+	},
+	{
+		"slug": "mt-pyre",
+		"name": "Mt. Pyre",
+		"games": [
+			"alpha-sapphire",
+			"emerald",
+			"omega-ruby",
+			"ruby",
+			"sapphire"
+		]
+	},
+	{
+		"slug": "mt-silver",
+		"name": "Mt. Silver",
+		"games": [
+			"crystal",
+			"gold",
+			"heartgold",
+			"silver",
+			"soulsilver"
+		]
+	},
+	{
+		"slug": "nacrene-city",
+		"name": "Nacrene City",
+		"games": [
+			"black",
+			"black-2",
+			"white",
+			"white-2"
+		]
+	},
+	{
+		"slug": "nameless-cavern",
+		"name": "Nameless Cavern",
+		"games": [
+			"alpha-sapphire",
+			"omega-ruby"
+		]
+	},
+	{
+		"slug": "national-park",
+		"name": "National Park",
+		"games": [
+			"crystal",
+			"gold",
+			"heartgold",
+			"silver",
+			"soulsilver"
+		]
+	},
+	{
+		"slug": "nature-sanctuary",
+		"name": "Nature Sanctuary",
+		"games": [
+			"black-2",
+			"white-2"
+		]
+	},
+	{
+		"slug": "navel-rock",
+		"name": "Navel Rock",
+		"games": [
+			"emerald",
+			"firered",
+			"leafgreen"
+		]
+	},
+	{
+		"slug": "new-bark-town",
+		"name": "New Bark Town",
+		"games": [
+			"crystal",
+			"gold",
+			"heartgold",
+			"silver",
+			"soulsilver"
+		]
+	},
+	{
+		"slug": "new-mauville",
+		"name": "New Mauville",
+		"games": [
+			"alpha-sapphire",
+			"emerald",
+			"omega-ruby",
+			"ruby",
+			"sapphire",
+			"sun"
+		]
+	},
+	{
+		"slug": "newmoon-island",
+		"name": "Newmoon Island",
+		"games": [
+			"diamond",
+			"pearl",
+			"platinum"
+		]
+	},
+	{
+		"slug": "north-lake-miloch",
+		"name": "North Lake Miloch",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "ns-castle",
+		"name": "N's Castle",
+		"games": [
+			"black",
+			"white"
+		]
+	},
+	{
+		"slug": "nuvema-town",
+		"name": "Nuvema Town",
+		"games": [
+			"black",
+			"white"
+		]
+	},
+	{
+		"slug": "old-cemetery",
+		"name": "Old Cemetery",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "old-chateau",
+		"name": "Old Chateau",
+		"games": [
+			"diamond",
+			"pearl",
+			"platinum"
+		]
+	},
+	{
+		"slug": "olivine-city",
+		"name": "Olivine City",
+		"games": [
+			"crystal",
+			"gold",
+			"heartgold",
+			"silver",
+			"soulsilver"
+		]
+	},
+	{
+		"slug": "one-island",
+		"name": "One Island",
+		"games": [
+			"firered",
+			"leafgreen"
+		]
+	},
+	{
+		"slug": "oreburgh-city",
+		"name": "Oreburgh City",
+		"games": [
+			"diamond",
+			"pearl",
+			"platinum"
+		]
+	},
+	{
+		"slug": "oreburgh-gate",
+		"name": "Oreburgh Gate",
+		"games": [
+			"diamond",
+			"pearl",
+			"platinum"
+		]
+	},
+	{
+		"slug": "oreburgh-mine",
+		"name": "Oreburgh Mine",
+		"games": [
+			"diamond",
+			"pearl",
+			"platinum"
+		]
+	},
+	{
+		"slug": "outcast-island",
+		"name": "Outcast Island",
+		"games": [
+			"firered",
+			"leafgreen"
+		]
+	},
+	{
+		"slug": "p2-laboratory",
+		"name": "P2 Laboratory",
+		"games": [
+			"black",
+			"black-2",
+			"white",
+			"white-2"
+		]
+	},
+	{
+		"slug": "pacifidlog-town",
+		"name": "Pacifidlog Town",
+		"games": [
+			"emerald",
+			"ruby",
+			"sapphire"
+		]
+	},
+	{
+		"slug": "pallet-town",
+		"name": "Pallet Town",
+		"games": [
+			"blue",
+			"crystal",
+			"firered",
+			"gold",
+			"heartgold",
+			"leafgreen",
+			"lets-go-eevee",
+			"lets-go-pikachu",
+			"red",
+			"silver",
+			"soulsilver",
+			"yellow"
+		]
+	},
+	{
+		"slug": "paniola-ranch",
+		"name": "Paniola Ranch",
+		"games": [
+			"moon",
+			"sun",
+			"ultra-moon",
+			"ultra-sun"
+		]
+	},
+	{
+		"slug": "paniola-town",
+		"name": "Paniola Town",
+		"games": [
+			"moon",
+			"sun",
+			"ultra-moon",
+			"ultra-sun"
+		]
+	},
+	{
+		"slug": "parfum-palace",
+		"name": "Parfum Palace",
+		"games": [
+			"x",
+			"y"
+		]
+	},
+	{
+		"slug": "pastoria-city",
+		"name": "Pastoria City",
+		"games": [
+			"diamond",
+			"pearl",
+			"platinum"
+		]
+	},
+	{
+		"slug": "path-to-the-peak",
+		"name": "Path to the Peak",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "pathless-plain",
+		"name": "Pathless Plain",
+		"games": [
+			"alpha-sapphire",
+			"omega-ruby"
+		]
+	},
+	{
+		"slug": "pattern-bush",
+		"name": "Pattern Bush",
+		"games": [
+			"firered",
+			"leafgreen"
+		]
+	},
+	{
+		"slug": "petalburg-city",
+		"name": "Petalburg City",
+		"games": [
+			"emerald",
+			"ruby",
+			"sapphire"
+		]
+	},
+	{
+		"slug": "petalburg-woods",
+		"name": "Petalburg Woods",
+		"games": [
+			"alpha-sapphire",
+			"emerald",
+			"omega-ruby",
+			"ruby",
+			"sapphire"
+		]
+	},
+	{
+		"slug": "pewter-city",
+		"name": "Pewter City",
+		"games": [
+			"crystal",
+			"gold",
+			"heartgold",
+			"silver",
+			"soulsilver"
+		]
+	},
+	{
+		"slug": "pinwheel-forest",
+		"name": "Pinwheel Forest",
+		"games": [
+			"black",
+			"black-2",
+			"white",
+			"white-2"
+		]
+	},
+	{
+		"slug": "poke-pelago",
+		"name": "Poké Pelago",
+		"games": [
+			"moon",
+			"sun",
+			"ultra-moon",
+			"ultra-sun"
+		]
+	},
+	{
+		"slug": "pokemon-mansion",
+		"name": "Pokémon Mansion",
+		"games": [
+			"blue",
+			"firered",
+			"leafgreen",
+			"lets-go-eevee",
+			"lets-go-pikachu",
+			"red",
+			"yellow"
+		]
+	},
+	{
+		"slug": "pokemon-tower",
+		"name": "Pokémon Tower",
+		"games": [
+			"blue",
+			"firered",
+			"leafgreen",
+			"lets-go-eevee",
+			"lets-go-pikachu",
+			"red",
+			"yellow"
+		]
+	},
+	{
+		"slug": "pokemon-village",
+		"name": "Pokémon Village",
+		"games": [
+			"x",
+			"y"
+		]
+	},
+	{
+		"slug": "poni-breaker-coast",
+		"name": "Poni Breaker Coast",
+		"games": [
+			"moon",
+			"sun",
+			"ultra-moon",
+			"ultra-sun"
+		]
+	},
+	{
+		"slug": "poni-coast",
+		"name": "Poni Coast",
+		"games": [
+			"moon",
+			"sun",
+			"ultra-moon",
+			"ultra-sun"
+		]
+	},
+	{
+		"slug": "poni-gauntlet",
+		"name": "Poni Gauntlet",
+		"games": [
+			"moon",
+			"sun",
+			"ultra-moon",
+			"ultra-sun"
+		]
+	},
+	{
+		"slug": "poni-grove",
+		"name": "Poni Grove",
+		"games": [
+			"moon",
+			"sun",
+			"ultra-moon",
+			"ultra-sun"
+		]
+	},
+	{
+		"slug": "poni-meadow",
+		"name": "Poni Meadow",
+		"games": [
+			"moon",
+			"sun",
+			"ultra-moon",
+			"ultra-sun"
+		]
+	},
+	{
+		"slug": "poni-plains",
+		"name": "Poni Plains",
+		"games": [
+			"moon",
+			"sun",
+			"ultra-moon",
+			"ultra-sun"
+		]
+	},
+	{
+		"slug": "poni-wilds",
+		"name": "Poni Wilds",
+		"games": [
+			"moon",
+			"sun",
+			"ultra-moon",
+			"ultra-sun"
+		]
+	},
+	{
+		"slug": "postwick",
+		"name": "Postwick",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "potbottom-desert",
+		"name": "Potbottom Desert",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "ravaged-path",
+		"name": "Ravaged Path",
+		"games": [
+			"diamond",
+			"pearl",
+			"platinum"
+		]
+	},
+	{
+		"slug": "reflection-cave",
+		"name": "Reflection Cave",
+		"games": [
+			"x",
+			"y"
+		]
+	},
+	{
+		"slug": "relic-castle",
+		"name": "Relic Castle",
+		"games": [
+			"black",
+			"black-2",
+			"white",
+			"white-2"
+		]
+	},
+	{
+		"slug": "relic-passage",
+		"name": "Relic Passage",
+		"games": [
+			"black-2",
+			"white-2"
+		]
+	},
+	{
+		"slug": "resolution-cave",
+		"name": "Resolution Cave",
+		"games": [
+			"moon",
+			"sun",
+			"ultra-moon",
+			"ultra-sun"
+		]
+	},
+	{
+		"slug": "resort-area",
+		"name": "Resort Area",
+		"games": [
+			"diamond",
+			"pearl",
+			"platinum"
+		]
+	},
+	{
+		"slug": "resort-gorgeous",
+		"name": "Resort Gorgeous",
+		"games": [
+			"firered",
+			"leafgreen"
+		]
+	},
+	{
+		"slug": "reversal-mountain",
+		"name": "Reversal Mountain",
+		"games": [
+			"black-2",
+			"white-2"
+		]
+	},
+	{
+		"slug": "rixy-chamber",
+		"name": "Rixy Chamber",
+		"games": [
+			"firered",
+			"leafgreen"
+		]
+	},
+	{
+		"slug": "roaming-crown-tundra",
+		"name": "Roaming the Crown Tundra",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "roaming-galar-wild-area",
+		"name": "Roaming Galar Wild Areas",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "roaming-hoenn",
+		"name": "Roaming Hoenn",
+		"games": [
+			"emerald",
+			"ruby",
+			"sapphire"
+		]
+	},
+	{
+		"slug": "roaming-isle-of-armor",
+		"name": "Roaming the Isle of Armor",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "roaming-johto",
+		"name": "Roaming Johto",
+		"games": [
+			"crystal",
+			"gold",
+			"heartgold",
+			"silver",
+			"soulsilver"
+		]
+	},
+	{
+		"slug": "roaming-kalos",
+		"name": "Kalos (Roaming)",
+		"games": [
+			"x",
+			"y"
+		]
+	},
+	{
+		"slug": "roaming-kanto",
+		"name": "Roaming Kanto",
+		"games": [
+			"firered",
+			"leafgreen"
+		]
+	},
+	{
+		"slug": "roaming-sinnoh",
+		"name": "Roaming Sinnoh",
+		"games": [
+			"diamond",
+			"pearl",
+			"platinum"
+		]
+	},
+	{
+		"slug": "roaring-sea-caves",
+		"name": "Roaring-Sea Caves",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "rock-tunnel",
+		"name": "Rock Tunnel",
+		"games": [
+			"blue",
+			"crystal",
+			"firered",
+			"gold",
+			"heartgold",
+			"leafgreen",
+			"lets-go-eevee",
+			"lets-go-pikachu",
+			"red",
+			"silver",
+			"soulsilver",
+			"yellow"
+		]
+	},
+	{
+		"slug": "rocky-mountain-room",
+		"name": "Rocky Mountain Room",
+		"games": [
+			"black-2",
+			"white-2"
+		]
+	},
+	{
+		"slug": "rolling-fields",
+		"name": "Rolling Fields",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "royal-avenue",
+		"name": "Royal Avenue",
+		"games": [
+			"ultra-moon",
+			"ultra-sun"
+		]
+	},
+	{
+		"slug": "ruin-maniac-cave",
+		"name": "Ruin Maniac Cave",
+		"games": [
+			"diamond",
+			"pearl",
+			"platinum"
+		]
+	},
+	{
+		"slug": "ruin-valley",
+		"name": "Ruin Valley",
+		"games": [
+			"firered",
+			"leafgreen"
+		]
+	},
+	{
+		"slug": "ruins-of-abundance",
+		"name": "Ruins of Abundance",
+		"games": [
+			"moon",
+			"sun",
+			"ultra-moon",
+			"ultra-sun"
+		]
+	},
+	{
+		"slug": "ruins-of-alph",
+		"name": "Ruins of Alph",
+		"games": [
+			"crystal",
+			"gold",
+			"heartgold",
+			"silver",
+			"soulsilver"
+		]
+	},
+	{
+		"slug": "ruins-of-conflict",
+		"name": "Ruins of Conflict",
+		"games": [
+			"moon",
+			"sun",
+			"ultra-moon",
+			"ultra-sun"
+		]
+	},
+	{
+		"slug": "ruins-of-hope",
+		"name": "Ruins of Hope",
+		"games": [
+			"moon",
+			"sun",
+			"ultra-moon",
+			"ultra-sun"
+		]
+	},
+	{
+		"slug": "ruins-of-life",
+		"name": "Ruins of Life",
+		"games": [
+			"moon",
+			"sun",
+			"ultra-moon",
+			"ultra-sun"
+		]
+	},
+	{
+		"slug": "rustboro-city",
+		"name": "Rustboro City",
+		"games": [
+			"emerald",
+			"ruby",
+			"sapphire"
+		]
+	},
+	{
+		"slug": "rusturf-tunnel",
+		"name": "Rusturf Tunnel",
+		"games": [
+			"alpha-sapphire",
+			"emerald",
+			"omega-ruby",
+			"ruby",
+			"sapphire"
+		]
+	},
+	{
+		"slug": "safari-zone-gate",
+		"name": "Safari Zone Gate",
+		"games": [
+			"heartgold",
+			"soulsilver"
+		]
+	},
+	{
+		"slug": "saffron-city",
+		"name": "Saffron City",
+		"games": [
+			"blue",
+			"firered",
+			"heartgold",
+			"leafgreen",
+			"lets-go-eevee",
+			"lets-go-pikachu",
+			"red",
+			"soulsilver",
+			"yellow"
+		]
+	},
+	{
+		"slug": "sandy-cave",
+		"name": "Sandy Cave",
+		"games": [
+			"ultra-moon",
+			"ultra-sun"
+		]
+	},
+	{
+		"slug": "santalune-forest",
+		"name": "Santalune Forest",
+		"games": [
+			"x",
+			"y"
+		]
+	},
+	{
+		"slug": "scorched-slab",
+		"name": "Scorched Slab",
+		"games": [
+			"alpha-sapphire",
+			"omega-ruby"
+		]
+	},
+	{
+		"slug": "scufib-chamber",
+		"name": "Scufib Chamber",
+		"games": [
+			"firered",
+			"leafgreen"
+		]
+	},
+	{
+		"slug": "sea-mauville",
+		"name": "Sea Mauville",
+		"games": [
+			"alpha-sapphire",
+			"omega-ruby"
+		]
+	},
+	{
+		"slug": "sea-spirits-den",
+		"name": "Sea Spirit’s Den",
+		"games": [
+			"x",
+			"y"
+		]
+	},
+	{
+		"slug": "seafloor-cavern",
+		"name": "Seafloor Cavern",
+		"games": [
+			"alpha-sapphire",
+			"emerald",
+			"omega-ruby",
+			"ruby",
+			"sapphire"
+		]
+	},
+	{
+		"slug": "seafoam-islands",
+		"name": "Seafoam Islands",
+		"games": [
+			"blue",
+			"firered",
+			"heartgold",
+			"leafgreen",
+			"lets-go-eevee",
+			"lets-go-pikachu",
+			"red",
+			"soulsilver",
+			"yellow"
+		]
+	},
+	{
+		"slug": "seafolk-village",
+		"name": "Seafolk Village",
+		"games": [
+			"moon",
+			"sun",
+			"ultra-moon",
+			"ultra-sun"
+		]
+	},
+	{
+		"slug": "seaside-cave",
+		"name": "Seaside Cave",
+		"games": [
+			"black-2",
+			"white-2"
+		]
+	},
+	{
+		"slug": "seaward-cave",
+		"name": "Seaward Cave",
+		"games": [
+			"moon",
+			"sun",
+			"ultra-moon",
+			"ultra-sun"
+		]
+	},
+	{
+		"slug": "secluded-shore",
+		"name": "Secluded Shore",
+		"games": [
+			"moon",
+			"sun"
+		]
+	},
+	{
+		"slug": "sendoff-spring",
+		"name": "Sendoff Spring",
+		"games": [
+			"diamond",
+			"pearl",
+			"platinum"
+		]
+	},
+	{
+		"slug": "sevault-canyon",
+		"name": "Sevault Canyon",
+		"games": [
+			"firered",
+			"leafgreen"
+		]
+	},
+	{
+		"slug": "shalour-city",
+		"name": "Shalour City",
+		"games": [
+			"x",
+			"y"
+		]
+	},
+	{
+		"slug": "shoal-cave",
+		"name": "Shoal Cave",
+		"games": [
+			"alpha-sapphire",
+			"emerald",
+			"omega-ruby",
+			"ruby",
+			"sapphire"
+		]
+	},
+	{
+		"slug": "sinjoh-ruins",
+		"name": "Sinjoh Ruins",
+		"games": [
+			"heartgold",
+			"soulsilver"
+		]
+	},
+	{
+		"slug": "sinnoh-hall-of-origin-1",
+		"name": "Hall of Origin",
+		"games": [
+			"diamond",
+			"pearl",
+			"platinum"
+		]
+	},
+	{
+		"slug": "sinnoh-pokemart",
+		"name": "sinnoh-pokemart",
+		"games": [
+			"diamond",
+			"pearl",
+			"platinum"
+		]
+	},
+	{
+		"slug": "sinnoh-pokemon-league",
+		"name": "Pokémon League",
+		"games": [
+			"diamond",
+			"pearl",
+			"platinum"
+		]
+	},
+	{
+		"slug": "sinnoh-route-201",
+		"name": "Route 201",
+		"games": [
+			"diamond",
+			"pearl",
+			"platinum"
+		]
+	},
+	{
+		"slug": "sinnoh-route-202",
+		"name": "Route 202",
+		"games": [
+			"diamond",
+			"pearl",
+			"platinum"
+		]
+	},
+	{
+		"slug": "sinnoh-route-203",
+		"name": "Route 203",
+		"games": [
+			"diamond",
+			"pearl",
+			"platinum"
+		]
+	},
+	{
+		"slug": "sinnoh-route-204",
+		"name": "Route 204",
+		"games": [
+			"diamond",
+			"pearl",
+			"platinum"
+		]
+	},
+	{
+		"slug": "sinnoh-route-205",
+		"name": "Route 205",
+		"games": [
+			"diamond",
+			"pearl",
+			"platinum"
+		]
+	},
+	{
+		"slug": "sinnoh-route-206",
+		"name": "Route 206",
+		"games": [
+			"diamond",
+			"pearl",
+			"platinum"
+		]
+	},
+	{
+		"slug": "sinnoh-route-207",
+		"name": "Route 207",
+		"games": [
+			"diamond",
+			"pearl",
+			"platinum"
+		]
+	},
+	{
+		"slug": "sinnoh-route-208",
+		"name": "Route 208",
+		"games": [
+			"diamond",
+			"pearl",
+			"platinum"
+		]
+	},
+	{
+		"slug": "sinnoh-route-209",
+		"name": "Route 209",
+		"games": [
+			"diamond",
+			"pearl",
+			"platinum"
+		]
+	},
+	{
+		"slug": "sinnoh-route-210",
+		"name": "Route 210",
+		"games": [
+			"diamond",
+			"pearl",
+			"platinum"
+		]
+	},
+	{
+		"slug": "sinnoh-route-211",
+		"name": "Route 211",
+		"games": [
+			"diamond",
+			"pearl",
+			"platinum"
+		]
+	},
+	{
+		"slug": "sinnoh-route-212",
+		"name": "Route 212",
+		"games": [
+			"diamond",
+			"pearl",
+			"platinum"
+		]
+	},
+	{
+		"slug": "sinnoh-route-213",
+		"name": "Route 213",
+		"games": [
+			"diamond",
+			"pearl",
+			"platinum"
+		]
+	},
+	{
+		"slug": "sinnoh-route-214",
+		"name": "Route 214",
+		"games": [
+			"diamond",
+			"pearl",
+			"platinum"
+		]
+	},
+	{
+		"slug": "sinnoh-route-215",
+		"name": "Route 215",
+		"games": [
+			"diamond",
+			"pearl",
+			"platinum"
+		]
+	},
+	{
+		"slug": "sinnoh-route-216",
+		"name": "Route 216",
+		"games": [
+			"diamond",
+			"pearl",
+			"platinum"
+		]
+	},
+	{
+		"slug": "sinnoh-route-217",
+		"name": "Route 217",
+		"games": [
+			"diamond",
+			"pearl",
+			"platinum"
+		]
+	},
+	{
+		"slug": "sinnoh-route-218",
+		"name": "Route 218",
+		"games": [
+			"diamond",
+			"pearl",
+			"platinum"
+		]
+	},
+	{
+		"slug": "sinnoh-route-219",
+		"name": "Route 219",
+		"games": [
+			"diamond",
+			"pearl",
+			"platinum"
+		]
+	},
+	{
+		"slug": "sinnoh-route-221",
+		"name": "Route 221",
+		"games": [
+			"diamond",
+			"pearl",
+			"platinum"
+		]
+	},
+	{
+		"slug": "sinnoh-route-222",
+		"name": "Route 222",
+		"games": [
+			"diamond",
+			"pearl",
+			"platinum"
+		]
+	},
+	{
+		"slug": "sinnoh-route-224",
+		"name": "Route 224",
+		"games": [
+			"diamond",
+			"pearl",
+			"platinum"
+		]
+	},
+	{
+		"slug": "sinnoh-route-225",
+		"name": "Route 225",
+		"games": [
+			"diamond",
+			"pearl",
+			"platinum"
+		]
+	},
+	{
+		"slug": "sinnoh-route-227",
+		"name": "Route 227",
+		"games": [
+			"diamond",
+			"pearl",
+			"platinum"
+		]
+	},
+	{
+		"slug": "sinnoh-route-228",
+		"name": "Route 228",
+		"games": [
+			"diamond",
+			"pearl",
+			"platinum"
+		]
+	},
+	{
+		"slug": "sinnoh-route-229",
+		"name": "Route 229",
+		"games": [
+			"diamond",
+			"pearl",
+			"platinum"
+		]
+	},
+	{
+		"slug": "sinnoh-sea-route-220",
+		"name": "Sea Route 220",
+		"games": [
+			"diamond",
+			"pearl",
+			"platinum"
+		]
+	},
+	{
+		"slug": "sinnoh-sea-route-223",
+		"name": "Sea Route 223",
+		"games": [
+			"diamond",
+			"pearl",
+			"platinum"
+		]
+	},
+	{
+		"slug": "sinnoh-sea-route-226",
+		"name": "Sea Route 226",
+		"games": [
+			"diamond",
+			"pearl",
+			"platinum"
+		]
+	},
+	{
+		"slug": "sinnoh-sea-route-230",
+		"name": "Sea Route 230",
+		"games": [
+			"diamond",
+			"pearl",
+			"platinum"
+		]
+	},
+	{
+		"slug": "sinnoh-victory-road",
+		"name": "Victory Road",
+		"games": [
+			"diamond",
+			"pearl",
+			"platinum"
+		]
+	},
+	{
+		"slug": "sky-pillar",
+		"name": "Sky Pillar",
+		"games": [
+			"alpha-sapphire",
+			"emerald",
+			"omega-ruby",
+			"ruby",
+			"sapphire"
+		]
+	},
+	{
+		"slug": "slateport-city",
+		"name": "Slateport City",
+		"games": [
+			"alpha-sapphire",
+			"emerald",
+			"omega-ruby",
+			"ruby",
+			"sapphire"
+		]
+	},
+	{
+		"slug": "slippery-slope",
+		"name": "Slippery Slope",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "slowpoke-well",
+		"name": "Slowpoke Well",
+		"games": [
+			"crystal",
+			"gold",
+			"heartgold",
+			"silver",
+			"soulsilver"
+		]
+	},
+	{
+		"slug": "slumbering-weald",
+		"name": "Slumbering Weald",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "snowpoint-city",
+		"name": "Snowpoint City",
+		"games": [
+			"diamond",
+			"pearl",
+			"platinum"
+		]
+	},
+	{
+		"slug": "snowpoint-temple",
+		"name": "Snowpoint Temple",
+		"games": [
+			"diamond",
+			"pearl",
+			"platinum"
+		]
+	},
+	{
+		"slug": "snowslide-slope",
+		"name": "Snowslide Slope",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "soaring-in-the-sky",
+		"name": "Soaring in the sky",
+		"games": [
+			"alpha-sapphire",
+			"omega-ruby"
+		]
+	},
+	{
+		"slug": "solaceon-ruins",
+		"name": "Solaceon Ruins",
+		"games": [
+			"diamond",
+			"pearl",
+			"platinum"
+		]
+	},
+	{
+		"slug": "soothing-wetlands",
+		"name": "Soothing Wetlands",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "sootopolis-city",
+		"name": "Sootopolis City",
+		"games": [
+			"emerald",
+			"ruby",
+			"sapphire"
+		]
+	},
+	{
+		"slug": "south-lake-miloch",
+		"name": "South Lake Miloch",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "southern-island",
+		"name": "Southern Island",
+		"games": [
+			"alpha-sapphire",
+			"emerald",
+			"omega-ruby",
+			"ruby",
+			"sapphire"
+		]
+	},
+	{
+		"slug": "spear-pillar",
+		"name": "Spear Pillar",
+		"games": [
+			"diamond",
+			"pearl",
+			"platinum"
+		]
+	},
+	{
+		"slug": "spikemuth",
+		"name": "Spikemuth",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "split-decision-ruins",
+		"name": "Split-Decision Ruins",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "sprout-tower",
+		"name": "Sprout Tower",
+		"games": [
+			"crystal",
+			"gold",
+			"heartgold",
+			"silver",
+			"soulsilver"
+		]
+	},
+	{
+		"slug": "ss-anne",
+		"name": "S.S. Anne",
+		"games": [
+			"firered",
+			"leafgreen"
+		]
+	},
+	{
+		"slug": "stark-mountain",
+		"name": "Stark Mountain",
+		"games": [
+			"diamond",
+			"pearl",
+			"platinum"
+		]
+	},
+	{
+		"slug": "stepping-stone-sea",
+		"name": "Stepping-Stone Sea",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "stony-wilderness",
+		"name": "Stony Wilderness",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "stow-on-side",
+		"name": "Stow-on-Side",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "strange-house",
+		"name": "Strange House",
+		"games": [
+			"black-2",
+			"white-2"
+		]
+	},
+	{
+		"slug": "striaton-city",
+		"name": "Striaton City",
+		"games": [
+			"black",
+			"black-2",
+			"white",
+			"white-2"
+		]
+	},
+	{
+		"slug": "sunyshore-city",
+		"name": "Sunyshore City",
+		"games": [
+			"diamond",
+			"pearl",
+			"platinum"
+		]
+	},
+	{
+		"slug": "tanoby-ruins",
+		"name": "Tanoby Ruins",
+		"games": [
+			"firered",
+			"leafgreen"
+		]
+	},
+	{
+		"slug": "tapu-village",
+		"name": "Tapu Village",
+		"games": [
+			"moon",
+			"sun",
+			"ultra-moon",
+			"ultra-sun"
+		]
+	},
+	{
+		"slug": "team-aqua-hideout",
+		"name": "Team Aqua Hideout",
+		"games": [
+			"alpha-sapphire",
+			"emerald",
+			"sapphire"
+		]
+	},
+	{
+		"slug": "team-flare-secret-hq",
+		"name": "Team Flare Secret HQ",
+		"games": [
+			"black",
+			"white",
+			"x",
+			"y"
+		]
+	},
+	{
+		"slug": "team-magma-hideout",
+		"name": "Team Magma Hideout",
+		"games": [
+			"emerald",
+			"omega-ruby",
+			"ruby",
+			"sapphire"
+		]
+	},
+	{
+		"slug": "team-rocket-hq",
+		"name": "Team Rocket HQ",
+		"games": [
+			"crystal",
+			"gold",
+			"heartgold",
+			"silver",
+			"soulsilver"
+		]
+	},
+	{
+		"slug": "team-rockets-castle",
+		"name": "Team Rocket's Castle",
+		"games": [
+			"ultra-moon",
+			"ultra-sun"
+		]
+	},
+	{
+		"slug": "ten-carat-hill",
+		"name": "Ten Carat Hill",
+		"games": [
+			"moon",
+			"sun",
+			"ultra-moon",
+			"ultra-sun"
+		]
+	},
+	{
+		"slug": "terminus-cave",
+		"name": "Terminus Cave",
+		"games": [
+			"x",
+			"y"
+		]
+	},
+	{
+		"slug": "terra-cave",
+		"name": "Terra Cave",
+		"games": [
+			"emerald"
+		]
+	},
+	{
+		"slug": "three-isle-port",
+		"name": "Three Isle Port",
+		"games": [
+			"firered",
+			"leafgreen"
+		]
+	},
+	{
+		"slug": "three-point-pass",
+		"name": "Three-Point Pass",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "thrifty-megamart",
+		"name": "Royal Avenue",
+		"games": [
+			"moon",
+			"sun",
+			"ultra-moon",
+			"ultra-sun"
+		]
+	},
+	{
+		"slug": "tohjo-falls",
+		"name": "Tohjo Falls",
+		"games": [
+			"crystal",
+			"gold",
+			"heartgold",
+			"silver",
+			"soulsilver"
+		]
+	},
+	{
+		"slug": "tower-of-mastery",
+		"name": "Tower of Mastery",
+		"games": [
+			"x",
+			"y"
+		]
+	},
+	{
+		"slug": "trackless-forest",
+		"name": "Trackless Forest",
+		"games": [
+			"alpha-sapphire",
+			"omega-ruby"
+		]
+	},
+	{
+		"slug": "trainer-tower",
+		"name": "Trainer Tower",
+		"games": [
+			"firered",
+			"leafgreen"
+		]
+	},
+	{
+		"slug": "trainers-school",
+		"name": "Trainers’ School",
+		"games": [
+			"ultra-moon",
+			"ultra-sun"
+		]
+	},
+	{
+		"slug": "training-lowlands",
+		"name": "Training Lowlands",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "treasure-beach",
+		"name": "Treasure Beach",
+		"games": [
+			"firered",
+			"leafgreen"
+		]
+	},
+	{
+		"slug": "trial-chamber",
+		"name": "Trial Chamber",
+		"games": [
+			"black",
+			"white"
+		]
+	},
+	{
+		"slug": "trophy-garden",
+		"name": "Trophy Garden",
+		"games": [
+			"diamond",
+			"pearl",
+			"platinum"
+		]
+	},
+	{
+		"slug": "tunnel-to-the-top",
+		"name": "Tunnel to the Top",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "turffield",
+		"name": "Turffield",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "turnback-cave",
+		"name": "Turnback Cave",
+		"games": [
+			"diamond",
+			"pearl",
+			"platinum"
+		]
+	},
+	{
+		"slug": "twinleaf-town",
+		"name": "Twinleaf Town",
+		"games": [
+			"diamond",
+			"pearl",
+			"platinum"
+		]
+	},
+	{
+		"slug": "twist-mountain",
+		"name": "Twist Mountain",
+		"games": [
+			"black",
+			"black-2",
+			"white",
+			"white-2"
+		]
+	},
+	{
+		"slug": "ulaula-beach",
+		"name": "Ula'ula Beach",
+		"games": [
+			"ultra-moon",
+			"ultra-sun"
+		]
+	},
+	{
+		"slug": "ulaula-meadow",
+		"name": "Ula’ula Meadow",
+		"games": [
+			"moon",
+			"sun",
+			"ultra-moon",
+			"ultra-sun"
+		]
+	},
+	{
+		"slug": "ultra-megalopolis",
+		"name": "Ultra Megalopolis",
+		"games": [
+			"ultra-moon",
+			"ultra-sun"
+		]
+	},
+	{
+		"slug": "ultra-space",
+		"name": "Ultra Space",
+		"games": [
+			"ultra-moon",
+			"ultra-sun"
+		]
+	},
+	{
+		"slug": "ultra-space-wilds",
+		"name": "Ultra Space Wilds",
+		"games": [
+			"ultra-moon",
+			"ultra-sun"
+		]
+	},
+	{
+		"slug": "undella-bay",
+		"name": "Undella Bay",
+		"games": [
+			"black",
+			"black-2",
+			"white",
+			"white-2"
+		]
+	},
+	{
+		"slug": "undella-town",
+		"name": "Undella Town",
+		"games": [
+			"black",
+			"black-2",
+			"white",
+			"white-2"
+		]
+	},
+	{
+		"slug": "underground-ruins",
+		"name": "Underground Ruins",
+		"games": [
+			"black-2",
+			"white-2"
+		]
+	},
+	{
+		"slug": "union-cave",
+		"name": "Union Cave",
+		"games": [
+			"crystal",
+			"gold",
+			"heartgold",
+			"silver",
+			"soulsilver"
+		]
+	},
+	{
+		"slug": "unknown-all-bugs",
+		"name": "Unknown; all bugs",
+		"games": [
+			"heartgold",
+			"soulsilver"
+		]
+	},
+	{
+		"slug": "unknown-all-poliwag",
+		"name": "Unknown; all Poliwag",
+		"games": [
+			"heartgold",
+			"soulsilver"
+		]
+	},
+	{
+		"slug": "unknown-all-rattata",
+		"name": "Unknown; all Rattata",
+		"games": [
+			"heartgold",
+			"soulsilver"
+		]
+	},
+	{
+		"slug": "unknown-dungeon",
+		"name": "Unknown Dungeon",
+		"games": [
+			"x",
+			"y"
+		]
+	},
+	{
+		"slug": "unova-route-1",
+		"name": "Route 1",
+		"games": [
+			"black",
+			"black-2",
+			"white",
+			"white-2"
+		]
+	},
+	{
+		"slug": "unova-route-10",
+		"name": "Route 10",
+		"games": [
+			"black",
+			"white"
+		]
+	},
+	{
+		"slug": "unova-route-11",
+		"name": "Route 11",
+		"games": [
+			"black",
+			"black-2",
+			"white",
+			"white-2"
+		]
+	},
+	{
+		"slug": "unova-route-12",
+		"name": "Route 12",
+		"games": [
+			"black",
+			"black-2",
+			"white",
+			"white-2"
+		]
+	},
+	{
+		"slug": "unova-route-13",
+		"name": "Route 13",
+		"games": [
+			"black",
+			"black-2",
+			"white",
+			"white-2"
+		]
+	},
+	{
+		"slug": "unova-route-14",
+		"name": "Route 14",
+		"games": [
+			"black",
+			"black-2",
+			"white",
+			"white-2"
+		]
+	},
+	{
+		"slug": "unova-route-15",
+		"name": "Route 15",
+		"games": [
+			"black",
+			"black-2",
+			"white",
+			"white-2"
+		]
+	},
+	{
+		"slug": "unova-route-16",
+		"name": "Route 16",
+		"games": [
+			"black",
+			"black-2",
+			"white",
+			"white-2"
+		]
+	},
+	{
+		"slug": "unova-route-17",
+		"name": "Route 17",
+		"games": [
+			"black",
+			"black-2",
+			"white",
+			"white-2"
+		]
+	},
+	{
+		"slug": "unova-route-18",
+		"name": "Route 18",
+		"games": [
+			"black",
+			"black-2",
+			"white",
+			"white-2"
+		]
+	},
+	{
+		"slug": "unova-route-19",
+		"name": "Route 19",
+		"games": [
+			"black-2",
+			"white-2"
+		]
+	},
+	{
+		"slug": "unova-route-2",
+		"name": "Route 2",
+		"games": [
+			"black",
+			"black-2",
+			"white",
+			"white-2"
+		]
+	},
+	{
+		"slug": "unova-route-20",
+		"name": "Route 20",
+		"games": [
+			"black-2",
+			"white-2"
+		]
+	},
+	{
+		"slug": "unova-route-21",
+		"name": "Route 21",
+		"games": [
+			"black-2",
+			"white-2"
+		]
+	},
+	{
+		"slug": "unova-route-22",
+		"name": "Route 22",
+		"games": [
+			"black-2",
+			"white-2"
+		]
+	},
+	{
+		"slug": "unova-route-23",
+		"name": "Route 23",
+		"games": [
+			"black-2",
+			"white-2"
+		]
+	},
+	{
+		"slug": "unova-route-3",
+		"name": "Route 3",
+		"games": [
+			"black",
+			"black-2",
+			"white",
+			"white-2"
+		]
+	},
+	{
+		"slug": "unova-route-4",
+		"name": "Route 4",
+		"games": [
+			"black",
+			"black-2",
+			"white",
+			"white-2"
+		]
+	},
+	{
+		"slug": "unova-route-5",
+		"name": "Route 5",
+		"games": [
+			"black",
+			"black-2",
+			"white",
+			"white-2"
+		]
+	},
+	{
+		"slug": "unova-route-6",
+		"name": "Route 6",
+		"games": [
+			"black",
+			"black-2",
+			"white",
+			"white-2"
+		]
+	},
+	{
+		"slug": "unova-route-7",
+		"name": "Route 7",
+		"games": [
+			"black",
+			"black-2",
+			"white",
+			"white-2"
+		]
+	},
+	{
+		"slug": "unova-route-8",
+		"name": "Route 8",
+		"games": [
+			"black",
+			"black-2",
+			"white",
+			"white-2"
+		]
+	},
+	{
+		"slug": "unova-route-9",
+		"name": "Route 9",
+		"games": [
+			"black",
+			"black-2",
+			"white",
+			"white-2"
+		]
+	},
+	{
+		"slug": "unova-victory-road",
+		"name": "Victory Road",
+		"games": [
+			"black",
+			"black-2",
+			"white",
+			"white-2"
+		]
+	},
+	{
+		"slug": "unova-victory-road-2",
+		"name": "Victory Road",
+		"games": [
+			"black-2",
+			"white-2"
+		]
+	},
+	{
+		"slug": "valley-windworks",
+		"name": "Valley Windworks",
+		"games": [
+			"diamond",
+			"pearl",
+			"platinum"
+		]
+	},
+	{
+		"slug": "valor-lakefront",
+		"name": "Valor Lakefront",
+		"games": [
+			"diamond",
+			"pearl",
+			"platinum"
+		]
+	},
+	{
+		"slug": "vast-poni-canyon",
+		"name": "Vast Poni Canyon",
+		"games": [
+			"moon",
+			"sun",
+			"ultra-moon",
+			"ultra-sun"
+		]
+	},
+	{
+		"slug": "veilstone-city",
+		"name": "Veilstone City",
+		"games": [
+			"platinum"
+		]
+	},
+	{
+		"slug": "verdant-cavern",
+		"name": "Verdant Cavern",
+		"games": [
+			"moon",
+			"sun",
+			"ultra-moon",
+			"ultra-sun"
+		]
+	},
+	{
+		"slug": "verdant-cavern--trial-site",
+		"name": "Verdant Cavern",
+		"games": [
+			"moon"
+		]
+	},
+	{
+		"slug": "verdanturf-town",
+		"name": "Verdanturf Town",
+		"games": [
+			"alpha-sapphire",
+			"omega-ruby"
+		]
+	},
+	{
+		"slug": "vermilion-city",
+		"name": "Vermilion City",
+		"games": [
+			"blue",
+			"crystal",
+			"firered",
+			"gold",
+			"heartgold",
+			"leafgreen",
+			"lets-go-eevee",
+			"lets-go-pikachu",
+			"red",
+			"silver",
+			"soulsilver",
+			"yellow"
+		]
+	},
+	{
+		"slug": "viapos-chamber",
+		"name": "Viapos Chamber",
+		"games": [
+			"firered",
+			"leafgreen"
+		]
+	},
+	{
+		"slug": "village-bridge",
+		"name": "Village Bridge",
+		"games": [
+			"black",
+			"black-2",
+			"white",
+			"white-2"
+		]
+	},
+	{
+		"slug": "violet-city",
+		"name": "Violet City",
+		"games": [
+			"crystal",
+			"gold",
+			"heartgold",
+			"silver",
+			"soulsilver"
+		]
+	},
+	{
+		"slug": "virbank-city",
+		"name": "Virbank City",
+		"games": [
+			"black-2",
+			"white-2"
+		]
+	},
+	{
+		"slug": "virbank-complex",
+		"name": "Virbank Complex",
+		"games": [
+			"black-2",
+			"white-2"
+		]
+	},
+	{
+		"slug": "viridian-city",
+		"name": "Viridian City",
+		"games": [
+			"blue",
+			"crystal",
+			"firered",
+			"gold",
+			"heartgold",
+			"leafgreen",
+			"red",
+			"silver",
+			"soulsilver",
+			"yellow"
+		]
+	},
+	{
+		"slug": "viridian-forest",
+		"name": "Viridian Forest",
+		"games": [
+			"blue",
+			"firered",
+			"heartgold",
+			"leafgreen",
+			"lets-go-eevee",
+			"lets-go-pikachu",
+			"red",
+			"soulsilver",
+			"yellow"
+		]
+	},
+	{
+		"slug": "warm-up-tunnel",
+		"name": "Warm-Up Tunnel",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "watchtower-ruins",
+		"name": "Watchtower Ruins",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "water-labyrinth",
+		"name": "Water Labyrinth",
+		"games": [
+			"firered",
+			"leafgreen"
+		]
+	},
+	{
+		"slug": "water-path",
+		"name": "Water Path",
+		"games": [
+			"firered",
+			"leafgreen"
+		]
+	},
+	{
+		"slug": "wayward-cave",
+		"name": "Wayward Cave",
+		"games": [
+			"diamond",
+			"pearl",
+			"platinum"
+		]
+	},
+	{
+		"slug": "wedgehurst",
+		"name": "Wedgehurst",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "weepth-chamber",
+		"name": "Weepth Chamber",
+		"games": [
+			"firered",
+			"leafgreen"
+		]
+	},
+	{
+		"slug": "wela-volcano-park",
+		"name": "Wela Volcano Park",
+		"games": [
+			"moon",
+			"sun",
+			"ultra-moon",
+			"ultra-sun"
+		]
+	},
+	{
+		"slug": "wellspring-cave",
+		"name": "Wellspring Cave",
+		"games": [
+			"black",
+			"black-2",
+			"white",
+			"white-2"
+		]
+	},
+	{
+		"slug": "west-lake-axewell",
+		"name": "West Lake Axewell",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "whirl-islands",
+		"name": "Whirl Islands",
+		"games": [
+			"crystal",
+			"gold",
+			"heartgold",
+			"silver",
+			"soulsilver"
+		]
+	},
+	{
+		"slug": "workout-sea",
+		"name": "Workout Sea",
+		"games": [
+			"shield",
+			"sword"
+		]
+	},
+	{
+		"slug": "wyndon",
+		"name": "Wyndon",
+		"games": [
+			"shield",
+			"sword"
+		]
+	}
+]

@@ -1,0 +1,268 @@
+[
+	{
+		"id": 1,
+		"slug": "red",
+		"name": "Red",
+		"generation": 1,
+		"versionGroup": "red-blue"
+	},
+	{
+		"id": 2,
+		"slug": "blue",
+		"name": "Blue",
+		"generation": 1,
+		"versionGroup": "red-blue"
+	},
+	{
+		"id": 3,
+		"slug": "yellow",
+		"name": "Yellow",
+		"generation": 1,
+		"versionGroup": "yellow"
+	},
+	{
+		"id": 4,
+		"slug": "gold",
+		"name": "Gold",
+		"generation": 2,
+		"versionGroup": "gold-silver"
+	},
+	{
+		"id": 5,
+		"slug": "silver",
+		"name": "Silver",
+		"generation": 2,
+		"versionGroup": "gold-silver"
+	},
+	{
+		"id": 6,
+		"slug": "crystal",
+		"name": "Crystal",
+		"generation": 2,
+		"versionGroup": "crystal"
+	},
+	{
+		"id": 7,
+		"slug": "ruby",
+		"name": "Ruby",
+		"generation": 3,
+		"versionGroup": "ruby-sapphire"
+	},
+	{
+		"id": 8,
+		"slug": "sapphire",
+		"name": "Sapphire",
+		"generation": 3,
+		"versionGroup": "ruby-sapphire"
+	},
+	{
+		"id": 9,
+		"slug": "emerald",
+		"name": "Emerald",
+		"generation": 3,
+		"versionGroup": "emerald"
+	},
+	{
+		"id": 10,
+		"slug": "firered",
+		"name": "FireRed",
+		"generation": 3,
+		"versionGroup": "firered-leafgreen"
+	},
+	{
+		"id": 11,
+		"slug": "leafgreen",
+		"name": "LeafGreen",
+		"generation": 3,
+		"versionGroup": "firered-leafgreen"
+	},
+	{
+		"id": 12,
+		"slug": "diamond",
+		"name": "Diamond",
+		"generation": 4,
+		"versionGroup": "diamond-pearl"
+	},
+	{
+		"id": 13,
+		"slug": "pearl",
+		"name": "Pearl",
+		"generation": 4,
+		"versionGroup": "diamond-pearl"
+	},
+	{
+		"id": 14,
+		"slug": "platinum",
+		"name": "Platinum",
+		"generation": 4,
+		"versionGroup": "platinum"
+	},
+	{
+		"id": 15,
+		"slug": "heartgold",
+		"name": "HeartGold",
+		"generation": 4,
+		"versionGroup": "heartgold-soulsilver"
+	},
+	{
+		"id": 16,
+		"slug": "soulsilver",
+		"name": "SoulSilver",
+		"generation": 4,
+		"versionGroup": "heartgold-soulsilver"
+	},
+	{
+		"id": 17,
+		"slug": "black",
+		"name": "Black",
+		"generation": 5,
+		"versionGroup": "black-white"
+	},
+	{
+		"id": 18,
+		"slug": "white",
+		"name": "White",
+		"generation": 5,
+		"versionGroup": "black-white"
+	},
+	{
+		"id": 21,
+		"slug": "black-2",
+		"name": "Black 2",
+		"generation": 5,
+		"versionGroup": "black-2-white-2"
+	},
+	{
+		"id": 22,
+		"slug": "white-2",
+		"name": "White 2",
+		"generation": 5,
+		"versionGroup": "black-2-white-2"
+	},
+	{
+		"id": 23,
+		"slug": "x",
+		"name": "X",
+		"generation": 6,
+		"versionGroup": "x-y"
+	},
+	{
+		"id": 24,
+		"slug": "y",
+		"name": "Y",
+		"generation": 6,
+		"versionGroup": "x-y"
+	},
+	{
+		"id": 25,
+		"slug": "omega-ruby",
+		"name": "Omega Ruby",
+		"generation": 6,
+		"versionGroup": "omega-ruby-alpha-sapphire"
+	},
+	{
+		"id": 26,
+		"slug": "alpha-sapphire",
+		"name": "Alpha Sapphire",
+		"generation": 6,
+		"versionGroup": "omega-ruby-alpha-sapphire"
+	},
+	{
+		"id": 27,
+		"slug": "sun",
+		"name": "Sun",
+		"generation": 7,
+		"versionGroup": "sun-moon"
+	},
+	{
+		"id": 28,
+		"slug": "moon",
+		"name": "Moon",
+		"generation": 7,
+		"versionGroup": "sun-moon"
+	},
+	{
+		"id": 29,
+		"slug": "ultra-sun",
+		"name": "Ultra Sun",
+		"generation": 7,
+		"versionGroup": "ultra-sun-ultra-moon"
+	},
+	{
+		"id": 30,
+		"slug": "ultra-moon",
+		"name": "Ultra Moon",
+		"generation": 7,
+		"versionGroup": "ultra-sun-ultra-moon"
+	},
+	{
+		"id": 31,
+		"slug": "lets-go-pikachu",
+		"name": "Let’s Go, Pikachu!",
+		"generation": 7,
+		"versionGroup": "lets-go-pikachu-lets-go-eevee"
+	},
+	{
+		"id": 32,
+		"slug": "lets-go-eevee",
+		"name": "Let’s Go, Eevee!",
+		"generation": 7,
+		"versionGroup": "lets-go-pikachu-lets-go-eevee"
+	},
+	{
+		"id": 33,
+		"slug": "sword",
+		"name": "Sword",
+		"generation": 8,
+		"versionGroup": "sword-shield"
+	},
+	{
+		"id": 34,
+		"slug": "shield",
+		"name": "Shield",
+		"generation": 8,
+		"versionGroup": "sword-shield"
+	},
+	{
+		"id": 37,
+		"slug": "brilliant-diamond",
+		"name": "Brilliant Diamond",
+		"generation": 8,
+		"versionGroup": "brilliant-diamond-shining-pearl"
+	},
+	{
+		"id": 38,
+		"slug": "shining-pearl",
+		"name": "Shining Pearl",
+		"generation": 8,
+		"versionGroup": "brilliant-diamond-shining-pearl"
+	},
+	{
+		"id": 39,
+		"slug": "legends-arceus",
+		"name": "Legends: Arceus",
+		"generation": 8,
+		"versionGroup": "legends-arceus"
+	},
+	{
+		"id": 40,
+		"slug": "scarlet",
+		"name": "Scarlet",
+		"generation": 9,
+		"versionGroup": "scarlet-violet"
+	},
+	{
+		"id": 41,
+		"slug": "violet",
+		"name": "Violet",
+		"generation": 9,
+		"versionGroup": "scarlet-violet"
+	},
+	{
+		"id": 47,
+		"slug": "legends-za",
+		"name": "Legends: Z-A",
+		"generation": 9,
+		"versionGroup": "legends-za"
+	}
+]

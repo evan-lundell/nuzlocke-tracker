@@ -1,0 +1,11 @@
+services:
+  nuzlocke:
+    # Replace OWNER with your GitHub username
+    image: ghcr.io/OWNER/nuzlocke-tracker:latest
+    container_name: nuzlocke-tracker
+    ports:
+      - "3000:3000"
+    volumes:
+      # Must be writable by uid 1000: mkdir -p data && sudo chown 1000:1000 data
+      - ./data:/data
+    restart: unless-stopped

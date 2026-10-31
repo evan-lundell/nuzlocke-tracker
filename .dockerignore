@@ -1,0 +1,12 @@
+node_modules
+.output
+.nitro
+.tanstack
+.cache
+.git
+.github
+.vscode
+data/*.db*
+tmpdata
+*.log
+.DS_Store
