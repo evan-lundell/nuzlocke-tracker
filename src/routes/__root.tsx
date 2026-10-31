@@ -39,6 +39,14 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 						<Link to="/" className="font-semibold tracking-tight">
 							Nuzlocke Tracker
 						</Link>
+						<nav className="ml-auto flex gap-4 text-sm">
+							<Link
+								to="/admin/locations"
+								className="text-muted-foreground hover:text-foreground data-[status=active]:text-foreground"
+							>
+								Locations
+							</Link>
+						</nav>
 					</div>
 				</header>
 				<main className="mx-auto max-w-5xl px-4 py-6">{children}</main>

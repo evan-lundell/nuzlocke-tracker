@@ -15,6 +15,13 @@
       "when": 1793448496610,
       "tag": "0001_encounter_rule_type",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1793453118146,
+      "tag": "0002_location_hidden",
+      "breakpoints": true
     }
   ]
 }

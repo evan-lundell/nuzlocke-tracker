@@ -1,6 +1,5 @@
-import { existsSync, readdirSync, readFileSync } from "node:fs";
+import { readFileSync } from "node:fs";
 import path from "node:path";
-import { and, eq, isNull } from "drizzle-orm";
 import type { Db } from "./client.server";
 import { games, locations, species } from "./schema";
 
@@ -10,16 +9,15 @@ type LocationJson = { slug: string; name: string; games: string[] };
 
 const readJson = <T>(file: string): T => JSON.parse(readFileSync(file, "utf8"));
 
-const kebab = (s: string) =>
-	s
-		.toLowerCase()
-		.replace(/[^a-z0-9]+/g, "-")
-		.replace(/^-|-$/g, "");
+export const STARTER_SLUG = "starter";
+// Below ordered locations (0+) and run custom locations pinned to the top (-1)
+const STARTER_SORT_ORDER = -2;
 
 /**
- * Upserts bundled reference data. Safe to run on every startup: seeded
- * locations keep their ids (matched on game + slug) so encounters stay linked,
- * and nothing is ever deleted.
+ * Loads bundled reference data. Safe to run on every startup. Games and
+ * species are upserted; locations are insert-only, so names, order and
+ * visibility edited on the admin page are never overwritten, and seeded
+ * locations keep their ids (matched on game + slug) so encounters stay linked.
  */
 export function seedRefdata(db: Db, dataDir: string) {
 	const gameRows = readJson<GameJson[]>(path.join(dataDir, "games.json"));
@@ -52,103 +50,23 @@ export function seedRefdata(db: Db, dataDir: string) {
 				if (gameId === undefined) continue;
 				tx.insert(locations)
 					.values({ gameId, slug: loc.slug, name: loc.name })
-					.onConflictDoUpdate({
-						target: [locations.gameId, locations.slug],
-						set: { name: loc.name },
-					})
+					.onConflictDoNothing()
 					.run();
 			}
 		}
 
-		// Every game gets a Starter encounter, separate from the first town.
-		// Created before route orders so a "Starter" entry there matches it,
-		// then pinned first afterwards.
+		// Every game gets a Starter encounter, separate from the first town,
+		// always listed first
 		for (const g of gameRows) {
 			tx.insert(locations)
-				.values({ gameId: g.id, slug: STARTER_SLUG, name: "Starter" })
-				.onConflictDoUpdate({
-					target: [locations.gameId, locations.slug],
-					set: { name: "Starter" },
+				.values({
+					gameId: g.id,
+					slug: STARTER_SLUG,
+					name: "Starter",
+					sortOrder: STARTER_SORT_ORDER,
 				})
+				.onConflictDoNothing()
 				.run();
 		}
-
-		applyRouteOrders(tx, path.join(dataDir, "route-order"), gameIdBySlug);
-
-		tx.update(locations)
-			.set({ sortOrder: STARTER_SORT_ORDER })
-			.where(and(eq(locations.slug, STARTER_SLUG), isNull(locations.runId)))
-			.run();
 	});
-}
-
-const STARTER_SLUG = "starter";
-// Below route-order indexes (0+) and custom locations pinned to the top (-1)
-const STARTER_SORT_ORDER = -2;
-
-/**
- * Applies data/pokedata/route-order/{gameSlug}.json files: an array of
- * location names (or slugs) in play order. Listed locations get sortOrder =
- * their index; unlisted seeded locations reset to null (alphabetical fallback).
- * Names that don't match an existing location are added as seeded locations,
- * which is how games without PokeAPI location data get a route list.
- */
-function applyRouteOrders(
-	tx: Parameters<Parameters<Db["transaction"]>[0]>[0],
-	dir: string,
-	gameIdBySlug: Map<string, number>,
-) {
-	tx.update(locations)
-		.set({ sortOrder: null })
-		.where(isNull(locations.runId))
-		.run();
-
-	if (!existsSync(dir)) return;
-
-	for (const file of readdirSync(dir)) {
-		if (!file.endsWith(".json")) continue;
-		const gameSlug = file.slice(0, -".json".length);
-		const gameId = gameIdBySlug.get(gameSlug);
-		if (gameId === undefined) {
-			console.warn(`[seed] route-order/${file}: unknown game "${gameSlug}"`);
-			continue;
-		}
-
-		const order = readJson<string[]>(path.join(dir, file));
-		const existing = tx
-			.select({
-				id: locations.id,
-				slug: locations.slug,
-				name: locations.name,
-			})
-			.from(locations)
-			.where(and(eq(locations.gameId, gameId), isNull(locations.runId)))
-			.all();
-
-		order.forEach((entry, sortOrder) => {
-			const key = entry.trim().toLowerCase();
-			const match = existing.find(
-				(l) => l.slug === key || l.name.toLowerCase() === key,
-			);
-			if (match) {
-				tx.update(locations)
-					.set({ sortOrder })
-					.where(eq(locations.id, match.id))
-					.run();
-			} else {
-				tx.insert(locations)
-					.values({
-						gameId,
-						slug: `custom-${kebab(entry)}`,
-						name: entry.trim(),
-						sortOrder,
-					})
-					.onConflictDoUpdate({
-						target: [locations.gameId, locations.slug],
-						set: { name: entry.trim(), sortOrder },
-					})
-					.run();
-			}
-		});
-	}
 }

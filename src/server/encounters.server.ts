@@ -1,4 +1,4 @@
-import { and, eq, isNull, or, sql } from "drizzle-orm";
+import { and, eq, isNotNull, isNull, or, sql } from "drizzle-orm";
 import type { Db } from "#/db/client.server";
 import {
 	type EncounterOutcome,
@@ -90,7 +90,13 @@ export function listRunLocations(db: Db, runId: number) {
 			and(eq(encounters.locationId, locations.id), eq(encounters.runId, runId)),
 		)
 		.leftJoin(species, eq(species.id, encounters.speciesId))
-		.where(runLocationsWhere(runId, run.gameId))
+		.where(
+			and(
+				runLocationsWhere(runId, run.gameId),
+				// hidden locations stay visible in runs that already logged them
+				or(eq(locations.hidden, false), isNotNull(encounters.id)),
+			),
+		)
 		.all()
 		.sort(compareLocations);
 }

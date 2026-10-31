@@ -29,23 +29,22 @@ Schema changes: edit `src/db/schema.ts`, then run `pnpm db:generate --name <chan
 
 `pnpm pokedata:fetch` pulls games, species, sprites and per-game locations from PokeAPI into `data/pokedata/` and `public/sprites/`. The output is committed, so you only need to rerun it to refresh the data. Responses are cached in `.cache/`.
 
-On startup the app upserts that data into SQLite. Your runs are never touched.
+On startup the app loads that data into SQLite. Your runs and location edits are never touched.
 
-PokeAPI has no location data for Brilliant Diamond/Shining Pearl, Legends: Arceus, Scarlet/Violet or Legends: Z-A. Those games start with an empty route list until you add locations (see below).
+PokeAPI has no location data for Brilliant Diamond/Shining Pearl, Legends: Arceus, Scarlet/Violet or Legends: Z-A. Those games start with only Starter until you add locations on the Locations page.
 
-### Route order
+### Locations admin
 
-Locations with a `sortOrder` come first, then everything else in natural alphabetical order (Route 2 before Route 10).
+The **Locations** page (header link, or "Edit locations" on a run's Encounters tab) manages each game's location list for all runs of that game:
 
-To set the play order for a game, add `data/pokedata/route-order/<game-slug>.json` with an array of location names (or PokeAPI slugs):
+- **Order**: drag rows into play order (keyboard works too: focus a handle, Space, arrows, Space). "Order all" moves everything into the ordered list so you can start dragging. Unordered locations come after ordered ones, in natural alphabetical order (Route 2 before Route 10).
+- **Rename** awkward PokeAPI names.
+- **Hide** locations you never use. A hidden location still shows in any run that already logged an encounter there.
+- **Add** locations, which is how you fill in games with no PokeAPI data. Added locations can be deleted while no run has logged an encounter there.
 
-```json
-["Route 1", "Viridian Forest", "Route 2", "Mt. Moon"]
-```
+Every game also has a built-in **Starter** encounter that is always first. Per-run custom locations (gift Pokémon, fossils, static encounters, etc.) are added from a run's Encounters tab.
 
-Game slugs are in `data/pokedata/games.json`. A name that doesn't match an existing location is added as a new location for that game, which is how you fill in games with no PokeAPI data. The file is reapplied on every startup, so edit it and redeploy.
-
-Every game has a built-in **Starter** encounter, always listed first and separate from the first town. Per-run custom locations (gift Pokémon, fossils, static encounters, etc.) are added from the Encounters tab.
+These edits live in the database, so back up `nuzlocke.db` to keep them. Reseeding (on startup, or after `pnpm pokedata:fetch`) only inserts new locations and never overwrites names, order or visibility.
 
 ## Deployment
 

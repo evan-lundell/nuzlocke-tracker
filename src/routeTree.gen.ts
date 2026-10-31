@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AdminLocationsRouteImport } from './routes/admin/locations'
 import { Route as ApiHealthRouteImport } from './routes/api/health'
 import { Route as RunsRunIdRouteImport } from './routes/runs/$runId'
 import { Route as RunsNewRouteImport } from './routes/runs/new'
@@ -19,6 +20,11 @@ import { Route as RunsRunIdTeamRouteImport } from './routes/runs/$runId/team'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminLocationsRoute = AdminLocationsRouteImport.update({
+  id: '/admin/locations',
+  path: '/admin/locations',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiHealthRoute = ApiHealthRouteImport.update({
@@ -49,6 +55,7 @@ const RunsRunIdTeamRoute = RunsRunIdTeamRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin/locations': typeof AdminLocationsRoute
   '/api/health': typeof ApiHealthRoute
   '/runs/$runId': typeof RunsRunIdRouteWithChildren
   '/runs/new': typeof RunsNewRoute
@@ -57,6 +64,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/admin/locations': typeof AdminLocationsRoute
   '/api/health': typeof ApiHealthRoute
   '/runs/new': typeof RunsNewRoute
   '/runs/$runId/team': typeof RunsRunIdTeamRoute
@@ -65,6 +73,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin/locations': typeof AdminLocationsRoute
   '/api/health': typeof ApiHealthRoute
   '/runs/$runId': typeof RunsRunIdRouteWithChildren
   '/runs/new': typeof RunsNewRoute
@@ -75,16 +84,24 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/admin/locations'
     | '/api/health'
     | '/runs/$runId'
     | '/runs/new'
     | '/runs/$runId/team'
     | '/runs/$runId/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/api/health' | '/runs/new' | '/runs/$runId/team' | '/runs/$runId'
+  to:
+    | '/'
+    | '/admin/locations'
+    | '/api/health'
+    | '/runs/new'
+    | '/runs/$runId/team'
+    | '/runs/$runId'
   id:
     | '__root__'
     | '/'
+    | '/admin/locations'
     | '/api/health'
     | '/runs/$runId'
     | '/runs/new'
@@ -94,6 +111,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminLocationsRoute: typeof AdminLocationsRoute
   ApiHealthRoute: typeof ApiHealthRoute
   RunsRunIdRoute: typeof RunsRunIdRouteWithChildren
   RunsNewRoute: typeof RunsNewRoute
@@ -106,6 +124,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/locations': {
+      id: '/admin/locations'
+      path: '/admin/locations'
+      fullPath: '/admin/locations'
+      preLoaderRoute: typeof AdminLocationsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/health': {
@@ -162,6 +187,7 @@ const RunsRunIdRouteWithChildren = RunsRunIdRoute._addFileChildren(
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminLocationsRoute: AdminLocationsRoute,
   ApiHealthRoute: ApiHealthRoute,
   RunsRunIdRoute: RunsRunIdRouteWithChildren,
   RunsNewRoute: RunsNewRoute,

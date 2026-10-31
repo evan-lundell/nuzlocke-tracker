@@ -1,6 +1,6 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link, useLoaderData } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
-import { PlusIcon, Trash2Icon, XIcon } from "lucide-react";
+import { ListOrderedIcon, PlusIcon, Trash2Icon, XIcon } from "lucide-react";
 import { useState } from "react";
 import { RuleTypePicker } from "#/components/rule-type-picker";
 import { type SpeciesOption, SpeciesPicker } from "#/components/species-picker";
@@ -60,6 +60,7 @@ type Filter = (typeof FILTERS)[number];
 
 function EncountersPage() {
 	const { runId, locations, species } = Route.useLoaderData();
+	const { gameId } = useLoaderData({ from: "/runs/$runId" });
 	const [filter, setFilter] = useState<Filter>("all");
 
 	const logged = locations.filter((l) => l.outcome).length;
@@ -89,6 +90,11 @@ function EncountersPage() {
 					<span className="text-sm text-muted-foreground">
 						{logged}/{locations.length} logged
 					</span>
+					<Button size="sm" variant="ghost" asChild>
+						<Link to="/admin/locations" search={{ game: gameId }}>
+							<ListOrderedIcon /> Edit locations
+						</Link>
+					</Button>
 					<AddLocationDialog runId={runId} />
 				</div>
 			</div>

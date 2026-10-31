@@ -1,0 +1,1 @@
+ALTER TABLE `locations` ADD `hidden` integer DEFAULT false NOT NULL;

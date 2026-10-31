@@ -31,11 +31,14 @@ export const locations = sqliteTable(
 		gameId: integer("game_id")
 			.notNull()
 			.references(() => games.id),
-		// PokeAPI location slug for seeded rows; null for custom rows
+		// Game-level rows: PokeAPI slug, "starter", or "custom-*" for ones added
+		// on the admin page. Null for per-run custom rows.
 		slug: text("slug"),
 		name: text("name").notNull(),
 		// null = unordered (falls back to alphabetical after ordered rows)
 		sortOrder: integer("sort_order"),
+		// hidden from run encounter lists (unless the run logged an encounter there)
+		hidden: integer("hidden", { mode: "boolean" }).notNull().default(false),
 		// null = seeded for the game; set = custom location for one run
 		runId: integer("run_id").references(() => runs.id, {
 			onDelete: "cascade",

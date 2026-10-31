@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { seedRefdata } from "#/db/seed-refdata.server";
-import { testDb, writePokedata } from "#/test/db";
+import { testDb } from "#/test/db";
+import { listGameLocations, setLocationOrder } from "./admin.server";
 import {
 	addCustomLocation,
 	compareLocations,
@@ -14,8 +14,8 @@ import { createRun, listRuns } from "./runs.server";
 
 const FIRERED = 10;
 
-function setup(routeOrder?: Record<string, string[]>) {
-	const db = testDb(routeOrder);
+function setup() {
+	const db = testDb();
 	const run = createRun(db, { name: "Test", gameId: FIRERED, rules: "" });
 	return { db, runId: run.id };
 }
@@ -59,7 +59,14 @@ describe("location ordering", () => {
 	});
 
 	it("puts ordered locations first, then the rest alphabetically", () => {
-		const { db, runId } = setup({ firered: ["Viridian Forest", "route 1"] });
+		const { db, runId } = setup();
+		const ids = new Map(
+			listGameLocations(db, FIRERED).map((l) => [l.locationName, l.id]),
+		);
+		setLocationOrder(db, {
+			gameId: FIRERED,
+			orderedIds: [ids.get("Viridian Forest") ?? 0, ids.get("Route 1") ?? 0],
+		});
 		expect(names(db, runId)).toEqual([
 			"Starter",
 			"Viridian Forest",
@@ -69,33 +76,10 @@ describe("location ordering", () => {
 		]);
 	});
 
-	it("adds unknown route-order names as game locations", () => {
-		const { db, runId } = setup({ firered: ["Pallet Town", "Route 1"] });
-		expect(names(db, runId).slice(0, 3)).toEqual([
-			"Starter",
-			"Pallet Town",
-			"Route 1",
-		]);
-	});
-
-	it("keeps Starter first and unique even if a route-order file lists it", () => {
-		const { db, runId } = setup({ firered: ["Pallet Town", "Starter"] });
-		seedRefdata(db, writePokedata({ firered: ["Pallet Town", "Starter"] }));
-		const list = names(db, runId);
-		expect(list.slice(0, 2)).toEqual(["Starter", "Pallet Town"]);
-		expect(list.filter((n) => n === "Starter")).toHaveLength(1);
-	});
-
 	it("gives every game a Starter", () => {
 		const db = testDb();
 		const lg = createRun(db, { name: "LG", gameId: 11, rules: "" });
 		expect(names(db, lg.id)[0]).toBe("Starter");
-	});
-
-	it("resets order when a location is removed from the file", () => {
-		const { db, runId } = setup({ firered: ["Viridian Forest"] });
-		seedRefdata(db, writePokedata());
-		expect(names(db, runId)[1]).toBe("berry Forest");
 	});
 
 	it("includes custom locations only for their run", () => {

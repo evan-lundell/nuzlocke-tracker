@@ -1,4 +1,4 @@
-import { mkdirSync, mkdtempSync, writeFileSync } from "node:fs";
+import { mkdtempSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { openDb } from "#/db/client.server";
@@ -34,26 +34,17 @@ export const fixture = {
 	],
 };
 
-/** Writes the fixture (plus optional route-order files) to a temp pokedata dir. */
-export function writePokedata(routeOrder: Record<string, string[]> = {}) {
+/** Writes the fixture to a temp pokedata dir. */
+export function writePokedata() {
 	const dir = mkdtempSync(path.join(tmpdir(), "pokedata-"));
 	for (const [name, rows] of Object.entries(fixture)) {
 		writeFileSync(path.join(dir, `${name}.json`), JSON.stringify(rows));
 	}
-	if (Object.keys(routeOrder).length) {
-		mkdirSync(path.join(dir, "route-order"));
-		for (const [game, order] of Object.entries(routeOrder)) {
-			writeFileSync(
-				path.join(dir, "route-order", `${game}.json`),
-				JSON.stringify(order),
-			);
-		}
-	}
 	return dir;
 }
 
-export function testDb(routeOrder?: Record<string, string[]>) {
+export function testDb() {
 	const db = openDb(":memory:");
-	seedRefdata(db, writePokedata(routeOrder));
+	seedRefdata(db, writePokedata());
 	return db;
 }
