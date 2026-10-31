@@ -1,7 +1,7 @@
 import { createFileRoute, Link, useLoaderData } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { ListOrderedIcon, PlusIcon, Trash2Icon, XIcon } from "lucide-react";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { RuleTypePicker } from "#/components/rule-type-picker";
 import { type SpeciesOption, SpeciesPicker } from "#/components/species-picker";
 import { Button } from "#/components/ui/button";
@@ -23,6 +23,7 @@ import {
 	SelectValue,
 } from "#/components/ui/select";
 import type { EncounterOutcome } from "#/db/schema";
+import { buildLineRoots, caughtLines } from "#/lib/evolution-lines";
 import { useAction } from "#/lib/use-action";
 import { cn } from "#/lib/utils";
 import {
@@ -62,6 +63,7 @@ function EncountersPage() {
 	const { runId, locations, species } = Route.useLoaderData();
 	const { gameId } = useLoaderData({ from: "/runs/$runId" });
 	const [filter, setFilter] = useState<Filter>("all");
+	const lineRoots = useMemo(() => buildLineRoots(species), [species]);
 
 	const logged = locations.filter((l) => l.outcome).length;
 	const visible = locations.filter((l) =>
@@ -112,6 +114,8 @@ function EncountersPage() {
 						runId={runId}
 						row={loc}
 						species={species}
+						locations={locations}
+						lineRoots={lineRoots}
 					/>
 				))}
 			</div>
@@ -123,11 +127,21 @@ function EncounterRow({
 	runId,
 	row,
 	species,
+	locations,
+	lineRoots,
 }: {
 	runId: number;
 	row: LocationRow;
 	species: (SpeciesOption & { types: string[] })[];
+	locations: LocationRow[];
+	lineRoots: Map<number, number>;
 }) {
+	// Evolution lines caught elsewhere in the run (this row's own catch excluded)
+	const dupeLines = useMemo(
+		() => caughtLines(locations, lineRoots, row.locationId),
+		[locations, lineRoots, row.locationId],
+	);
+	const dupeOf = (id: number) => dupeLines.get(lineRoots.get(id) ?? id);
 	const [speciesId, setSpeciesId] = useState(row.speciesId);
 	const [nickname, setNickname] = useState(row.nickname ?? "");
 	const [outcome, setOutcome] = useState<EncounterOutcome | null>(row.outcome);
@@ -187,6 +201,7 @@ function EncounterRow({
 				species={species}
 				value={speciesId}
 				disabled={busy}
+				dupeOf={dupeOf}
 				onChange={(id) => {
 					const nextOutcome = outcome ?? (id ? "caught" : null);
 					setSpeciesId(id);
