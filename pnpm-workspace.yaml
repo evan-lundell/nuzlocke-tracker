@@ -2,3 +2,12 @@ allowBuilds:
   better-sqlite3: false
   esbuild: true
   lightningcss: true
+
+# Keep every TanStack package on the same seroval release. Without this, lockfile
+# re-resolution can dedupe router-core onto solid-js's older ~1.6 copy, leaving
+# two seroval versions in the SSR serialization path.
+overrides:
+  "@tanstack/router-core>seroval": ^1.7.5
+  "@tanstack/router-core>seroval-plugins": ^1.7.6
+  "@tanstack/start-client-core>seroval": ^1.7.5
+  "@tanstack/start-plugin-core>seroval": ^1.7.5
