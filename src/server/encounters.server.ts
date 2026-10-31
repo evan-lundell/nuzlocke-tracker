@@ -78,9 +78,11 @@ export function listRunLocations(db: Db, runId: number) {
 			encounterId: encounters.id,
 			speciesId: encounters.speciesId,
 			speciesName: species.name,
+			speciesTypes: species.types,
 			nickname: encounters.nickname,
 			outcome: encounters.outcome,
 			state: encounters.state,
+			ruleType: encounters.ruleType,
 		})
 		.from(locations)
 		.leftJoin(
@@ -100,6 +102,7 @@ export function listCaught(db: Db, runId: number) {
 			speciesId: encounters.speciesId,
 			speciesName: species.name,
 			types: species.types,
+			ruleType: encounters.ruleType,
 			nickname: encounters.nickname,
 			state: encounters.state,
 			causeOfDeath: encounters.causeOfDeath,
@@ -121,9 +124,18 @@ export function saveEncounter(
 		speciesId: number | null;
 		nickname: string;
 		outcome: EncounterOutcome;
+		ruleType?: string | null;
 	},
 ) {
 	requireRunLocation(db, input.runId, input.locationId);
+	const types = input.speciesId
+		? db
+				.select({ types: species.types })
+				.from(species)
+				.where(eq(species.id, input.speciesId))
+				.get()?.types
+		: undefined;
+	if (input.speciesId && !types) throw new Error("Unknown Pokémon");
 	const existing = db
 		.select({ state: encounters.state })
 		.from(encounters)
@@ -139,6 +151,7 @@ export function saveEncounter(
 	const state = input.outcome === "caught" ? (existing?.state ?? "box") : null;
 	const values = {
 		...input,
+		ruleType: resolveRuleType(state, types ?? [], input.ruleType ?? null),
 		state,
 		causeOfDeath: state === "dead" ? undefined : "",
 	};
@@ -149,6 +162,21 @@ export function saveEncounter(
 			set: values,
 		})
 		.run();
+}
+
+/**
+ * The type that counts for the no-duplicate-types rule. Only caught Pokémon
+ * have one; single-type species get theirs automatically, and a choice that
+ * isn't one of the species' types (e.g. after changing species) is dropped.
+ */
+export function resolveRuleType(
+	state: PokemonState | null,
+	types: string[],
+	chosen: string | null,
+) {
+	if (!state) return null;
+	if (types.length === 1) return types[0];
+	return chosen && types.includes(chosen) ? chosen : null;
 }
 
 export function clearEncounter(

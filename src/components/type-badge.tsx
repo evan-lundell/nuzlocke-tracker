@@ -1,3 +1,5 @@
+import { cn } from "#/lib/utils";
+
 const TYPE_COLORS: Record<string, string> = {
 	normal: "#9fa19f",
 	fire: "#e62829",
@@ -19,10 +21,22 @@ const TYPE_COLORS: Record<string, string> = {
 	fairy: "#ef70ef",
 };
 
-export function TypeBadge({ type }: { type: string }) {
+export function TypeBadge({
+	type,
+	dimmed,
+	title,
+}: {
+	type: string;
+	dimmed?: boolean;
+	title?: string;
+}) {
 	return (
 		<span
-			className="rounded px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-white"
+			title={title}
+			className={cn(
+				"rounded px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-white transition-opacity",
+				dimmed && "opacity-30",
+			)}
 			style={{ backgroundColor: TYPE_COLORS[type] ?? "#777" }}
 		>
 			{type}

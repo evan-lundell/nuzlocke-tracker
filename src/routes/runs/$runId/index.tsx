@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { PlusIcon, Trash2Icon, XIcon } from "lucide-react";
 import { useState } from "react";
+import { RuleTypePicker } from "#/components/rule-type-picker";
 import { type SpeciesOption, SpeciesPicker } from "#/components/species-picker";
 import { Button } from "#/components/ui/button";
 import {
@@ -101,7 +102,7 @@ function EncountersPage() {
 			<div className="divide-y rounded-lg border">
 				{visible.map((loc) => (
 					<EncounterRow
-						key={`${loc.locationId}:${loc.encounterId ?? "new"}:${loc.outcome}:${loc.speciesId}`}
+						key={`${loc.locationId}:${loc.encounterId ?? "new"}:${loc.outcome}:${loc.speciesId}:${loc.ruleType}`}
 						runId={runId}
 						row={loc}
 						species={species}
@@ -119,22 +120,28 @@ function EncounterRow({
 }: {
 	runId: number;
 	row: LocationRow;
-	species: SpeciesOption[];
+	species: (SpeciesOption & { types: string[] })[];
 }) {
 	const [speciesId, setSpeciesId] = useState(row.speciesId);
 	const [nickname, setNickname] = useState(row.nickname ?? "");
 	const [outcome, setOutcome] = useState<EncounterOutcome | null>(row.outcome);
+	const [ruleType, setRuleType] = useState(row.ruleType);
+	const types = species.find((s) => s.id === speciesId)?.types ?? [];
 
 	const [save, saving] = useAction(useServerFn(saveEncounterFn));
 	const [clear, clearing] = useAction(useServerFn(clearEncounterFn));
 	const [remove, removing] = useAction(useServerFn(deleteCustomLocationFn));
 	const busy = saving || clearing || removing;
 
-	const persist = (next: {
-		speciesId: number | null;
-		nickname: string;
-		outcome: EncounterOutcome | null;
-	}) => {
+	const persist = (
+		changes: Partial<{
+			speciesId: number | null;
+			nickname: string;
+			outcome: EncounterOutcome | null;
+			ruleType: string | null;
+		}>,
+	) => {
+		const next = { speciesId, nickname, outcome, ruleType, ...changes };
 		if (!next.outcome) return;
 		save({
 			data: {
@@ -143,6 +150,7 @@ function EncounterRow({
 				speciesId: next.speciesId,
 				nickname: next.nickname,
 				outcome: next.outcome,
+				ruleType: next.ruleType,
 			},
 		});
 	};
@@ -154,6 +162,19 @@ function EncounterRow({
 				{row.isCustom && (
 					<span className="text-xs text-muted-foreground">custom</span>
 				)}
+				{outcome === "caught" && types.length > 0 && (
+					<div className="ml-auto">
+						<RuleTypePicker
+							types={types}
+							value={ruleType}
+							disabled={busy}
+							onChange={(type) => {
+								setRuleType(type);
+								persist({ ruleType: type });
+							}}
+						/>
+					</div>
+				)}
 			</div>
 
 			<SpeciesPicker
@@ -164,7 +185,8 @@ function EncounterRow({
 					const nextOutcome = outcome ?? (id ? "caught" : null);
 					setSpeciesId(id);
 					setOutcome(nextOutcome);
-					persist({ speciesId: id, nickname, outcome: nextOutcome });
+					setRuleType(null);
+					persist({ speciesId: id, outcome: nextOutcome, ruleType: null });
 				}}
 			/>
 
@@ -175,7 +197,7 @@ function EncounterRow({
 				onChange={(e) => setNickname(e.target.value)}
 				onBlur={() => {
 					if (nickname !== (row.nickname ?? "")) {
-						persist({ speciesId, nickname, outcome });
+						persist({});
 					}
 				}}
 			/>
@@ -186,7 +208,7 @@ function EncounterRow({
 				onValueChange={(v) => {
 					const next = v as EncounterOutcome;
 					setOutcome(next);
-					persist({ speciesId, nickname, outcome: next });
+					persist({ outcome: next });
 				}}
 			>
 				<SelectTrigger className="w-full">

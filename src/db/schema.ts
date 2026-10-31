@@ -91,6 +91,9 @@ export const encounters = sqliteTable(
 		outcome: text("outcome", { enum: encounterOutcomes }).notNull(),
 		// only set when outcome = caught
 		state: text("state", { enum: pokemonStates }),
+		// the one type that counts for the no-duplicate-types party rule; must be
+		// one of the species' types, only set when outcome = caught
+		ruleType: text("rule_type"),
 		causeOfDeath: text("cause_of_death").notNull().default(""),
 		createdAt: integer("created_at", { mode: "timestamp" })
 			.notNull()

@@ -132,7 +132,14 @@ function MonCard({
 				</div>
 				<div className="flex gap-1">
 					{mon.types?.map((t) => (
-						<TypeBadge key={t} type={t} />
+						<TypeBadge
+							key={t}
+							type={t}
+							dimmed={mon.ruleType !== null && mon.ruleType !== t}
+							title={
+								mon.ruleType === t ? "Counts for the type rule" : undefined
+							}
+						/>
 					))}
 				</div>
 			</div>

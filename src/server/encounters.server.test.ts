@@ -6,6 +6,7 @@ import {
 	compareLocations,
 	listCaught,
 	listRunLocations,
+	resolveRuleType,
 	saveEncounter,
 	setPokemonState,
 } from "./encounters.server";
@@ -210,5 +211,46 @@ describe("encounters", () => {
 			causeOfDeath: "Crit from Brock's Onix",
 		});
 		expect(listRuns(db)[0]).toMatchObject({ party: 6, box: 0, dead: 1 });
+	});
+
+	it("stores the chosen rule type for dual-type catches", () => {
+		const { db, runId } = setup();
+		const route1 = locationId(db, runId, "Route 1");
+		const base = { runId, locationId: route1, nickname: "" };
+		saveEncounter(db, {
+			...base,
+			speciesId: 16,
+			outcome: "caught",
+			ruleType: "flying",
+		});
+		expect(listCaught(db, runId)[0]).toMatchObject({ ruleType: "flying" });
+
+		// switching to a species without that type drops the choice
+		saveEncounter(db, {
+			...base,
+			speciesId: 1,
+			outcome: "caught",
+			ruleType: "flying",
+		});
+		expect(listCaught(db, runId)[0]).toMatchObject({ ruleType: null });
+
+		// single-type species pick their own type
+		saveEncounter(db, { ...base, speciesId: 19, outcome: "caught" });
+		expect(listCaught(db, runId)[0]).toMatchObject({ ruleType: "normal" });
+	});
+});
+
+describe("resolveRuleType", () => {
+	it("only applies to caught Pokémon", () => {
+		expect(resolveRuleType(null, ["normal"], "normal")).toBeNull();
+	});
+
+	it("auto-picks for single types and validates dual types", () => {
+		expect(resolveRuleType("box", ["normal"], null)).toBe("normal");
+		expect(resolveRuleType("party", ["grass", "poison"], "poison")).toBe(
+			"poison",
+		);
+		expect(resolveRuleType("party", ["grass", "poison"], "fire")).toBeNull();
+		expect(resolveRuleType("dead", ["grass", "poison"], null)).toBeNull();
 	});
 });

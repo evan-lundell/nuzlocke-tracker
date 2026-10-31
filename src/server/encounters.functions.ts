@@ -29,6 +29,7 @@ export const saveEncounterFn = createServerFn({ method: "POST" })
 			speciesId: id.nullable(),
 			nickname: z.string().trim().max(40),
 			outcome: z.enum(encounterOutcomes),
+			ruleType: z.string().nullable(),
 		}),
 	)
 	.handler(({ data }) => saveEncounter(getDb(), data));
