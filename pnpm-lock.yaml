@@ -4,6 +4,12 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+overrides:
+  '@tanstack/router-core>seroval': ^1.7.5
+  '@tanstack/router-core>seroval-plugins': ^1.7.6
+  '@tanstack/start-client-core>seroval': ^1.7.5
+  '@tanstack/start-plugin-core>seroval': ^1.7.5
+
 importers:
 
   .:

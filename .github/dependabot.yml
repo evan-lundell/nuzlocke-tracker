@@ -17,6 +17,10 @@ updates:
       interval: weekly
     cooldown:
       default-days: 7
+    ignore:
+      # Runtime is pinned to Node 24 (CI, Dockerfile, engines); types must match
+      - dependency-name: "@types/node"
+        update-types: ["version-update:semver-major"]
     groups:
       minor-and-patch:
         update-types: [minor, patch]
