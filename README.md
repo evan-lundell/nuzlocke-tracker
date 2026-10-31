@@ -55,7 +55,7 @@ On the server:
 
 ```sh
 mkdir -p nuzlocke && cd nuzlocke
-# copy docker-compose.yml here and set the image owner
+# copy docker-compose.yml here
 mkdir -p data && sudo chown 1000:1000 data   # container runs as uid 1000
 docker compose up -d
 ```

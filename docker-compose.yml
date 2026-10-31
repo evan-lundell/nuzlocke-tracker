@@ -1,7 +1,6 @@
 services:
   nuzlocke:
-    # Replace OWNER with your GitHub username
-    image: ghcr.io/OWNER/nuzlocke-tracker:latest
+    image: ghcr.io/evan-lundell/nuzlocke-tracker:latest
     container_name: nuzlocke-tracker
     ports:
       - "3000:3000"
