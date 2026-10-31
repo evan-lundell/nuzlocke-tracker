@@ -60,9 +60,31 @@ export function seedRefdata(db: Db, dataDir: string) {
 			}
 		}
 
+		// Every game gets a Starter encounter, separate from the first town.
+		// Created before route orders so a "Starter" entry there matches it,
+		// then pinned first afterwards.
+		for (const g of gameRows) {
+			tx.insert(locations)
+				.values({ gameId: g.id, slug: STARTER_SLUG, name: "Starter" })
+				.onConflictDoUpdate({
+					target: [locations.gameId, locations.slug],
+					set: { name: "Starter" },
+				})
+				.run();
+		}
+
 		applyRouteOrders(tx, path.join(dataDir, "route-order"), gameIdBySlug);
+
+		tx.update(locations)
+			.set({ sortOrder: STARTER_SORT_ORDER })
+			.where(and(eq(locations.slug, STARTER_SLUG), isNull(locations.runId)))
+			.run();
 	});
 }
+
+const STARTER_SLUG = "starter";
+// Below route-order indexes (0+) and custom locations pinned to the top (-1)
+const STARTER_SORT_ORDER = -2;
 
 /**
  * Applies data/pokedata/route-order/{gameSlug}.json files: an array of

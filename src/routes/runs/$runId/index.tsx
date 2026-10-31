@@ -297,7 +297,7 @@ function AddLocationDialog({ runId }: { runId: number }) {
 							id="loc-name"
 							value={name}
 							onChange={(e) => setName(e.target.value)}
-							placeholder="Starter, Gift Eevee, Fossil…"
+							placeholder="Gift Eevee, Fossil, Static Snorlax…"
 							required
 							autoFocus
 						/>

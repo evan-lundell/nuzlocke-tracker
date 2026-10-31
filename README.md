@@ -45,7 +45,7 @@ To set the play order for a game, add `data/pokedata/route-order/<game-slug>.jso
 
 Game slugs are in `data/pokedata/games.json`. A name that doesn't match an existing location is added as a new location for that game, which is how you fill in games with no PokeAPI data. The file is reapplied on every startup, so edit it and redeploy.
 
-Per-run custom locations (Starter, gift Pokémon, etc.) are added from the Encounters tab.
+Every game has a built-in **Starter** encounter, always listed first and separate from the first town. Per-run custom locations (gift Pokémon, fossils, static encounters, etc.) are added from the Encounters tab.
 
 ## Deployment
 

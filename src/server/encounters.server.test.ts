@@ -50,6 +50,7 @@ describe("location ordering", () => {
 	it("falls back to case-insensitive alphabetical", () => {
 		const { db, runId } = setup();
 		expect(names(db, runId)).toEqual([
+			"Starter",
 			"berry Forest",
 			"Route 1",
 			"Route 2",
@@ -60,6 +61,7 @@ describe("location ordering", () => {
 	it("puts ordered locations first, then the rest alphabetically", () => {
 		const { db, runId } = setup({ firered: ["Viridian Forest", "route 1"] });
 		expect(names(db, runId)).toEqual([
+			"Starter",
 			"Viridian Forest",
 			"Route 1",
 			"berry Forest",
@@ -68,28 +70,46 @@ describe("location ordering", () => {
 	});
 
 	it("adds unknown route-order names as game locations", () => {
-		const { db, runId } = setup({ firered: ["Starter", "Route 1"] });
-		expect(names(db, runId).slice(0, 2)).toEqual(["Starter", "Route 1"]);
+		const { db, runId } = setup({ firered: ["Pallet Town", "Route 1"] });
+		expect(names(db, runId).slice(0, 3)).toEqual([
+			"Starter",
+			"Pallet Town",
+			"Route 1",
+		]);
+	});
+
+	it("keeps Starter first and unique even if a route-order file lists it", () => {
+		const { db, runId } = setup({ firered: ["Pallet Town", "Starter"] });
+		seedRefdata(db, writePokedata({ firered: ["Pallet Town", "Starter"] }));
+		const list = names(db, runId);
+		expect(list.slice(0, 2)).toEqual(["Starter", "Pallet Town"]);
+		expect(list.filter((n) => n === "Starter")).toHaveLength(1);
+	});
+
+	it("gives every game a Starter", () => {
+		const db = testDb();
+		const lg = createRun(db, { name: "LG", gameId: 11, rules: "" });
+		expect(names(db, lg.id)[0]).toBe("Starter");
 	});
 
 	it("resets order when a location is removed from the file", () => {
 		const { db, runId } = setup({ firered: ["Viridian Forest"] });
 		seedRefdata(db, writePokedata());
-		expect(names(db, runId)[0]).toBe("berry Forest");
+		expect(names(db, runId)[1]).toBe("berry Forest");
 	});
 
 	it("includes custom locations only for their run", () => {
 		const { db, runId } = setup();
 		const other = createRun(db, { name: "Other", gameId: FIRERED, rules: "" });
-		addCustomLocation(db, { runId, name: "Starter", sortOrder: 0 });
-		expect(names(db, runId)[0]).toBe("Starter");
-		expect(names(db, other.id)).not.toContain("Starter");
+		addCustomLocation(db, { runId, name: "Gift Eevee", sortOrder: -1 });
+		expect(names(db, runId).slice(0, 2)).toEqual(["Starter", "Gift Eevee"]);
+		expect(names(db, other.id)).not.toContain("Gift Eevee");
 	});
 
 	it("only lists locations for the run's game", () => {
 		const db = testDb();
 		const run = createRun(db, { name: "LG", gameId: 11, rules: "" });
-		expect(names(db, run.id)).toEqual(["Route 1", "Route 2"]);
+		expect(names(db, run.id)).toEqual(["Starter", "Route 1", "Route 2"]);
 	});
 });
 
