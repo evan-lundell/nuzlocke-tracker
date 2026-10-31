@@ -7,6 +7,7 @@ import {
 } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 import { Toaster } from "#/components/ui/sonner";
+import { appVersion, versionLabel } from "#/lib/app-version";
 import appCss from "../styles.css?url";
 
 export const Route = createRootRoute({
@@ -50,6 +51,19 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 					</div>
 				</header>
 				<main className="mx-auto max-w-5xl px-4 py-6">{children}</main>
+				<footer className="mx-auto max-w-5xl px-4 pb-6 text-xs text-muted-foreground">
+					{appVersion.commitUrl ? (
+						<a
+							href={appVersion.commitUrl}
+							className="hover:text-foreground hover:underline"
+							title="View this build's commit on GitHub"
+						>
+							{versionLabel()}
+						</a>
+					) : (
+						versionLabel()
+					)}
+				</footer>
 				<Toaster />
 				<TanStackDevtools
 					config={{ position: "bottom-right" }}

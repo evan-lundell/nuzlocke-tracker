@@ -10,6 +10,12 @@ FROM base AS build
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
 COPY . .
+# Build info shown in the app footer and /api/health. Declared after install
+# so changing them doesn't bust the dependency cache.
+ARG APP_VERSION="" APP_COMMIT="" APP_REPO_URL=""
+ENV VITE_APP_VERSION=$APP_VERSION \
+    VITE_APP_COMMIT=$APP_COMMIT \
+    VITE_APP_REPO_URL=$APP_REPO_URL
 RUN pnpm build
 
 # --- runtime ---

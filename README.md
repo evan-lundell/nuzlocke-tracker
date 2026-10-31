@@ -61,6 +61,8 @@ docker compose up -d
 
 To update: `docker compose pull && docker compose up -d`.
 
+The running build is shown in the page footer and at `/api/health` (`version` is the git tag for tagged releases, `commit` is the full SHA). Images are tagged `latest`, `sha-<short commit>`, and `<version>` for `v*` git tags; pin one of the immutable tags in `docker-compose.yml` to stay on a specific build.
+
 The SQLite database lives at `./data/nuzlocke.db`. To back it up, stop the container and copy the file, or run `sqlite3 data/nuzlocke.db ".backup backup.db"` while it's running.
 
 Environment variables (with defaults in the image): `PORT=3000`, `DATABASE_PATH=/data/nuzlocke.db`.
