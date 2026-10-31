@@ -6,6 +6,7 @@ import {
 	addCustomLocation,
 	clearEncounter,
 	deleteCustomLocation,
+	evolvePokemon,
 	listCaught,
 	listRunLocations,
 	saveEncounter,
@@ -61,3 +62,13 @@ export const setPokemonStateFn = createServerFn({ method: "POST" })
 		}),
 	)
 	.handler(({ data }) => setPokemonState(getDb(), data));
+
+export const evolvePokemonFn = createServerFn({ method: "POST" })
+	.validator(
+		z.object({
+			encounterId: id,
+			speciesId: id,
+			ruleType: z.string().nullable(),
+		}),
+	)
+	.handler(({ data }) => evolvePokemon(getDb(), data));

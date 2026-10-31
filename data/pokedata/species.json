@@ -3,6 +3,7 @@
 		"id": 1,
 		"slug": "bulbasaur",
 		"name": "Bulbasaur",
+		"evolvesFromId": null,
 		"types": [
 			"grass",
 			"poison"
@@ -12,6 +13,7 @@
 		"id": 2,
 		"slug": "ivysaur",
 		"name": "Ivysaur",
+		"evolvesFromId": 1,
 		"types": [
 			"grass",
 			"poison"
@@ -21,6 +23,7 @@
 		"id": 3,
 		"slug": "venusaur",
 		"name": "Venusaur",
+		"evolvesFromId": 2,
 		"types": [
 			"grass",
 			"poison"
@@ -30,6 +33,7 @@
 		"id": 4,
 		"slug": "charmander",
 		"name": "Charmander",
+		"evolvesFromId": null,
 		"types": [
 			"fire"
 		]
@@ -38,6 +42,7 @@
 		"id": 5,
 		"slug": "charmeleon",
 		"name": "Charmeleon",
+		"evolvesFromId": 4,
 		"types": [
 			"fire"
 		]
@@ -46,6 +51,7 @@
 		"id": 6,
 		"slug": "charizard",
 		"name": "Charizard",
+		"evolvesFromId": 5,
 		"types": [
 			"fire",
 			"flying"
@@ -55,6 +61,7 @@
 		"id": 7,
 		"slug": "squirtle",
 		"name": "Squirtle",
+		"evolvesFromId": null,
 		"types": [
 			"water"
 		]
@@ -63,6 +70,7 @@
 		"id": 8,
 		"slug": "wartortle",
 		"name": "Wartortle",
+		"evolvesFromId": 7,
 		"types": [
 			"water"
 		]
@@ -71,6 +79,7 @@
 		"id": 9,
 		"slug": "blastoise",
 		"name": "Blastoise",
+		"evolvesFromId": 8,
 		"types": [
 			"water"
 		]
@@ -79,6 +88,7 @@
 		"id": 10,
 		"slug": "caterpie",
 		"name": "Caterpie",
+		"evolvesFromId": null,
 		"types": [
 			"bug"
 		]
@@ -87,6 +97,7 @@
 		"id": 11,
 		"slug": "metapod",
 		"name": "Metapod",
+		"evolvesFromId": 10,
 		"types": [
 			"bug"
 		]
@@ -95,6 +106,7 @@
 		"id": 12,
 		"slug": "butterfree",
 		"name": "Butterfree",
+		"evolvesFromId": 11,
 		"types": [
 			"bug",
 			"flying"
@@ -104,6 +116,7 @@
 		"id": 13,
 		"slug": "weedle",
 		"name": "Weedle",
+		"evolvesFromId": null,
 		"types": [
 			"bug",
 			"poison"
@@ -113,6 +126,7 @@
 		"id": 14,
 		"slug": "kakuna",
 		"name": "Kakuna",
+		"evolvesFromId": 13,
 		"types": [
 			"bug",
 			"poison"
@@ -122,6 +136,7 @@
 		"id": 15,
 		"slug": "beedrill",
 		"name": "Beedrill",
+		"evolvesFromId": 14,
 		"types": [
 			"bug",
 			"poison"
@@ -131,6 +146,7 @@
 		"id": 16,
 		"slug": "pidgey",
 		"name": "Pidgey",
+		"evolvesFromId": null,
 		"types": [
 			"normal",
 			"flying"
@@ -140,6 +156,7 @@
 		"id": 17,
 		"slug": "pidgeotto",
 		"name": "Pidgeotto",
+		"evolvesFromId": 16,
 		"types": [
 			"normal",
 			"flying"
@@ -149,6 +166,7 @@
 		"id": 18,
 		"slug": "pidgeot",
 		"name": "Pidgeot",
+		"evolvesFromId": 17,
 		"types": [
 			"normal",
 			"flying"
@@ -158,6 +176,7 @@
 		"id": 19,
 		"slug": "rattata",
 		"name": "Rattata",
+		"evolvesFromId": null,
 		"types": [
 			"normal"
 		]
@@ -166,6 +185,7 @@
 		"id": 20,
 		"slug": "raticate",
 		"name": "Raticate",
+		"evolvesFromId": 19,
 		"types": [
 			"normal"
 		]
@@ -174,6 +194,7 @@
 		"id": 21,
 		"slug": "spearow",
 		"name": "Spearow",
+		"evolvesFromId": null,
 		"types": [
 			"normal",
 			"flying"
@@ -183,6 +204,7 @@
 		"id": 22,
 		"slug": "fearow",
 		"name": "Fearow",
+		"evolvesFromId": 21,
 		"types": [
 			"normal",
 			"flying"
@@ -192,6 +214,7 @@
 		"id": 23,
 		"slug": "ekans",
 		"name": "Ekans",
+		"evolvesFromId": null,
 		"types": [
 			"poison"
 		]
@@ -200,6 +223,7 @@
 		"id": 24,
 		"slug": "arbok",
 		"name": "Arbok",
+		"evolvesFromId": 23,
 		"types": [
 			"poison"
 		]
@@ -208,6 +232,7 @@
 		"id": 25,
 		"slug": "pikachu",
 		"name": "Pikachu",
+		"evolvesFromId": 172,
 		"types": [
 			"electric"
 		]
@@ -216,6 +241,7 @@
 		"id": 26,
 		"slug": "raichu",
 		"name": "Raichu",
+		"evolvesFromId": 25,
 		"types": [
 			"electric"
 		]
@@ -224,6 +250,7 @@
 		"id": 27,
 		"slug": "sandshrew",
 		"name": "Sandshrew",
+		"evolvesFromId": null,
 		"types": [
 			"ground"
 		]
@@ -232,6 +259,7 @@
 		"id": 28,
 		"slug": "sandslash",
 		"name": "Sandslash",
+		"evolvesFromId": 27,
 		"types": [
 			"ground"
 		]
@@ -240,6 +268,7 @@
 		"id": 29,
 		"slug": "nidoran-f",
 		"name": "Nidoran♀",
+		"evolvesFromId": null,
 		"types": [
 			"poison"
 		]
@@ -248,6 +277,7 @@
 		"id": 30,
 		"slug": "nidorina",
 		"name": "Nidorina",
+		"evolvesFromId": 29,
 		"types": [
 			"poison"
 		]
@@ -256,6 +286,7 @@
 		"id": 31,
 		"slug": "nidoqueen",
 		"name": "Nidoqueen",
+		"evolvesFromId": 30,
 		"types": [
 			"poison",
 			"ground"
@@ -265,6 +296,7 @@
 		"id": 32,
 		"slug": "nidoran-m",
 		"name": "Nidoran♂",
+		"evolvesFromId": null,
 		"types": [
 			"poison"
 		]
@@ -273,6 +305,7 @@
 		"id": 33,
 		"slug": "nidorino",
 		"name": "Nidorino",
+		"evolvesFromId": 32,
 		"types": [
 			"poison"
 		]
@@ -281,6 +314,7 @@
 		"id": 34,
 		"slug": "nidoking",
 		"name": "Nidoking",
+		"evolvesFromId": 33,
 		"types": [
 			"poison",
 			"ground"
@@ -290,6 +324,7 @@
 		"id": 35,
 		"slug": "clefairy",
 		"name": "Clefairy",
+		"evolvesFromId": 173,
 		"types": [
 			"fairy"
 		]
@@ -298,6 +333,7 @@
 		"id": 36,
 		"slug": "clefable",
 		"name": "Clefable",
+		"evolvesFromId": 35,
 		"types": [
 			"fairy"
 		]
@@ -306,6 +342,7 @@
 		"id": 37,
 		"slug": "vulpix",
 		"name": "Vulpix",
+		"evolvesFromId": null,
 		"types": [
 			"fire"
 		]
@@ -314,6 +351,7 @@
 		"id": 38,
 		"slug": "ninetales",
 		"name": "Ninetales",
+		"evolvesFromId": 37,
 		"types": [
 			"fire"
 		]
@@ -322,6 +360,7 @@
 		"id": 39,
 		"slug": "jigglypuff",
 		"name": "Jigglypuff",
+		"evolvesFromId": 174,
 		"types": [
 			"normal",
 			"fairy"
@@ -331,6 +370,7 @@
 		"id": 40,
 		"slug": "wigglytuff",
 		"name": "Wigglytuff",
+		"evolvesFromId": 39,
 		"types": [
 			"normal",
 			"fairy"
@@ -340,6 +380,7 @@
 		"id": 41,
 		"slug": "zubat",
 		"name": "Zubat",
+		"evolvesFromId": null,
 		"types": [
 			"poison",
 			"flying"
@@ -349,6 +390,7 @@
 		"id": 42,
 		"slug": "golbat",
 		"name": "Golbat",
+		"evolvesFromId": 41,
 		"types": [
 			"poison",
 			"flying"
@@ -358,6 +400,7 @@
 		"id": 43,
 		"slug": "oddish",
 		"name": "Oddish",
+		"evolvesFromId": null,
 		"types": [
 			"grass",
 			"poison"
@@ -367,6 +410,7 @@
 		"id": 44,
 		"slug": "gloom",
 		"name": "Gloom",
+		"evolvesFromId": 43,
 		"types": [
 			"grass",
 			"poison"
@@ -376,6 +420,7 @@
 		"id": 45,
 		"slug": "vileplume",
 		"name": "Vileplume",
+		"evolvesFromId": 44,
 		"types": [
 			"grass",
 			"poison"
@@ -385,6 +430,7 @@
 		"id": 46,
 		"slug": "paras",
 		"name": "Paras",
+		"evolvesFromId": null,
 		"types": [
 			"bug",
 			"grass"
@@ -394,6 +440,7 @@
 		"id": 47,
 		"slug": "parasect",
 		"name": "Parasect",
+		"evolvesFromId": 46,
 		"types": [
 			"bug",
 			"grass"
@@ -403,6 +450,7 @@
 		"id": 48,
 		"slug": "venonat",
 		"name": "Venonat",
+		"evolvesFromId": null,
 		"types": [
 			"bug",
 			"poison"
@@ -412,6 +460,7 @@
 		"id": 49,
 		"slug": "venomoth",
 		"name": "Venomoth",
+		"evolvesFromId": 48,
 		"types": [
 			"bug",
 			"poison"
@@ -421,6 +470,7 @@
 		"id": 50,
 		"slug": "diglett",
 		"name": "Diglett",
+		"evolvesFromId": null,
 		"types": [
 			"ground"
 		]
@@ -429,6 +479,7 @@
 		"id": 51,
 		"slug": "dugtrio",
 		"name": "Dugtrio",
+		"evolvesFromId": 50,
 		"types": [
 			"ground"
 		]
@@ -437,6 +488,7 @@
 		"id": 52,
 		"slug": "meowth",
 		"name": "Meowth",
+		"evolvesFromId": null,
 		"types": [
 			"normal"
 		]
@@ -445,6 +497,7 @@
 		"id": 53,
 		"slug": "persian",
 		"name": "Persian",
+		"evolvesFromId": 52,
 		"types": [
 			"normal"
 		]
@@ -453,6 +506,7 @@
 		"id": 54,
 		"slug": "psyduck",
 		"name": "Psyduck",
+		"evolvesFromId": null,
 		"types": [
 			"water"
 		]
@@ -461,6 +515,7 @@
 		"id": 55,
 		"slug": "golduck",
 		"name": "Golduck",
+		"evolvesFromId": 54,
 		"types": [
 			"water"
 		]
@@ -469,6 +524,7 @@
 		"id": 56,
 		"slug": "mankey",
 		"name": "Mankey",
+		"evolvesFromId": null,
 		"types": [
 			"fighting"
 		]
@@ -477,6 +533,7 @@
 		"id": 57,
 		"slug": "primeape",
 		"name": "Primeape",
+		"evolvesFromId": 56,
 		"types": [
 			"fighting"
 		]
@@ -485,6 +542,7 @@
 		"id": 58,
 		"slug": "growlithe",
 		"name": "Growlithe",
+		"evolvesFromId": null,
 		"types": [
 			"fire"
 		]
@@ -493,6 +551,7 @@
 		"id": 59,
 		"slug": "arcanine",
 		"name": "Arcanine",
+		"evolvesFromId": 58,
 		"types": [
 			"fire"
 		]
@@ -501,6 +560,7 @@
 		"id": 60,
 		"slug": "poliwag",
 		"name": "Poliwag",
+		"evolvesFromId": null,
 		"types": [
 			"water"
 		]
@@ -509,6 +569,7 @@
 		"id": 61,
 		"slug": "poliwhirl",
 		"name": "Poliwhirl",
+		"evolvesFromId": 60,
 		"types": [
 			"water"
 		]
@@ -517,6 +578,7 @@
 		"id": 62,
 		"slug": "poliwrath",
 		"name": "Poliwrath",
+		"evolvesFromId": 61,
 		"types": [
 			"water",
 			"fighting"
@@ -526,6 +588,7 @@
 		"id": 63,
 		"slug": "abra",
 		"name": "Abra",
+		"evolvesFromId": null,
 		"types": [
 			"psychic"
 		]
@@ -534,6 +597,7 @@
 		"id": 64,
 		"slug": "kadabra",
 		"name": "Kadabra",
+		"evolvesFromId": 63,
 		"types": [
 			"psychic"
 		]
@@ -542,6 +606,7 @@
 		"id": 65,
 		"slug": "alakazam",
 		"name": "Alakazam",
+		"evolvesFromId": 64,
 		"types": [
 			"psychic"
 		]
@@ -550,6 +615,7 @@
 		"id": 66,
 		"slug": "machop",
 		"name": "Machop",
+		"evolvesFromId": null,
 		"types": [
 			"fighting"
 		]
@@ -558,6 +624,7 @@
 		"id": 67,
 		"slug": "machoke",
 		"name": "Machoke",
+		"evolvesFromId": 66,
 		"types": [
 			"fighting"
 		]
@@ -566,6 +633,7 @@
 		"id": 68,
 		"slug": "machamp",
 		"name": "Machamp",
+		"evolvesFromId": 67,
 		"types": [
 			"fighting"
 		]
@@ -574,6 +642,7 @@
 		"id": 69,
 		"slug": "bellsprout",
 		"name": "Bellsprout",
+		"evolvesFromId": null,
 		"types": [
 			"grass",
 			"poison"
@@ -583,6 +652,7 @@
 		"id": 70,
 		"slug": "weepinbell",
 		"name": "Weepinbell",
+		"evolvesFromId": 69,
 		"types": [
 			"grass",
 			"poison"
@@ -592,6 +662,7 @@
 		"id": 71,
 		"slug": "victreebel",
 		"name": "Victreebel",
+		"evolvesFromId": 70,
 		"types": [
 			"grass",
 			"poison"
@@ -601,6 +672,7 @@
 		"id": 72,
 		"slug": "tentacool",
 		"name": "Tentacool",
+		"evolvesFromId": null,
 		"types": [
 			"water",
 			"poison"
@@ -610,6 +682,7 @@
 		"id": 73,
 		"slug": "tentacruel",
 		"name": "Tentacruel",
+		"evolvesFromId": 72,
 		"types": [
 			"water",
 			"poison"
@@ -619,6 +692,7 @@
 		"id": 74,
 		"slug": "geodude",
 		"name": "Geodude",
+		"evolvesFromId": null,
 		"types": [
 			"rock",
 			"ground"
@@ -628,6 +702,7 @@
 		"id": 75,
 		"slug": "graveler",
 		"name": "Graveler",
+		"evolvesFromId": 74,
 		"types": [
 			"rock",
 			"ground"
@@ -637,6 +712,7 @@
 		"id": 76,
 		"slug": "golem",
 		"name": "Golem",
+		"evolvesFromId": 75,
 		"types": [
 			"rock",
 			"ground"
@@ -646,6 +722,7 @@
 		"id": 77,
 		"slug": "ponyta",
 		"name": "Ponyta",
+		"evolvesFromId": null,
 		"types": [
 			"fire"
 		]
@@ -654,6 +731,7 @@
 		"id": 78,
 		"slug": "rapidash",
 		"name": "Rapidash",
+		"evolvesFromId": 77,
 		"types": [
 			"fire"
 		]
@@ -662,6 +740,7 @@
 		"id": 79,
 		"slug": "slowpoke",
 		"name": "Slowpoke",
+		"evolvesFromId": null,
 		"types": [
 			"water",
 			"psychic"
@@ -671,6 +750,7 @@
 		"id": 80,
 		"slug": "slowbro",
 		"name": "Slowbro",
+		"evolvesFromId": 79,
 		"types": [
 			"water",
 			"psychic"
@@ -680,6 +760,7 @@
 		"id": 81,
 		"slug": "magnemite",
 		"name": "Magnemite",
+		"evolvesFromId": null,
 		"types": [
 			"electric",
 			"steel"
@@ -689,6 +770,7 @@
 		"id": 82,
 		"slug": "magneton",
 		"name": "Magneton",
+		"evolvesFromId": 81,
 		"types": [
 			"electric",
 			"steel"
@@ -698,6 +780,7 @@
 		"id": 83,
 		"slug": "farfetchd",
 		"name": "Farfetch’d",
+		"evolvesFromId": null,
 		"types": [
 			"normal",
 			"flying"
@@ -707,6 +790,7 @@
 		"id": 84,
 		"slug": "doduo",
 		"name": "Doduo",
+		"evolvesFromId": null,
 		"types": [
 			"normal",
 			"flying"
@@ -716,6 +800,7 @@
 		"id": 85,
 		"slug": "dodrio",
 		"name": "Dodrio",
+		"evolvesFromId": 84,
 		"types": [
 			"normal",
 			"flying"
@@ -725,6 +810,7 @@
 		"id": 86,
 		"slug": "seel",
 		"name": "Seel",
+		"evolvesFromId": null,
 		"types": [
 			"water"
 		]
@@ -733,6 +819,7 @@
 		"id": 87,
 		"slug": "dewgong",
 		"name": "Dewgong",
+		"evolvesFromId": 86,
 		"types": [
 			"water",
 			"ice"
@@ -742,6 +829,7 @@
 		"id": 88,
 		"slug": "grimer",
 		"name": "Grimer",
+		"evolvesFromId": null,
 		"types": [
 			"poison"
 		]
@@ -750,6 +838,7 @@
 		"id": 89,
 		"slug": "muk",
 		"name": "Muk",
+		"evolvesFromId": 88,
 		"types": [
 			"poison"
 		]
@@ -758,6 +847,7 @@
 		"id": 90,
 		"slug": "shellder",
 		"name": "Shellder",
+		"evolvesFromId": null,
 		"types": [
 			"water"
 		]
@@ -766,6 +856,7 @@
 		"id": 91,
 		"slug": "cloyster",
 		"name": "Cloyster",
+		"evolvesFromId": 90,
 		"types": [
 			"water",
 			"ice"
@@ -775,6 +866,7 @@
 		"id": 92,
 		"slug": "gastly",
 		"name": "Gastly",
+		"evolvesFromId": null,
 		"types": [
 			"ghost",
 			"poison"
@@ -784,6 +876,7 @@
 		"id": 93,
 		"slug": "haunter",
 		"name": "Haunter",
+		"evolvesFromId": 92,
 		"types": [
 			"ghost",
 			"poison"
@@ -793,6 +886,7 @@
 		"id": 94,
 		"slug": "gengar",
 		"name": "Gengar",
+		"evolvesFromId": 93,
 		"types": [
 			"ghost",
 			"poison"
@@ -802,6 +896,7 @@
 		"id": 95,
 		"slug": "onix",
 		"name": "Onix",
+		"evolvesFromId": null,
 		"types": [
 			"rock",
 			"ground"
@@ -811,6 +906,7 @@
 		"id": 96,
 		"slug": "drowzee",
 		"name": "Drowzee",
+		"evolvesFromId": null,
 		"types": [
 			"psychic"
 		]
@@ -819,6 +915,7 @@
 		"id": 97,
 		"slug": "hypno",
 		"name": "Hypno",
+		"evolvesFromId": 96,
 		"types": [
 			"psychic"
 		]
@@ -827,6 +924,7 @@
 		"id": 98,
 		"slug": "krabby",
 		"name": "Krabby",
+		"evolvesFromId": null,
 		"types": [
 			"water"
 		]
@@ -835,6 +933,7 @@
 		"id": 99,
 		"slug": "kingler",
 		"name": "Kingler",
+		"evolvesFromId": 98,
 		"types": [
 			"water"
 		]
@@ -843,6 +942,7 @@
 		"id": 100,
 		"slug": "voltorb",
 		"name": "Voltorb",
+		"evolvesFromId": null,
 		"types": [
 			"electric"
 		]
@@ -851,6 +951,7 @@
 		"id": 101,
 		"slug": "electrode",
 		"name": "Electrode",
+		"evolvesFromId": 100,
 		"types": [
 			"electric"
 		]
@@ -859,6 +960,7 @@
 		"id": 102,
 		"slug": "exeggcute",
 		"name": "Exeggcute",
+		"evolvesFromId": null,
 		"types": [
 			"grass",
 			"psychic"
@@ -868,6 +970,7 @@
 		"id": 103,
 		"slug": "exeggutor",
 		"name": "Exeggutor",
+		"evolvesFromId": 102,
 		"types": [
 			"grass",
 			"psychic"
@@ -877,6 +980,7 @@
 		"id": 104,
 		"slug": "cubone",
 		"name": "Cubone",
+		"evolvesFromId": null,
 		"types": [
 			"ground"
 		]
@@ -885,6 +989,7 @@
 		"id": 105,
 		"slug": "marowak",
 		"name": "Marowak",
+		"evolvesFromId": 104,
 		"types": [
 			"ground"
 		]
@@ -893,6 +998,7 @@
 		"id": 106,
 		"slug": "hitmonlee",
 		"name": "Hitmonlee",
+		"evolvesFromId": 236,
 		"types": [
 			"fighting"
 		]
@@ -901,6 +1007,7 @@
 		"id": 107,
 		"slug": "hitmonchan",
 		"name": "Hitmonchan",
+		"evolvesFromId": 236,
 		"types": [
 			"fighting"
 		]
@@ -909,6 +1016,7 @@
 		"id": 108,
 		"slug": "lickitung",
 		"name": "Lickitung",
+		"evolvesFromId": null,
 		"types": [
 			"normal"
 		]
@@ -917,6 +1025,7 @@
 		"id": 109,
 		"slug": "koffing",
 		"name": "Koffing",
+		"evolvesFromId": null,
 		"types": [
 			"poison"
 		]
@@ -925,6 +1034,7 @@
 		"id": 110,
 		"slug": "weezing",
 		"name": "Weezing",
+		"evolvesFromId": 109,
 		"types": [
 			"poison"
 		]
@@ -933,6 +1043,7 @@
 		"id": 111,
 		"slug": "rhyhorn",
 		"name": "Rhyhorn",
+		"evolvesFromId": null,
 		"types": [
 			"ground",
 			"rock"
@@ -942,6 +1053,7 @@
 		"id": 112,
 		"slug": "rhydon",
 		"name": "Rhydon",
+		"evolvesFromId": 111,
 		"types": [
 			"ground",
 			"rock"
@@ -951,6 +1063,7 @@
 		"id": 113,
 		"slug": "chansey",
 		"name": "Chansey",
+		"evolvesFromId": 440,
 		"types": [
 			"normal"
 		]
@@ -959,6 +1072,7 @@
 		"id": 114,
 		"slug": "tangela",
 		"name": "Tangela",
+		"evolvesFromId": null,
 		"types": [
 			"grass"
 		]
@@ -967,6 +1081,7 @@
 		"id": 115,
 		"slug": "kangaskhan",
 		"name": "Kangaskhan",
+		"evolvesFromId": null,
 		"types": [
 			"normal"
 		]
@@ -975,6 +1090,7 @@
 		"id": 116,
 		"slug": "horsea",
 		"name": "Horsea",
+		"evolvesFromId": null,
 		"types": [
 			"water"
 		]
@@ -983,6 +1099,7 @@
 		"id": 117,
 		"slug": "seadra",
 		"name": "Seadra",
+		"evolvesFromId": 116,
 		"types": [
 			"water"
 		]
@@ -991,6 +1108,7 @@
 		"id": 118,
 		"slug": "goldeen",
 		"name": "Goldeen",
+		"evolvesFromId": null,
 		"types": [
 			"water"
 		]
@@ -999,6 +1117,7 @@
 		"id": 119,
 		"slug": "seaking",
 		"name": "Seaking",
+		"evolvesFromId": 118,
 		"types": [
 			"water"
 		]
@@ -1007,6 +1126,7 @@
 		"id": 120,
 		"slug": "staryu",
 		"name": "Staryu",
+		"evolvesFromId": null,
 		"types": [
 			"water"
 		]
@@ -1015,6 +1135,7 @@
 		"id": 121,
 		"slug": "starmie",
 		"name": "Starmie",
+		"evolvesFromId": 120,
 		"types": [
 			"water",
 			"psychic"
@@ -1024,6 +1145,7 @@
 		"id": 122,
 		"slug": "mr-mime",
 		"name": "Mr. Mime",
+		"evolvesFromId": 439,
 		"types": [
 			"psychic",
 			"fairy"
@@ -1033,6 +1155,7 @@
 		"id": 123,
 		"slug": "scyther",
 		"name": "Scyther",
+		"evolvesFromId": null,
 		"types": [
 			"bug",
 			"flying"
@@ -1042,6 +1165,7 @@
 		"id": 124,
 		"slug": "jynx",
 		"name": "Jynx",
+		"evolvesFromId": 238,
 		"types": [
 			"ice",
 			"psychic"
@@ -1051,6 +1175,7 @@
 		"id": 125,
 		"slug": "electabuzz",
 		"name": "Electabuzz",
+		"evolvesFromId": 239,
 		"types": [
 			"electric"
 		]
@@ -1059,6 +1184,7 @@
 		"id": 126,
 		"slug": "magmar",
 		"name": "Magmar",
+		"evolvesFromId": 240,
 		"types": [
 			"fire"
 		]
@@ -1067,6 +1193,7 @@
 		"id": 127,
 		"slug": "pinsir",
 		"name": "Pinsir",
+		"evolvesFromId": null,
 		"types": [
 			"bug"
 		]
@@ -1075,6 +1202,7 @@
 		"id": 128,
 		"slug": "tauros",
 		"name": "Tauros",
+		"evolvesFromId": null,
 		"types": [
 			"normal"
 		]
@@ -1083,6 +1211,7 @@
 		"id": 129,
 		"slug": "magikarp",
 		"name": "Magikarp",
+		"evolvesFromId": null,
 		"types": [
 			"water"
 		]
@@ -1091,6 +1220,7 @@
 		"id": 130,
 		"slug": "gyarados",
 		"name": "Gyarados",
+		"evolvesFromId": 129,
 		"types": [
 			"water",
 			"flying"
@@ -1100,6 +1230,7 @@
 		"id": 131,
 		"slug": "lapras",
 		"name": "Lapras",
+		"evolvesFromId": null,
 		"types": [
 			"water",
 			"ice"
@@ -1109,6 +1240,7 @@
 		"id": 132,
 		"slug": "ditto",
 		"name": "Ditto",
+		"evolvesFromId": null,
 		"types": [
 			"normal"
 		]
@@ -1117,6 +1249,7 @@
 		"id": 133,
 		"slug": "eevee",
 		"name": "Eevee",
+		"evolvesFromId": null,
 		"types": [
 			"normal"
 		]
@@ -1125,6 +1258,7 @@
 		"id": 134,
 		"slug": "vaporeon",
 		"name": "Vaporeon",
+		"evolvesFromId": 133,
 		"types": [
 			"water"
 		]
@@ -1133,6 +1267,7 @@
 		"id": 135,
 		"slug": "jolteon",
 		"name": "Jolteon",
+		"evolvesFromId": 133,
 		"types": [
 			"electric"
 		]
@@ -1141,6 +1276,7 @@
 		"id": 136,
 		"slug": "flareon",
 		"name": "Flareon",
+		"evolvesFromId": 133,
 		"types": [
 			"fire"
 		]
@@ -1149,6 +1285,7 @@
 		"id": 137,
 		"slug": "porygon",
 		"name": "Porygon",
+		"evolvesFromId": null,
 		"types": [
 			"normal"
 		]
@@ -1157,6 +1294,7 @@
 		"id": 138,
 		"slug": "omanyte",
 		"name": "Omanyte",
+		"evolvesFromId": null,
 		"types": [
 			"rock",
 			"water"
@@ -1166,6 +1304,7 @@
 		"id": 139,
 		"slug": "omastar",
 		"name": "Omastar",
+		"evolvesFromId": 138,
 		"types": [
 			"rock",
 			"water"
@@ -1175,6 +1314,7 @@
 		"id": 140,
 		"slug": "kabuto",
 		"name": "Kabuto",
+		"evolvesFromId": null,
 		"types": [
 			"rock",
 			"water"
@@ -1184,6 +1324,7 @@
 		"id": 141,
 		"slug": "kabutops",
 		"name": "Kabutops",
+		"evolvesFromId": 140,
 		"types": [
 			"rock",
 			"water"
@@ -1193,6 +1334,7 @@
 		"id": 142,
 		"slug": "aerodactyl",
 		"name": "Aerodactyl",
+		"evolvesFromId": null,
 		"types": [
 			"rock",
 			"flying"
@@ -1202,6 +1344,7 @@
 		"id": 143,
 		"slug": "snorlax",
 		"name": "Snorlax",
+		"evolvesFromId": 446,
 		"types": [
 			"normal"
 		]
@@ -1210,6 +1353,7 @@
 		"id": 144,
 		"slug": "articuno",
 		"name": "Articuno",
+		"evolvesFromId": null,
 		"types": [
 			"ice",
 			"flying"
@@ -1219,6 +1363,7 @@
 		"id": 145,
 		"slug": "zapdos",
 		"name": "Zapdos",
+		"evolvesFromId": null,
 		"types": [
 			"electric",
 			"flying"
@@ -1228,6 +1373,7 @@
 		"id": 146,
 		"slug": "moltres",
 		"name": "Moltres",
+		"evolvesFromId": null,
 		"types": [
 			"fire",
 			"flying"
@@ -1237,6 +1383,7 @@
 		"id": 147,
 		"slug": "dratini",
 		"name": "Dratini",
+		"evolvesFromId": null,
 		"types": [
 			"dragon"
 		]
@@ -1245,6 +1392,7 @@
 		"id": 148,
 		"slug": "dragonair",
 		"name": "Dragonair",
+		"evolvesFromId": 147,
 		"types": [
 			"dragon"
 		]
@@ -1253,6 +1401,7 @@
 		"id": 149,
 		"slug": "dragonite",
 		"name": "Dragonite",
+		"evolvesFromId": 148,
 		"types": [
 			"dragon",
 			"flying"
@@ -1262,6 +1411,7 @@
 		"id": 150,
 		"slug": "mewtwo",
 		"name": "Mewtwo",
+		"evolvesFromId": null,
 		"types": [
 			"psychic"
 		]
@@ -1270,6 +1420,7 @@
 		"id": 151,
 		"slug": "mew",
 		"name": "Mew",
+		"evolvesFromId": null,
 		"types": [
 			"psychic"
 		]
@@ -1278,6 +1429,7 @@
 		"id": 152,
 		"slug": "chikorita",
 		"name": "Chikorita",
+		"evolvesFromId": null,
 		"types": [
 			"grass"
 		]
@@ -1286,6 +1438,7 @@
 		"id": 153,
 		"slug": "bayleef",
 		"name": "Bayleef",
+		"evolvesFromId": 152,
 		"types": [
 			"grass"
 		]
@@ -1294,6 +1447,7 @@
 		"id": 154,
 		"slug": "meganium",
 		"name": "Meganium",
+		"evolvesFromId": 153,
 		"types": [
 			"grass"
 		]
@@ -1302,6 +1456,7 @@
 		"id": 155,
 		"slug": "cyndaquil",
 		"name": "Cyndaquil",
+		"evolvesFromId": null,
 		"types": [
 			"fire"
 		]
@@ -1310,6 +1465,7 @@
 		"id": 156,
 		"slug": "quilava",
 		"name": "Quilava",
+		"evolvesFromId": 155,
 		"types": [
 			"fire"
 		]
@@ -1318,6 +1474,7 @@
 		"id": 157,
 		"slug": "typhlosion",
 		"name": "Typhlosion",
+		"evolvesFromId": 156,
 		"types": [
 			"fire"
 		]
@@ -1326,6 +1483,7 @@
 		"id": 158,
 		"slug": "totodile",
 		"name": "Totodile",
+		"evolvesFromId": null,
 		"types": [
 			"water"
 		]
@@ -1334,6 +1492,7 @@
 		"id": 159,
 		"slug": "croconaw",
 		"name": "Croconaw",
+		"evolvesFromId": 158,
 		"types": [
 			"water"
 		]
@@ -1342,6 +1501,7 @@
 		"id": 160,
 		"slug": "feraligatr",
 		"name": "Feraligatr",
+		"evolvesFromId": 159,
 		"types": [
 			"water"
 		]
@@ -1350,6 +1510,7 @@
 		"id": 161,
 		"slug": "sentret",
 		"name": "Sentret",
+		"evolvesFromId": null,
 		"types": [
 			"normal"
 		]
@@ -1358,6 +1519,7 @@
 		"id": 162,
 		"slug": "furret",
 		"name": "Furret",
+		"evolvesFromId": 161,
 		"types": [
 			"normal"
 		]
@@ -1366,6 +1528,7 @@
 		"id": 163,
 		"slug": "hoothoot",
 		"name": "Hoothoot",
+		"evolvesFromId": null,
 		"types": [
 			"normal",
 			"flying"
@@ -1375,6 +1538,7 @@
 		"id": 164,
 		"slug": "noctowl",
 		"name": "Noctowl",
+		"evolvesFromId": 163,
 		"types": [
 			"normal",
 			"flying"
@@ -1384,6 +1548,7 @@
 		"id": 165,
 		"slug": "ledyba",
 		"name": "Ledyba",
+		"evolvesFromId": null,
 		"types": [
 			"bug",
 			"flying"
@@ -1393,6 +1558,7 @@
 		"id": 166,
 		"slug": "ledian",
 		"name": "Ledian",
+		"evolvesFromId": 165,
 		"types": [
 			"bug",
 			"flying"
@@ -1402,6 +1568,7 @@
 		"id": 167,
 		"slug": "spinarak",
 		"name": "Spinarak",
+		"evolvesFromId": null,
 		"types": [
 			"bug",
 			"poison"
@@ -1411,6 +1578,7 @@
 		"id": 168,
 		"slug": "ariados",
 		"name": "Ariados",
+		"evolvesFromId": 167,
 		"types": [
 			"bug",
 			"poison"
@@ -1420,6 +1588,7 @@
 		"id": 169,
 		"slug": "crobat",
 		"name": "Crobat",
+		"evolvesFromId": 42,
 		"types": [
 			"poison",
 			"flying"
@@ -1429,6 +1598,7 @@
 		"id": 170,
 		"slug": "chinchou",
 		"name": "Chinchou",
+		"evolvesFromId": null,
 		"types": [
 			"water",
 			"electric"
@@ -1438,6 +1608,7 @@
 		"id": 171,
 		"slug": "lanturn",
 		"name": "Lanturn",
+		"evolvesFromId": 170,
 		"types": [
 			"water",
 			"electric"
@@ -1447,6 +1618,7 @@
 		"id": 172,
 		"slug": "pichu",
 		"name": "Pichu",
+		"evolvesFromId": null,
 		"types": [
 			"electric"
 		]
@@ -1455,6 +1627,7 @@
 		"id": 173,
 		"slug": "cleffa",
 		"name": "Cleffa",
+		"evolvesFromId": null,
 		"types": [
 			"fairy"
 		]
@@ -1463,6 +1636,7 @@
 		"id": 174,
 		"slug": "igglybuff",
 		"name": "Igglybuff",
+		"evolvesFromId": null,
 		"types": [
 			"normal",
 			"fairy"
@@ -1472,6 +1646,7 @@
 		"id": 175,
 		"slug": "togepi",
 		"name": "Togepi",
+		"evolvesFromId": null,
 		"types": [
 			"fairy"
 		]
@@ -1480,6 +1655,7 @@
 		"id": 176,
 		"slug": "togetic",
 		"name": "Togetic",
+		"evolvesFromId": 175,
 		"types": [
 			"fairy",
 			"flying"
@@ -1489,6 +1665,7 @@
 		"id": 177,
 		"slug": "natu",
 		"name": "Natu",
+		"evolvesFromId": null,
 		"types": [
 			"psychic",
 			"flying"
@@ -1498,6 +1675,7 @@
 		"id": 178,
 		"slug": "xatu",
 		"name": "Xatu",
+		"evolvesFromId": 177,
 		"types": [
 			"psychic",
 			"flying"
@@ -1507,6 +1685,7 @@
 		"id": 179,
 		"slug": "mareep",
 		"name": "Mareep",
+		"evolvesFromId": null,
 		"types": [
 			"electric"
 		]
@@ -1515,6 +1694,7 @@
 		"id": 180,
 		"slug": "flaaffy",
 		"name": "Flaaffy",
+		"evolvesFromId": 179,
 		"types": [
 			"electric"
 		]
@@ -1523,6 +1703,7 @@
 		"id": 181,
 		"slug": "ampharos",
 		"name": "Ampharos",
+		"evolvesFromId": 180,
 		"types": [
 			"electric"
 		]
@@ -1531,6 +1712,7 @@
 		"id": 182,
 		"slug": "bellossom",
 		"name": "Bellossom",
+		"evolvesFromId": 44,
 		"types": [
 			"grass"
 		]
@@ -1539,6 +1721,7 @@
 		"id": 183,
 		"slug": "marill",
 		"name": "Marill",
+		"evolvesFromId": 298,
 		"types": [
 			"water",
 			"fairy"
@@ -1548,6 +1731,7 @@
 		"id": 184,
 		"slug": "azumarill",
 		"name": "Azumarill",
+		"evolvesFromId": 183,
 		"types": [
 			"water",
 			"fairy"
@@ -1557,6 +1741,7 @@
 		"id": 185,
 		"slug": "sudowoodo",
 		"name": "Sudowoodo",
+		"evolvesFromId": 438,
 		"types": [
 			"rock"
 		]
@@ -1565,6 +1750,7 @@
 		"id": 186,
 		"slug": "politoed",
 		"name": "Politoed",
+		"evolvesFromId": 61,
 		"types": [
 			"water"
 		]
@@ -1573,6 +1759,7 @@
 		"id": 187,
 		"slug": "hoppip",
 		"name": "Hoppip",
+		"evolvesFromId": null,
 		"types": [
 			"grass",
 			"flying"
@@ -1582,6 +1769,7 @@
 		"id": 188,
 		"slug": "skiploom",
 		"name": "Skiploom",
+		"evolvesFromId": 187,
 		"types": [
 			"grass",
 			"flying"
@@ -1591,6 +1779,7 @@
 		"id": 189,
 		"slug": "jumpluff",
 		"name": "Jumpluff",
+		"evolvesFromId": 188,
 		"types": [
 			"grass",
 			"flying"
@@ -1600,6 +1789,7 @@
 		"id": 190,
 		"slug": "aipom",
 		"name": "Aipom",
+		"evolvesFromId": null,
 		"types": [
 			"normal"
 		]
@@ -1608,6 +1798,7 @@
 		"id": 191,
 		"slug": "sunkern",
 		"name": "Sunkern",
+		"evolvesFromId": null,
 		"types": [
 			"grass"
 		]
@@ -1616,6 +1807,7 @@
 		"id": 192,
 		"slug": "sunflora",
 		"name": "Sunflora",
+		"evolvesFromId": 191,
 		"types": [
 			"grass"
 		]
@@ -1624,6 +1816,7 @@
 		"id": 193,
 		"slug": "yanma",
 		"name": "Yanma",
+		"evolvesFromId": null,
 		"types": [
 			"bug",
 			"flying"
@@ -1633,6 +1826,7 @@
 		"id": 194,
 		"slug": "wooper",
 		"name": "Wooper",
+		"evolvesFromId": null,
 		"types": [
 			"water",
 			"ground"
@@ -1642,6 +1836,7 @@
 		"id": 195,
 		"slug": "quagsire",
 		"name": "Quagsire",
+		"evolvesFromId": 194,
 		"types": [
 			"water",
 			"ground"
@@ -1651,6 +1846,7 @@
 		"id": 196,
 		"slug": "espeon",
 		"name": "Espeon",
+		"evolvesFromId": 133,
 		"types": [
 			"psychic"
 		]
@@ -1659,6 +1855,7 @@
 		"id": 197,
 		"slug": "umbreon",
 		"name": "Umbreon",
+		"evolvesFromId": 133,
 		"types": [
 			"dark"
 		]
@@ -1667,6 +1864,7 @@
 		"id": 198,
 		"slug": "murkrow",
 		"name": "Murkrow",
+		"evolvesFromId": null,
 		"types": [
 			"dark",
 			"flying"
@@ -1676,6 +1874,7 @@
 		"id": 199,
 		"slug": "slowking",
 		"name": "Slowking",
+		"evolvesFromId": 79,
 		"types": [
 			"water",
 			"psychic"
@@ -1685,6 +1884,7 @@
 		"id": 200,
 		"slug": "misdreavus",
 		"name": "Misdreavus",
+		"evolvesFromId": null,
 		"types": [
 			"ghost"
 		]
@@ -1693,6 +1893,7 @@
 		"id": 201,
 		"slug": "unown",
 		"name": "Unown",
+		"evolvesFromId": null,
 		"types": [
 			"psychic"
 		]
@@ -1701,6 +1902,7 @@
 		"id": 202,
 		"slug": "wobbuffet",
 		"name": "Wobbuffet",
+		"evolvesFromId": 360,
 		"types": [
 			"psychic"
 		]
@@ -1709,6 +1911,7 @@
 		"id": 203,
 		"slug": "girafarig",
 		"name": "Girafarig",
+		"evolvesFromId": null,
 		"types": [
 			"normal",
 			"psychic"
@@ -1718,6 +1921,7 @@
 		"id": 204,
 		"slug": "pineco",
 		"name": "Pineco",
+		"evolvesFromId": null,
 		"types": [
 			"bug"
 		]
@@ -1726,6 +1930,7 @@
 		"id": 205,
 		"slug": "forretress",
 		"name": "Forretress",
+		"evolvesFromId": 204,
 		"types": [
 			"bug",
 			"steel"
@@ -1735,6 +1940,7 @@
 		"id": 206,
 		"slug": "dunsparce",
 		"name": "Dunsparce",
+		"evolvesFromId": null,
 		"types": [
 			"normal"
 		]
@@ -1743,6 +1949,7 @@
 		"id": 207,
 		"slug": "gligar",
 		"name": "Gligar",
+		"evolvesFromId": null,
 		"types": [
 			"ground",
 			"flying"
@@ -1752,6 +1959,7 @@
 		"id": 208,
 		"slug": "steelix",
 		"name": "Steelix",
+		"evolvesFromId": 95,
 		"types": [
 			"steel",
 			"ground"
@@ -1761,6 +1969,7 @@
 		"id": 209,
 		"slug": "snubbull",
 		"name": "Snubbull",
+		"evolvesFromId": null,
 		"types": [
 			"fairy"
 		]
@@ -1769,6 +1978,7 @@
 		"id": 210,
 		"slug": "granbull",
 		"name": "Granbull",
+		"evolvesFromId": 209,
 		"types": [
 			"fairy"
 		]
@@ -1777,6 +1987,7 @@
 		"id": 211,
 		"slug": "qwilfish",
 		"name": "Qwilfish",
+		"evolvesFromId": null,
 		"types": [
 			"water",
 			"poison"
@@ -1786,6 +1997,7 @@
 		"id": 212,
 		"slug": "scizor",
 		"name": "Scizor",
+		"evolvesFromId": 123,
 		"types": [
 			"bug",
 			"steel"
@@ -1795,6 +2007,7 @@
 		"id": 213,
 		"slug": "shuckle",
 		"name": "Shuckle",
+		"evolvesFromId": null,
 		"types": [
 			"bug",
 			"rock"
@@ -1804,6 +2017,7 @@
 		"id": 214,
 		"slug": "heracross",
 		"name": "Heracross",
+		"evolvesFromId": null,
 		"types": [
 			"bug",
 			"fighting"
@@ -1813,6 +2027,7 @@
 		"id": 215,
 		"slug": "sneasel",
 		"name": "Sneasel",
+		"evolvesFromId": null,
 		"types": [
 			"dark",
 			"ice"
@@ -1822,6 +2037,7 @@
 		"id": 216,
 		"slug": "teddiursa",
 		"name": "Teddiursa",
+		"evolvesFromId": null,
 		"types": [
 			"normal"
 		]
@@ -1830,6 +2046,7 @@
 		"id": 217,
 		"slug": "ursaring",
 		"name": "Ursaring",
+		"evolvesFromId": 216,
 		"types": [
 			"normal"
 		]
@@ -1838,6 +2055,7 @@
 		"id": 218,
 		"slug": "slugma",
 		"name": "Slugma",
+		"evolvesFromId": null,
 		"types": [
 			"fire"
 		]
@@ -1846,6 +2064,7 @@
 		"id": 219,
 		"slug": "magcargo",
 		"name": "Magcargo",
+		"evolvesFromId": 218,
 		"types": [
 			"fire",
 			"rock"
@@ -1855,6 +2074,7 @@
 		"id": 220,
 		"slug": "swinub",
 		"name": "Swinub",
+		"evolvesFromId": null,
 		"types": [
 			"ice",
 			"ground"
@@ -1864,6 +2084,7 @@
 		"id": 221,
 		"slug": "piloswine",
 		"name": "Piloswine",
+		"evolvesFromId": 220,
 		"types": [
 			"ice",
 			"ground"
@@ -1873,6 +2094,7 @@
 		"id": 222,
 		"slug": "corsola",
 		"name": "Corsola",
+		"evolvesFromId": null,
 		"types": [
 			"water",
 			"rock"
@@ -1882,6 +2104,7 @@
 		"id": 223,
 		"slug": "remoraid",
 		"name": "Remoraid",
+		"evolvesFromId": null,
 		"types": [
 			"water"
 		]
@@ -1890,6 +2113,7 @@
 		"id": 224,
 		"slug": "octillery",
 		"name": "Octillery",
+		"evolvesFromId": 223,
 		"types": [
 			"water"
 		]
@@ -1898,6 +2122,7 @@
 		"id": 225,
 		"slug": "delibird",
 		"name": "Delibird",
+		"evolvesFromId": null,
 		"types": [
 			"ice",
 			"flying"
@@ -1907,6 +2132,7 @@
 		"id": 226,
 		"slug": "mantine",
 		"name": "Mantine",
+		"evolvesFromId": 458,
 		"types": [
 			"water",
 			"flying"
@@ -1916,6 +2142,7 @@
 		"id": 227,
 		"slug": "skarmory",
 		"name": "Skarmory",
+		"evolvesFromId": null,
 		"types": [
 			"steel",
 			"flying"
@@ -1925,6 +2152,7 @@
 		"id": 228,
 		"slug": "houndour",
 		"name": "Houndour",
+		"evolvesFromId": null,
 		"types": [
 			"dark",
 			"fire"
@@ -1934,6 +2162,7 @@
 		"id": 229,
 		"slug": "houndoom",
 		"name": "Houndoom",
+		"evolvesFromId": 228,
 		"types": [
 			"dark",
 			"fire"
@@ -1943,6 +2172,7 @@
 		"id": 230,
 		"slug": "kingdra",
 		"name": "Kingdra",
+		"evolvesFromId": 117,
 		"types": [
 			"water",
 			"dragon"
@@ -1952,6 +2182,7 @@
 		"id": 231,
 		"slug": "phanpy",
 		"name": "Phanpy",
+		"evolvesFromId": null,
 		"types": [
 			"ground"
 		]
@@ -1960,6 +2191,7 @@
 		"id": 232,
 		"slug": "donphan",
 		"name": "Donphan",
+		"evolvesFromId": 231,
 		"types": [
 			"ground"
 		]
@@ -1968,6 +2200,7 @@
 		"id": 233,
 		"slug": "porygon2",
 		"name": "Porygon2",
+		"evolvesFromId": 137,
 		"types": [
 			"normal"
 		]
@@ -1976,6 +2209,7 @@
 		"id": 234,
 		"slug": "stantler",
 		"name": "Stantler",
+		"evolvesFromId": null,
 		"types": [
 			"normal"
 		]
@@ -1984,6 +2218,7 @@
 		"id": 235,
 		"slug": "smeargle",
 		"name": "Smeargle",
+		"evolvesFromId": null,
 		"types": [
 			"normal"
 		]
@@ -1992,6 +2227,7 @@
 		"id": 236,
 		"slug": "tyrogue",
 		"name": "Tyrogue",
+		"evolvesFromId": null,
 		"types": [
 			"fighting"
 		]
@@ -2000,6 +2236,7 @@
 		"id": 237,
 		"slug": "hitmontop",
 		"name": "Hitmontop",
+		"evolvesFromId": 236,
 		"types": [
 			"fighting"
 		]
@@ -2008,6 +2245,7 @@
 		"id": 238,
 		"slug": "smoochum",
 		"name": "Smoochum",
+		"evolvesFromId": null,
 		"types": [
 			"ice",
 			"psychic"
@@ -2017,6 +2255,7 @@
 		"id": 239,
 		"slug": "elekid",
 		"name": "Elekid",
+		"evolvesFromId": null,
 		"types": [
 			"electric"
 		]
@@ -2025,6 +2264,7 @@
 		"id": 240,
 		"slug": "magby",
 		"name": "Magby",
+		"evolvesFromId": null,
 		"types": [
 			"fire"
 		]
@@ -2033,6 +2273,7 @@
 		"id": 241,
 		"slug": "miltank",
 		"name": "Miltank",
+		"evolvesFromId": null,
 		"types": [
 			"normal"
 		]
@@ -2041,6 +2282,7 @@
 		"id": 242,
 		"slug": "blissey",
 		"name": "Blissey",
+		"evolvesFromId": 113,
 		"types": [
 			"normal"
 		]
@@ -2049,6 +2291,7 @@
 		"id": 243,
 		"slug": "raikou",
 		"name": "Raikou",
+		"evolvesFromId": null,
 		"types": [
 			"electric"
 		]
@@ -2057,6 +2300,7 @@
 		"id": 244,
 		"slug": "entei",
 		"name": "Entei",
+		"evolvesFromId": null,
 		"types": [
 			"fire"
 		]
@@ -2065,6 +2309,7 @@
 		"id": 245,
 		"slug": "suicune",
 		"name": "Suicune",
+		"evolvesFromId": null,
 		"types": [
 			"water"
 		]
@@ -2073,6 +2318,7 @@
 		"id": 246,
 		"slug": "larvitar",
 		"name": "Larvitar",
+		"evolvesFromId": null,
 		"types": [
 			"rock",
 			"ground"
@@ -2082,6 +2328,7 @@
 		"id": 247,
 		"slug": "pupitar",
 		"name": "Pupitar",
+		"evolvesFromId": 246,
 		"types": [
 			"rock",
 			"ground"
@@ -2091,6 +2338,7 @@
 		"id": 248,
 		"slug": "tyranitar",
 		"name": "Tyranitar",
+		"evolvesFromId": 247,
 		"types": [
 			"rock",
 			"dark"
@@ -2100,6 +2348,7 @@
 		"id": 249,
 		"slug": "lugia",
 		"name": "Lugia",
+		"evolvesFromId": null,
 		"types": [
 			"psychic",
 			"flying"
@@ -2109,6 +2358,7 @@
 		"id": 250,
 		"slug": "ho-oh",
 		"name": "Ho-Oh",
+		"evolvesFromId": null,
 		"types": [
 			"fire",
 			"flying"
@@ -2118,6 +2368,7 @@
 		"id": 251,
 		"slug": "celebi",
 		"name": "Celebi",
+		"evolvesFromId": null,
 		"types": [
 			"psychic",
 			"grass"
@@ -2127,6 +2378,7 @@
 		"id": 252,
 		"slug": "treecko",
 		"name": "Treecko",
+		"evolvesFromId": null,
 		"types": [
 			"grass"
 		]
@@ -2135,6 +2387,7 @@
 		"id": 253,
 		"slug": "grovyle",
 		"name": "Grovyle",
+		"evolvesFromId": 252,
 		"types": [
 			"grass"
 		]
@@ -2143,6 +2396,7 @@
 		"id": 254,
 		"slug": "sceptile",
 		"name": "Sceptile",
+		"evolvesFromId": 253,
 		"types": [
 			"grass"
 		]
@@ -2151,6 +2405,7 @@
 		"id": 255,
 		"slug": "torchic",
 		"name": "Torchic",
+		"evolvesFromId": null,
 		"types": [
 			"fire"
 		]
@@ -2159,6 +2414,7 @@
 		"id": 256,
 		"slug": "combusken",
 		"name": "Combusken",
+		"evolvesFromId": 255,
 		"types": [
 			"fire",
 			"fighting"
@@ -2168,6 +2424,7 @@
 		"id": 257,
 		"slug": "blaziken",
 		"name": "Blaziken",
+		"evolvesFromId": 256,
 		"types": [
 			"fire",
 			"fighting"
@@ -2177,6 +2434,7 @@
 		"id": 258,
 		"slug": "mudkip",
 		"name": "Mudkip",
+		"evolvesFromId": null,
 		"types": [
 			"water"
 		]
@@ -2185,6 +2443,7 @@
 		"id": 259,
 		"slug": "marshtomp",
 		"name": "Marshtomp",
+		"evolvesFromId": 258,
 		"types": [
 			"water",
 			"ground"
@@ -2194,6 +2453,7 @@
 		"id": 260,
 		"slug": "swampert",
 		"name": "Swampert",
+		"evolvesFromId": 259,
 		"types": [
 			"water",
 			"ground"
@@ -2203,6 +2463,7 @@
 		"id": 261,
 		"slug": "poochyena",
 		"name": "Poochyena",
+		"evolvesFromId": null,
 		"types": [
 			"dark"
 		]
@@ -2211,6 +2472,7 @@
 		"id": 262,
 		"slug": "mightyena",
 		"name": "Mightyena",
+		"evolvesFromId": 261,
 		"types": [
 			"dark"
 		]
@@ -2219,6 +2481,7 @@
 		"id": 263,
 		"slug": "zigzagoon",
 		"name": "Zigzagoon",
+		"evolvesFromId": null,
 		"types": [
 			"normal"
 		]
@@ -2227,6 +2490,7 @@
 		"id": 264,
 		"slug": "linoone",
 		"name": "Linoone",
+		"evolvesFromId": 263,
 		"types": [
 			"normal"
 		]
@@ -2235,6 +2499,7 @@
 		"id": 265,
 		"slug": "wurmple",
 		"name": "Wurmple",
+		"evolvesFromId": null,
 		"types": [
 			"bug"
 		]
@@ -2243,6 +2508,7 @@
 		"id": 266,
 		"slug": "silcoon",
 		"name": "Silcoon",
+		"evolvesFromId": 265,
 		"types": [
 			"bug"
 		]
@@ -2251,6 +2517,7 @@
 		"id": 267,
 		"slug": "beautifly",
 		"name": "Beautifly",
+		"evolvesFromId": 266,
 		"types": [
 			"bug",
 			"flying"
@@ -2260,6 +2527,7 @@
 		"id": 268,
 		"slug": "cascoon",
 		"name": "Cascoon",
+		"evolvesFromId": 265,
 		"types": [
 			"bug"
 		]
@@ -2268,6 +2536,7 @@
 		"id": 269,
 		"slug": "dustox",
 		"name": "Dustox",
+		"evolvesFromId": 268,
 		"types": [
 			"bug",
 			"poison"
@@ -2277,6 +2546,7 @@
 		"id": 270,
 		"slug": "lotad",
 		"name": "Lotad",
+		"evolvesFromId": null,
 		"types": [
 			"water",
 			"grass"
@@ -2286,6 +2556,7 @@
 		"id": 271,
 		"slug": "lombre",
 		"name": "Lombre",
+		"evolvesFromId": 270,
 		"types": [
 			"water",
 			"grass"
@@ -2295,6 +2566,7 @@
 		"id": 272,
 		"slug": "ludicolo",
 		"name": "Ludicolo",
+		"evolvesFromId": 271,
 		"types": [
 			"water",
 			"grass"
@@ -2304,6 +2576,7 @@
 		"id": 273,
 		"slug": "seedot",
 		"name": "Seedot",
+		"evolvesFromId": null,
 		"types": [
 			"grass"
 		]
@@ -2312,6 +2585,7 @@
 		"id": 274,
 		"slug": "nuzleaf",
 		"name": "Nuzleaf",
+		"evolvesFromId": 273,
 		"types": [
 			"grass",
 			"dark"
@@ -2321,6 +2595,7 @@
 		"id": 275,
 		"slug": "shiftry",
 		"name": "Shiftry",
+		"evolvesFromId": 274,
 		"types": [
 			"grass",
 			"dark"
@@ -2330,6 +2605,7 @@
 		"id": 276,
 		"slug": "taillow",
 		"name": "Taillow",
+		"evolvesFromId": null,
 		"types": [
 			"normal",
 			"flying"
@@ -2339,6 +2615,7 @@
 		"id": 277,
 		"slug": "swellow",
 		"name": "Swellow",
+		"evolvesFromId": 276,
 		"types": [
 			"normal",
 			"flying"
@@ -2348,6 +2625,7 @@
 		"id": 278,
 		"slug": "wingull",
 		"name": "Wingull",
+		"evolvesFromId": null,
 		"types": [
 			"water",
 			"flying"
@@ -2357,6 +2635,7 @@
 		"id": 279,
 		"slug": "pelipper",
 		"name": "Pelipper",
+		"evolvesFromId": 278,
 		"types": [
 			"water",
 			"flying"
@@ -2366,6 +2645,7 @@
 		"id": 280,
 		"slug": "ralts",
 		"name": "Ralts",
+		"evolvesFromId": null,
 		"types": [
 			"psychic",
 			"fairy"
@@ -2375,6 +2655,7 @@
 		"id": 281,
 		"slug": "kirlia",
 		"name": "Kirlia",
+		"evolvesFromId": 280,
 		"types": [
 			"psychic",
 			"fairy"
@@ -2384,6 +2665,7 @@
 		"id": 282,
 		"slug": "gardevoir",
 		"name": "Gardevoir",
+		"evolvesFromId": 281,
 		"types": [
 			"psychic",
 			"fairy"
@@ -2393,6 +2675,7 @@
 		"id": 283,
 		"slug": "surskit",
 		"name": "Surskit",
+		"evolvesFromId": null,
 		"types": [
 			"bug",
 			"water"
@@ -2402,6 +2685,7 @@
 		"id": 284,
 		"slug": "masquerain",
 		"name": "Masquerain",
+		"evolvesFromId": 283,
 		"types": [
 			"bug",
 			"flying"
@@ -2411,6 +2695,7 @@
 		"id": 285,
 		"slug": "shroomish",
 		"name": "Shroomish",
+		"evolvesFromId": null,
 		"types": [
 			"grass"
 		]
@@ -2419,6 +2704,7 @@
 		"id": 286,
 		"slug": "breloom",
 		"name": "Breloom",
+		"evolvesFromId": 285,
 		"types": [
 			"grass",
 			"fighting"
@@ -2428,6 +2714,7 @@
 		"id": 287,
 		"slug": "slakoth",
 		"name": "Slakoth",
+		"evolvesFromId": null,
 		"types": [
 			"normal"
 		]
@@ -2436,6 +2723,7 @@
 		"id": 288,
 		"slug": "vigoroth",
 		"name": "Vigoroth",
+		"evolvesFromId": 287,
 		"types": [
 			"normal"
 		]
@@ -2444,6 +2732,7 @@
 		"id": 289,
 		"slug": "slaking",
 		"name": "Slaking",
+		"evolvesFromId": 288,
 		"types": [
 			"normal"
 		]
@@ -2452,6 +2741,7 @@
 		"id": 290,
 		"slug": "nincada",
 		"name": "Nincada",
+		"evolvesFromId": null,
 		"types": [
 			"bug",
 			"ground"
@@ -2461,6 +2751,7 @@
 		"id": 291,
 		"slug": "ninjask",
 		"name": "Ninjask",
+		"evolvesFromId": 290,
 		"types": [
 			"bug",
 			"flying"
@@ -2470,6 +2761,7 @@
 		"id": 292,
 		"slug": "shedinja",
 		"name": "Shedinja",
+		"evolvesFromId": 290,
 		"types": [
 			"bug",
 			"ghost"
@@ -2479,6 +2771,7 @@
 		"id": 293,
 		"slug": "whismur",
 		"name": "Whismur",
+		"evolvesFromId": null,
 		"types": [
 			"normal"
 		]
@@ -2487,6 +2780,7 @@
 		"id": 294,
 		"slug": "loudred",
 		"name": "Loudred",
+		"evolvesFromId": 293,
 		"types": [
 			"normal"
 		]
@@ -2495,6 +2789,7 @@
 		"id": 295,
 		"slug": "exploud",
 		"name": "Exploud",
+		"evolvesFromId": 294,
 		"types": [
 			"normal"
 		]
@@ -2503,6 +2798,7 @@
 		"id": 296,
 		"slug": "makuhita",
 		"name": "Makuhita",
+		"evolvesFromId": null,
 		"types": [
 			"fighting"
 		]
@@ -2511,6 +2807,7 @@
 		"id": 297,
 		"slug": "hariyama",
 		"name": "Hariyama",
+		"evolvesFromId": 296,
 		"types": [
 			"fighting"
 		]
@@ -2519,6 +2816,7 @@
 		"id": 298,
 		"slug": "azurill",
 		"name": "Azurill",
+		"evolvesFromId": null,
 		"types": [
 			"normal",
 			"fairy"
@@ -2528,6 +2826,7 @@
 		"id": 299,
 		"slug": "nosepass",
 		"name": "Nosepass",
+		"evolvesFromId": null,
 		"types": [
 			"rock"
 		]
@@ -2536,6 +2835,7 @@
 		"id": 300,
 		"slug": "skitty",
 		"name": "Skitty",
+		"evolvesFromId": null,
 		"types": [
 			"normal"
 		]
@@ -2544,6 +2844,7 @@
 		"id": 301,
 		"slug": "delcatty",
 		"name": "Delcatty",
+		"evolvesFromId": 300,
 		"types": [
 			"normal"
 		]
@@ -2552,6 +2853,7 @@
 		"id": 302,
 		"slug": "sableye",
 		"name": "Sableye",
+		"evolvesFromId": null,
 		"types": [
 			"dark",
 			"ghost"
@@ -2561,6 +2863,7 @@
 		"id": 303,
 		"slug": "mawile",
 		"name": "Mawile",
+		"evolvesFromId": null,
 		"types": [
 			"steel",
 			"fairy"
@@ -2570,6 +2873,7 @@
 		"id": 304,
 		"slug": "aron",
 		"name": "Aron",
+		"evolvesFromId": null,
 		"types": [
 			"steel",
 			"rock"
@@ -2579,6 +2883,7 @@
 		"id": 305,
 		"slug": "lairon",
 		"name": "Lairon",
+		"evolvesFromId": 304,
 		"types": [
 			"steel",
 			"rock"
@@ -2588,6 +2893,7 @@
 		"id": 306,
 		"slug": "aggron",
 		"name": "Aggron",
+		"evolvesFromId": 305,
 		"types": [
 			"steel",
 			"rock"
@@ -2597,6 +2903,7 @@
 		"id": 307,
 		"slug": "meditite",
 		"name": "Meditite",
+		"evolvesFromId": null,
 		"types": [
 			"fighting",
 			"psychic"
@@ -2606,6 +2913,7 @@
 		"id": 308,
 		"slug": "medicham",
 		"name": "Medicham",
+		"evolvesFromId": 307,
 		"types": [
 			"fighting",
 			"psychic"
@@ -2615,6 +2923,7 @@
 		"id": 309,
 		"slug": "electrike",
 		"name": "Electrike",
+		"evolvesFromId": null,
 		"types": [
 			"electric"
 		]
@@ -2623,6 +2932,7 @@
 		"id": 310,
 		"slug": "manectric",
 		"name": "Manectric",
+		"evolvesFromId": 309,
 		"types": [
 			"electric"
 		]
@@ -2631,6 +2941,7 @@
 		"id": 311,
 		"slug": "plusle",
 		"name": "Plusle",
+		"evolvesFromId": null,
 		"types": [
 			"electric"
 		]
@@ -2639,6 +2950,7 @@
 		"id": 312,
 		"slug": "minun",
 		"name": "Minun",
+		"evolvesFromId": null,
 		"types": [
 			"electric"
 		]
@@ -2647,6 +2959,7 @@
 		"id": 313,
 		"slug": "volbeat",
 		"name": "Volbeat",
+		"evolvesFromId": null,
 		"types": [
 			"bug"
 		]
@@ -2655,6 +2968,7 @@
 		"id": 314,
 		"slug": "illumise",
 		"name": "Illumise",
+		"evolvesFromId": null,
 		"types": [
 			"bug"
 		]
@@ -2663,6 +2977,7 @@
 		"id": 315,
 		"slug": "roselia",
 		"name": "Roselia",
+		"evolvesFromId": 406,
 		"types": [
 			"grass",
 			"poison"
@@ -2672,6 +2987,7 @@
 		"id": 316,
 		"slug": "gulpin",
 		"name": "Gulpin",
+		"evolvesFromId": null,
 		"types": [
 			"poison"
 		]
@@ -2680,6 +2996,7 @@
 		"id": 317,
 		"slug": "swalot",
 		"name": "Swalot",
+		"evolvesFromId": 316,
 		"types": [
 			"poison"
 		]
@@ -2688,6 +3005,7 @@
 		"id": 318,
 		"slug": "carvanha",
 		"name": "Carvanha",
+		"evolvesFromId": null,
 		"types": [
 			"water",
 			"dark"
@@ -2697,6 +3015,7 @@
 		"id": 319,
 		"slug": "sharpedo",
 		"name": "Sharpedo",
+		"evolvesFromId": 318,
 		"types": [
 			"water",
 			"dark"
@@ -2706,6 +3025,7 @@
 		"id": 320,
 		"slug": "wailmer",
 		"name": "Wailmer",
+		"evolvesFromId": null,
 		"types": [
 			"water"
 		]
@@ -2714,6 +3034,7 @@
 		"id": 321,
 		"slug": "wailord",
 		"name": "Wailord",
+		"evolvesFromId": 320,
 		"types": [
 			"water"
 		]
@@ -2722,6 +3043,7 @@
 		"id": 322,
 		"slug": "numel",
 		"name": "Numel",
+		"evolvesFromId": null,
 		"types": [
 			"fire",
 			"ground"
@@ -2731,6 +3053,7 @@
 		"id": 323,
 		"slug": "camerupt",
 		"name": "Camerupt",
+		"evolvesFromId": 322,
 		"types": [
 			"fire",
 			"ground"
@@ -2740,6 +3063,7 @@
 		"id": 324,
 		"slug": "torkoal",
 		"name": "Torkoal",
+		"evolvesFromId": null,
 		"types": [
 			"fire"
 		]
@@ -2748,6 +3072,7 @@
 		"id": 325,
 		"slug": "spoink",
 		"name": "Spoink",
+		"evolvesFromId": null,
 		"types": [
 			"psychic"
 		]
@@ -2756,6 +3081,7 @@
 		"id": 326,
 		"slug": "grumpig",
 		"name": "Grumpig",
+		"evolvesFromId": 325,
 		"types": [
 			"psychic"
 		]
@@ -2764,6 +3090,7 @@
 		"id": 327,
 		"slug": "spinda",
 		"name": "Spinda",
+		"evolvesFromId": null,
 		"types": [
 			"normal"
 		]
@@ -2772,6 +3099,7 @@
 		"id": 328,
 		"slug": "trapinch",
 		"name": "Trapinch",
+		"evolvesFromId": null,
 		"types": [
 			"ground"
 		]
@@ -2780,6 +3108,7 @@
 		"id": 329,
 		"slug": "vibrava",
 		"name": "Vibrava",
+		"evolvesFromId": 328,
 		"types": [
 			"ground",
 			"dragon"
@@ -2789,6 +3118,7 @@
 		"id": 330,
 		"slug": "flygon",
 		"name": "Flygon",
+		"evolvesFromId": 329,
 		"types": [
 			"ground",
 			"dragon"
@@ -2798,6 +3128,7 @@
 		"id": 331,
 		"slug": "cacnea",
 		"name": "Cacnea",
+		"evolvesFromId": null,
 		"types": [
 			"grass"
 		]
@@ -2806,6 +3137,7 @@
 		"id": 332,
 		"slug": "cacturne",
 		"name": "Cacturne",
+		"evolvesFromId": 331,
 		"types": [
 			"grass",
 			"dark"
@@ -2815,6 +3147,7 @@
 		"id": 333,
 		"slug": "swablu",
 		"name": "Swablu",
+		"evolvesFromId": null,
 		"types": [
 			"normal",
 			"flying"
@@ -2824,6 +3157,7 @@
 		"id": 334,
 		"slug": "altaria",
 		"name": "Altaria",
+		"evolvesFromId": 333,
 		"types": [
 			"dragon",
 			"flying"
@@ -2833,6 +3167,7 @@
 		"id": 335,
 		"slug": "zangoose",
 		"name": "Zangoose",
+		"evolvesFromId": null,
 		"types": [
 			"normal"
 		]
@@ -2841,6 +3176,7 @@
 		"id": 336,
 		"slug": "seviper",
 		"name": "Seviper",
+		"evolvesFromId": null,
 		"types": [
 			"poison"
 		]
@@ -2849,6 +3185,7 @@
 		"id": 337,
 		"slug": "lunatone",
 		"name": "Lunatone",
+		"evolvesFromId": null,
 		"types": [
 			"rock",
 			"psychic"
@@ -2858,6 +3195,7 @@
 		"id": 338,
 		"slug": "solrock",
 		"name": "Solrock",
+		"evolvesFromId": null,
 		"types": [
 			"rock",
 			"psychic"
@@ -2867,6 +3205,7 @@
 		"id": 339,
 		"slug": "barboach",
 		"name": "Barboach",
+		"evolvesFromId": null,
 		"types": [
 			"water",
 			"ground"
@@ -2876,6 +3215,7 @@
 		"id": 340,
 		"slug": "whiscash",
 		"name": "Whiscash",
+		"evolvesFromId": 339,
 		"types": [
 			"water",
 			"ground"
@@ -2885,6 +3225,7 @@
 		"id": 341,
 		"slug": "corphish",
 		"name": "Corphish",
+		"evolvesFromId": null,
 		"types": [
 			"water"
 		]
@@ -2893,6 +3234,7 @@
 		"id": 342,
 		"slug": "crawdaunt",
 		"name": "Crawdaunt",
+		"evolvesFromId": 341,
 		"types": [
 			"water",
 			"dark"
@@ -2902,6 +3244,7 @@
 		"id": 343,
 		"slug": "baltoy",
 		"name": "Baltoy",
+		"evolvesFromId": null,
 		"types": [
 			"ground",
 			"psychic"
@@ -2911,6 +3254,7 @@
 		"id": 344,
 		"slug": "claydol",
 		"name": "Claydol",
+		"evolvesFromId": 343,
 		"types": [
 			"ground",
 			"psychic"
@@ -2920,6 +3264,7 @@
 		"id": 345,
 		"slug": "lileep",
 		"name": "Lileep",
+		"evolvesFromId": null,
 		"types": [
 			"rock",
 			"grass"
@@ -2929,6 +3274,7 @@
 		"id": 346,
 		"slug": "cradily",
 		"name": "Cradily",
+		"evolvesFromId": 345,
 		"types": [
 			"rock",
 			"grass"
@@ -2938,6 +3284,7 @@
 		"id": 347,
 		"slug": "anorith",
 		"name": "Anorith",
+		"evolvesFromId": null,
 		"types": [
 			"rock",
 			"bug"
@@ -2947,6 +3294,7 @@
 		"id": 348,
 		"slug": "armaldo",
 		"name": "Armaldo",
+		"evolvesFromId": 347,
 		"types": [
 			"rock",
 			"bug"
@@ -2956,6 +3304,7 @@
 		"id": 349,
 		"slug": "feebas",
 		"name": "Feebas",
+		"evolvesFromId": null,
 		"types": [
 			"water"
 		]
@@ -2964,6 +3313,7 @@
 		"id": 350,
 		"slug": "milotic",
 		"name": "Milotic",
+		"evolvesFromId": 349,
 		"types": [
 			"water"
 		]
@@ -2972,6 +3322,7 @@
 		"id": 351,
 		"slug": "castform",
 		"name": "Castform",
+		"evolvesFromId": null,
 		"types": [
 			"normal"
 		]
@@ -2980,6 +3331,7 @@
 		"id": 352,
 		"slug": "kecleon",
 		"name": "Kecleon",
+		"evolvesFromId": null,
 		"types": [
 			"normal"
 		]
@@ -2988,6 +3340,7 @@
 		"id": 353,
 		"slug": "shuppet",
 		"name": "Shuppet",
+		"evolvesFromId": null,
 		"types": [
 			"ghost"
 		]
@@ -2996,6 +3349,7 @@
 		"id": 354,
 		"slug": "banette",
 		"name": "Banette",
+		"evolvesFromId": 353,
 		"types": [
 			"ghost"
 		]
@@ -3004,6 +3358,7 @@
 		"id": 355,
 		"slug": "duskull",
 		"name": "Duskull",
+		"evolvesFromId": null,
 		"types": [
 			"ghost"
 		]
@@ -3012,6 +3367,7 @@
 		"id": 356,
 		"slug": "dusclops",
 		"name": "Dusclops",
+		"evolvesFromId": 355,
 		"types": [
 			"ghost"
 		]
@@ -3020,6 +3376,7 @@
 		"id": 357,
 		"slug": "tropius",
 		"name": "Tropius",
+		"evolvesFromId": null,
 		"types": [
 			"grass",
 			"flying"
@@ -3029,6 +3386,7 @@
 		"id": 358,
 		"slug": "chimecho",
 		"name": "Chimecho",
+		"evolvesFromId": 433,
 		"types": [
 			"psychic"
 		]
@@ -3037,6 +3395,7 @@
 		"id": 359,
 		"slug": "absol",
 		"name": "Absol",
+		"evolvesFromId": null,
 		"types": [
 			"dark"
 		]
@@ -3045,6 +3404,7 @@
 		"id": 360,
 		"slug": "wynaut",
 		"name": "Wynaut",
+		"evolvesFromId": null,
 		"types": [
 			"psychic"
 		]
@@ -3053,6 +3413,7 @@
 		"id": 361,
 		"slug": "snorunt",
 		"name": "Snorunt",
+		"evolvesFromId": null,
 		"types": [
 			"ice"
 		]
@@ -3061,6 +3422,7 @@
 		"id": 362,
 		"slug": "glalie",
 		"name": "Glalie",
+		"evolvesFromId": 361,
 		"types": [
 			"ice"
 		]
@@ -3069,6 +3431,7 @@
 		"id": 363,
 		"slug": "spheal",
 		"name": "Spheal",
+		"evolvesFromId": null,
 		"types": [
 			"ice",
 			"water"
@@ -3078,6 +3441,7 @@
 		"id": 364,
 		"slug": "sealeo",
 		"name": "Sealeo",
+		"evolvesFromId": 363,
 		"types": [
 			"ice",
 			"water"
@@ -3087,6 +3451,7 @@
 		"id": 365,
 		"slug": "walrein",
 		"name": "Walrein",
+		"evolvesFromId": 364,
 		"types": [
 			"ice",
 			"water"
@@ -3096,6 +3461,7 @@
 		"id": 366,
 		"slug": "clamperl",
 		"name": "Clamperl",
+		"evolvesFromId": null,
 		"types": [
 			"water"
 		]
@@ -3104,6 +3470,7 @@
 		"id": 367,
 		"slug": "huntail",
 		"name": "Huntail",
+		"evolvesFromId": 366,
 		"types": [
 			"water"
 		]
@@ -3112,6 +3479,7 @@
 		"id": 368,
 		"slug": "gorebyss",
 		"name": "Gorebyss",
+		"evolvesFromId": 366,
 		"types": [
 			"water"
 		]
@@ -3120,6 +3488,7 @@
 		"id": 369,
 		"slug": "relicanth",
 		"name": "Relicanth",
+		"evolvesFromId": null,
 		"types": [
 			"water",
 			"rock"
@@ -3129,6 +3498,7 @@
 		"id": 370,
 		"slug": "luvdisc",
 		"name": "Luvdisc",
+		"evolvesFromId": null,
 		"types": [
 			"water"
 		]
@@ -3137,6 +3507,7 @@
 		"id": 371,
 		"slug": "bagon",
 		"name": "Bagon",
+		"evolvesFromId": null,
 		"types": [
 			"dragon"
 		]
@@ -3145,6 +3516,7 @@
 		"id": 372,
 		"slug": "shelgon",
 		"name": "Shelgon",
+		"evolvesFromId": 371,
 		"types": [
 			"dragon"
 		]
@@ -3153,6 +3525,7 @@
 		"id": 373,
 		"slug": "salamence",
 		"name": "Salamence",
+		"evolvesFromId": 372,
 		"types": [
 			"dragon",
 			"flying"
@@ -3162,6 +3535,7 @@
 		"id": 374,
 		"slug": "beldum",
 		"name": "Beldum",
+		"evolvesFromId": null,
 		"types": [
 			"steel",
 			"psychic"
@@ -3171,6 +3545,7 @@
 		"id": 375,
 		"slug": "metang",
 		"name": "Metang",
+		"evolvesFromId": 374,
 		"types": [
 			"steel",
 			"psychic"
@@ -3180,6 +3555,7 @@
 		"id": 376,
 		"slug": "metagross",
 		"name": "Metagross",
+		"evolvesFromId": 375,
 		"types": [
 			"steel",
 			"psychic"
@@ -3189,6 +3565,7 @@
 		"id": 377,
 		"slug": "regirock",
 		"name": "Regirock",
+		"evolvesFromId": null,
 		"types": [
 			"rock"
 		]
@@ -3197,6 +3574,7 @@
 		"id": 378,
 		"slug": "regice",
 		"name": "Regice",
+		"evolvesFromId": null,
 		"types": [
 			"ice"
 		]
@@ -3205,6 +3583,7 @@
 		"id": 379,
 		"slug": "registeel",
 		"name": "Registeel",
+		"evolvesFromId": null,
 		"types": [
 			"steel"
 		]
@@ -3213,6 +3592,7 @@
 		"id": 380,
 		"slug": "latias",
 		"name": "Latias",
+		"evolvesFromId": null,
 		"types": [
 			"dragon",
 			"psychic"
@@ -3222,6 +3602,7 @@
 		"id": 381,
 		"slug": "latios",
 		"name": "Latios",
+		"evolvesFromId": null,
 		"types": [
 			"dragon",
 			"psychic"
@@ -3231,6 +3612,7 @@
 		"id": 382,
 		"slug": "kyogre",
 		"name": "Kyogre",
+		"evolvesFromId": null,
 		"types": [
 			"water"
 		]
@@ -3239,6 +3621,7 @@
 		"id": 383,
 		"slug": "groudon",
 		"name": "Groudon",
+		"evolvesFromId": null,
 		"types": [
 			"ground"
 		]
@@ -3247,6 +3630,7 @@
 		"id": 384,
 		"slug": "rayquaza",
 		"name": "Rayquaza",
+		"evolvesFromId": null,
 		"types": [
 			"dragon",
 			"flying"
@@ -3256,6 +3640,7 @@
 		"id": 385,
 		"slug": "jirachi",
 		"name": "Jirachi",
+		"evolvesFromId": null,
 		"types": [
 			"steel",
 			"psychic"
@@ -3265,6 +3650,7 @@
 		"id": 386,
 		"slug": "deoxys",
 		"name": "Deoxys",
+		"evolvesFromId": null,
 		"types": [
 			"psychic"
 		]
@@ -3273,6 +3659,7 @@
 		"id": 387,
 		"slug": "turtwig",
 		"name": "Turtwig",
+		"evolvesFromId": null,
 		"types": [
 			"grass"
 		]
@@ -3281,6 +3668,7 @@
 		"id": 388,
 		"slug": "grotle",
 		"name": "Grotle",
+		"evolvesFromId": 387,
 		"types": [
 			"grass"
 		]
@@ -3289,6 +3677,7 @@
 		"id": 389,
 		"slug": "torterra",
 		"name": "Torterra",
+		"evolvesFromId": 388,
 		"types": [
 			"grass",
 			"ground"
@@ -3298,6 +3687,7 @@
 		"id": 390,
 		"slug": "chimchar",
 		"name": "Chimchar",
+		"evolvesFromId": null,
 		"types": [
 			"fire"
 		]
@@ -3306,6 +3696,7 @@
 		"id": 391,
 		"slug": "monferno",
 		"name": "Monferno",
+		"evolvesFromId": 390,
 		"types": [
 			"fire",
 			"fighting"
@@ -3315,6 +3706,7 @@
 		"id": 392,
 		"slug": "infernape",
 		"name": "Infernape",
+		"evolvesFromId": 391,
 		"types": [
 			"fire",
 			"fighting"
@@ -3324,6 +3716,7 @@
 		"id": 393,
 		"slug": "piplup",
 		"name": "Piplup",
+		"evolvesFromId": null,
 		"types": [
 			"water"
 		]
@@ -3332,6 +3725,7 @@
 		"id": 394,
 		"slug": "prinplup",
 		"name": "Prinplup",
+		"evolvesFromId": 393,
 		"types": [
 			"water"
 		]
@@ -3340,6 +3734,7 @@
 		"id": 395,
 		"slug": "empoleon",
 		"name": "Empoleon",
+		"evolvesFromId": 394,
 		"types": [
 			"water",
 			"steel"
@@ -3349,6 +3744,7 @@
 		"id": 396,
 		"slug": "starly",
 		"name": "Starly",
+		"evolvesFromId": null,
 		"types": [
 			"normal",
 			"flying"
@@ -3358,6 +3754,7 @@
 		"id": 397,
 		"slug": "staravia",
 		"name": "Staravia",
+		"evolvesFromId": 396,
 		"types": [
 			"normal",
 			"flying"
@@ -3367,6 +3764,7 @@
 		"id": 398,
 		"slug": "staraptor",
 		"name": "Staraptor",
+		"evolvesFromId": 397,
 		"types": [
 			"normal",
 			"flying"
@@ -3376,6 +3774,7 @@
 		"id": 399,
 		"slug": "bidoof",
 		"name": "Bidoof",
+		"evolvesFromId": null,
 		"types": [
 			"normal"
 		]
@@ -3384,6 +3783,7 @@
 		"id": 400,
 		"slug": "bibarel",
 		"name": "Bibarel",
+		"evolvesFromId": 399,
 		"types": [
 			"normal",
 			"water"
@@ -3393,6 +3793,7 @@
 		"id": 401,
 		"slug": "kricketot",
 		"name": "Kricketot",
+		"evolvesFromId": null,
 		"types": [
 			"bug"
 		]
@@ -3401,6 +3802,7 @@
 		"id": 402,
 		"slug": "kricketune",
 		"name": "Kricketune",
+		"evolvesFromId": 401,
 		"types": [
 			"bug"
 		]
@@ -3409,6 +3811,7 @@
 		"id": 403,
 		"slug": "shinx",
 		"name": "Shinx",
+		"evolvesFromId": null,
 		"types": [
 			"electric"
 		]
@@ -3417,6 +3820,7 @@
 		"id": 404,
 		"slug": "luxio",
 		"name": "Luxio",
+		"evolvesFromId": 403,
 		"types": [
 			"electric"
 		]
@@ -3425,6 +3829,7 @@
 		"id": 405,
 		"slug": "luxray",
 		"name": "Luxray",
+		"evolvesFromId": 404,
 		"types": [
 			"electric"
 		]
@@ -3433,6 +3838,7 @@
 		"id": 406,
 		"slug": "budew",
 		"name": "Budew",
+		"evolvesFromId": null,
 		"types": [
 			"grass",
 			"poison"
@@ -3442,6 +3848,7 @@
 		"id": 407,
 		"slug": "roserade",
 		"name": "Roserade",
+		"evolvesFromId": 315,
 		"types": [
 			"grass",
 			"poison"
@@ -3451,6 +3858,7 @@
 		"id": 408,
 		"slug": "cranidos",
 		"name": "Cranidos",
+		"evolvesFromId": null,
 		"types": [
 			"rock"
 		]
@@ -3459,6 +3867,7 @@
 		"id": 409,
 		"slug": "rampardos",
 		"name": "Rampardos",
+		"evolvesFromId": 408,
 		"types": [
 			"rock"
 		]
@@ -3467,6 +3876,7 @@
 		"id": 410,
 		"slug": "shieldon",
 		"name": "Shieldon",
+		"evolvesFromId": null,
 		"types": [
 			"rock",
 			"steel"
@@ -3476,6 +3886,7 @@
 		"id": 411,
 		"slug": "bastiodon",
 		"name": "Bastiodon",
+		"evolvesFromId": 410,
 		"types": [
 			"rock",
 			"steel"
@@ -3485,6 +3896,7 @@
 		"id": 412,
 		"slug": "burmy",
 		"name": "Burmy",
+		"evolvesFromId": null,
 		"types": [
 			"bug"
 		]
@@ -3493,6 +3905,7 @@
 		"id": 413,
 		"slug": "wormadam",
 		"name": "Wormadam",
+		"evolvesFromId": 412,
 		"types": [
 			"bug",
 			"grass"
@@ -3502,6 +3915,7 @@
 		"id": 414,
 		"slug": "mothim",
 		"name": "Mothim",
+		"evolvesFromId": 412,
 		"types": [
 			"bug",
 			"flying"
@@ -3511,6 +3925,7 @@
 		"id": 415,
 		"slug": "combee",
 		"name": "Combee",
+		"evolvesFromId": null,
 		"types": [
 			"bug",
 			"flying"
@@ -3520,6 +3935,7 @@
 		"id": 416,
 		"slug": "vespiquen",
 		"name": "Vespiquen",
+		"evolvesFromId": 415,
 		"types": [
 			"bug",
 			"flying"
@@ -3529,6 +3945,7 @@
 		"id": 417,
 		"slug": "pachirisu",
 		"name": "Pachirisu",
+		"evolvesFromId": null,
 		"types": [
 			"electric"
 		]
@@ -3537,6 +3954,7 @@
 		"id": 418,
 		"slug": "buizel",
 		"name": "Buizel",
+		"evolvesFromId": null,
 		"types": [
 			"water"
 		]
@@ -3545,6 +3963,7 @@
 		"id": 419,
 		"slug": "floatzel",
 		"name": "Floatzel",
+		"evolvesFromId": 418,
 		"types": [
 			"water"
 		]
@@ -3553,6 +3972,7 @@
 		"id": 420,
 		"slug": "cherubi",
 		"name": "Cherubi",
+		"evolvesFromId": null,
 		"types": [
 			"grass"
 		]
@@ -3561,6 +3981,7 @@
 		"id": 421,
 		"slug": "cherrim",
 		"name": "Cherrim",
+		"evolvesFromId": 420,
 		"types": [
 			"grass"
 		]
@@ -3569,6 +3990,7 @@
 		"id": 422,
 		"slug": "shellos",
 		"name": "Shellos",
+		"evolvesFromId": null,
 		"types": [
 			"water"
 		]
@@ -3577,6 +3999,7 @@
 		"id": 423,
 		"slug": "gastrodon",
 		"name": "Gastrodon",
+		"evolvesFromId": 422,
 		"types": [
 			"water",
 			"ground"
@@ -3586,6 +4009,7 @@
 		"id": 424,
 		"slug": "ambipom",
 		"name": "Ambipom",
+		"evolvesFromId": 190,
 		"types": [
 			"normal"
 		]
@@ -3594,6 +4018,7 @@
 		"id": 425,
 		"slug": "drifloon",
 		"name": "Drifloon",
+		"evolvesFromId": null,
 		"types": [
 			"ghost",
 			"flying"
@@ -3603,6 +4028,7 @@
 		"id": 426,
 		"slug": "drifblim",
 		"name": "Drifblim",
+		"evolvesFromId": 425,
 		"types": [
 			"ghost",
 			"flying"
@@ -3612,6 +4038,7 @@
 		"id": 427,
 		"slug": "buneary",
 		"name": "Buneary",
+		"evolvesFromId": null,
 		"types": [
 			"normal"
 		]
@@ -3620,6 +4047,7 @@
 		"id": 428,
 		"slug": "lopunny",
 		"name": "Lopunny",
+		"evolvesFromId": 427,
 		"types": [
 			"normal"
 		]
@@ -3628,6 +4056,7 @@
 		"id": 429,
 		"slug": "mismagius",
 		"name": "Mismagius",
+		"evolvesFromId": 200,
 		"types": [
 			"ghost"
 		]
@@ -3636,6 +4065,7 @@
 		"id": 430,
 		"slug": "honchkrow",
 		"name": "Honchkrow",
+		"evolvesFromId": 198,
 		"types": [
 			"dark",
 			"flying"
@@ -3645,6 +4075,7 @@
 		"id": 431,
 		"slug": "glameow",
 		"name": "Glameow",
+		"evolvesFromId": null,
 		"types": [
 			"normal"
 		]
@@ -3653,6 +4084,7 @@
 		"id": 432,
 		"slug": "purugly",
 		"name": "Purugly",
+		"evolvesFromId": 431,
 		"types": [
 			"normal"
 		]
@@ -3661,6 +4093,7 @@
 		"id": 433,
 		"slug": "chingling",
 		"name": "Chingling",
+		"evolvesFromId": null,
 		"types": [
 			"psychic"
 		]
@@ -3669,6 +4102,7 @@
 		"id": 434,
 		"slug": "stunky",
 		"name": "Stunky",
+		"evolvesFromId": null,
 		"types": [
 			"poison",
 			"dark"
@@ -3678,6 +4112,7 @@
 		"id": 435,
 		"slug": "skuntank",
 		"name": "Skuntank",
+		"evolvesFromId": 434,
 		"types": [
 			"poison",
 			"dark"
@@ -3687,6 +4122,7 @@
 		"id": 436,
 		"slug": "bronzor",
 		"name": "Bronzor",
+		"evolvesFromId": null,
 		"types": [
 			"steel",
 			"psychic"
@@ -3696,6 +4132,7 @@
 		"id": 437,
 		"slug": "bronzong",
 		"name": "Bronzong",
+		"evolvesFromId": 436,
 		"types": [
 			"steel",
 			"psychic"
@@ -3705,6 +4142,7 @@
 		"id": 438,
 		"slug": "bonsly",
 		"name": "Bonsly",
+		"evolvesFromId": null,
 		"types": [
 			"rock"
 		]
@@ -3713,6 +4151,7 @@
 		"id": 439,
 		"slug": "mime-jr",
 		"name": "Mime Jr.",
+		"evolvesFromId": null,
 		"types": [
 			"psychic",
 			"fairy"
@@ -3722,6 +4161,7 @@
 		"id": 440,
 		"slug": "happiny",
 		"name": "Happiny",
+		"evolvesFromId": null,
 		"types": [
 			"normal"
 		]
@@ -3730,6 +4170,7 @@
 		"id": 441,
 		"slug": "chatot",
 		"name": "Chatot",
+		"evolvesFromId": null,
 		"types": [
 			"normal",
 			"flying"
@@ -3739,6 +4180,7 @@
 		"id": 442,
 		"slug": "spiritomb",
 		"name": "Spiritomb",
+		"evolvesFromId": null,
 		"types": [
 			"ghost",
 			"dark"
@@ -3748,6 +4190,7 @@
 		"id": 443,
 		"slug": "gible",
 		"name": "Gible",
+		"evolvesFromId": null,
 		"types": [
 			"dragon",
 			"ground"
@@ -3757,6 +4200,7 @@
 		"id": 444,
 		"slug": "gabite",
 		"name": "Gabite",
+		"evolvesFromId": 443,
 		"types": [
 			"dragon",
 			"ground"
@@ -3766,6 +4210,7 @@
 		"id": 445,
 		"slug": "garchomp",
 		"name": "Garchomp",
+		"evolvesFromId": 444,
 		"types": [
 			"dragon",
 			"ground"
@@ -3775,6 +4220,7 @@
 		"id": 446,
 		"slug": "munchlax",
 		"name": "Munchlax",
+		"evolvesFromId": null,
 		"types": [
 			"normal"
 		]
@@ -3783,6 +4229,7 @@
 		"id": 447,
 		"slug": "riolu",
 		"name": "Riolu",
+		"evolvesFromId": null,
 		"types": [
 			"fighting"
 		]
@@ -3791,6 +4238,7 @@
 		"id": 448,
 		"slug": "lucario",
 		"name": "Lucario",
+		"evolvesFromId": 447,
 		"types": [
 			"fighting",
 			"steel"
@@ -3800,6 +4248,7 @@
 		"id": 449,
 		"slug": "hippopotas",
 		"name": "Hippopotas",
+		"evolvesFromId": null,
 		"types": [
 			"ground"
 		]
@@ -3808,6 +4257,7 @@
 		"id": 450,
 		"slug": "hippowdon",
 		"name": "Hippowdon",
+		"evolvesFromId": 449,
 		"types": [
 			"ground"
 		]
@@ -3816,6 +4266,7 @@
 		"id": 451,
 		"slug": "skorupi",
 		"name": "Skorupi",
+		"evolvesFromId": null,
 		"types": [
 			"poison",
 			"bug"
@@ -3825,6 +4276,7 @@
 		"id": 452,
 		"slug": "drapion",
 		"name": "Drapion",
+		"evolvesFromId": 451,
 		"types": [
 			"poison",
 			"dark"
@@ -3834,6 +4286,7 @@
 		"id": 453,
 		"slug": "croagunk",
 		"name": "Croagunk",
+		"evolvesFromId": null,
 		"types": [
 			"poison",
 			"fighting"
@@ -3843,6 +4296,7 @@
 		"id": 454,
 		"slug": "toxicroak",
 		"name": "Toxicroak",
+		"evolvesFromId": 453,
 		"types": [
 			"poison",
 			"fighting"
@@ -3852,6 +4306,7 @@
 		"id": 455,
 		"slug": "carnivine",
 		"name": "Carnivine",
+		"evolvesFromId": null,
 		"types": [
 			"grass"
 		]
@@ -3860,6 +4315,7 @@
 		"id": 456,
 		"slug": "finneon",
 		"name": "Finneon",
+		"evolvesFromId": null,
 		"types": [
 			"water"
 		]
@@ -3868,6 +4324,7 @@
 		"id": 457,
 		"slug": "lumineon",
 		"name": "Lumineon",
+		"evolvesFromId": 456,
 		"types": [
 			"water"
 		]
@@ -3876,6 +4333,7 @@
 		"id": 458,
 		"slug": "mantyke",
 		"name": "Mantyke",
+		"evolvesFromId": null,
 		"types": [
 			"water",
 			"flying"
@@ -3885,6 +4343,7 @@
 		"id": 459,
 		"slug": "snover",
 		"name": "Snover",
+		"evolvesFromId": null,
 		"types": [
 			"grass",
 			"ice"
@@ -3894,6 +4353,7 @@
 		"id": 460,
 		"slug": "abomasnow",
 		"name": "Abomasnow",
+		"evolvesFromId": 459,
 		"types": [
 			"grass",
 			"ice"
@@ -3903,6 +4363,7 @@
 		"id": 461,
 		"slug": "weavile",
 		"name": "Weavile",
+		"evolvesFromId": 215,
 		"types": [
 			"dark",
 			"ice"
@@ -3912,6 +4373,7 @@
 		"id": 462,
 		"slug": "magnezone",
 		"name": "Magnezone",
+		"evolvesFromId": 82,
 		"types": [
 			"electric",
 			"steel"
@@ -3921,6 +4383,7 @@
 		"id": 463,
 		"slug": "lickilicky",
 		"name": "Lickilicky",
+		"evolvesFromId": 108,
 		"types": [
 			"normal"
 		]
@@ -3929,6 +4392,7 @@
 		"id": 464,
 		"slug": "rhyperior",
 		"name": "Rhyperior",
+		"evolvesFromId": 112,
 		"types": [
 			"ground",
 			"rock"
@@ -3938,6 +4402,7 @@
 		"id": 465,
 		"slug": "tangrowth",
 		"name": "Tangrowth",
+		"evolvesFromId": 114,
 		"types": [
 			"grass"
 		]
@@ -3946,6 +4411,7 @@
 		"id": 466,
 		"slug": "electivire",
 		"name": "Electivire",
+		"evolvesFromId": 125,
 		"types": [
 			"electric"
 		]
@@ -3954,6 +4420,7 @@
 		"id": 467,
 		"slug": "magmortar",
 		"name": "Magmortar",
+		"evolvesFromId": 126,
 		"types": [
 			"fire"
 		]
@@ -3962,6 +4429,7 @@
 		"id": 468,
 		"slug": "togekiss",
 		"name": "Togekiss",
+		"evolvesFromId": 176,
 		"types": [
 			"fairy",
 			"flying"
@@ -3971,6 +4439,7 @@
 		"id": 469,
 		"slug": "yanmega",
 		"name": "Yanmega",
+		"evolvesFromId": 193,
 		"types": [
 			"bug",
 			"flying"
@@ -3980,6 +4449,7 @@
 		"id": 470,
 		"slug": "leafeon",
 		"name": "Leafeon",
+		"evolvesFromId": 133,
 		"types": [
 			"grass"
 		]
@@ -3988,6 +4458,7 @@
 		"id": 471,
 		"slug": "glaceon",
 		"name": "Glaceon",
+		"evolvesFromId": 133,
 		"types": [
 			"ice"
 		]
@@ -3996,6 +4467,7 @@
 		"id": 472,
 		"slug": "gliscor",
 		"name": "Gliscor",
+		"evolvesFromId": 207,
 		"types": [
 			"ground",
 			"flying"
@@ -4005,6 +4477,7 @@
 		"id": 473,
 		"slug": "mamoswine",
 		"name": "Mamoswine",
+		"evolvesFromId": 221,
 		"types": [
 			"ice",
 			"ground"
@@ -4014,6 +4487,7 @@
 		"id": 474,
 		"slug": "porygon-z",
 		"name": "Porygon-Z",
+		"evolvesFromId": 233,
 		"types": [
 			"normal"
 		]
@@ -4022,6 +4496,7 @@
 		"id": 475,
 		"slug": "gallade",
 		"name": "Gallade",
+		"evolvesFromId": 281,
 		"types": [
 			"psychic",
 			"fighting"
@@ -4031,6 +4506,7 @@
 		"id": 476,
 		"slug": "probopass",
 		"name": "Probopass",
+		"evolvesFromId": 299,
 		"types": [
 			"rock",
 			"steel"
@@ -4040,6 +4516,7 @@
 		"id": 477,
 		"slug": "dusknoir",
 		"name": "Dusknoir",
+		"evolvesFromId": 356,
 		"types": [
 			"ghost"
 		]
@@ -4048,6 +4525,7 @@
 		"id": 478,
 		"slug": "froslass",
 		"name": "Froslass",
+		"evolvesFromId": 361,
 		"types": [
 			"ice",
 			"ghost"
@@ -4057,6 +4535,7 @@
 		"id": 479,
 		"slug": "rotom",
 		"name": "Rotom",
+		"evolvesFromId": null,
 		"types": [
 			"electric",
 			"ghost"
@@ -4066,6 +4545,7 @@
 		"id": 480,
 		"slug": "uxie",
 		"name": "Uxie",
+		"evolvesFromId": null,
 		"types": [
 			"psychic"
 		]
@@ -4074,6 +4554,7 @@
 		"id": 481,
 		"slug": "mesprit",
 		"name": "Mesprit",
+		"evolvesFromId": null,
 		"types": [
 			"psychic"
 		]
@@ -4082,6 +4563,7 @@
 		"id": 482,
 		"slug": "azelf",
 		"name": "Azelf",
+		"evolvesFromId": null,
 		"types": [
 			"psychic"
 		]
@@ -4090,6 +4572,7 @@
 		"id": 483,
 		"slug": "dialga",
 		"name": "Dialga",
+		"evolvesFromId": null,
 		"types": [
 			"steel",
 			"dragon"
@@ -4099,6 +4582,7 @@
 		"id": 484,
 		"slug": "palkia",
 		"name": "Palkia",
+		"evolvesFromId": null,
 		"types": [
 			"water",
 			"dragon"
@@ -4108,6 +4592,7 @@
 		"id": 485,
 		"slug": "heatran",
 		"name": "Heatran",
+		"evolvesFromId": null,
 		"types": [
 			"fire",
 			"steel"
@@ -4117,6 +4602,7 @@
 		"id": 486,
 		"slug": "regigigas",
 		"name": "Regigigas",
+		"evolvesFromId": null,
 		"types": [
 			"normal"
 		]
@@ -4125,6 +4611,7 @@
 		"id": 487,
 		"slug": "giratina",
 		"name": "Giratina",
+		"evolvesFromId": null,
 		"types": [
 			"ghost",
 			"dragon"
@@ -4134,6 +4621,7 @@
 		"id": 488,
 		"slug": "cresselia",
 		"name": "Cresselia",
+		"evolvesFromId": null,
 		"types": [
 			"psychic"
 		]
@@ -4142,6 +4630,7 @@
 		"id": 489,
 		"slug": "phione",
 		"name": "Phione",
+		"evolvesFromId": null,
 		"types": [
 			"water"
 		]
@@ -4150,6 +4639,7 @@
 		"id": 490,
 		"slug": "manaphy",
 		"name": "Manaphy",
+		"evolvesFromId": null,
 		"types": [
 			"water"
 		]
@@ -4158,6 +4648,7 @@
 		"id": 491,
 		"slug": "darkrai",
 		"name": "Darkrai",
+		"evolvesFromId": null,
 		"types": [
 			"dark"
 		]
@@ -4166,6 +4657,7 @@
 		"id": 492,
 		"slug": "shaymin",
 		"name": "Shaymin",
+		"evolvesFromId": null,
 		"types": [
 			"grass"
 		]
@@ -4174,6 +4666,7 @@
 		"id": 493,
 		"slug": "arceus",
 		"name": "Arceus",
+		"evolvesFromId": null,
 		"types": [
 			"normal"
 		]
@@ -4182,6 +4675,7 @@
 		"id": 494,
 		"slug": "victini",
 		"name": "Victini",
+		"evolvesFromId": null,
 		"types": [
 			"psychic",
 			"fire"
@@ -4191,6 +4685,7 @@
 		"id": 495,
 		"slug": "snivy",
 		"name": "Snivy",
+		"evolvesFromId": null,
 		"types": [
 			"grass"
 		]
@@ -4199,6 +4694,7 @@
 		"id": 496,
 		"slug": "servine",
 		"name": "Servine",
+		"evolvesFromId": 495,
 		"types": [
 			"grass"
 		]
@@ -4207,6 +4703,7 @@
 		"id": 497,
 		"slug": "serperior",
 		"name": "Serperior",
+		"evolvesFromId": 496,
 		"types": [
 			"grass"
 		]
@@ -4215,6 +4712,7 @@
 		"id": 498,
 		"slug": "tepig",
 		"name": "Tepig",
+		"evolvesFromId": null,
 		"types": [
 			"fire"
 		]
@@ -4223,6 +4721,7 @@
 		"id": 499,
 		"slug": "pignite",
 		"name": "Pignite",
+		"evolvesFromId": 498,
 		"types": [
 			"fire",
 			"fighting"
@@ -4232,6 +4731,7 @@
 		"id": 500,
 		"slug": "emboar",
 		"name": "Emboar",
+		"evolvesFromId": 499,
 		"types": [
 			"fire",
 			"fighting"
@@ -4241,6 +4741,7 @@
 		"id": 501,
 		"slug": "oshawott",
 		"name": "Oshawott",
+		"evolvesFromId": null,
 		"types": [
 			"water"
 		]
@@ -4249,6 +4750,7 @@
 		"id": 502,
 		"slug": "dewott",
 		"name": "Dewott",
+		"evolvesFromId": 501,
 		"types": [
 			"water"
 		]
@@ -4257,6 +4759,7 @@
 		"id": 503,
 		"slug": "samurott",
 		"name": "Samurott",
+		"evolvesFromId": 502,
 		"types": [
 			"water"
 		]
@@ -4265,6 +4768,7 @@
 		"id": 504,
 		"slug": "patrat",
 		"name": "Patrat",
+		"evolvesFromId": null,
 		"types": [
 			"normal"
 		]
@@ -4273,6 +4777,7 @@
 		"id": 505,
 		"slug": "watchog",
 		"name": "Watchog",
+		"evolvesFromId": 504,
 		"types": [
 			"normal"
 		]
@@ -4281,6 +4786,7 @@
 		"id": 506,
 		"slug": "lillipup",
 		"name": "Lillipup",
+		"evolvesFromId": null,
 		"types": [
 			"normal"
 		]
@@ -4289,6 +4795,7 @@
 		"id": 507,
 		"slug": "herdier",
 		"name": "Herdier",
+		"evolvesFromId": 506,
 		"types": [
 			"normal"
 		]
@@ -4297,6 +4804,7 @@
 		"id": 508,
 		"slug": "stoutland",
 		"name": "Stoutland",
+		"evolvesFromId": 507,
 		"types": [
 			"normal"
 		]
@@ -4305,6 +4813,7 @@
 		"id": 509,
 		"slug": "purrloin",
 		"name": "Purrloin",
+		"evolvesFromId": null,
 		"types": [
 			"dark"
 		]
@@ -4313,6 +4822,7 @@
 		"id": 510,
 		"slug": "liepard",
 		"name": "Liepard",
+		"evolvesFromId": 509,
 		"types": [
 			"dark"
 		]
@@ -4321,6 +4831,7 @@
 		"id": 511,
 		"slug": "pansage",
 		"name": "Pansage",
+		"evolvesFromId": null,
 		"types": [
 			"grass"
 		]
@@ -4329,6 +4840,7 @@
 		"id": 512,
 		"slug": "simisage",
 		"name": "Simisage",
+		"evolvesFromId": 511,
 		"types": [
 			"grass"
 		]
@@ -4337,6 +4849,7 @@
 		"id": 513,
 		"slug": "pansear",
 		"name": "Pansear",
+		"evolvesFromId": null,
 		"types": [
 			"fire"
 		]
@@ -4345,6 +4858,7 @@
 		"id": 514,
 		"slug": "simisear",
 		"name": "Simisear",
+		"evolvesFromId": 513,
 		"types": [
 			"fire"
 		]
@@ -4353,6 +4867,7 @@
 		"id": 515,
 		"slug": "panpour",
 		"name": "Panpour",
+		"evolvesFromId": null,
 		"types": [
 			"water"
 		]
@@ -4361,6 +4876,7 @@
 		"id": 516,
 		"slug": "simipour",
 		"name": "Simipour",
+		"evolvesFromId": 515,
 		"types": [
 			"water"
 		]
@@ -4369,6 +4885,7 @@
 		"id": 517,
 		"slug": "munna",
 		"name": "Munna",
+		"evolvesFromId": null,
 		"types": [
 			"psychic"
 		]
@@ -4377,6 +4894,7 @@
 		"id": 518,
 		"slug": "musharna",
 		"name": "Musharna",
+		"evolvesFromId": 517,
 		"types": [
 			"psychic"
 		]
@@ -4385,6 +4903,7 @@
 		"id": 519,
 		"slug": "pidove",
 		"name": "Pidove",
+		"evolvesFromId": null,
 		"types": [
 			"normal",
 			"flying"
@@ -4394,6 +4913,7 @@
 		"id": 520,
 		"slug": "tranquill",
 		"name": "Tranquill",
+		"evolvesFromId": 519,
 		"types": [
 			"normal",
 			"flying"
@@ -4403,6 +4923,7 @@
 		"id": 521,
 		"slug": "unfezant",
 		"name": "Unfezant",
+		"evolvesFromId": 520,
 		"types": [
 			"normal",
 			"flying"
@@ -4412,6 +4933,7 @@
 		"id": 522,
 		"slug": "blitzle",
 		"name": "Blitzle",
+		"evolvesFromId": null,
 		"types": [
 			"electric"
 		]
@@ -4420,6 +4942,7 @@
 		"id": 523,
 		"slug": "zebstrika",
 		"name": "Zebstrika",
+		"evolvesFromId": 522,
 		"types": [
 			"electric"
 		]
@@ -4428,6 +4951,7 @@
 		"id": 524,
 		"slug": "roggenrola",
 		"name": "Roggenrola",
+		"evolvesFromId": null,
 		"types": [
 			"rock"
 		]
@@ -4436,6 +4960,7 @@
 		"id": 525,
 		"slug": "boldore",
 		"name": "Boldore",
+		"evolvesFromId": 524,
 		"types": [
 			"rock"
 		]
@@ -4444,6 +4969,7 @@
 		"id": 526,
 		"slug": "gigalith",
 		"name": "Gigalith",
+		"evolvesFromId": 525,
 		"types": [
 			"rock"
 		]
@@ -4452,6 +4978,7 @@
 		"id": 527,
 		"slug": "woobat",
 		"name": "Woobat",
+		"evolvesFromId": null,
 		"types": [
 			"psychic",
 			"flying"
@@ -4461,6 +4988,7 @@
 		"id": 528,
 		"slug": "swoobat",
 		"name": "Swoobat",
+		"evolvesFromId": 527,
 		"types": [
 			"psychic",
 			"flying"
@@ -4470,6 +4998,7 @@
 		"id": 529,
 		"slug": "drilbur",
 		"name": "Drilbur",
+		"evolvesFromId": null,
 		"types": [
 			"ground"
 		]
@@ -4478,6 +5007,7 @@
 		"id": 530,
 		"slug": "excadrill",
 		"name": "Excadrill",
+		"evolvesFromId": 529,
 		"types": [
 			"ground",
 			"steel"
@@ -4487,6 +5017,7 @@
 		"id": 531,
 		"slug": "audino",
 		"name": "Audino",
+		"evolvesFromId": null,
 		"types": [
 			"normal"
 		]
@@ -4495,6 +5026,7 @@
 		"id": 532,
 		"slug": "timburr",
 		"name": "Timburr",
+		"evolvesFromId": null,
 		"types": [
 			"fighting"
 		]
@@ -4503,6 +5035,7 @@
 		"id": 533,
 		"slug": "gurdurr",
 		"name": "Gurdurr",
+		"evolvesFromId": 532,
 		"types": [
 			"fighting"
 		]
@@ -4511,6 +5044,7 @@
 		"id": 534,
 		"slug": "conkeldurr",
 		"name": "Conkeldurr",
+		"evolvesFromId": 533,
 		"types": [
 			"fighting"
 		]
@@ -4519,6 +5053,7 @@
 		"id": 535,
 		"slug": "tympole",
 		"name": "Tympole",
+		"evolvesFromId": null,
 		"types": [
 			"water"
 		]
@@ -4527,6 +5062,7 @@
 		"id": 536,
 		"slug": "palpitoad",
 		"name": "Palpitoad",
+		"evolvesFromId": 535,
 		"types": [
 			"water",
 			"ground"
@@ -4536,6 +5072,7 @@
 		"id": 537,
 		"slug": "seismitoad",
 		"name": "Seismitoad",
+		"evolvesFromId": 536,
 		"types": [
 			"water",
 			"ground"
@@ -4545,6 +5082,7 @@
 		"id": 538,
 		"slug": "throh",
 		"name": "Throh",
+		"evolvesFromId": null,
 		"types": [
 			"fighting"
 		]
@@ -4553,6 +5091,7 @@
 		"id": 539,
 		"slug": "sawk",
 		"name": "Sawk",
+		"evolvesFromId": null,
 		"types": [
 			"fighting"
 		]
@@ -4561,6 +5100,7 @@
 		"id": 540,
 		"slug": "sewaddle",
 		"name": "Sewaddle",
+		"evolvesFromId": null,
 		"types": [
 			"bug",
 			"grass"
@@ -4570,6 +5110,7 @@
 		"id": 541,
 		"slug": "swadloon",
 		"name": "Swadloon",
+		"evolvesFromId": 540,
 		"types": [
 			"bug",
 			"grass"
@@ -4579,6 +5120,7 @@
 		"id": 542,
 		"slug": "leavanny",
 		"name": "Leavanny",
+		"evolvesFromId": 541,
 		"types": [
 			"bug",
 			"grass"
@@ -4588,6 +5130,7 @@
 		"id": 543,
 		"slug": "venipede",
 		"name": "Venipede",
+		"evolvesFromId": null,
 		"types": [
 			"bug",
 			"poison"
@@ -4597,6 +5140,7 @@
 		"id": 544,
 		"slug": "whirlipede",
 		"name": "Whirlipede",
+		"evolvesFromId": 543,
 		"types": [
 			"bug",
 			"poison"
@@ -4606,6 +5150,7 @@
 		"id": 545,
 		"slug": "scolipede",
 		"name": "Scolipede",
+		"evolvesFromId": 544,
 		"types": [
 			"bug",
 			"poison"
@@ -4615,6 +5160,7 @@
 		"id": 546,
 		"slug": "cottonee",
 		"name": "Cottonee",
+		"evolvesFromId": null,
 		"types": [
 			"grass",
 			"fairy"
@@ -4624,6 +5170,7 @@
 		"id": 547,
 		"slug": "whimsicott",
 		"name": "Whimsicott",
+		"evolvesFromId": 546,
 		"types": [
 			"grass",
 			"fairy"
@@ -4633,6 +5180,7 @@
 		"id": 548,
 		"slug": "petilil",
 		"name": "Petilil",
+		"evolvesFromId": null,
 		"types": [
 			"grass"
 		]
@@ -4641,6 +5189,7 @@
 		"id": 549,
 		"slug": "lilligant",
 		"name": "Lilligant",
+		"evolvesFromId": 548,
 		"types": [
 			"grass"
 		]
@@ -4649,6 +5198,7 @@
 		"id": 550,
 		"slug": "basculin",
 		"name": "Basculin",
+		"evolvesFromId": null,
 		"types": [
 			"water"
 		]
@@ -4657,6 +5207,7 @@
 		"id": 551,
 		"slug": "sandile",
 		"name": "Sandile",
+		"evolvesFromId": null,
 		"types": [
 			"ground",
 			"dark"
@@ -4666,6 +5217,7 @@
 		"id": 552,
 		"slug": "krokorok",
 		"name": "Krokorok",
+		"evolvesFromId": 551,
 		"types": [
 			"ground",
 			"dark"
@@ -4675,6 +5227,7 @@
 		"id": 553,
 		"slug": "krookodile",
 		"name": "Krookodile",
+		"evolvesFromId": 552,
 		"types": [
 			"ground",
 			"dark"
@@ -4684,6 +5237,7 @@
 		"id": 554,
 		"slug": "darumaka",
 		"name": "Darumaka",
+		"evolvesFromId": null,
 		"types": [
 			"fire"
 		]
@@ -4692,6 +5246,7 @@
 		"id": 555,
 		"slug": "darmanitan",
 		"name": "Darmanitan",
+		"evolvesFromId": 554,
 		"types": [
 			"fire"
 		]
@@ -4700,6 +5255,7 @@
 		"id": 556,
 		"slug": "maractus",
 		"name": "Maractus",
+		"evolvesFromId": null,
 		"types": [
 			"grass"
 		]
@@ -4708,6 +5264,7 @@
 		"id": 557,
 		"slug": "dwebble",
 		"name": "Dwebble",
+		"evolvesFromId": null,
 		"types": [
 			"bug",
 			"rock"
@@ -4717,6 +5274,7 @@
 		"id": 558,
 		"slug": "crustle",
 		"name": "Crustle",
+		"evolvesFromId": 557,
 		"types": [
 			"bug",
 			"rock"
@@ -4726,6 +5284,7 @@
 		"id": 559,
 		"slug": "scraggy",
 		"name": "Scraggy",
+		"evolvesFromId": null,
 		"types": [
 			"dark",
 			"fighting"
@@ -4735,6 +5294,7 @@
 		"id": 560,
 		"slug": "scrafty",
 		"name": "Scrafty",
+		"evolvesFromId": 559,
 		"types": [
 			"dark",
 			"fighting"
@@ -4744,6 +5304,7 @@
 		"id": 561,
 		"slug": "sigilyph",
 		"name": "Sigilyph",
+		"evolvesFromId": null,
 		"types": [
 			"psychic",
 			"flying"
@@ -4753,6 +5314,7 @@
 		"id": 562,
 		"slug": "yamask",
 		"name": "Yamask",
+		"evolvesFromId": null,
 		"types": [
 			"ghost"
 		]
@@ -4761,6 +5323,7 @@
 		"id": 563,
 		"slug": "cofagrigus",
 		"name": "Cofagrigus",
+		"evolvesFromId": 562,
 		"types": [
 			"ghost"
 		]
@@ -4769,6 +5332,7 @@
 		"id": 564,
 		"slug": "tirtouga",
 		"name": "Tirtouga",
+		"evolvesFromId": null,
 		"types": [
 			"water",
 			"rock"
@@ -4778,6 +5342,7 @@
 		"id": 565,
 		"slug": "carracosta",
 		"name": "Carracosta",
+		"evolvesFromId": 564,
 		"types": [
 			"water",
 			"rock"
@@ -4787,6 +5352,7 @@
 		"id": 566,
 		"slug": "archen",
 		"name": "Archen",
+		"evolvesFromId": null,
 		"types": [
 			"rock",
 			"flying"
@@ -4796,6 +5362,7 @@
 		"id": 567,
 		"slug": "archeops",
 		"name": "Archeops",
+		"evolvesFromId": 566,
 		"types": [
 			"rock",
 			"flying"
@@ -4805,6 +5372,7 @@
 		"id": 568,
 		"slug": "trubbish",
 		"name": "Trubbish",
+		"evolvesFromId": null,
 		"types": [
 			"poison"
 		]
@@ -4813,6 +5381,7 @@
 		"id": 569,
 		"slug": "garbodor",
 		"name": "Garbodor",
+		"evolvesFromId": 568,
 		"types": [
 			"poison"
 		]
@@ -4821,6 +5390,7 @@
 		"id": 570,
 		"slug": "zorua",
 		"name": "Zorua",
+		"evolvesFromId": null,
 		"types": [
 			"dark"
 		]
@@ -4829,6 +5399,7 @@
 		"id": 571,
 		"slug": "zoroark",
 		"name": "Zoroark",
+		"evolvesFromId": 570,
 		"types": [
 			"dark"
 		]
@@ -4837,6 +5408,7 @@
 		"id": 572,
 		"slug": "minccino",
 		"name": "Minccino",
+		"evolvesFromId": null,
 		"types": [
 			"normal"
 		]
@@ -4845,6 +5417,7 @@
 		"id": 573,
 		"slug": "cinccino",
 		"name": "Cinccino",
+		"evolvesFromId": 572,
 		"types": [
 			"normal"
 		]
@@ -4853,6 +5426,7 @@
 		"id": 574,
 		"slug": "gothita",
 		"name": "Gothita",
+		"evolvesFromId": null,
 		"types": [
 			"psychic"
 		]
@@ -4861,6 +5435,7 @@
 		"id": 575,
 		"slug": "gothorita",
 		"name": "Gothorita",
+		"evolvesFromId": 574,
 		"types": [
 			"psychic"
 		]
@@ -4869,6 +5444,7 @@
 		"id": 576,
 		"slug": "gothitelle",
 		"name": "Gothitelle",
+		"evolvesFromId": 575,
 		"types": [
 			"psychic"
 		]
@@ -4877,6 +5453,7 @@
 		"id": 577,
 		"slug": "solosis",
 		"name": "Solosis",
+		"evolvesFromId": null,
 		"types": [
 			"psychic"
 		]
@@ -4885,6 +5462,7 @@
 		"id": 578,
 		"slug": "duosion",
 		"name": "Duosion",
+		"evolvesFromId": 577,
 		"types": [
 			"psychic"
 		]
@@ -4893,6 +5471,7 @@
 		"id": 579,
 		"slug": "reuniclus",
 		"name": "Reuniclus",
+		"evolvesFromId": 578,
 		"types": [
 			"psychic"
 		]
@@ -4901,6 +5480,7 @@
 		"id": 580,
 		"slug": "ducklett",
 		"name": "Ducklett",
+		"evolvesFromId": null,
 		"types": [
 			"water",
 			"flying"
@@ -4910,6 +5490,7 @@
 		"id": 581,
 		"slug": "swanna",
 		"name": "Swanna",
+		"evolvesFromId": 580,
 		"types": [
 			"water",
 			"flying"
@@ -4919,6 +5500,7 @@
 		"id": 582,
 		"slug": "vanillite",
 		"name": "Vanillite",
+		"evolvesFromId": null,
 		"types": [
 			"ice"
 		]
@@ -4927,6 +5509,7 @@
 		"id": 583,
 		"slug": "vanillish",
 		"name": "Vanillish",
+		"evolvesFromId": 582,
 		"types": [
 			"ice"
 		]
@@ -4935,6 +5518,7 @@
 		"id": 584,
 		"slug": "vanilluxe",
 		"name": "Vanilluxe",
+		"evolvesFromId": 583,
 		"types": [
 			"ice"
 		]
@@ -4943,6 +5527,7 @@
 		"id": 585,
 		"slug": "deerling",
 		"name": "Deerling",
+		"evolvesFromId": null,
 		"types": [
 			"normal",
 			"grass"
@@ -4952,6 +5537,7 @@
 		"id": 586,
 		"slug": "sawsbuck",
 		"name": "Sawsbuck",
+		"evolvesFromId": 585,
 		"types": [
 			"normal",
 			"grass"
@@ -4961,6 +5547,7 @@
 		"id": 587,
 		"slug": "emolga",
 		"name": "Emolga",
+		"evolvesFromId": null,
 		"types": [
 			"electric",
 			"flying"
@@ -4970,6 +5557,7 @@
 		"id": 588,
 		"slug": "karrablast",
 		"name": "Karrablast",
+		"evolvesFromId": null,
 		"types": [
 			"bug"
 		]
@@ -4978,6 +5566,7 @@
 		"id": 589,
 		"slug": "escavalier",
 		"name": "Escavalier",
+		"evolvesFromId": 588,
 		"types": [
 			"bug",
 			"steel"
@@ -4987,6 +5576,7 @@
 		"id": 590,
 		"slug": "foongus",
 		"name": "Foongus",
+		"evolvesFromId": null,
 		"types": [
 			"grass",
 			"poison"
@@ -4996,6 +5586,7 @@
 		"id": 591,
 		"slug": "amoonguss",
 		"name": "Amoonguss",
+		"evolvesFromId": 590,
 		"types": [
 			"grass",
 			"poison"
@@ -5005,6 +5596,7 @@
 		"id": 592,
 		"slug": "frillish",
 		"name": "Frillish",
+		"evolvesFromId": null,
 		"types": [
 			"water",
 			"ghost"
@@ -5014,6 +5606,7 @@
 		"id": 593,
 		"slug": "jellicent",
 		"name": "Jellicent",
+		"evolvesFromId": 592,
 		"types": [
 			"water",
 			"ghost"
@@ -5023,6 +5616,7 @@
 		"id": 594,
 		"slug": "alomomola",
 		"name": "Alomomola",
+		"evolvesFromId": null,
 		"types": [
 			"water"
 		]
@@ -5031,6 +5625,7 @@
 		"id": 595,
 		"slug": "joltik",
 		"name": "Joltik",
+		"evolvesFromId": null,
 		"types": [
 			"bug",
 			"electric"
@@ -5040,6 +5635,7 @@
 		"id": 596,
 		"slug": "galvantula",
 		"name": "Galvantula",
+		"evolvesFromId": 595,
 		"types": [
 			"bug",
 			"electric"
@@ -5049,6 +5645,7 @@
 		"id": 597,
 		"slug": "ferroseed",
 		"name": "Ferroseed",
+		"evolvesFromId": null,
 		"types": [
 			"grass",
 			"steel"
@@ -5058,6 +5655,7 @@
 		"id": 598,
 		"slug": "ferrothorn",
 		"name": "Ferrothorn",
+		"evolvesFromId": 597,
 		"types": [
 			"grass",
 			"steel"
@@ -5067,6 +5665,7 @@
 		"id": 599,
 		"slug": "klink",
 		"name": "Klink",
+		"evolvesFromId": null,
 		"types": [
 			"steel"
 		]
@@ -5075,6 +5674,7 @@
 		"id": 600,
 		"slug": "klang",
 		"name": "Klang",
+		"evolvesFromId": 599,
 		"types": [
 			"steel"
 		]
@@ -5083,6 +5683,7 @@
 		"id": 601,
 		"slug": "klinklang",
 		"name": "Klinklang",
+		"evolvesFromId": 600,
 		"types": [
 			"steel"
 		]
@@ -5091,6 +5692,7 @@
 		"id": 602,
 		"slug": "tynamo",
 		"name": "Tynamo",
+		"evolvesFromId": null,
 		"types": [
 			"electric"
 		]
@@ -5099,6 +5701,7 @@
 		"id": 603,
 		"slug": "eelektrik",
 		"name": "Eelektrik",
+		"evolvesFromId": 602,
 		"types": [
 			"electric"
 		]
@@ -5107,6 +5710,7 @@
 		"id": 604,
 		"slug": "eelektross",
 		"name": "Eelektross",
+		"evolvesFromId": 603,
 		"types": [
 			"electric"
 		]
@@ -5115,6 +5719,7 @@
 		"id": 605,
 		"slug": "elgyem",
 		"name": "Elgyem",
+		"evolvesFromId": null,
 		"types": [
 			"psychic"
 		]
@@ -5123,6 +5728,7 @@
 		"id": 606,
 		"slug": "beheeyem",
 		"name": "Beheeyem",
+		"evolvesFromId": 605,
 		"types": [
 			"psychic"
 		]
@@ -5131,6 +5737,7 @@
 		"id": 607,
 		"slug": "litwick",
 		"name": "Litwick",
+		"evolvesFromId": null,
 		"types": [
 			"ghost",
 			"fire"
@@ -5140,6 +5747,7 @@
 		"id": 608,
 		"slug": "lampent",
 		"name": "Lampent",
+		"evolvesFromId": 607,
 		"types": [
 			"ghost",
 			"fire"
@@ -5149,6 +5757,7 @@
 		"id": 609,
 		"slug": "chandelure",
 		"name": "Chandelure",
+		"evolvesFromId": 608,
 		"types": [
 			"ghost",
 			"fire"
@@ -5158,6 +5767,7 @@
 		"id": 610,
 		"slug": "axew",
 		"name": "Axew",
+		"evolvesFromId": null,
 		"types": [
 			"dragon"
 		]
@@ -5166,6 +5776,7 @@
 		"id": 611,
 		"slug": "fraxure",
 		"name": "Fraxure",
+		"evolvesFromId": 610,
 		"types": [
 			"dragon"
 		]
@@ -5174,6 +5785,7 @@
 		"id": 612,
 		"slug": "haxorus",
 		"name": "Haxorus",
+		"evolvesFromId": 611,
 		"types": [
 			"dragon"
 		]
@@ -5182,6 +5794,7 @@
 		"id": 613,
 		"slug": "cubchoo",
 		"name": "Cubchoo",
+		"evolvesFromId": null,
 		"types": [
 			"ice"
 		]
@@ -5190,6 +5803,7 @@
 		"id": 614,
 		"slug": "beartic",
 		"name": "Beartic",
+		"evolvesFromId": 613,
 		"types": [
 			"ice"
 		]
@@ -5198,6 +5812,7 @@
 		"id": 615,
 		"slug": "cryogonal",
 		"name": "Cryogonal",
+		"evolvesFromId": null,
 		"types": [
 			"ice"
 		]
@@ -5206,6 +5821,7 @@
 		"id": 616,
 		"slug": "shelmet",
 		"name": "Shelmet",
+		"evolvesFromId": null,
 		"types": [
 			"bug"
 		]
@@ -5214,6 +5830,7 @@
 		"id": 617,
 		"slug": "accelgor",
 		"name": "Accelgor",
+		"evolvesFromId": 616,
 		"types": [
 			"bug"
 		]
@@ -5222,6 +5839,7 @@
 		"id": 618,
 		"slug": "stunfisk",
 		"name": "Stunfisk",
+		"evolvesFromId": null,
 		"types": [
 			"ground",
 			"electric"
@@ -5231,6 +5849,7 @@
 		"id": 619,
 		"slug": "mienfoo",
 		"name": "Mienfoo",
+		"evolvesFromId": null,
 		"types": [
 			"fighting"
 		]
@@ -5239,6 +5858,7 @@
 		"id": 620,
 		"slug": "mienshao",
 		"name": "Mienshao",
+		"evolvesFromId": 619,
 		"types": [
 			"fighting"
 		]
@@ -5247,6 +5867,7 @@
 		"id": 621,
 		"slug": "druddigon",
 		"name": "Druddigon",
+		"evolvesFromId": null,
 		"types": [
 			"dragon"
 		]
@@ -5255,6 +5876,7 @@
 		"id": 622,
 		"slug": "golett",
 		"name": "Golett",
+		"evolvesFromId": null,
 		"types": [
 			"ground",
 			"ghost"
@@ -5264,6 +5886,7 @@
 		"id": 623,
 		"slug": "golurk",
 		"name": "Golurk",
+		"evolvesFromId": 622,
 		"types": [
 			"ground",
 			"ghost"
@@ -5273,6 +5896,7 @@
 		"id": 624,
 		"slug": "pawniard",
 		"name": "Pawniard",
+		"evolvesFromId": null,
 		"types": [
 			"dark",
 			"steel"
@@ -5282,6 +5906,7 @@
 		"id": 625,
 		"slug": "bisharp",
 		"name": "Bisharp",
+		"evolvesFromId": 624,
 		"types": [
 			"dark",
 			"steel"
@@ -5291,6 +5916,7 @@
 		"id": 626,
 		"slug": "bouffalant",
 		"name": "Bouffalant",
+		"evolvesFromId": null,
 		"types": [
 			"normal"
 		]
@@ -5299,6 +5925,7 @@
 		"id": 627,
 		"slug": "rufflet",
 		"name": "Rufflet",
+		"evolvesFromId": null,
 		"types": [
 			"normal",
 			"flying"
@@ -5308,6 +5935,7 @@
 		"id": 628,
 		"slug": "braviary",
 		"name": "Braviary",
+		"evolvesFromId": 627,
 		"types": [
 			"normal",
 			"flying"
@@ -5317,6 +5945,7 @@
 		"id": 629,
 		"slug": "vullaby",
 		"name": "Vullaby",
+		"evolvesFromId": null,
 		"types": [
 			"dark",
 			"flying"
@@ -5326,6 +5955,7 @@
 		"id": 630,
 		"slug": "mandibuzz",
 		"name": "Mandibuzz",
+		"evolvesFromId": 629,
 		"types": [
 			"dark",
 			"flying"
@@ -5335,6 +5965,7 @@
 		"id": 631,
 		"slug": "heatmor",
 		"name": "Heatmor",
+		"evolvesFromId": null,
 		"types": [
 			"fire"
 		]
@@ -5343,6 +5974,7 @@
 		"id": 632,
 		"slug": "durant",
 		"name": "Durant",
+		"evolvesFromId": null,
 		"types": [
 			"bug",
 			"steel"
@@ -5352,6 +5984,7 @@
 		"id": 633,
 		"slug": "deino",
 		"name": "Deino",
+		"evolvesFromId": null,
 		"types": [
 			"dark",
 			"dragon"
@@ -5361,6 +5994,7 @@
 		"id": 634,
 		"slug": "zweilous",
 		"name": "Zweilous",
+		"evolvesFromId": 633,
 		"types": [
 			"dark",
 			"dragon"
@@ -5370,6 +6004,7 @@
 		"id": 635,
 		"slug": "hydreigon",
 		"name": "Hydreigon",
+		"evolvesFromId": 634,
 		"types": [
 			"dark",
 			"dragon"
@@ -5379,6 +6014,7 @@
 		"id": 636,
 		"slug": "larvesta",
 		"name": "Larvesta",
+		"evolvesFromId": null,
 		"types": [
 			"bug",
 			"fire"
@@ -5388,6 +6024,7 @@
 		"id": 637,
 		"slug": "volcarona",
 		"name": "Volcarona",
+		"evolvesFromId": 636,
 		"types": [
 			"bug",
 			"fire"
@@ -5397,6 +6034,7 @@
 		"id": 638,
 		"slug": "cobalion",
 		"name": "Cobalion",
+		"evolvesFromId": null,
 		"types": [
 			"steel",
 			"fighting"
@@ -5406,6 +6044,7 @@
 		"id": 639,
 		"slug": "terrakion",
 		"name": "Terrakion",
+		"evolvesFromId": null,
 		"types": [
 			"rock",
 			"fighting"
@@ -5415,6 +6054,7 @@
 		"id": 640,
 		"slug": "virizion",
 		"name": "Virizion",
+		"evolvesFromId": null,
 		"types": [
 			"grass",
 			"fighting"
@@ -5424,6 +6064,7 @@
 		"id": 641,
 		"slug": "tornadus",
 		"name": "Tornadus",
+		"evolvesFromId": null,
 		"types": [
 			"flying"
 		]
@@ -5432,6 +6073,7 @@
 		"id": 642,
 		"slug": "thundurus",
 		"name": "Thundurus",
+		"evolvesFromId": null,
 		"types": [
 			"electric",
 			"flying"
@@ -5441,6 +6083,7 @@
 		"id": 643,
 		"slug": "reshiram",
 		"name": "Reshiram",
+		"evolvesFromId": null,
 		"types": [
 			"dragon",
 			"fire"
@@ -5450,6 +6093,7 @@
 		"id": 644,
 		"slug": "zekrom",
 		"name": "Zekrom",
+		"evolvesFromId": null,
 		"types": [
 			"dragon",
 			"electric"
@@ -5459,6 +6103,7 @@
 		"id": 645,
 		"slug": "landorus",
 		"name": "Landorus",
+		"evolvesFromId": null,
 		"types": [
 			"ground",
 			"flying"
@@ -5468,6 +6113,7 @@
 		"id": 646,
 		"slug": "kyurem",
 		"name": "Kyurem",
+		"evolvesFromId": null,
 		"types": [
 			"dragon",
 			"ice"
@@ -5477,6 +6123,7 @@
 		"id": 647,
 		"slug": "keldeo",
 		"name": "Keldeo",
+		"evolvesFromId": null,
 		"types": [
 			"water",
 			"fighting"
@@ -5486,6 +6133,7 @@
 		"id": 648,
 		"slug": "meloetta",
 		"name": "Meloetta",
+		"evolvesFromId": null,
 		"types": [
 			"normal",
 			"psychic"
@@ -5495,6 +6143,7 @@
 		"id": 649,
 		"slug": "genesect",
 		"name": "Genesect",
+		"evolvesFromId": null,
 		"types": [
 			"bug",
 			"steel"
@@ -5504,6 +6153,7 @@
 		"id": 650,
 		"slug": "chespin",
 		"name": "Chespin",
+		"evolvesFromId": null,
 		"types": [
 			"grass"
 		]
@@ -5512,6 +6162,7 @@
 		"id": 651,
 		"slug": "quilladin",
 		"name": "Quilladin",
+		"evolvesFromId": 650,
 		"types": [
 			"grass"
 		]
@@ -5520,6 +6171,7 @@
 		"id": 652,
 		"slug": "chesnaught",
 		"name": "Chesnaught",
+		"evolvesFromId": 651,
 		"types": [
 			"grass",
 			"fighting"
@@ -5529,6 +6181,7 @@
 		"id": 653,
 		"slug": "fennekin",
 		"name": "Fennekin",
+		"evolvesFromId": null,
 		"types": [
 			"fire"
 		]
@@ -5537,6 +6190,7 @@
 		"id": 654,
 		"slug": "braixen",
 		"name": "Braixen",
+		"evolvesFromId": 653,
 		"types": [
 			"fire"
 		]
@@ -5545,6 +6199,7 @@
 		"id": 655,
 		"slug": "delphox",
 		"name": "Delphox",
+		"evolvesFromId": 654,
 		"types": [
 			"fire",
 			"psychic"
@@ -5554,6 +6209,7 @@
 		"id": 656,
 		"slug": "froakie",
 		"name": "Froakie",
+		"evolvesFromId": null,
 		"types": [
 			"water"
 		]
@@ -5562,6 +6218,7 @@
 		"id": 657,
 		"slug": "frogadier",
 		"name": "Frogadier",
+		"evolvesFromId": 656,
 		"types": [
 			"water"
 		]
@@ -5570,6 +6227,7 @@
 		"id": 658,
 		"slug": "greninja",
 		"name": "Greninja",
+		"evolvesFromId": 657,
 		"types": [
 			"water",
 			"dark"
@@ -5579,6 +6237,7 @@
 		"id": 659,
 		"slug": "bunnelby",
 		"name": "Bunnelby",
+		"evolvesFromId": null,
 		"types": [
 			"normal"
 		]
@@ -5587,6 +6246,7 @@
 		"id": 660,
 		"slug": "diggersby",
 		"name": "Diggersby",
+		"evolvesFromId": 659,
 		"types": [
 			"normal",
 			"ground"
@@ -5596,6 +6256,7 @@
 		"id": 661,
 		"slug": "fletchling",
 		"name": "Fletchling",
+		"evolvesFromId": null,
 		"types": [
 			"normal",
 			"flying"
@@ -5605,6 +6266,7 @@
 		"id": 662,
 		"slug": "fletchinder",
 		"name": "Fletchinder",
+		"evolvesFromId": 661,
 		"types": [
 			"fire",
 			"flying"
@@ -5614,6 +6276,7 @@
 		"id": 663,
 		"slug": "talonflame",
 		"name": "Talonflame",
+		"evolvesFromId": 662,
 		"types": [
 			"fire",
 			"flying"
@@ -5623,6 +6286,7 @@
 		"id": 664,
 		"slug": "scatterbug",
 		"name": "Scatterbug",
+		"evolvesFromId": null,
 		"types": [
 			"bug"
 		]
@@ -5631,6 +6295,7 @@
 		"id": 665,
 		"slug": "spewpa",
 		"name": "Spewpa",
+		"evolvesFromId": 664,
 		"types": [
 			"bug"
 		]
@@ -5639,6 +6304,7 @@
 		"id": 666,
 		"slug": "vivillon",
 		"name": "Vivillon",
+		"evolvesFromId": 665,
 		"types": [
 			"bug",
 			"flying"
@@ -5648,6 +6314,7 @@
 		"id": 667,
 		"slug": "litleo",
 		"name": "Litleo",
+		"evolvesFromId": null,
 		"types": [
 			"fire",
 			"normal"
@@ -5657,6 +6324,7 @@
 		"id": 668,
 		"slug": "pyroar",
 		"name": "Pyroar",
+		"evolvesFromId": 667,
 		"types": [
 			"fire",
 			"normal"
@@ -5666,6 +6334,7 @@
 		"id": 669,
 		"slug": "flabebe",
 		"name": "Flabébé",
+		"evolvesFromId": null,
 		"types": [
 			"fairy"
 		]
@@ -5674,6 +6343,7 @@
 		"id": 670,
 		"slug": "floette",
 		"name": "Floette",
+		"evolvesFromId": 669,
 		"types": [
 			"fairy"
 		]
@@ -5682,6 +6352,7 @@
 		"id": 671,
 		"slug": "florges",
 		"name": "Florges",
+		"evolvesFromId": 670,
 		"types": [
 			"fairy"
 		]
@@ -5690,6 +6361,7 @@
 		"id": 672,
 		"slug": "skiddo",
 		"name": "Skiddo",
+		"evolvesFromId": null,
 		"types": [
 			"grass"
 		]
@@ -5698,6 +6370,7 @@
 		"id": 673,
 		"slug": "gogoat",
 		"name": "Gogoat",
+		"evolvesFromId": 672,
 		"types": [
 			"grass"
 		]
@@ -5706,6 +6379,7 @@
 		"id": 674,
 		"slug": "pancham",
 		"name": "Pancham",
+		"evolvesFromId": null,
 		"types": [
 			"fighting"
 		]
@@ -5714,6 +6388,7 @@
 		"id": 675,
 		"slug": "pangoro",
 		"name": "Pangoro",
+		"evolvesFromId": 674,
 		"types": [
 			"fighting",
 			"dark"
@@ -5723,6 +6398,7 @@
 		"id": 676,
 		"slug": "furfrou",
 		"name": "Furfrou",
+		"evolvesFromId": null,
 		"types": [
 			"normal"
 		]
@@ -5731,6 +6407,7 @@
 		"id": 677,
 		"slug": "espurr",
 		"name": "Espurr",
+		"evolvesFromId": null,
 		"types": [
 			"psychic"
 		]
@@ -5739,6 +6416,7 @@
 		"id": 678,
 		"slug": "meowstic",
 		"name": "Meowstic",
+		"evolvesFromId": 677,
 		"types": [
 			"psychic"
 		]
@@ -5747,6 +6425,7 @@
 		"id": 679,
 		"slug": "honedge",
 		"name": "Honedge",
+		"evolvesFromId": null,
 		"types": [
 			"steel",
 			"ghost"
@@ -5756,6 +6435,7 @@
 		"id": 680,
 		"slug": "doublade",
 		"name": "Doublade",
+		"evolvesFromId": 679,
 		"types": [
 			"steel",
 			"ghost"
@@ -5765,6 +6445,7 @@
 		"id": 681,
 		"slug": "aegislash",
 		"name": "Aegislash",
+		"evolvesFromId": 680,
 		"types": [
 			"steel",
 			"ghost"
@@ -5774,6 +6455,7 @@
 		"id": 682,
 		"slug": "spritzee",
 		"name": "Spritzee",
+		"evolvesFromId": null,
 		"types": [
 			"fairy"
 		]
@@ -5782,6 +6464,7 @@
 		"id": 683,
 		"slug": "aromatisse",
 		"name": "Aromatisse",
+		"evolvesFromId": 682,
 		"types": [
 			"fairy"
 		]
@@ -5790,6 +6473,7 @@
 		"id": 684,
 		"slug": "swirlix",
 		"name": "Swirlix",
+		"evolvesFromId": null,
 		"types": [
 			"fairy"
 		]
@@ -5798,6 +6482,7 @@
 		"id": 685,
 		"slug": "slurpuff",
 		"name": "Slurpuff",
+		"evolvesFromId": 684,
 		"types": [
 			"fairy"
 		]
@@ -5806,6 +6491,7 @@
 		"id": 686,
 		"slug": "inkay",
 		"name": "Inkay",
+		"evolvesFromId": null,
 		"types": [
 			"dark",
 			"psychic"
@@ -5815,6 +6501,7 @@
 		"id": 687,
 		"slug": "malamar",
 		"name": "Malamar",
+		"evolvesFromId": 686,
 		"types": [
 			"dark",
 			"psychic"
@@ -5824,6 +6511,7 @@
 		"id": 688,
 		"slug": "binacle",
 		"name": "Binacle",
+		"evolvesFromId": null,
 		"types": [
 			"rock",
 			"water"
@@ -5833,6 +6521,7 @@
 		"id": 689,
 		"slug": "barbaracle",
 		"name": "Barbaracle",
+		"evolvesFromId": 688,
 		"types": [
 			"rock",
 			"water"
@@ -5842,6 +6531,7 @@
 		"id": 690,
 		"slug": "skrelp",
 		"name": "Skrelp",
+		"evolvesFromId": null,
 		"types": [
 			"poison",
 			"water"
@@ -5851,6 +6541,7 @@
 		"id": 691,
 		"slug": "dragalge",
 		"name": "Dragalge",
+		"evolvesFromId": 690,
 		"types": [
 			"poison",
 			"dragon"
@@ -5860,6 +6551,7 @@
 		"id": 692,
 		"slug": "clauncher",
 		"name": "Clauncher",
+		"evolvesFromId": null,
 		"types": [
 			"water"
 		]
@@ -5868,6 +6560,7 @@
 		"id": 693,
 		"slug": "clawitzer",
 		"name": "Clawitzer",
+		"evolvesFromId": 692,
 		"types": [
 			"water"
 		]
@@ -5876,6 +6569,7 @@
 		"id": 694,
 		"slug": "helioptile",
 		"name": "Helioptile",
+		"evolvesFromId": null,
 		"types": [
 			"electric",
 			"normal"
@@ -5885,6 +6579,7 @@
 		"id": 695,
 		"slug": "heliolisk",
 		"name": "Heliolisk",
+		"evolvesFromId": 694,
 		"types": [
 			"electric",
 			"normal"
@@ -5894,6 +6589,7 @@
 		"id": 696,
 		"slug": "tyrunt",
 		"name": "Tyrunt",
+		"evolvesFromId": null,
 		"types": [
 			"rock",
 			"dragon"
@@ -5903,6 +6599,7 @@
 		"id": 697,
 		"slug": "tyrantrum",
 		"name": "Tyrantrum",
+		"evolvesFromId": 696,
 		"types": [
 			"rock",
 			"dragon"
@@ -5912,6 +6609,7 @@
 		"id": 698,
 		"slug": "amaura",
 		"name": "Amaura",
+		"evolvesFromId": null,
 		"types": [
 			"rock",
 			"ice"
@@ -5921,6 +6619,7 @@
 		"id": 699,
 		"slug": "aurorus",
 		"name": "Aurorus",
+		"evolvesFromId": 698,
 		"types": [
 			"rock",
 			"ice"
@@ -5930,6 +6629,7 @@
 		"id": 700,
 		"slug": "sylveon",
 		"name": "Sylveon",
+		"evolvesFromId": 133,
 		"types": [
 			"fairy"
 		]
@@ -5938,6 +6638,7 @@
 		"id": 701,
 		"slug": "hawlucha",
 		"name": "Hawlucha",
+		"evolvesFromId": null,
 		"types": [
 			"fighting",
 			"flying"
@@ -5947,6 +6648,7 @@
 		"id": 702,
 		"slug": "dedenne",
 		"name": "Dedenne",
+		"evolvesFromId": null,
 		"types": [
 			"electric",
 			"fairy"
@@ -5956,6 +6658,7 @@
 		"id": 703,
 		"slug": "carbink",
 		"name": "Carbink",
+		"evolvesFromId": null,
 		"types": [
 			"rock",
 			"fairy"
@@ -5965,6 +6668,7 @@
 		"id": 704,
 		"slug": "goomy",
 		"name": "Goomy",
+		"evolvesFromId": null,
 		"types": [
 			"dragon"
 		]
@@ -5973,6 +6677,7 @@
 		"id": 705,
 		"slug": "sliggoo",
 		"name": "Sliggoo",
+		"evolvesFromId": 704,
 		"types": [
 			"dragon"
 		]
@@ -5981,6 +6686,7 @@
 		"id": 706,
 		"slug": "goodra",
 		"name": "Goodra",
+		"evolvesFromId": 705,
 		"types": [
 			"dragon"
 		]
@@ -5989,6 +6695,7 @@
 		"id": 707,
 		"slug": "klefki",
 		"name": "Klefki",
+		"evolvesFromId": null,
 		"types": [
 			"steel",
 			"fairy"
@@ -5998,6 +6705,7 @@
 		"id": 708,
 		"slug": "phantump",
 		"name": "Phantump",
+		"evolvesFromId": null,
 		"types": [
 			"ghost",
 			"grass"
@@ -6007,6 +6715,7 @@
 		"id": 709,
 		"slug": "trevenant",
 		"name": "Trevenant",
+		"evolvesFromId": 708,
 		"types": [
 			"ghost",
 			"grass"
@@ -6016,6 +6725,7 @@
 		"id": 710,
 		"slug": "pumpkaboo",
 		"name": "Pumpkaboo",
+		"evolvesFromId": null,
 		"types": [
 			"ghost",
 			"grass"
@@ -6025,6 +6735,7 @@
 		"id": 711,
 		"slug": "gourgeist",
 		"name": "Gourgeist",
+		"evolvesFromId": 710,
 		"types": [
 			"ghost",
 			"grass"
@@ -6034,6 +6745,7 @@
 		"id": 712,
 		"slug": "bergmite",
 		"name": "Bergmite",
+		"evolvesFromId": null,
 		"types": [
 			"ice"
 		]
@@ -6042,6 +6754,7 @@
 		"id": 713,
 		"slug": "avalugg",
 		"name": "Avalugg",
+		"evolvesFromId": 712,
 		"types": [
 			"ice"
 		]
@@ -6050,6 +6763,7 @@
 		"id": 714,
 		"slug": "noibat",
 		"name": "Noibat",
+		"evolvesFromId": null,
 		"types": [
 			"flying",
 			"dragon"
@@ -6059,6 +6773,7 @@
 		"id": 715,
 		"slug": "noivern",
 		"name": "Noivern",
+		"evolvesFromId": 714,
 		"types": [
 			"flying",
 			"dragon"
@@ -6068,6 +6783,7 @@
 		"id": 716,
 		"slug": "xerneas",
 		"name": "Xerneas",
+		"evolvesFromId": null,
 		"types": [
 			"fairy"
 		]
@@ -6076,6 +6792,7 @@
 		"id": 717,
 		"slug": "yveltal",
 		"name": "Yveltal",
+		"evolvesFromId": null,
 		"types": [
 			"dark",
 			"flying"
@@ -6085,6 +6802,7 @@
 		"id": 718,
 		"slug": "zygarde",
 		"name": "Zygarde",
+		"evolvesFromId": null,
 		"types": [
 			"dragon",
 			"ground"
@@ -6094,6 +6812,7 @@
 		"id": 719,
 		"slug": "diancie",
 		"name": "Diancie",
+		"evolvesFromId": null,
 		"types": [
 			"rock",
 			"fairy"
@@ -6103,6 +6822,7 @@
 		"id": 720,
 		"slug": "hoopa",
 		"name": "Hoopa",
+		"evolvesFromId": null,
 		"types": [
 			"psychic",
 			"ghost"
@@ -6112,6 +6832,7 @@
 		"id": 721,
 		"slug": "volcanion",
 		"name": "Volcanion",
+		"evolvesFromId": null,
 		"types": [
 			"fire",
 			"water"
@@ -6121,6 +6842,7 @@
 		"id": 722,
 		"slug": "rowlet",
 		"name": "Rowlet",
+		"evolvesFromId": null,
 		"types": [
 			"grass",
 			"flying"
@@ -6130,6 +6852,7 @@
 		"id": 723,
 		"slug": "dartrix",
 		"name": "Dartrix",
+		"evolvesFromId": 722,
 		"types": [
 			"grass",
 			"flying"
@@ -6139,6 +6862,7 @@
 		"id": 724,
 		"slug": "decidueye",
 		"name": "Decidueye",
+		"evolvesFromId": 723,
 		"types": [
 			"grass",
 			"ghost"
@@ -6148,6 +6872,7 @@
 		"id": 725,
 		"slug": "litten",
 		"name": "Litten",
+		"evolvesFromId": null,
 		"types": [
 			"fire"
 		]
@@ -6156,6 +6881,7 @@
 		"id": 726,
 		"slug": "torracat",
 		"name": "Torracat",
+		"evolvesFromId": 725,
 		"types": [
 			"fire"
 		]
@@ -6164,6 +6890,7 @@
 		"id": 727,
 		"slug": "incineroar",
 		"name": "Incineroar",
+		"evolvesFromId": 726,
 		"types": [
 			"fire",
 			"dark"
@@ -6173,6 +6900,7 @@
 		"id": 728,
 		"slug": "popplio",
 		"name": "Popplio",
+		"evolvesFromId": null,
 		"types": [
 			"water"
 		]
@@ -6181,6 +6909,7 @@
 		"id": 729,
 		"slug": "brionne",
 		"name": "Brionne",
+		"evolvesFromId": 728,
 		"types": [
 			"water"
 		]
@@ -6189,6 +6918,7 @@
 		"id": 730,
 		"slug": "primarina",
 		"name": "Primarina",
+		"evolvesFromId": 729,
 		"types": [
 			"water",
 			"fairy"
@@ -6198,6 +6928,7 @@
 		"id": 731,
 		"slug": "pikipek",
 		"name": "Pikipek",
+		"evolvesFromId": null,
 		"types": [
 			"normal",
 			"flying"
@@ -6207,6 +6938,7 @@
 		"id": 732,
 		"slug": "trumbeak",
 		"name": "Trumbeak",
+		"evolvesFromId": 731,
 		"types": [
 			"normal",
 			"flying"
@@ -6216,6 +6948,7 @@
 		"id": 733,
 		"slug": "toucannon",
 		"name": "Toucannon",
+		"evolvesFromId": 732,
 		"types": [
 			"normal",
 			"flying"
@@ -6225,6 +6958,7 @@
 		"id": 734,
 		"slug": "yungoos",
 		"name": "Yungoos",
+		"evolvesFromId": null,
 		"types": [
 			"normal"
 		]
@@ -6233,6 +6967,7 @@
 		"id": 735,
 		"slug": "gumshoos",
 		"name": "Gumshoos",
+		"evolvesFromId": 734,
 		"types": [
 			"normal"
 		]
@@ -6241,6 +6976,7 @@
 		"id": 736,
 		"slug": "grubbin",
 		"name": "Grubbin",
+		"evolvesFromId": null,
 		"types": [
 			"bug"
 		]
@@ -6249,6 +6985,7 @@
 		"id": 737,
 		"slug": "charjabug",
 		"name": "Charjabug",
+		"evolvesFromId": 736,
 		"types": [
 			"bug",
 			"electric"
@@ -6258,6 +6995,7 @@
 		"id": 738,
 		"slug": "vikavolt",
 		"name": "Vikavolt",
+		"evolvesFromId": 737,
 		"types": [
 			"bug",
 			"electric"
@@ -6267,6 +7005,7 @@
 		"id": 739,
 		"slug": "crabrawler",
 		"name": "Crabrawler",
+		"evolvesFromId": null,
 		"types": [
 			"fighting"
 		]
@@ -6275,6 +7014,7 @@
 		"id": 740,
 		"slug": "crabominable",
 		"name": "Crabominable",
+		"evolvesFromId": 739,
 		"types": [
 			"fighting",
 			"ice"
@@ -6284,6 +7024,7 @@
 		"id": 741,
 		"slug": "oricorio",
 		"name": "Oricorio",
+		"evolvesFromId": null,
 		"types": [
 			"fire",
 			"flying"
@@ -6293,6 +7034,7 @@
 		"id": 742,
 		"slug": "cutiefly",
 		"name": "Cutiefly",
+		"evolvesFromId": null,
 		"types": [
 			"bug",
 			"fairy"
@@ -6302,6 +7044,7 @@
 		"id": 743,
 		"slug": "ribombee",
 		"name": "Ribombee",
+		"evolvesFromId": 742,
 		"types": [
 			"bug",
 			"fairy"
@@ -6311,6 +7054,7 @@
 		"id": 744,
 		"slug": "rockruff",
 		"name": "Rockruff",
+		"evolvesFromId": null,
 		"types": [
 			"rock"
 		]
@@ -6319,6 +7063,7 @@
 		"id": 745,
 		"slug": "lycanroc",
 		"name": "Lycanroc",
+		"evolvesFromId": 744,
 		"types": [
 			"rock"
 		]
@@ -6327,6 +7072,7 @@
 		"id": 746,
 		"slug": "wishiwashi",
 		"name": "Wishiwashi",
+		"evolvesFromId": null,
 		"types": [
 			"water"
 		]
@@ -6335,6 +7081,7 @@
 		"id": 747,
 		"slug": "mareanie",
 		"name": "Mareanie",
+		"evolvesFromId": null,
 		"types": [
 			"poison",
 			"water"
@@ -6344,6 +7091,7 @@
 		"id": 748,
 		"slug": "toxapex",
 		"name": "Toxapex",
+		"evolvesFromId": 747,
 		"types": [
 			"poison",
 			"water"
@@ -6353,6 +7101,7 @@
 		"id": 749,
 		"slug": "mudbray",
 		"name": "Mudbray",
+		"evolvesFromId": null,
 		"types": [
 			"ground"
 		]
@@ -6361,6 +7110,7 @@
 		"id": 750,
 		"slug": "mudsdale",
 		"name": "Mudsdale",
+		"evolvesFromId": 749,
 		"types": [
 			"ground"
 		]
@@ -6369,6 +7119,7 @@
 		"id": 751,
 		"slug": "dewpider",
 		"name": "Dewpider",
+		"evolvesFromId": null,
 		"types": [
 			"water",
 			"bug"
@@ -6378,6 +7129,7 @@
 		"id": 752,
 		"slug": "araquanid",
 		"name": "Araquanid",
+		"evolvesFromId": 751,
 		"types": [
 			"water",
 			"bug"
@@ -6387,6 +7139,7 @@
 		"id": 753,
 		"slug": "fomantis",
 		"name": "Fomantis",
+		"evolvesFromId": null,
 		"types": [
 			"grass"
 		]
@@ -6395,6 +7148,7 @@
 		"id": 754,
 		"slug": "lurantis",
 		"name": "Lurantis",
+		"evolvesFromId": 753,
 		"types": [
 			"grass"
 		]
@@ -6403,6 +7157,7 @@
 		"id": 755,
 		"slug": "morelull",
 		"name": "Morelull",
+		"evolvesFromId": null,
 		"types": [
 			"grass",
 			"fairy"
@@ -6412,6 +7167,7 @@
 		"id": 756,
 		"slug": "shiinotic",
 		"name": "Shiinotic",
+		"evolvesFromId": 755,
 		"types": [
 			"grass",
 			"fairy"
@@ -6421,6 +7177,7 @@
 		"id": 757,
 		"slug": "salandit",
 		"name": "Salandit",
+		"evolvesFromId": null,
 		"types": [
 			"poison",
 			"fire"
@@ -6430,6 +7187,7 @@
 		"id": 758,
 		"slug": "salazzle",
 		"name": "Salazzle",
+		"evolvesFromId": 757,
 		"types": [
 			"poison",
 			"fire"
@@ -6439,6 +7197,7 @@
 		"id": 759,
 		"slug": "stufful",
 		"name": "Stufful",
+		"evolvesFromId": null,
 		"types": [
 			"normal",
 			"fighting"
@@ -6448,6 +7207,7 @@
 		"id": 760,
 		"slug": "bewear",
 		"name": "Bewear",
+		"evolvesFromId": 759,
 		"types": [
 			"normal",
 			"fighting"
@@ -6457,6 +7217,7 @@
 		"id": 761,
 		"slug": "bounsweet",
 		"name": "Bounsweet",
+		"evolvesFromId": null,
 		"types": [
 			"grass"
 		]
@@ -6465,6 +7226,7 @@
 		"id": 762,
 		"slug": "steenee",
 		"name": "Steenee",
+		"evolvesFromId": 761,
 		"types": [
 			"grass"
 		]
@@ -6473,6 +7235,7 @@
 		"id": 763,
 		"slug": "tsareena",
 		"name": "Tsareena",
+		"evolvesFromId": 762,
 		"types": [
 			"grass"
 		]
@@ -6481,6 +7244,7 @@
 		"id": 764,
 		"slug": "comfey",
 		"name": "Comfey",
+		"evolvesFromId": null,
 		"types": [
 			"fairy"
 		]
@@ -6489,6 +7253,7 @@
 		"id": 765,
 		"slug": "oranguru",
 		"name": "Oranguru",
+		"evolvesFromId": null,
 		"types": [
 			"normal",
 			"psychic"
@@ -6498,6 +7263,7 @@
 		"id": 766,
 		"slug": "passimian",
 		"name": "Passimian",
+		"evolvesFromId": null,
 		"types": [
 			"fighting"
 		]
@@ -6506,6 +7272,7 @@
 		"id": 767,
 		"slug": "wimpod",
 		"name": "Wimpod",
+		"evolvesFromId": null,
 		"types": [
 			"bug",
 			"water"
@@ -6515,6 +7282,7 @@
 		"id": 768,
 		"slug": "golisopod",
 		"name": "Golisopod",
+		"evolvesFromId": 767,
 		"types": [
 			"bug",
 			"water"
@@ -6524,6 +7292,7 @@
 		"id": 769,
 		"slug": "sandygast",
 		"name": "Sandygast",
+		"evolvesFromId": null,
 		"types": [
 			"ghost",
 			"ground"
@@ -6533,6 +7302,7 @@
 		"id": 770,
 		"slug": "palossand",
 		"name": "Palossand",
+		"evolvesFromId": 769,
 		"types": [
 			"ghost",
 			"ground"
@@ -6542,6 +7312,7 @@
 		"id": 771,
 		"slug": "pyukumuku",
 		"name": "Pyukumuku",
+		"evolvesFromId": null,
 		"types": [
 			"water"
 		]
@@ -6550,6 +7321,7 @@
 		"id": 772,
 		"slug": "type-null",
 		"name": "Type: Null",
+		"evolvesFromId": null,
 		"types": [
 			"normal"
 		]
@@ -6558,6 +7330,7 @@
 		"id": 773,
 		"slug": "silvally",
 		"name": "Silvally",
+		"evolvesFromId": 772,
 		"types": [
 			"normal"
 		]
@@ -6566,6 +7339,7 @@
 		"id": 774,
 		"slug": "minior",
 		"name": "Minior",
+		"evolvesFromId": null,
 		"types": [
 			"rock",
 			"flying"
@@ -6575,6 +7349,7 @@
 		"id": 775,
 		"slug": "komala",
 		"name": "Komala",
+		"evolvesFromId": null,
 		"types": [
 			"normal"
 		]
@@ -6583,6 +7358,7 @@
 		"id": 776,
 		"slug": "turtonator",
 		"name": "Turtonator",
+		"evolvesFromId": null,
 		"types": [
 			"fire",
 			"dragon"
@@ -6592,6 +7368,7 @@
 		"id": 777,
 		"slug": "togedemaru",
 		"name": "Togedemaru",
+		"evolvesFromId": null,
 		"types": [
 			"electric",
 			"steel"
@@ -6601,6 +7378,7 @@
 		"id": 778,
 		"slug": "mimikyu",
 		"name": "Mimikyu",
+		"evolvesFromId": null,
 		"types": [
 			"ghost",
 			"fairy"
@@ -6610,6 +7388,7 @@
 		"id": 779,
 		"slug": "bruxish",
 		"name": "Bruxish",
+		"evolvesFromId": null,
 		"types": [
 			"water",
 			"psychic"
@@ -6619,6 +7398,7 @@
 		"id": 780,
 		"slug": "drampa",
 		"name": "Drampa",
+		"evolvesFromId": null,
 		"types": [
 			"normal",
 			"dragon"
@@ -6628,6 +7408,7 @@
 		"id": 781,
 		"slug": "dhelmise",
 		"name": "Dhelmise",
+		"evolvesFromId": null,
 		"types": [
 			"ghost",
 			"grass"
@@ -6637,6 +7418,7 @@
 		"id": 782,
 		"slug": "jangmo-o",
 		"name": "Jangmo-o",
+		"evolvesFromId": null,
 		"types": [
 			"dragon"
 		]
@@ -6645,6 +7427,7 @@
 		"id": 783,
 		"slug": "hakamo-o",
 		"name": "Hakamo-o",
+		"evolvesFromId": 782,
 		"types": [
 			"dragon",
 			"fighting"
@@ -6654,6 +7437,7 @@
 		"id": 784,
 		"slug": "kommo-o",
 		"name": "Kommo-o",
+		"evolvesFromId": 783,
 		"types": [
 			"dragon",
 			"fighting"
@@ -6663,6 +7447,7 @@
 		"id": 785,
 		"slug": "tapu-koko",
 		"name": "Tapu Koko",
+		"evolvesFromId": null,
 		"types": [
 			"electric",
 			"fairy"
@@ -6672,6 +7457,7 @@
 		"id": 786,
 		"slug": "tapu-lele",
 		"name": "Tapu Lele",
+		"evolvesFromId": null,
 		"types": [
 			"psychic",
 			"fairy"
@@ -6681,6 +7467,7 @@
 		"id": 787,
 		"slug": "tapu-bulu",
 		"name": "Tapu Bulu",
+		"evolvesFromId": null,
 		"types": [
 			"grass",
 			"fairy"
@@ -6690,6 +7477,7 @@
 		"id": 788,
 		"slug": "tapu-fini",
 		"name": "Tapu Fini",
+		"evolvesFromId": null,
 		"types": [
 			"water",
 			"fairy"
@@ -6699,6 +7487,7 @@
 		"id": 789,
 		"slug": "cosmog",
 		"name": "Cosmog",
+		"evolvesFromId": null,
 		"types": [
 			"psychic"
 		]
@@ -6707,6 +7496,7 @@
 		"id": 790,
 		"slug": "cosmoem",
 		"name": "Cosmoem",
+		"evolvesFromId": 789,
 		"types": [
 			"psychic"
 		]
@@ -6715,6 +7505,7 @@
 		"id": 791,
 		"slug": "solgaleo",
 		"name": "Solgaleo",
+		"evolvesFromId": 790,
 		"types": [
 			"psychic",
 			"steel"
@@ -6724,6 +7515,7 @@
 		"id": 792,
 		"slug": "lunala",
 		"name": "Lunala",
+		"evolvesFromId": 790,
 		"types": [
 			"psychic",
 			"ghost"
@@ -6733,6 +7525,7 @@
 		"id": 793,
 		"slug": "nihilego",
 		"name": "Nihilego",
+		"evolvesFromId": null,
 		"types": [
 			"rock",
 			"poison"
@@ -6742,6 +7535,7 @@
 		"id": 794,
 		"slug": "buzzwole",
 		"name": "Buzzwole",
+		"evolvesFromId": null,
 		"types": [
 			"bug",
 			"fighting"
@@ -6751,6 +7545,7 @@
 		"id": 795,
 		"slug": "pheromosa",
 		"name": "Pheromosa",
+		"evolvesFromId": null,
 		"types": [
 			"bug",
 			"fighting"
@@ -6760,6 +7555,7 @@
 		"id": 796,
 		"slug": "xurkitree",
 		"name": "Xurkitree",
+		"evolvesFromId": null,
 		"types": [
 			"electric"
 		]
@@ -6768,6 +7564,7 @@
 		"id": 797,
 		"slug": "celesteela",
 		"name": "Celesteela",
+		"evolvesFromId": null,
 		"types": [
 			"steel",
 			"flying"
@@ -6777,6 +7574,7 @@
 		"id": 798,
 		"slug": "kartana",
 		"name": "Kartana",
+		"evolvesFromId": null,
 		"types": [
 			"grass",
 			"steel"
@@ -6786,6 +7584,7 @@
 		"id": 799,
 		"slug": "guzzlord",
 		"name": "Guzzlord",
+		"evolvesFromId": null,
 		"types": [
 			"dark",
 			"dragon"
@@ -6795,6 +7594,7 @@
 		"id": 800,
 		"slug": "necrozma",
 		"name": "Necrozma",
+		"evolvesFromId": null,
 		"types": [
 			"psychic"
 		]
@@ -6803,6 +7603,7 @@
 		"id": 801,
 		"slug": "magearna",
 		"name": "Magearna",
+		"evolvesFromId": null,
 		"types": [
 			"steel",
 			"fairy"
@@ -6812,6 +7613,7 @@
 		"id": 802,
 		"slug": "marshadow",
 		"name": "Marshadow",
+		"evolvesFromId": null,
 		"types": [
 			"fighting",
 			"ghost"
@@ -6821,6 +7623,7 @@
 		"id": 803,
 		"slug": "poipole",
 		"name": "Poipole",
+		"evolvesFromId": null,
 		"types": [
 			"poison"
 		]
@@ -6829,6 +7632,7 @@
 		"id": 804,
 		"slug": "naganadel",
 		"name": "Naganadel",
+		"evolvesFromId": 803,
 		"types": [
 			"poison",
 			"dragon"
@@ -6838,6 +7642,7 @@
 		"id": 805,
 		"slug": "stakataka",
 		"name": "Stakataka",
+		"evolvesFromId": null,
 		"types": [
 			"rock",
 			"steel"
@@ -6847,6 +7652,7 @@
 		"id": 806,
 		"slug": "blacephalon",
 		"name": "Blacephalon",
+		"evolvesFromId": null,
 		"types": [
 			"fire",
 			"ghost"
@@ -6856,6 +7662,7 @@
 		"id": 807,
 		"slug": "zeraora",
 		"name": "Zeraora",
+		"evolvesFromId": null,
 		"types": [
 			"electric"
 		]
@@ -6864,6 +7671,7 @@
 		"id": 808,
 		"slug": "meltan",
 		"name": "Meltan",
+		"evolvesFromId": null,
 		"types": [
 			"steel"
 		]
@@ -6872,6 +7680,7 @@
 		"id": 809,
 		"slug": "melmetal",
 		"name": "Melmetal",
+		"evolvesFromId": 808,
 		"types": [
 			"steel"
 		]
@@ -6880,6 +7689,7 @@
 		"id": 810,
 		"slug": "grookey",
 		"name": "Grookey",
+		"evolvesFromId": null,
 		"types": [
 			"grass"
 		]
@@ -6888,6 +7698,7 @@
 		"id": 811,
 		"slug": "thwackey",
 		"name": "Thwackey",
+		"evolvesFromId": 810,
 		"types": [
 			"grass"
 		]
@@ -6896,6 +7707,7 @@
 		"id": 812,
 		"slug": "rillaboom",
 		"name": "Rillaboom",
+		"evolvesFromId": 811,
 		"types": [
 			"grass"
 		]
@@ -6904,6 +7716,7 @@
 		"id": 813,
 		"slug": "scorbunny",
 		"name": "Scorbunny",
+		"evolvesFromId": null,
 		"types": [
 			"fire"
 		]
@@ -6912,6 +7725,7 @@
 		"id": 814,
 		"slug": "raboot",
 		"name": "Raboot",
+		"evolvesFromId": 813,
 		"types": [
 			"fire"
 		]
@@ -6920,6 +7734,7 @@
 		"id": 815,
 		"slug": "cinderace",
 		"name": "Cinderace",
+		"evolvesFromId": 814,
 		"types": [
 			"fire"
 		]
@@ -6928,6 +7743,7 @@
 		"id": 816,
 		"slug": "sobble",
 		"name": "Sobble",
+		"evolvesFromId": null,
 		"types": [
 			"water"
 		]
@@ -6936,6 +7752,7 @@
 		"id": 817,
 		"slug": "drizzile",
 		"name": "Drizzile",
+		"evolvesFromId": 816,
 		"types": [
 			"water"
 		]
@@ -6944,6 +7761,7 @@
 		"id": 818,
 		"slug": "inteleon",
 		"name": "Inteleon",
+		"evolvesFromId": 817,
 		"types": [
 			"water"
 		]
@@ -6952,6 +7770,7 @@
 		"id": 819,
 		"slug": "skwovet",
 		"name": "Skwovet",
+		"evolvesFromId": null,
 		"types": [
 			"normal"
 		]
@@ -6960,6 +7779,7 @@
 		"id": 820,
 		"slug": "greedent",
 		"name": "Greedent",
+		"evolvesFromId": 819,
 		"types": [
 			"normal"
 		]
@@ -6968,6 +7788,7 @@
 		"id": 821,
 		"slug": "rookidee",
 		"name": "Rookidee",
+		"evolvesFromId": null,
 		"types": [
 			"flying"
 		]
@@ -6976,6 +7797,7 @@
 		"id": 822,
 		"slug": "corvisquire",
 		"name": "Corvisquire",
+		"evolvesFromId": 821,
 		"types": [
 			"flying"
 		]
@@ -6984,6 +7806,7 @@
 		"id": 823,
 		"slug": "corviknight",
 		"name": "Corviknight",
+		"evolvesFromId": 822,
 		"types": [
 			"flying",
 			"steel"
@@ -6993,6 +7816,7 @@
 		"id": 824,
 		"slug": "blipbug",
 		"name": "Blipbug",
+		"evolvesFromId": null,
 		"types": [
 			"bug"
 		]
@@ -7001,6 +7825,7 @@
 		"id": 825,
 		"slug": "dottler",
 		"name": "Dottler",
+		"evolvesFromId": 824,
 		"types": [
 			"bug",
 			"psychic"
@@ -7010,6 +7835,7 @@
 		"id": 826,
 		"slug": "orbeetle",
 		"name": "Orbeetle",
+		"evolvesFromId": 825,
 		"types": [
 			"bug",
 			"psychic"
@@ -7019,6 +7845,7 @@
 		"id": 827,
 		"slug": "nickit",
 		"name": "Nickit",
+		"evolvesFromId": null,
 		"types": [
 			"dark"
 		]
@@ -7027,6 +7854,7 @@
 		"id": 828,
 		"slug": "thievul",
 		"name": "Thievul",
+		"evolvesFromId": 827,
 		"types": [
 			"dark"
 		]
@@ -7035,6 +7863,7 @@
 		"id": 829,
 		"slug": "gossifleur",
 		"name": "Gossifleur",
+		"evolvesFromId": null,
 		"types": [
 			"grass"
 		]
@@ -7043,6 +7872,7 @@
 		"id": 830,
 		"slug": "eldegoss",
 		"name": "Eldegoss",
+		"evolvesFromId": 829,
 		"types": [
 			"grass"
 		]
@@ -7051,6 +7881,7 @@
 		"id": 831,
 		"slug": "wooloo",
 		"name": "Wooloo",
+		"evolvesFromId": null,
 		"types": [
 			"normal"
 		]
@@ -7059,6 +7890,7 @@
 		"id": 832,
 		"slug": "dubwool",
 		"name": "Dubwool",
+		"evolvesFromId": 831,
 		"types": [
 			"normal"
 		]
@@ -7067,6 +7899,7 @@
 		"id": 833,
 		"slug": "chewtle",
 		"name": "Chewtle",
+		"evolvesFromId": null,
 		"types": [
 			"water"
 		]
@@ -7075,6 +7908,7 @@
 		"id": 834,
 		"slug": "drednaw",
 		"name": "Drednaw",
+		"evolvesFromId": 833,
 		"types": [
 			"water",
 			"rock"
@@ -7084,6 +7918,7 @@
 		"id": 835,
 		"slug": "yamper",
 		"name": "Yamper",
+		"evolvesFromId": null,
 		"types": [
 			"electric"
 		]
@@ -7092,6 +7927,7 @@
 		"id": 836,
 		"slug": "boltund",
 		"name": "Boltund",
+		"evolvesFromId": 835,
 		"types": [
 			"electric"
 		]
@@ -7100,6 +7936,7 @@
 		"id": 837,
 		"slug": "rolycoly",
 		"name": "Rolycoly",
+		"evolvesFromId": null,
 		"types": [
 			"rock"
 		]
@@ -7108,6 +7945,7 @@
 		"id": 838,
 		"slug": "carkol",
 		"name": "Carkol",
+		"evolvesFromId": 837,
 		"types": [
 			"rock",
 			"fire"
@@ -7117,6 +7955,7 @@
 		"id": 839,
 		"slug": "coalossal",
 		"name": "Coalossal",
+		"evolvesFromId": 838,
 		"types": [
 			"rock",
 			"fire"
@@ -7126,6 +7965,7 @@
 		"id": 840,
 		"slug": "applin",
 		"name": "Applin",
+		"evolvesFromId": null,
 		"types": [
 			"grass",
 			"dragon"
@@ -7135,6 +7975,7 @@
 		"id": 841,
 		"slug": "flapple",
 		"name": "Flapple",
+		"evolvesFromId": 840,
 		"types": [
 			"grass",
 			"dragon"
@@ -7144,6 +7985,7 @@
 		"id": 842,
 		"slug": "appletun",
 		"name": "Appletun",
+		"evolvesFromId": 840,
 		"types": [
 			"grass",
 			"dragon"
@@ -7153,6 +7995,7 @@
 		"id": 843,
 		"slug": "silicobra",
 		"name": "Silicobra",
+		"evolvesFromId": null,
 		"types": [
 			"ground"
 		]
@@ -7161,6 +8004,7 @@
 		"id": 844,
 		"slug": "sandaconda",
 		"name": "Sandaconda",
+		"evolvesFromId": 843,
 		"types": [
 			"ground"
 		]
@@ -7169,6 +8013,7 @@
 		"id": 845,
 		"slug": "cramorant",
 		"name": "Cramorant",
+		"evolvesFromId": null,
 		"types": [
 			"flying",
 			"water"
@@ -7178,6 +8023,7 @@
 		"id": 846,
 		"slug": "arrokuda",
 		"name": "Arrokuda",
+		"evolvesFromId": null,
 		"types": [
 			"water"
 		]
@@ -7186,6 +8032,7 @@
 		"id": 847,
 		"slug": "barraskewda",
 		"name": "Barraskewda",
+		"evolvesFromId": 846,
 		"types": [
 			"water"
 		]
@@ -7194,6 +8041,7 @@
 		"id": 848,
 		"slug": "toxel",
 		"name": "Toxel",
+		"evolvesFromId": null,
 		"types": [
 			"electric",
 			"poison"
@@ -7203,6 +8051,7 @@
 		"id": 849,
 		"slug": "toxtricity",
 		"name": "Toxtricity",
+		"evolvesFromId": 848,
 		"types": [
 			"electric",
 			"poison"
@@ -7212,6 +8061,7 @@
 		"id": 850,
 		"slug": "sizzlipede",
 		"name": "Sizzlipede",
+		"evolvesFromId": null,
 		"types": [
 			"fire",
 			"bug"
@@ -7221,6 +8071,7 @@
 		"id": 851,
 		"slug": "centiskorch",
 		"name": "Centiskorch",
+		"evolvesFromId": 850,
 		"types": [
 			"fire",
 			"bug"
@@ -7230,6 +8081,7 @@
 		"id": 852,
 		"slug": "clobbopus",
 		"name": "Clobbopus",
+		"evolvesFromId": null,
 		"types": [
 			"fighting"
 		]
@@ -7238,6 +8090,7 @@
 		"id": 853,
 		"slug": "grapploct",
 		"name": "Grapploct",
+		"evolvesFromId": 852,
 		"types": [
 			"fighting"
 		]
@@ -7246,6 +8099,7 @@
 		"id": 854,
 		"slug": "sinistea",
 		"name": "Sinistea",
+		"evolvesFromId": null,
 		"types": [
 			"ghost"
 		]
@@ -7254,6 +8108,7 @@
 		"id": 855,
 		"slug": "polteageist",
 		"name": "Polteageist",
+		"evolvesFromId": 854,
 		"types": [
 			"ghost"
 		]
@@ -7262,6 +8117,7 @@
 		"id": 856,
 		"slug": "hatenna",
 		"name": "Hatenna",
+		"evolvesFromId": null,
 		"types": [
 			"psychic"
 		]
@@ -7270,6 +8126,7 @@
 		"id": 857,
 		"slug": "hattrem",
 		"name": "Hattrem",
+		"evolvesFromId": 856,
 		"types": [
 			"psychic"
 		]
@@ -7278,6 +8135,7 @@
 		"id": 858,
 		"slug": "hatterene",
 		"name": "Hatterene",
+		"evolvesFromId": 857,
 		"types": [
 			"psychic",
 			"fairy"
@@ -7287,6 +8145,7 @@
 		"id": 859,
 		"slug": "impidimp",
 		"name": "Impidimp",
+		"evolvesFromId": null,
 		"types": [
 			"dark",
 			"fairy"
@@ -7296,6 +8155,7 @@
 		"id": 860,
 		"slug": "morgrem",
 		"name": "Morgrem",
+		"evolvesFromId": 859,
 		"types": [
 			"dark",
 			"fairy"
@@ -7305,6 +8165,7 @@
 		"id": 861,
 		"slug": "grimmsnarl",
 		"name": "Grimmsnarl",
+		"evolvesFromId": 860,
 		"types": [
 			"dark",
 			"fairy"
@@ -7314,6 +8175,7 @@
 		"id": 862,
 		"slug": "obstagoon",
 		"name": "Obstagoon",
+		"evolvesFromId": 264,
 		"types": [
 			"dark",
 			"normal"
@@ -7323,6 +8185,7 @@
 		"id": 863,
 		"slug": "perrserker",
 		"name": "Perrserker",
+		"evolvesFromId": 52,
 		"types": [
 			"steel"
 		]
@@ -7331,6 +8194,7 @@
 		"id": 864,
 		"slug": "cursola",
 		"name": "Cursola",
+		"evolvesFromId": 222,
 		"types": [
 			"ghost"
 		]
@@ -7339,6 +8203,7 @@
 		"id": 865,
 		"slug": "sirfetchd",
 		"name": "Sirfetch’d",
+		"evolvesFromId": 83,
 		"types": [
 			"fighting"
 		]
@@ -7347,6 +8212,7 @@
 		"id": 866,
 		"slug": "mr-rime",
 		"name": "Mr. Rime",
+		"evolvesFromId": 122,
 		"types": [
 			"ice",
 			"psychic"
@@ -7356,6 +8222,7 @@
 		"id": 867,
 		"slug": "runerigus",
 		"name": "Runerigus",
+		"evolvesFromId": 562,
 		"types": [
 			"ground",
 			"ghost"
@@ -7365,6 +8232,7 @@
 		"id": 868,
 		"slug": "milcery",
 		"name": "Milcery",
+		"evolvesFromId": null,
 		"types": [
 			"fairy"
 		]
@@ -7373,6 +8241,7 @@
 		"id": 869,
 		"slug": "alcremie",
 		"name": "Alcremie",
+		"evolvesFromId": 868,
 		"types": [
 			"fairy"
 		]
@@ -7381,6 +8250,7 @@
 		"id": 870,
 		"slug": "falinks",
 		"name": "Falinks",
+		"evolvesFromId": null,
 		"types": [
 			"fighting"
 		]
@@ -7389,6 +8259,7 @@
 		"id": 871,
 		"slug": "pincurchin",
 		"name": "Pincurchin",
+		"evolvesFromId": null,
 		"types": [
 			"electric"
 		]
@@ -7397,6 +8268,7 @@
 		"id": 872,
 		"slug": "snom",
 		"name": "Snom",
+		"evolvesFromId": null,
 		"types": [
 			"ice",
 			"bug"
@@ -7406,6 +8278,7 @@
 		"id": 873,
 		"slug": "frosmoth",
 		"name": "Frosmoth",
+		"evolvesFromId": 872,
 		"types": [
 			"ice",
 			"bug"
@@ -7415,6 +8288,7 @@
 		"id": 874,
 		"slug": "stonjourner",
 		"name": "Stonjourner",
+		"evolvesFromId": null,
 		"types": [
 			"rock"
 		]
@@ -7423,6 +8297,7 @@
 		"id": 875,
 		"slug": "eiscue",
 		"name": "Eiscue",
+		"evolvesFromId": null,
 		"types": [
 			"ice"
 		]
@@ -7431,6 +8306,7 @@
 		"id": 876,
 		"slug": "indeedee",
 		"name": "Indeedee",
+		"evolvesFromId": null,
 		"types": [
 			"psychic",
 			"normal"
@@ -7440,6 +8316,7 @@
 		"id": 877,
 		"slug": "morpeko",
 		"name": "Morpeko",
+		"evolvesFromId": null,
 		"types": [
 			"electric",
 			"dark"
@@ -7449,6 +8326,7 @@
 		"id": 878,
 		"slug": "cufant",
 		"name": "Cufant",
+		"evolvesFromId": null,
 		"types": [
 			"steel"
 		]
@@ -7457,6 +8335,7 @@
 		"id": 879,
 		"slug": "copperajah",
 		"name": "Copperajah",
+		"evolvesFromId": 878,
 		"types": [
 			"steel"
 		]
@@ -7465,6 +8344,7 @@
 		"id": 880,
 		"slug": "dracozolt",
 		"name": "Dracozolt",
+		"evolvesFromId": null,
 		"types": [
 			"electric",
 			"dragon"
@@ -7474,6 +8354,7 @@
 		"id": 881,
 		"slug": "arctozolt",
 		"name": "Arctozolt",
+		"evolvesFromId": null,
 		"types": [
 			"electric",
 			"ice"
@@ -7483,6 +8364,7 @@
 		"id": 882,
 		"slug": "dracovish",
 		"name": "Dracovish",
+		"evolvesFromId": null,
 		"types": [
 			"water",
 			"dragon"
@@ -7492,6 +8374,7 @@
 		"id": 883,
 		"slug": "arctovish",
 		"name": "Arctovish",
+		"evolvesFromId": null,
 		"types": [
 			"water",
 			"ice"
@@ -7501,6 +8384,7 @@
 		"id": 884,
 		"slug": "duraludon",
 		"name": "Duraludon",
+		"evolvesFromId": null,
 		"types": [
 			"steel",
 			"dragon"
@@ -7510,6 +8394,7 @@
 		"id": 885,
 		"slug": "dreepy",
 		"name": "Dreepy",
+		"evolvesFromId": null,
 		"types": [
 			"dragon",
 			"ghost"
@@ -7519,6 +8404,7 @@
 		"id": 886,
 		"slug": "drakloak",
 		"name": "Drakloak",
+		"evolvesFromId": 885,
 		"types": [
 			"dragon",
 			"ghost"
@@ -7528,6 +8414,7 @@
 		"id": 887,
 		"slug": "dragapult",
 		"name": "Dragapult",
+		"evolvesFromId": 886,
 		"types": [
 			"dragon",
 			"ghost"
@@ -7537,6 +8424,7 @@
 		"id": 888,
 		"slug": "zacian",
 		"name": "Zacian",
+		"evolvesFromId": null,
 		"types": [
 			"fairy"
 		]
@@ -7545,6 +8433,7 @@
 		"id": 889,
 		"slug": "zamazenta",
 		"name": "Zamazenta",
+		"evolvesFromId": null,
 		"types": [
 			"fighting"
 		]
@@ -7553,6 +8442,7 @@
 		"id": 890,
 		"slug": "eternatus",
 		"name": "Eternatus",
+		"evolvesFromId": null,
 		"types": [
 			"poison",
 			"dragon"
@@ -7562,6 +8452,7 @@
 		"id": 891,
 		"slug": "kubfu",
 		"name": "Kubfu",
+		"evolvesFromId": null,
 		"types": [
 			"fighting"
 		]
@@ -7570,6 +8461,7 @@
 		"id": 892,
 		"slug": "urshifu",
 		"name": "Urshifu",
+		"evolvesFromId": 891,
 		"types": [
 			"fighting",
 			"dark"
@@ -7579,6 +8471,7 @@
 		"id": 893,
 		"slug": "zarude",
 		"name": "Zarude",
+		"evolvesFromId": null,
 		"types": [
 			"dark",
 			"grass"
@@ -7588,6 +8481,7 @@
 		"id": 894,
 		"slug": "regieleki",
 		"name": "Regieleki",
+		"evolvesFromId": null,
 		"types": [
 			"electric"
 		]
@@ -7596,6 +8490,7 @@
 		"id": 895,
 		"slug": "regidrago",
 		"name": "Regidrago",
+		"evolvesFromId": null,
 		"types": [
 			"dragon"
 		]
@@ -7604,6 +8499,7 @@
 		"id": 896,
 		"slug": "glastrier",
 		"name": "Glastrier",
+		"evolvesFromId": null,
 		"types": [
 			"ice"
 		]
@@ -7612,6 +8508,7 @@
 		"id": 897,
 		"slug": "spectrier",
 		"name": "Spectrier",
+		"evolvesFromId": null,
 		"types": [
 			"ghost"
 		]
@@ -7620,6 +8517,7 @@
 		"id": 898,
 		"slug": "calyrex",
 		"name": "Calyrex",
+		"evolvesFromId": null,
 		"types": [
 			"psychic",
 			"grass"
@@ -7629,6 +8527,7 @@
 		"id": 899,
 		"slug": "wyrdeer",
 		"name": "Wyrdeer",
+		"evolvesFromId": 234,
 		"types": [
 			"normal",
 			"psychic"
@@ -7638,6 +8537,7 @@
 		"id": 900,
 		"slug": "kleavor",
 		"name": "Kleavor",
+		"evolvesFromId": 123,
 		"types": [
 			"bug",
 			"rock"
@@ -7647,6 +8547,7 @@
 		"id": 901,
 		"slug": "ursaluna",
 		"name": "Ursaluna",
+		"evolvesFromId": 217,
 		"types": [
 			"ground",
 			"normal"
@@ -7656,6 +8557,7 @@
 		"id": 902,
 		"slug": "basculegion",
 		"name": "Basculegion",
+		"evolvesFromId": 550,
 		"types": [
 			"water",
 			"ghost"
@@ -7665,6 +8567,7 @@
 		"id": 903,
 		"slug": "sneasler",
 		"name": "Sneasler",
+		"evolvesFromId": 215,
 		"types": [
 			"fighting",
 			"poison"
@@ -7674,6 +8577,7 @@
 		"id": 904,
 		"slug": "overqwil",
 		"name": "Overqwil",
+		"evolvesFromId": 211,
 		"types": [
 			"dark",
 			"poison"
@@ -7683,6 +8587,7 @@
 		"id": 905,
 		"slug": "enamorus",
 		"name": "Enamorus",
+		"evolvesFromId": null,
 		"types": [
 			"fairy",
 			"flying"
@@ -7692,6 +8597,7 @@
 		"id": 906,
 		"slug": "sprigatito",
 		"name": "Sprigatito",
+		"evolvesFromId": null,
 		"types": [
 			"grass"
 		]
@@ -7700,6 +8606,7 @@
 		"id": 907,
 		"slug": "floragato",
 		"name": "Floragato",
+		"evolvesFromId": 906,
 		"types": [
 			"grass"
 		]
@@ -7708,6 +8615,7 @@
 		"id": 908,
 		"slug": "meowscarada",
 		"name": "Meowscarada",
+		"evolvesFromId": 907,
 		"types": [
 			"grass",
 			"dark"
@@ -7717,6 +8625,7 @@
 		"id": 909,
 		"slug": "fuecoco",
 		"name": "Fuecoco",
+		"evolvesFromId": null,
 		"types": [
 			"fire"
 		]
@@ -7725,6 +8634,7 @@
 		"id": 910,
 		"slug": "crocalor",
 		"name": "Crocalor",
+		"evolvesFromId": 909,
 		"types": [
 			"fire"
 		]
@@ -7733,6 +8643,7 @@
 		"id": 911,
 		"slug": "skeledirge",
 		"name": "Skeledirge",
+		"evolvesFromId": 910,
 		"types": [
 			"fire",
 			"ghost"
@@ -7742,6 +8653,7 @@
 		"id": 912,
 		"slug": "quaxly",
 		"name": "Quaxly",
+		"evolvesFromId": null,
 		"types": [
 			"water"
 		]
@@ -7750,6 +8662,7 @@
 		"id": 913,
 		"slug": "quaxwell",
 		"name": "Quaxwell",
+		"evolvesFromId": 912,
 		"types": [
 			"water"
 		]
@@ -7758,6 +8671,7 @@
 		"id": 914,
 		"slug": "quaquaval",
 		"name": "Quaquaval",
+		"evolvesFromId": 913,
 		"types": [
 			"water",
 			"fighting"
@@ -7767,6 +8681,7 @@
 		"id": 915,
 		"slug": "lechonk",
 		"name": "Lechonk",
+		"evolvesFromId": null,
 		"types": [
 			"normal"
 		]
@@ -7775,6 +8690,7 @@
 		"id": 916,
 		"slug": "oinkologne",
 		"name": "Oinkologne",
+		"evolvesFromId": 915,
 		"types": [
 			"normal"
 		]
@@ -7783,6 +8699,7 @@
 		"id": 917,
 		"slug": "tarountula",
 		"name": "Tarountula",
+		"evolvesFromId": null,
 		"types": [
 			"bug"
 		]
@@ -7791,6 +8708,7 @@
 		"id": 918,
 		"slug": "spidops",
 		"name": "Spidops",
+		"evolvesFromId": 917,
 		"types": [
 			"bug"
 		]
@@ -7799,6 +8717,7 @@
 		"id": 919,
 		"slug": "nymble",
 		"name": "Nymble",
+		"evolvesFromId": null,
 		"types": [
 			"bug"
 		]
@@ -7807,6 +8726,7 @@
 		"id": 920,
 		"slug": "lokix",
 		"name": "Lokix",
+		"evolvesFromId": 919,
 		"types": [
 			"bug",
 			"dark"
@@ -7816,6 +8736,7 @@
 		"id": 921,
 		"slug": "pawmi",
 		"name": "Pawmi",
+		"evolvesFromId": null,
 		"types": [
 			"electric"
 		]
@@ -7824,6 +8745,7 @@
 		"id": 922,
 		"slug": "pawmo",
 		"name": "Pawmo",
+		"evolvesFromId": 921,
 		"types": [
 			"electric",
 			"fighting"
@@ -7833,6 +8755,7 @@
 		"id": 923,
 		"slug": "pawmot",
 		"name": "Pawmot",
+		"evolvesFromId": 922,
 		"types": [
 			"electric",
 			"fighting"
@@ -7842,6 +8765,7 @@
 		"id": 924,
 		"slug": "tandemaus",
 		"name": "Tandemaus",
+		"evolvesFromId": null,
 		"types": [
 			"normal"
 		]
@@ -7850,6 +8774,7 @@
 		"id": 925,
 		"slug": "maushold",
 		"name": "Maushold",
+		"evolvesFromId": 924,
 		"types": [
 			"normal"
 		]
@@ -7858,6 +8783,7 @@
 		"id": 926,
 		"slug": "fidough",
 		"name": "Fidough",
+		"evolvesFromId": null,
 		"types": [
 			"fairy"
 		]
@@ -7866,6 +8792,7 @@
 		"id": 927,
 		"slug": "dachsbun",
 		"name": "Dachsbun",
+		"evolvesFromId": 926,
 		"types": [
 			"fairy"
 		]
@@ -7874,6 +8801,7 @@
 		"id": 928,
 		"slug": "smoliv",
 		"name": "Smoliv",
+		"evolvesFromId": null,
 		"types": [
 			"grass",
 			"normal"
@@ -7883,6 +8811,7 @@
 		"id": 929,
 		"slug": "dolliv",
 		"name": "Dolliv",
+		"evolvesFromId": 928,
 		"types": [
 			"grass",
 			"normal"
@@ -7892,6 +8821,7 @@
 		"id": 930,
 		"slug": "arboliva",
 		"name": "Arboliva",
+		"evolvesFromId": 929,
 		"types": [
 			"grass",
 			"normal"
@@ -7901,6 +8831,7 @@
 		"id": 931,
 		"slug": "squawkabilly",
 		"name": "Squawkabilly",
+		"evolvesFromId": null,
 		"types": [
 			"normal",
 			"flying"
@@ -7910,6 +8841,7 @@
 		"id": 932,
 		"slug": "nacli",
 		"name": "Nacli",
+		"evolvesFromId": null,
 		"types": [
 			"rock"
 		]
@@ -7918,6 +8850,7 @@
 		"id": 933,
 		"slug": "naclstack",
 		"name": "Naclstack",
+		"evolvesFromId": 932,
 		"types": [
 			"rock"
 		]
@@ -7926,6 +8859,7 @@
 		"id": 934,
 		"slug": "garganacl",
 		"name": "Garganacl",
+		"evolvesFromId": 933,
 		"types": [
 			"rock"
 		]
@@ -7934,6 +8868,7 @@
 		"id": 935,
 		"slug": "charcadet",
 		"name": "Charcadet",
+		"evolvesFromId": null,
 		"types": [
 			"fire"
 		]
@@ -7942,6 +8877,7 @@
 		"id": 936,
 		"slug": "armarouge",
 		"name": "Armarouge",
+		"evolvesFromId": 935,
 		"types": [
 			"fire",
 			"psychic"
@@ -7951,6 +8887,7 @@
 		"id": 937,
 		"slug": "ceruledge",
 		"name": "Ceruledge",
+		"evolvesFromId": 935,
 		"types": [
 			"fire",
 			"ghost"
@@ -7960,6 +8897,7 @@
 		"id": 938,
 		"slug": "tadbulb",
 		"name": "Tadbulb",
+		"evolvesFromId": null,
 		"types": [
 			"electric"
 		]
@@ -7968,6 +8906,7 @@
 		"id": 939,
 		"slug": "bellibolt",
 		"name": "Bellibolt",
+		"evolvesFromId": 938,
 		"types": [
 			"electric"
 		]
@@ -7976,6 +8915,7 @@
 		"id": 940,
 		"slug": "wattrel",
 		"name": "Wattrel",
+		"evolvesFromId": null,
 		"types": [
 			"electric",
 			"flying"
@@ -7985,6 +8925,7 @@
 		"id": 941,
 		"slug": "kilowattrel",
 		"name": "Kilowattrel",
+		"evolvesFromId": 940,
 		"types": [
 			"electric",
 			"flying"
@@ -7994,6 +8935,7 @@
 		"id": 942,
 		"slug": "maschiff",
 		"name": "Maschiff",
+		"evolvesFromId": null,
 		"types": [
 			"dark"
 		]
@@ -8002,6 +8944,7 @@
 		"id": 943,
 		"slug": "mabosstiff",
 		"name": "Mabosstiff",
+		"evolvesFromId": 942,
 		"types": [
 			"dark"
 		]
@@ -8010,6 +8953,7 @@
 		"id": 944,
 		"slug": "shroodle",
 		"name": "Shroodle",
+		"evolvesFromId": null,
 		"types": [
 			"poison",
 			"normal"
@@ -8019,6 +8963,7 @@
 		"id": 945,
 		"slug": "grafaiai",
 		"name": "Grafaiai",
+		"evolvesFromId": 944,
 		"types": [
 			"poison",
 			"normal"
@@ -8028,6 +8973,7 @@
 		"id": 946,
 		"slug": "bramblin",
 		"name": "Bramblin",
+		"evolvesFromId": null,
 		"types": [
 			"grass",
 			"ghost"
@@ -8037,6 +8983,7 @@
 		"id": 947,
 		"slug": "brambleghast",
 		"name": "Brambleghast",
+		"evolvesFromId": 946,
 		"types": [
 			"grass",
 			"ghost"
@@ -8046,6 +8993,7 @@
 		"id": 948,
 		"slug": "toedscool",
 		"name": "Toedscool",
+		"evolvesFromId": null,
 		"types": [
 			"ground",
 			"grass"
@@ -8055,6 +9003,7 @@
 		"id": 949,
 		"slug": "toedscruel",
 		"name": "Toedscruel",
+		"evolvesFromId": 948,
 		"types": [
 			"ground",
 			"grass"
@@ -8064,6 +9013,7 @@
 		"id": 950,
 		"slug": "klawf",
 		"name": "Klawf",
+		"evolvesFromId": null,
 		"types": [
 			"rock"
 		]
@@ -8072,6 +9022,7 @@
 		"id": 951,
 		"slug": "capsakid",
 		"name": "Capsakid",
+		"evolvesFromId": null,
 		"types": [
 			"grass"
 		]
@@ -8080,6 +9031,7 @@
 		"id": 952,
 		"slug": "scovillain",
 		"name": "Scovillain",
+		"evolvesFromId": 951,
 		"types": [
 			"grass",
 			"fire"
@@ -8089,6 +9041,7 @@
 		"id": 953,
 		"slug": "rellor",
 		"name": "Rellor",
+		"evolvesFromId": null,
 		"types": [
 			"bug"
 		]
@@ -8097,6 +9050,7 @@
 		"id": 954,
 		"slug": "rabsca",
 		"name": "Rabsca",
+		"evolvesFromId": 953,
 		"types": [
 			"bug",
 			"psychic"
@@ -8106,6 +9060,7 @@
 		"id": 955,
 		"slug": "flittle",
 		"name": "Flittle",
+		"evolvesFromId": null,
 		"types": [
 			"psychic"
 		]
@@ -8114,6 +9069,7 @@
 		"id": 956,
 		"slug": "espathra",
 		"name": "Espathra",
+		"evolvesFromId": 955,
 		"types": [
 			"psychic"
 		]
@@ -8122,6 +9078,7 @@
 		"id": 957,
 		"slug": "tinkatink",
 		"name": "Tinkatink",
+		"evolvesFromId": null,
 		"types": [
 			"fairy",
 			"steel"
@@ -8131,6 +9088,7 @@
 		"id": 958,
 		"slug": "tinkatuff",
 		"name": "Tinkatuff",
+		"evolvesFromId": 957,
 		"types": [
 			"fairy",
 			"steel"
@@ -8140,6 +9098,7 @@
 		"id": 959,
 		"slug": "tinkaton",
 		"name": "Tinkaton",
+		"evolvesFromId": 958,
 		"types": [
 			"fairy",
 			"steel"
@@ -8149,6 +9108,7 @@
 		"id": 960,
 		"slug": "wiglett",
 		"name": "Wiglett",
+		"evolvesFromId": null,
 		"types": [
 			"water"
 		]
@@ -8157,6 +9117,7 @@
 		"id": 961,
 		"slug": "wugtrio",
 		"name": "Wugtrio",
+		"evolvesFromId": 960,
 		"types": [
 			"water"
 		]
@@ -8165,6 +9126,7 @@
 		"id": 962,
 		"slug": "bombirdier",
 		"name": "Bombirdier",
+		"evolvesFromId": null,
 		"types": [
 			"flying",
 			"dark"
@@ -8174,6 +9136,7 @@
 		"id": 963,
 		"slug": "finizen",
 		"name": "Finizen",
+		"evolvesFromId": null,
 		"types": [
 			"water"
 		]
@@ -8182,6 +9145,7 @@
 		"id": 964,
 		"slug": "palafin",
 		"name": "Palafin",
+		"evolvesFromId": 963,
 		"types": [
 			"water"
 		]
@@ -8190,6 +9154,7 @@
 		"id": 965,
 		"slug": "varoom",
 		"name": "Varoom",
+		"evolvesFromId": null,
 		"types": [
 			"steel",
 			"poison"
@@ -8199,6 +9164,7 @@
 		"id": 966,
 		"slug": "revavroom",
 		"name": "Revavroom",
+		"evolvesFromId": 965,
 		"types": [
 			"steel",
 			"poison"
@@ -8208,6 +9174,7 @@
 		"id": 967,
 		"slug": "cyclizar",
 		"name": "Cyclizar",
+		"evolvesFromId": null,
 		"types": [
 			"dragon",
 			"normal"
@@ -8217,6 +9184,7 @@
 		"id": 968,
 		"slug": "orthworm",
 		"name": "Orthworm",
+		"evolvesFromId": null,
 		"types": [
 			"steel"
 		]
@@ -8225,6 +9193,7 @@
 		"id": 969,
 		"slug": "glimmet",
 		"name": "Glimmet",
+		"evolvesFromId": null,
 		"types": [
 			"rock",
 			"poison"
@@ -8234,6 +9203,7 @@
 		"id": 970,
 		"slug": "glimmora",
 		"name": "Glimmora",
+		"evolvesFromId": 969,
 		"types": [
 			"rock",
 			"poison"
@@ -8243,6 +9213,7 @@
 		"id": 971,
 		"slug": "greavard",
 		"name": "Greavard",
+		"evolvesFromId": null,
 		"types": [
 			"ghost"
 		]
@@ -8251,6 +9222,7 @@
 		"id": 972,
 		"slug": "houndstone",
 		"name": "Houndstone",
+		"evolvesFromId": 971,
 		"types": [
 			"ghost"
 		]
@@ -8259,6 +9231,7 @@
 		"id": 973,
 		"slug": "flamigo",
 		"name": "Flamigo",
+		"evolvesFromId": null,
 		"types": [
 			"flying",
 			"fighting"
@@ -8268,6 +9241,7 @@
 		"id": 974,
 		"slug": "cetoddle",
 		"name": "Cetoddle",
+		"evolvesFromId": null,
 		"types": [
 			"ice"
 		]
@@ -8276,6 +9250,7 @@
 		"id": 975,
 		"slug": "cetitan",
 		"name": "Cetitan",
+		"evolvesFromId": 974,
 		"types": [
 			"ice"
 		]
@@ -8284,6 +9259,7 @@
 		"id": 976,
 		"slug": "veluza",
 		"name": "Veluza",
+		"evolvesFromId": null,
 		"types": [
 			"water",
 			"psychic"
@@ -8293,6 +9269,7 @@
 		"id": 977,
 		"slug": "dondozo",
 		"name": "Dondozo",
+		"evolvesFromId": null,
 		"types": [
 			"water"
 		]
@@ -8301,6 +9278,7 @@
 		"id": 978,
 		"slug": "tatsugiri",
 		"name": "Tatsugiri",
+		"evolvesFromId": null,
 		"types": [
 			"dragon",
 			"water"
@@ -8310,6 +9288,7 @@
 		"id": 979,
 		"slug": "annihilape",
 		"name": "Annihilape",
+		"evolvesFromId": 57,
 		"types": [
 			"fighting",
 			"ghost"
@@ -8319,6 +9298,7 @@
 		"id": 980,
 		"slug": "clodsire",
 		"name": "Clodsire",
+		"evolvesFromId": 194,
 		"types": [
 			"poison",
 			"ground"
@@ -8328,6 +9308,7 @@
 		"id": 981,
 		"slug": "farigiraf",
 		"name": "Farigiraf",
+		"evolvesFromId": 203,
 		"types": [
 			"normal",
 			"psychic"
@@ -8337,6 +9318,7 @@
 		"id": 982,
 		"slug": "dudunsparce",
 		"name": "Dudunsparce",
+		"evolvesFromId": 206,
 		"types": [
 			"normal"
 		]
@@ -8345,6 +9327,7 @@
 		"id": 983,
 		"slug": "kingambit",
 		"name": "Kingambit",
+		"evolvesFromId": 625,
 		"types": [
 			"dark",
 			"steel"
@@ -8354,6 +9337,7 @@
 		"id": 984,
 		"slug": "great-tusk",
 		"name": "Great Tusk",
+		"evolvesFromId": null,
 		"types": [
 			"ground",
 			"fighting"
@@ -8363,6 +9347,7 @@
 		"id": 985,
 		"slug": "scream-tail",
 		"name": "Scream Tail",
+		"evolvesFromId": null,
 		"types": [
 			"fairy",
 			"psychic"
@@ -8372,6 +9357,7 @@
 		"id": 986,
 		"slug": "brute-bonnet",
 		"name": "Brute Bonnet",
+		"evolvesFromId": null,
 		"types": [
 			"grass",
 			"dark"
@@ -8381,6 +9367,7 @@
 		"id": 987,
 		"slug": "flutter-mane",
 		"name": "Flutter Mane",
+		"evolvesFromId": null,
 		"types": [
 			"ghost",
 			"fairy"
@@ -8390,6 +9377,7 @@
 		"id": 988,
 		"slug": "slither-wing",
 		"name": "Slither Wing",
+		"evolvesFromId": null,
 		"types": [
 			"bug",
 			"fighting"
@@ -8399,6 +9387,7 @@
 		"id": 989,
 		"slug": "sandy-shocks",
 		"name": "Sandy Shocks",
+		"evolvesFromId": null,
 		"types": [
 			"electric",
 			"ground"
@@ -8408,6 +9397,7 @@
 		"id": 990,
 		"slug": "iron-treads",
 		"name": "Iron Treads",
+		"evolvesFromId": null,
 		"types": [
 			"ground",
 			"steel"
@@ -8417,6 +9407,7 @@
 		"id": 991,
 		"slug": "iron-bundle",
 		"name": "Iron Bundle",
+		"evolvesFromId": null,
 		"types": [
 			"ice",
 			"water"
@@ -8426,6 +9417,7 @@
 		"id": 992,
 		"slug": "iron-hands",
 		"name": "Iron Hands",
+		"evolvesFromId": null,
 		"types": [
 			"fighting",
 			"electric"
@@ -8435,6 +9427,7 @@
 		"id": 993,
 		"slug": "iron-jugulis",
 		"name": "Iron Jugulis",
+		"evolvesFromId": null,
 		"types": [
 			"dark",
 			"flying"
@@ -8444,6 +9437,7 @@
 		"id": 994,
 		"slug": "iron-moth",
 		"name": "Iron Moth",
+		"evolvesFromId": null,
 		"types": [
 			"fire",
 			"poison"
@@ -8453,6 +9447,7 @@
 		"id": 995,
 		"slug": "iron-thorns",
 		"name": "Iron Thorns",
+		"evolvesFromId": null,
 		"types": [
 			"rock",
 			"electric"
@@ -8462,6 +9457,7 @@
 		"id": 996,
 		"slug": "frigibax",
 		"name": "Frigibax",
+		"evolvesFromId": null,
 		"types": [
 			"dragon",
 			"ice"
@@ -8471,6 +9467,7 @@
 		"id": 997,
 		"slug": "arctibax",
 		"name": "Arctibax",
+		"evolvesFromId": 996,
 		"types": [
 			"dragon",
 			"ice"
@@ -8480,6 +9477,7 @@
 		"id": 998,
 		"slug": "baxcalibur",
 		"name": "Baxcalibur",
+		"evolvesFromId": 997,
 		"types": [
 			"dragon",
 			"ice"
@@ -8489,6 +9487,7 @@
 		"id": 999,
 		"slug": "gimmighoul",
 		"name": "Gimmighoul",
+		"evolvesFromId": null,
 		"types": [
 			"ghost"
 		]
@@ -8497,6 +9496,7 @@
 		"id": 1000,
 		"slug": "gholdengo",
 		"name": "Gholdengo",
+		"evolvesFromId": 999,
 		"types": [
 			"steel",
 			"ghost"
@@ -8506,6 +9506,7 @@
 		"id": 1001,
 		"slug": "wo-chien",
 		"name": "Wo-Chien",
+		"evolvesFromId": null,
 		"types": [
 			"dark",
 			"grass"
@@ -8515,6 +9516,7 @@
 		"id": 1002,
 		"slug": "chien-pao",
 		"name": "Chien-Pao",
+		"evolvesFromId": null,
 		"types": [
 			"dark",
 			"ice"
@@ -8524,6 +9526,7 @@
 		"id": 1003,
 		"slug": "ting-lu",
 		"name": "Ting-Lu",
+		"evolvesFromId": null,
 		"types": [
 			"dark",
 			"ground"
@@ -8533,6 +9536,7 @@
 		"id": 1004,
 		"slug": "chi-yu",
 		"name": "Chi-Yu",
+		"evolvesFromId": null,
 		"types": [
 			"dark",
 			"fire"
@@ -8542,6 +9546,7 @@
 		"id": 1005,
 		"slug": "roaring-moon",
 		"name": "Roaring Moon",
+		"evolvesFromId": null,
 		"types": [
 			"dragon",
 			"dark"
@@ -8551,6 +9556,7 @@
 		"id": 1006,
 		"slug": "iron-valiant",
 		"name": "Iron Valiant",
+		"evolvesFromId": null,
 		"types": [
 			"fairy",
 			"fighting"
@@ -8560,6 +9566,7 @@
 		"id": 1007,
 		"slug": "koraidon",
 		"name": "Koraidon",
+		"evolvesFromId": null,
 		"types": [
 			"fighting",
 			"dragon"
@@ -8569,6 +9576,7 @@
 		"id": 1008,
 		"slug": "miraidon",
 		"name": "Miraidon",
+		"evolvesFromId": null,
 		"types": [
 			"electric",
 			"dragon"
@@ -8578,6 +9586,7 @@
 		"id": 1009,
 		"slug": "walking-wake",
 		"name": "Walking Wake",
+		"evolvesFromId": null,
 		"types": [
 			"water",
 			"dragon"
@@ -8587,6 +9596,7 @@
 		"id": 1010,
 		"slug": "iron-leaves",
 		"name": "Iron Leaves",
+		"evolvesFromId": null,
 		"types": [
 			"grass",
 			"psychic"
@@ -8596,6 +9606,7 @@
 		"id": 1011,
 		"slug": "dipplin",
 		"name": "Dipplin",
+		"evolvesFromId": 840,
 		"types": [
 			"grass",
 			"dragon"
@@ -8605,6 +9616,7 @@
 		"id": 1012,
 		"slug": "poltchageist",
 		"name": "Poltchageist",
+		"evolvesFromId": null,
 		"types": [
 			"grass",
 			"ghost"
@@ -8614,6 +9626,7 @@
 		"id": 1013,
 		"slug": "sinistcha",
 		"name": "Sinistcha",
+		"evolvesFromId": 1012,
 		"types": [
 			"grass",
 			"ghost"
@@ -8623,6 +9636,7 @@
 		"id": 1014,
 		"slug": "okidogi",
 		"name": "Okidogi",
+		"evolvesFromId": null,
 		"types": [
 			"poison",
 			"fighting"
@@ -8632,6 +9646,7 @@
 		"id": 1015,
 		"slug": "munkidori",
 		"name": "Munkidori",
+		"evolvesFromId": null,
 		"types": [
 			"poison",
 			"psychic"
@@ -8641,6 +9656,7 @@
 		"id": 1016,
 		"slug": "fezandipiti",
 		"name": "Fezandipiti",
+		"evolvesFromId": null,
 		"types": [
 			"poison",
 			"fairy"
@@ -8650,6 +9666,7 @@
 		"id": 1017,
 		"slug": "ogerpon",
 		"name": "Ogerpon",
+		"evolvesFromId": null,
 		"types": [
 			"grass"
 		]
@@ -8658,6 +9675,7 @@
 		"id": 1018,
 		"slug": "archaludon",
 		"name": "Archaludon",
+		"evolvesFromId": 884,
 		"types": [
 			"steel",
 			"dragon"
@@ -8667,6 +9685,7 @@
 		"id": 1019,
 		"slug": "hydrapple",
 		"name": "Hydrapple",
+		"evolvesFromId": 1011,
 		"types": [
 			"grass",
 			"dragon"
@@ -8676,6 +9695,7 @@
 		"id": 1020,
 		"slug": "gouging-fire",
 		"name": "Gouging Fire",
+		"evolvesFromId": null,
 		"types": [
 			"fire",
 			"dragon"
@@ -8685,6 +9705,7 @@
 		"id": 1021,
 		"slug": "raging-bolt",
 		"name": "Raging Bolt",
+		"evolvesFromId": null,
 		"types": [
 			"electric",
 			"dragon"
@@ -8694,6 +9715,7 @@
 		"id": 1022,
 		"slug": "iron-boulder",
 		"name": "Iron Boulder",
+		"evolvesFromId": null,
 		"types": [
 			"rock",
 			"psychic"
@@ -8703,6 +9725,7 @@
 		"id": 1023,
 		"slug": "iron-crown",
 		"name": "Iron Crown",
+		"evolvesFromId": null,
 		"types": [
 			"steel",
 			"psychic"
@@ -8712,6 +9735,7 @@
 		"id": 1024,
 		"slug": "terapagos",
 		"name": "Terapagos",
+		"evolvesFromId": null,
 		"types": [
 			"normal"
 		]
@@ -8720,6 +9744,7 @@
 		"id": 1025,
 		"slug": "pecharunt",
 		"name": "Pecharunt",
+		"evolvesFromId": null,
 		"types": [
 			"poison",
 			"ghost"
