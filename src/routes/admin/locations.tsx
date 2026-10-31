@@ -92,8 +92,9 @@ function LocationsAdminPage() {
 			<div className="space-y-1">
 				<h1 className="text-2xl font-semibold">Locations</h1>
 				<p className="text-sm text-muted-foreground">
-					Order, rename, hide or add locations for a game. Changes apply to
-					every run of that game. Starter is always first.
+					Order, rename, hide or add locations for a game. Drag rows, or type a
+					row's number to move it there. Changes apply to every run of that
+					game. Starter is always first.
 				</p>
 			</div>
 
@@ -167,6 +168,12 @@ function LocationEditor({
 		commit(arrayMove(ordered, from, to));
 	};
 
+	const moveTo = (id: number, position: number) => {
+		const from = ordered.findIndex((l) => l.id === id);
+		const to = Math.min(Math.max(position, 1), ordered.length) - 1;
+		if (from !== to) commit(arrayMove(ordered, from, to));
+	};
+
 	return (
 		<div className="space-y-6">
 			<AddLocationForm gameId={gameId} />
@@ -202,7 +209,12 @@ function LocationEditor({
 						>
 							<ol className="divide-y rounded-lg border">
 								{ordered.map((loc, i) => (
-									<SortableRow key={loc.id} loc={loc} position={i + 1}>
+									<SortableRow
+										key={loc.id}
+										loc={loc}
+										position={i + 1}
+										onMove={(position) => moveTo(loc.id, position)}
+									>
 										<Button
 											variant="ghost"
 											size="icon"
@@ -272,10 +284,12 @@ function LocationEditor({
 function SortableRow({
 	loc,
 	position,
+	onMove,
 	children,
 }: {
 	loc: Loc;
 	position: number;
+	onMove: (position: number) => void;
 	children: React.ReactNode;
 }) {
 	const {
@@ -311,15 +325,61 @@ function SortableRow({
 						>
 							<GripVerticalIcon className="size-4" />
 						</button>
-						<span className="w-6 text-right text-xs text-muted-foreground tabular-nums">
-							{position}
-						</span>
+						<PositionInput
+							// Remount when the row moves so the field shows its new position
+							key={position}
+							position={position}
+							label={`Position of ${loc.locationName}`}
+							onMove={onMove}
+						/>
 					</>
 				}
 			>
 				{children}
 			</LocationRow>
 		</li>
+	);
+}
+
+/** The row's position number; type a new one and press Enter to move it. */
+function PositionInput({
+	position,
+	label,
+	onMove,
+}: {
+	position: number;
+	label: string;
+	onMove: (position: number) => void;
+}) {
+	const [value, setValue] = useState(String(position));
+
+	const submit = () => {
+		const next = Number.parseInt(value, 10);
+		if (Number.isInteger(next) && next !== position) onMove(next);
+		else setValue(String(position));
+	};
+
+	return (
+		<input
+			type="text"
+			inputMode="numeric"
+			aria-label={label}
+			title="Type a position and press Enter to move"
+			value={value}
+			onChange={(e) => setValue(e.target.value.replace(/\D/g, ""))}
+			onFocus={(e) => e.currentTarget.select()}
+			onBlur={submit}
+			onKeyDown={(e) => {
+				if (e.key === "Enter") e.currentTarget.blur();
+				if (e.key === "Escape") {
+					const input = e.currentTarget;
+					setValue(String(position));
+					// blur after the reset renders so submit sees the original value
+					requestAnimationFrame(() => input.blur());
+				}
+			}}
+			className="w-10 rounded border border-transparent bg-transparent px-1 py-0.5 text-right text-xs text-muted-foreground tabular-nums hover:border-input focus:border-input focus:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+		/>
 	);
 }
 

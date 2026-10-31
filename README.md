@@ -37,7 +37,7 @@ PokeAPI has no location data for Brilliant Diamond/Shining Pearl, Legends: Arceu
 
 The **Locations** page (header link, or "Edit locations" on a run's Encounters tab) manages each game's location list for all runs of that game:
 
-- **Order**: drag rows into play order (keyboard works too: focus a handle, Space, arrows, Space). "Order all" moves everything into the ordered list so you can start dragging. Unordered locations come after ordered ones, in natural alphabetical order (Route 2 before Route 10).
+- **Order**: drag rows into play order, or type a new number into a row's position and press Enter to jump it there (keyboard dragging works too: focus a handle, Space, arrows, Space). "Order all" moves everything into the ordered list so you can start dragging. Unordered locations come after ordered ones, in natural alphabetical order (Route 2 before Route 10).
 - **Rename** awkward PokeAPI names.
 - **Hide** locations you never use. A hidden location still shows in any run that already logged an encounter there.
 - **Add** locations, which is how you fill in games with no PokeAPI data. Added locations can be deleted while no run has logged an encounter there.
