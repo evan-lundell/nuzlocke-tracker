@@ -8,7 +8,12 @@ export function listGames(db: Db) {
 
 export function listSpecies(db: Db) {
 	return db
-		.select({ id: species.id, name: species.name, types: species.types })
+		.select({
+			id: species.id,
+			name: species.name,
+			types: species.types,
+			evolvesFromId: species.evolvesFromId,
+		})
 		.from(species)
 		.orderBy(asc(species.id))
 		.all();
