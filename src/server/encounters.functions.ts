@@ -7,6 +7,7 @@ import {
 	clearEncounter,
 	deleteCustomLocation,
 	evolvePokemon,
+	exportEncounters,
 	listCaught,
 	listRunLocations,
 	saveEncounter,
@@ -23,6 +24,10 @@ export const getRunLocationsFn = createServerFn()
 export const getCaughtFn = createServerFn()
 	.validator(z.object({ runId: id }))
 	.handler(({ data }) => listCaught(getDb(), data.runId));
+
+export const exportEncountersFn = createServerFn()
+	.validator(z.object({ runId: id }))
+	.handler(({ data }) => exportEncounters(getDb(), data.runId));
 
 export const saveEncounterFn = createServerFn({ method: "POST" })
 	.validator(

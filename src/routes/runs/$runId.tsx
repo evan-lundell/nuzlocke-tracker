@@ -5,7 +5,7 @@ import {
 	useNavigate,
 } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
-import { PencilIcon, Trash2Icon } from "lucide-react";
+import { DownloadIcon, PencilIcon, Trash2Icon } from "lucide-react";
 import { useState } from "react";
 import { RunStatusBadge } from "#/components/run-status-badge";
 import {
@@ -39,8 +39,10 @@ import {
 } from "#/components/ui/select";
 import { Textarea } from "#/components/ui/textarea";
 import type { RunStatus } from "#/db/schema";
+import { downloadJson, slugify } from "#/lib/download";
 import { useAction } from "#/lib/use-action";
 import { cn } from "#/lib/utils";
+import { exportEncountersFn } from "#/server/encounters.functions";
 import { deleteRunFn, getRunFn, updateRunFn } from "#/server/runs.functions";
 
 export const Route = createFileRoute("/runs/$runId")({
@@ -66,6 +68,7 @@ function RunLayout() {
 					<p className="text-sm text-muted-foreground">{run.gameName}</p>
 				</div>
 				<div className="flex gap-2">
+					<ExportEncountersButton run={run} />
 					<EditRunDialog run={run} />
 					<DeleteRunButton runId={run.id} />
 				</div>
@@ -104,6 +107,32 @@ function RunLayout() {
 
 			<Outlet />
 		</div>
+	);
+}
+
+function ExportEncountersButton({
+	run,
+}: {
+	run: { id: number; name: string };
+}) {
+	const [exportEncounters, pending] = useAction(
+		useServerFn(exportEncountersFn),
+	);
+
+	return (
+		<Button
+			variant="outline"
+			size="sm"
+			disabled={pending}
+			onClick={async () => {
+				const data = await exportEncounters({ data: { runId: run.id } });
+				if (data) {
+					downloadJson(`${slugify(run.name, "run")}-encounters.json`, data);
+				}
+			}}
+		>
+			<DownloadIcon /> Export
+		</Button>
 	);
 }
 

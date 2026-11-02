@@ -5,6 +5,7 @@ import {
 	addCustomLocation,
 	compareLocations,
 	evolvePokemon,
+	exportEncounters,
 	listCaught,
 	listRunLocations,
 	resolveRuleType,
@@ -326,5 +327,81 @@ describe("resolveRuleType", () => {
 		);
 		expect(resolveRuleType("party", ["grass", "poison"], "fire")).toBeNull();
 		expect(resolveRuleType("dead", ["grass", "poison"], null)).toBeNull();
+	});
+});
+
+describe("exportEncounters", () => {
+	const locationId = (
+		db: ReturnType<typeof testDb>,
+		runId: number,
+		name: string,
+	) =>
+		listRunLocations(db, runId).find((l) => l.locationName === name)
+			?.locationId ?? 0;
+
+	it("exports only logged encounters, in location order", () => {
+		const { db, runId } = setup();
+		saveEncounter(db, {
+			runId,
+			locationId: locationId(db, runId, "Route 2"),
+			speciesId: null,
+			nickname: "",
+			outcome: "missed",
+		});
+		saveEncounter(db, {
+			runId,
+			locationId: locationId(db, runId, "Route 1"),
+			speciesId: 16,
+			nickname: "Birdie",
+			outcome: "caught",
+			ruleType: "flying",
+		});
+
+		const { run, encounters } = exportEncounters(db, runId);
+
+		expect(run).toEqual({ name: "Test", game: "FireRed", status: "active" });
+		expect(encounters).toEqual([
+			{
+				location: "Route 1",
+				speciesName: "Pidgey",
+				types: ["normal", "flying"],
+				nickname: "Birdie",
+				outcome: "caught",
+				state: "box",
+				ruleType: "flying",
+				causeOfDeath: "",
+				loggedAt: expect.any(Date),
+			},
+			{
+				location: "Route 2",
+				speciesName: null,
+				types: null,
+				nickname: "",
+				outcome: "missed",
+				state: null,
+				ruleType: null,
+				causeOfDeath: "",
+				loggedAt: expect.any(Date),
+			},
+		]);
+	});
+
+	it("leaves out other runs' encounters", () => {
+		const { db, runId } = setup();
+		const other = createRun(db, { name: "Other", gameId: FIRERED, rules: "" });
+		saveEncounter(db, {
+			runId: other.id,
+			locationId: locationId(db, other.id, "Route 1"),
+			speciesId: 19,
+			nickname: "",
+			outcome: "caught",
+		});
+
+		expect(exportEncounters(db, runId).encounters).toEqual([]);
+	});
+
+	it("throws for an unknown run", () => {
+		const { db } = setup();
+		expect(() => exportEncounters(db, 999)).toThrow("Run not found");
 	});
 });

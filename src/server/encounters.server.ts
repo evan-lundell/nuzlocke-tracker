@@ -8,6 +8,7 @@ import {
 	runs,
 	species,
 } from "#/db/schema";
+import { getRun } from "./runs.server";
 
 export const PARTY_SIZE = 6;
 
@@ -144,6 +145,39 @@ export function listCaught(db: Db, runId: number) {
 			.filter((e) => e.evolvesFromId === c.speciesId)
 			.map(({ evolvesFromId: _, ...e }) => e),
 	}));
+}
+
+/** A run's logged encounters in location order, for saving to a file. */
+export function exportEncounters(db: Db, runId: number) {
+	const run = getRun(db, runId);
+	if (!run) throw new Error("Run not found");
+	const rows = db
+		.select({
+			locationName: locations.name,
+			sortOrder: locations.sortOrder,
+			speciesName: species.name,
+			types: species.types,
+			nickname: encounters.nickname,
+			outcome: encounters.outcome,
+			state: encounters.state,
+			ruleType: encounters.ruleType,
+			causeOfDeath: encounters.causeOfDeath,
+			loggedAt: encounters.createdAt,
+		})
+		.from(encounters)
+		.innerJoin(locations, eq(locations.id, encounters.locationId))
+		.leftJoin(species, eq(species.id, encounters.speciesId))
+		.where(eq(encounters.runId, runId))
+		.all()
+		.sort(compareLocations);
+
+	return {
+		run: { name: run.name, game: run.gameName, status: run.status },
+		encounters: rows.map(({ locationName, sortOrder: _, ...row }) => ({
+			location: locationName,
+			...row,
+		})),
+	};
 }
 
 export function saveEncounter(
