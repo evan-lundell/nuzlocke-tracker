@@ -2,6 +2,7 @@ import { sql } from "drizzle-orm";
 import {
 	index,
 	integer,
+	primaryKey,
 	sqliteTable,
 	text,
 	uniqueIndex,
@@ -26,6 +27,9 @@ export const species = sqliteTable("species", {
 	evolvesFromId: integer("evolves_from_id"),
 });
 
+export const locationKinds = ["location", "battle"] as const;
+export type LocationKind = (typeof locationKinds)[number];
+
 export const locations = sqliteTable(
 	"locations",
 	{
@@ -37,6 +41,10 @@ export const locations = sqliteTable(
 		// on the admin page. Null for per-run custom rows.
 		slug: text("slug"),
 		name: text("name").notNull(),
+		// Battles share this table so they sit in the same order as locations
+		kind: text("kind", { enum: locationKinds }).notNull().default("location"),
+		// only used by battles; null = no cap
+		levelCap: integer("level_cap"),
 		// null = unordered (falls back to alphabetical after ordered rows)
 		sortOrder: integer("sort_order"),
 		// hidden from run encounter lists (unless the run logged an encounter there)
@@ -105,6 +113,22 @@ export const encounters = sqliteTable(
 			.default(sql`(unixepoch())`),
 	},
 	(t) => [uniqueIndex("encounters_run_location_idx").on(t.runId, t.locationId)],
+);
+
+export const battleCompletions = sqliteTable(
+	"battle_completions",
+	{
+		runId: integer("run_id")
+			.notNull()
+			.references(() => runs.id, { onDelete: "cascade" }),
+		locationId: integer("location_id")
+			.notNull()
+			.references(() => locations.id, { onDelete: "cascade" }),
+		completedAt: integer("completed_at", { mode: "timestamp" })
+			.notNull()
+			.default(sql`(unixepoch())`),
+	},
+	(t) => [primaryKey({ columns: [t.runId, t.locationId] })],
 );
 
 export type Game = typeof games.$inferSelect;

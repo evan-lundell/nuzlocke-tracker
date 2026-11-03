@@ -42,9 +42,15 @@ The **Locations** page (header link, or "Edit locations" on a run's Encounters t
 - **Hide** locations you never use. A hidden location still shows in any run that already logged an encounter there.
 - **Add** locations, which is how you fill in games with no PokeAPI data. Added locations can be deleted while no run has logged an encounter there.
 
+### Battles
+
+Gym leaders and other important battles are added by hand on the same page, because PokeAPI has no trainer data. Give a battle a name and an optional level cap, then drag it between locations. Battles can be renamed, reordered and hidden like locations, for every run of that game, and can be deleted until a run has completed them.
+
+On a run's Encounters tab, tick a battle to mark it completed for that run. The tab shows the current level cap, taken from the first battle in order that isn't completed and has a cap. Keep battles in the ordered list, since an unordered battle sorts alphabetically after everything else and can make this cap wrong.
+
 Every game also has a built-in **Starter** encounter that is always first. Per-run custom locations (gift Pokémon, fossils, static encounters, etc.) are added from a run's Encounters tab.
 
-These edits live in the database, so back up `nuzlocke.db` to keep them. Reseeding (on startup, or after `pnpm pokedata:fetch`) only inserts new locations and never overwrites names, order or visibility.
+Location and battle edits live in the database, so back up `nuzlocke.db` to keep them. Reseeding (on startup, or after `pnpm pokedata:fetch`) only inserts new locations and never overwrites names, order or visibility.
 
 ## Deployment
 

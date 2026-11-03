@@ -1,11 +1,28 @@
-import { and, count, eq, isNull, max, ne, sql } from "drizzle-orm";
+import {
+	and,
+	count,
+	countDistinct,
+	eq,
+	isNull,
+	max,
+	ne,
+	sql,
+} from "drizzle-orm";
 import type { Db } from "#/db/client.server";
-import { encounters, games, locations } from "#/db/schema";
+import {
+	battleCompletions,
+	encounters,
+	games,
+	type LocationKind,
+	locations,
+} from "#/db/schema";
 import { STARTER_SLUG } from "#/db/seed-refdata.server";
 import { compareLocations } from "./encounters.server";
 
 // Locations added on the admin page get this slug prefix
 const CUSTOM_PREFIX = "custom-";
+// Keeps a battle and a location with the same name from colliding
+const BATTLE_PREFIX = `${CUSTOM_PREFIX}battle-`;
 
 const kebab = (s: string) =>
 	s
@@ -27,6 +44,7 @@ function requireEditable(db: Db, locationId: number) {
 			id: locations.id,
 			gameId: locations.gameId,
 			slug: locations.slug,
+			kind: locations.kind,
 		})
 		.from(locations)
 		.where(
@@ -57,15 +75,19 @@ export function listGameLocations(db: Db, gameId: number) {
 			id: locations.id,
 			locationName: locations.name,
 			sortOrder: locations.sortOrder,
+			kind: locations.kind,
+			levelCap: locations.levelCap,
 			hidden: locations.hidden,
 			isCustom:
 				sql<boolean>`${locations.slug} like ${`${CUSTOM_PREFIX}%`}`.mapWith(
 					Boolean,
 				),
-			encounterCount: count(encounters.id),
+			encounterCount: countDistinct(encounters.id),
+			completionCount: countDistinct(battleCompletions.runId),
 		})
 		.from(locations)
 		.leftJoin(encounters, eq(encounters.locationId, locations.id))
+		.leftJoin(battleCompletions, eq(battleCompletions.locationId, locations.id))
 		.where(editableWhere(gameId))
 		.groupBy(locations.id)
 		.all()
@@ -129,10 +151,31 @@ export function renameLocation(
 		.run();
 }
 
-/** Adds a game-level location at the end of the game's order. */
-export function addGameLocation(
+/** Sets a battle's level cap; null means it has none. */
+export function setBattleLevelCap(
 	db: Db,
-	input: { gameId: number; name: string },
+	input: { locationId: number; levelCap: number | null },
+) {
+	const loc = requireEditable(db, input.locationId);
+	if (loc.kind !== "battle") throw new Error("Only battles have a level cap");
+	db.update(locations)
+		.set({ levelCap: input.levelCap })
+		.where(eq(locations.id, loc.id))
+		.run();
+	// useAction reads undefined as failure
+	return { levelCap: input.levelCap };
+}
+
+/** Adds a game-level row at the end of the game's order. */
+function insertGameRow(
+	db: Db,
+	input: {
+		gameId: number;
+		name: string;
+		kind: LocationKind;
+		slugPrefix: string;
+		levelCap: number | null;
+	},
 ) {
 	const game = db
 		.select({ id: games.id })
@@ -154,8 +197,10 @@ export function addGameLocation(
 		.insert(locations)
 		.values({
 			gameId: input.gameId,
-			slug: `${CUSTOM_PREFIX}${slug}`,
+			slug: `${input.slugPrefix}${slug}`,
 			name: input.name,
+			kind: input.kind,
+			levelCap: input.levelCap,
 			sortOrder: last == null ? 0 : last + 1,
 		})
 		.onConflictDoNothing()
@@ -165,9 +210,33 @@ export function addGameLocation(
 	return row;
 }
 
+export function addGameLocation(
+	db: Db,
+	input: { gameId: number; name: string },
+) {
+	return insertGameRow(db, {
+		...input,
+		kind: "location",
+		slugPrefix: CUSTOM_PREFIX,
+		levelCap: null,
+	});
+}
+
+export function addGameBattle(
+	db: Db,
+	input: { gameId: number; name: string; levelCap: number | null },
+) {
+	return insertGameRow(db, {
+		...input,
+		kind: "battle",
+		slugPrefix: BATTLE_PREFIX,
+	});
+}
+
 /**
- * Deletes a location added on the admin page. Refuses if any run has logged
- * an encounter there, since deleting would delete those encounters too.
+ * Deletes a location or battle added on the admin page. Refuses if any run has
+ * logged an encounter or completed the battle, since deleting would delete
+ * that progress too.
  */
 export function deleteGameLocation(db: Db, input: { locationId: number }) {
 	const loc = requireEditable(db, input.locationId);
@@ -176,6 +245,14 @@ export function deleteGameLocation(db: Db, input: { locationId: number }) {
 	}
 	if (encounterCount(db, loc.id) > 0) {
 		throw new Error("This location has encounters logged; hide it instead");
+	}
+	const completed = db
+		.select({ n: count() })
+		.from(battleCompletions)
+		.where(eq(battleCompletions.locationId, loc.id))
+		.get()?.n;
+	if (completed) {
+		throw new Error("A run has completed this battle; hide it instead");
 	}
 	db.delete(locations).where(eq(locations.id, loc.id)).run();
 }

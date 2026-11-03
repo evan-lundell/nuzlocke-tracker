@@ -1,6 +1,12 @@
 import { createFileRoute, Link, useLoaderData } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
-import { ListOrderedIcon, PlusIcon, Trash2Icon, XIcon } from "lucide-react";
+import {
+	ListOrderedIcon,
+	PlusIcon,
+	SwordsIcon,
+	Trash2Icon,
+	XIcon,
+} from "lucide-react";
 import { useMemo, useState } from "react";
 import { RuleTypePicker } from "#/components/rule-type-picker";
 import { type SpeciesOption, SpeciesPicker } from "#/components/species-picker";
@@ -24,6 +30,7 @@ import {
 } from "#/components/ui/select";
 import type { EncounterOutcome } from "#/db/schema";
 import { buildLineRoots, caughtLines } from "#/lib/evolution-lines";
+import { currentLevelCap } from "#/lib/level-cap";
 import { useAction } from "#/lib/use-action";
 import { cn } from "#/lib/utils";
 import {
@@ -32,6 +39,7 @@ import {
 	deleteCustomLocationFn,
 	getRunLocationsFn,
 	saveEncounterFn,
+	setBattleCompletedFn,
 } from "#/server/encounters.functions";
 import { getSpeciesFn } from "#/server/refdata.functions";
 
@@ -65,10 +73,14 @@ function EncountersPage() {
 	const [filter, setFilter] = useState<Filter>("all");
 	const lineRoots = useMemo(() => buildLineRoots(species), [species]);
 
-	const logged = locations.filter((l) => l.outcome).length;
+	const places = locations.filter((l) => l.kind === "location");
+	const logged = places.filter((l) => l.outcome).length;
+	const isDone = (l: LocationRow) =>
+		l.kind === "battle" ? !!l.completedAt : !!l.outcome;
 	const visible = locations.filter((l) =>
-		filter === "all" ? true : filter === "todo" ? !l.outcome : !!l.outcome,
+		filter === "all" ? true : filter === "todo" ? !isDone(l) : isDone(l),
 	);
+	const levelCap = currentLevelCap(locations);
 
 	return (
 		<div className="space-y-4">
@@ -90,7 +102,7 @@ function EncountersPage() {
 				</div>
 				<div className="flex items-center gap-3">
 					<span className="text-sm text-muted-foreground">
-						{logged}/{locations.length} logged
+						{logged}/{places.length} logged
 					</span>
 					<Button size="sm" variant="ghost" asChild>
 						<Link to="/admin/locations" search={{ game: gameId }}>
@@ -101,6 +113,14 @@ function EncountersPage() {
 				</div>
 			</div>
 
+			{levelCap && (
+				<p className="flex items-center gap-2 text-sm">
+					<SwordsIcon className="size-4 text-muted-foreground" />
+					<span className="font-medium">Level cap: {levelCap.levelCap}</span>
+					<span className="text-muted-foreground">· {levelCap.name}</span>
+				</p>
+			)}
+
 			{locations.length === 0 && (
 				<p className="text-sm text-muted-foreground">
 					No locations for this game yet. Add your own with "Add location".
@@ -108,18 +128,67 @@ function EncountersPage() {
 			)}
 
 			<div className="divide-y rounded-lg border">
-				{visible.map((loc) => (
-					<EncounterRow
-						key={`${loc.locationId}:${loc.encounterId ?? "new"}:${loc.outcome}:${loc.speciesId}:${loc.ruleType}`}
-						runId={runId}
-						row={loc}
-						species={species}
-						locations={locations}
-						lineRoots={lineRoots}
-					/>
-				))}
+				{visible.map((loc) =>
+					loc.kind === "battle" ? (
+						<BattleRow
+							key={`${loc.locationId}:${!!loc.completedAt}`}
+							runId={runId}
+							row={loc}
+						/>
+					) : (
+						<EncounterRow
+							key={`${loc.locationId}:${loc.encounterId ?? "new"}:${loc.outcome}:${loc.speciesId}:${loc.ruleType}`}
+							runId={runId}
+							row={loc}
+							species={species}
+							locations={locations}
+							lineRoots={lineRoots}
+						/>
+					),
+				)}
 			</div>
 		</div>
+	);
+}
+
+function BattleRow({ runId, row }: { runId: number; row: LocationRow }) {
+	// Local so the tick shows instantly; reverts if the save fails
+	const [completed, setCompleted] = useState(!!row.completedAt);
+	const [save, saving] = useAction(useServerFn(setBattleCompletedFn));
+
+	return (
+		<label
+			className={cn(
+				"flex min-h-12 cursor-pointer items-center gap-2 bg-muted/50 px-3 py-2",
+				completed && "text-muted-foreground",
+			)}
+		>
+			<SwordsIcon className="size-4 shrink-0 text-muted-foreground" />
+			<span className={cn("truncate font-medium", completed && "line-through")}>
+				{row.locationName}
+			</span>
+			{row.levelCap !== null && (
+				<span className="shrink-0 text-sm text-muted-foreground tabular-nums">
+					Lv. {row.levelCap}
+				</span>
+			)}
+			<span className="ml-auto flex shrink-0 items-center gap-2 text-sm">
+				Completed
+				<input
+					type="checkbox"
+					checked={completed}
+					disabled={saving}
+					onChange={async (e) => {
+						const next = e.target.checked;
+						setCompleted(next);
+						const result = await save({
+							data: { runId, locationId: row.locationId, completed: next },
+						});
+						if (!result) setCompleted(!next);
+					}}
+				/>
+			</span>
+		</label>
 	);
 }
 
