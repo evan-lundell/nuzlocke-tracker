@@ -1,8 +1,10 @@
 import { and, eq, inArray, isNotNull, isNull, or, sql } from "drizzle-orm";
 import type { Db } from "#/db/client.server";
 import {
+	battleCompletions,
 	type EncounterOutcome,
 	encounters,
+	type LocationKind,
 	locations,
 	type PokemonState,
 	runs,
@@ -56,16 +58,29 @@ function requireRun(db: Db, runId: number) {
 	return run;
 }
 
-function requireRunLocation(db: Db, runId: number, locationId: number) {
+function requireRunLocation(
+	db: Db,
+	runId: number,
+	locationId: number,
+	kind: LocationKind = "location",
+) {
 	const run = requireRun(db, runId);
 	const location = db
 		.select({ id: locations.id })
 		.from(locations)
 		.where(
-			and(eq(locations.id, locationId), runLocationsWhere(runId, run.gameId)),
+			and(
+				eq(locations.id, locationId),
+				eq(locations.kind, kind),
+				runLocationsWhere(runId, run.gameId),
+			),
 		)
 		.get();
-	if (!location) throw new Error("Location is not part of this run");
+	if (!location) {
+		throw new Error(
+			`${kind === "battle" ? "Battle" : "Location"} is not part of this run`,
+		);
+	}
 }
 
 export function listRunLocations(db: Db, runId: number) {
@@ -75,6 +90,9 @@ export function listRunLocations(db: Db, runId: number) {
 			locationId: locations.id,
 			locationName: locations.name,
 			sortOrder: locations.sortOrder,
+			kind: locations.kind,
+			levelCap: locations.levelCap,
+			completedAt: battleCompletions.completedAt,
 			isCustom: sql<boolean>`${locations.runId} is not null`.mapWith(Boolean),
 			encounterId: encounters.id,
 			speciesId: encounters.speciesId,
@@ -91,11 +109,22 @@ export function listRunLocations(db: Db, runId: number) {
 			and(eq(encounters.locationId, locations.id), eq(encounters.runId, runId)),
 		)
 		.leftJoin(species, eq(species.id, encounters.speciesId))
+		.leftJoin(
+			battleCompletions,
+			and(
+				eq(battleCompletions.locationId, locations.id),
+				eq(battleCompletions.runId, runId),
+			),
+		)
 		.where(
 			and(
 				runLocationsWhere(runId, run.gameId),
-				// hidden locations stay visible in runs that already logged them
-				or(eq(locations.hidden, false), isNotNull(encounters.id)),
+				// hidden rows stay visible in runs that already logged or completed them
+				or(
+					eq(locations.hidden, false),
+					isNotNull(encounters.id),
+					isNotNull(battleCompletions.runId),
+				),
 			),
 		)
 		.all()
@@ -147,7 +176,7 @@ export function listCaught(db: Db, runId: number) {
 	}));
 }
 
-/** A run's logged encounters in location order, for saving to a file. */
+/** A run's logged encounters and its battles in game order, for saving to a file. */
 export function exportEncounters(db: Db, runId: number) {
 	const run = getRun(db, runId);
 	if (!run) throw new Error("Run not found");
@@ -177,7 +206,39 @@ export function exportEncounters(db: Db, runId: number) {
 			location: locationName,
 			...row,
 		})),
+		battles: listRunLocations(db, runId)
+			.filter((l) => l.kind === "battle")
+			.map((l) => ({
+				name: l.locationName,
+				levelCap: l.levelCap,
+				completedAt: l.completedAt,
+			})),
 	};
+}
+
+export function setBattleCompleted(
+	db: Db,
+	input: { runId: number; locationId: number; completed: boolean },
+) {
+	requireRunLocation(db, input.runId, input.locationId, "battle");
+	const { runId, locationId } = input;
+	if (input.completed) {
+		db.insert(battleCompletions)
+			.values({ runId, locationId })
+			.onConflictDoNothing()
+			.run();
+	} else {
+		db.delete(battleCompletions)
+			.where(
+				and(
+					eq(battleCompletions.runId, runId),
+					eq(battleCompletions.locationId, locationId),
+				),
+			)
+			.run();
+	}
+	// useAction reads undefined as failure
+	return { completed: input.completed };
 }
 
 export function saveEncounter(

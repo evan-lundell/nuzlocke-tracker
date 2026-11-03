@@ -11,6 +11,7 @@ import {
 	listCaught,
 	listRunLocations,
 	saveEncounter,
+	setBattleCompleted,
 	setPokemonState,
 } from "./encounters.server";
 
@@ -43,6 +44,10 @@ export const saveEncounterFn = createServerFn({ method: "POST" })
 export const clearEncounterFn = createServerFn({ method: "POST" })
 	.validator(runLocation)
 	.handler(({ data }) => clearEncounter(getDb(), data));
+
+export const setBattleCompletedFn = createServerFn({ method: "POST" })
+	.validator(runLocation.extend({ completed: z.boolean() }))
+	.handler(({ data }) => setBattleCompleted(getDb(), data));
 
 export const addCustomLocationFn = createServerFn({ method: "POST" })
 	.validator(

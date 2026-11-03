@@ -25,6 +25,7 @@ import {
 	ListPlusIcon,
 	PencilIcon,
 	PlusIcon,
+	SwordsIcon,
 	Trash2Icon,
 } from "lucide-react";
 import { useState } from "react";
@@ -50,13 +51,16 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from "#/components/ui/select";
+import { parseLevelCap } from "#/lib/level-cap";
 import { useAction } from "#/lib/use-action";
 import { cn } from "#/lib/utils";
 import {
+	addGameBattleFn,
 	addGameLocationFn,
 	deleteGameLocationFn,
 	getGameLocationsFn,
 	renameLocationFn,
+	setBattleLevelCapFn,
 	setLocationHiddenFn,
 	setLocationOrderFn,
 } from "#/server/admin.functions";
@@ -75,7 +79,7 @@ export const Route = createFileRoute("/admin/locations")({
 		]);
 		return { games, locations };
 	},
-	head: () => ({ meta: [{ title: "Locations · Nuzlocke Tracker" }] }),
+	head: () => ({ meta: [{ title: "Locations & battles · Nuzlocke Tracker" }] }),
 	component: LocationsAdminPage,
 });
 
@@ -90,11 +94,11 @@ function LocationsAdminPage() {
 	return (
 		<div className="space-y-5">
 			<div className="space-y-1">
-				<h1 className="text-2xl font-semibold">Locations</h1>
+				<h1 className="text-2xl font-semibold">Locations & battles</h1>
 				<p className="text-sm text-muted-foreground">
-					Order, rename, hide or add locations for a game. Drag rows, or type a
-					row's number to move it there. Changes apply to every run of that
-					game. Starter is always first.
+					Order, rename, hide or add locations and battles for a game. Drag
+					rows, or type a row's number to move it there. Changes apply to every
+					run of that game. Starter is always first.
 				</p>
 			</div>
 
@@ -176,7 +180,10 @@ function LocationEditor({
 
 	return (
 		<div className="space-y-6">
-			<AddLocationForm gameId={gameId} />
+			<div className="flex flex-wrap gap-x-6 gap-y-2">
+				<AddLocationForm gameId={gameId} />
+				<AddBattleForm gameId={gameId} />
+			</div>
 
 			<section className="space-y-2">
 				<div className="flex items-center justify-between gap-2">
@@ -192,8 +199,8 @@ function LocationEditor({
 				</div>
 				{ordered.length === 0 ? (
 					<p className="text-sm text-muted-foreground">
-						Nothing ordered yet. Use "Order all" below, or add locations one at
-						a time, then drag them into place.
+						Nothing ordered yet. Use "Order all" below, or add rows one at a
+						time, then drag them into place.
 					</p>
 				) : (
 					<DndContext
@@ -255,7 +262,7 @@ function LocationEditor({
 				</div>
 				{unordered.length === 0 ? (
 					<p className="text-sm text-muted-foreground">
-						Every location is ordered.
+						Everything is ordered.
 					</p>
 				) : (
 					<ul className="divide-y rounded-lg border">
@@ -397,6 +404,7 @@ function LocationRow({
 	const [rename, renaming] = useAction(useServerFn(renameLocationFn));
 	const [setHidden, hiding] = useAction(useServerFn(setLocationHiddenFn));
 	const [remove, removing] = useAction(useServerFn(deleteGameLocationFn));
+	const isBattle = loc.kind === "battle";
 	const busy = renaming || hiding || removing;
 
 	const finishRename = () => {
@@ -413,12 +421,18 @@ function LocationRow({
 		<div className="flex min-h-12 items-center gap-2 px-2 py-1.5">
 			{lead}
 			<div className="flex min-w-0 flex-1 items-center gap-2">
+				{isBattle && (
+					<SwordsIcon
+						className="size-4 shrink-0 text-muted-foreground"
+						aria-label="Battle"
+					/>
+				)}
 				{editing ? (
 					<Input
 						value={name}
 						autoFocus
 						className="h-8"
-						aria-label="Location name"
+						aria-label="Name"
 						onChange={(e) => setName(e.target.value)}
 						onBlur={finishRename}
 						onKeyDown={(e) => {
@@ -442,7 +456,16 @@ function LocationRow({
 				{loc.hidden && !editing && (
 					<span className="text-xs text-muted-foreground">hidden</span>
 				)}
-				{loc.isCustom && !editing && (
+				{isBattle && !editing && (
+					<LevelCapInput
+						// Remount when the saved cap changes so the field shows it
+						key={loc.levelCap}
+						locationId={loc.id}
+						levelCap={loc.levelCap}
+						name={loc.locationName}
+					/>
+				)}
+				{loc.isCustom && !isBattle && !editing && (
 					<span className="text-xs text-muted-foreground">added</span>
 				)}
 				{loc.encounterCount > 0 && !editing && (
@@ -451,6 +474,14 @@ function LocationRow({
 						title="Encounters logged here across all runs"
 					>
 						· {loc.encounterCount} logged
+					</span>
+				)}
+				{loc.completionCount > 0 && !editing && (
+					<span
+						className="text-xs text-muted-foreground"
+						title="Runs that have completed this battle"
+					>
+						· {loc.completionCount} completed
 					</span>
 				)}
 			</div>
@@ -476,7 +507,7 @@ function LocationRow({
 					{loc.hidden ? <EyeOffIcon /> : <EyeIcon />}
 				</Button>
 				{children}
-				{loc.isCustom && loc.encounterCount === 0 && (
+				{loc.isCustom && loc.encounterCount + loc.completionCount === 0 && (
 					<Button
 						variant="ghost"
 						size="icon"
@@ -492,13 +523,106 @@ function LocationRow({
 	);
 }
 
+/**
+ * A battle's level cap; saves on blur or Enter, and blank means no cap. An
+ * out-of-range value goes back to the saved cap.
+ */
+function LevelCapInput({
+	locationId,
+	levelCap,
+	name,
+}: {
+	locationId: number;
+	levelCap: number | null;
+	name: string;
+}) {
+	const saved = levelCap === null ? "" : String(levelCap);
+	const [value, setValue] = useState(saved);
+	const [save, saving] = useAction(useServerFn(setBattleLevelCapFn));
+
+	return (
+		<label className="flex shrink-0 items-center gap-1 text-xs text-muted-foreground">
+			Lv.
+			<input
+				type="text"
+				inputMode="numeric"
+				aria-label={`Level cap of ${name}`}
+				placeholder="–"
+				value={value}
+				disabled={saving}
+				onChange={(e) => setValue(e.target.value.replace(/\D/g, ""))}
+				onFocus={(e) => e.currentTarget.select()}
+				onBlur={async () => {
+					const next = parseLevelCap(value);
+					if (value === saved) return;
+					const result =
+						next !== undefined &&
+						(await save({ data: { locationId, levelCap: next } }));
+					if (!result) setValue(saved);
+				}}
+				onKeyDown={(e) => {
+					if (e.key === "Enter") e.currentTarget.blur();
+					if (e.key === "Escape") setValue(saved);
+				}}
+				className="w-10 rounded border border-transparent bg-transparent px-1 py-0.5 text-right tabular-nums hover:border-input focus:border-input focus:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+			/>
+		</label>
+	);
+}
+
+function AddBattleForm({ gameId }: { gameId: number }) {
+	const [name, setName] = useState("");
+	const [levelCap, setLevelCap] = useState("");
+	const [add, pending] = useAction(useServerFn(addGameBattleFn));
+	const cap = parseLevelCap(levelCap);
+
+	return (
+		<form
+			className="flex w-full max-w-md gap-2"
+			onSubmit={async (e) => {
+				e.preventDefault();
+				if (cap === undefined) return;
+				const result = await add({ data: { gameId, name, levelCap: cap } });
+				if (result) {
+					setName("");
+					setLevelCap("");
+				}
+			}}
+		>
+			<Input
+				value={name}
+				onChange={(e) => setName(e.target.value)}
+				placeholder="Add a battle, e.g. Brock"
+				aria-label="New battle name"
+			/>
+			<Input
+				value={levelCap}
+				inputMode="numeric"
+				className="w-24 shrink-0"
+				onChange={(e) => setLevelCap(e.target.value.replace(/\D/g, ""))}
+				placeholder="Level cap"
+				aria-label="New battle level cap"
+				aria-invalid={cap === undefined}
+				title="1-100, or blank for no cap"
+			/>
+			<Button
+				type="submit"
+				variant="outline"
+				disabled={pending || !name.trim() || cap === undefined}
+			>
+				<SwordsIcon /> Add
+			</Button>
+		</form>
+	);
+}
+
 function AddLocationForm({ gameId }: { gameId: number }) {
 	const [name, setName] = useState("");
 	const [add, pending] = useAction(useServerFn(addGameLocationFn));
 
 	return (
 		<form
-			className="flex max-w-md gap-2"
+			className="flex w-full max-w-md gap-2"
 			onSubmit={async (e) => {
 				e.preventDefault();
 				const result = await add({ data: { gameId, name } });
@@ -540,8 +664,8 @@ function ClearOrderButton({
 				<AlertDialogHeader>
 					<AlertDialogTitle>Clear this game's order?</AlertDialogTitle>
 					<AlertDialogDescription>
-						Every location goes back to alphabetical. Names, hidden locations
-						and encounters are kept.
+						Every location and battle goes back to alphabetical. Names, level
+						caps, hidden rows, encounters and completed battles are kept.
 					</AlertDialogDescription>
 				</AlertDialogHeader>
 				<AlertDialogFooter>

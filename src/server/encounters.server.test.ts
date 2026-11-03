@@ -1,6 +1,11 @@
 import { describe, expect, it } from "vitest";
 import { testDb } from "#/test/db";
-import { listGameLocations, setLocationOrder } from "./admin.server";
+import {
+	addGameBattle,
+	listGameLocations,
+	setLocationHidden,
+	setLocationOrder,
+} from "./admin.server";
 import {
 	addCustomLocation,
 	compareLocations,
@@ -10,9 +15,10 @@ import {
 	listRunLocations,
 	resolveRuleType,
 	saveEncounter,
+	setBattleCompleted,
 	setPokemonState,
 } from "./encounters.server";
-import { createRun, listRuns } from "./runs.server";
+import { createRun, deleteRun, listRuns } from "./runs.server";
 
 const FIRERED = 10;
 
@@ -403,5 +409,109 @@ describe("exportEncounters", () => {
 	it("throws for an unknown run", () => {
 		const { db } = setup();
 		expect(() => exportEncounters(db, 999)).toThrow("Run not found");
+	});
+});
+
+describe("battles", () => {
+	const LEAFGREEN = 11;
+	const setupBattle = () => {
+		const { db, runId } = setup();
+		const { id } = addGameBattle(db, {
+			gameId: FIRERED,
+			name: "Brock",
+			levelCap: 14,
+		});
+		const battle = (r = runId) =>
+			listRunLocations(db, r).find((l) => l.locationId === id);
+		return { db, runId, id, battle };
+	};
+
+	it("toggles completion for one run only", () => {
+		const { db, runId, id, battle } = setupBattle();
+		const other = createRun(db, { name: "Other", gameId: FIRERED, rules: "" });
+		expect(battle()?.completedAt).toBeNull();
+
+		setBattleCompleted(db, { runId, locationId: id, completed: true });
+		setBattleCompleted(db, { runId, locationId: id, completed: true });
+		expect(battle()?.completedAt).toBeInstanceOf(Date);
+		expect(battle(other.id)?.completedAt).toBeNull();
+
+		setBattleCompleted(db, { runId, locationId: id, completed: false });
+		expect(battle()?.completedAt).toBeNull();
+	});
+
+	it("rejects completing a location or another game's battle", () => {
+		const { db, runId } = setupBattle();
+		const route = listRunLocations(db, runId).find(
+			(l) => l.locationName === "Route 1",
+		);
+		const elsewhere = addGameBattle(db, {
+			gameId: LEAFGREEN,
+			name: "Misty",
+			levelCap: 21,
+		});
+		for (const locationId of [route?.locationId ?? 0, elsewhere.id]) {
+			expect(() =>
+				setBattleCompleted(db, { runId, locationId, completed: true }),
+			).toThrow(/Battle is not part of this run/);
+		}
+	});
+
+	it("rejects saving an encounter on a battle", () => {
+		const { db, runId, id } = setupBattle();
+		expect(() =>
+			saveEncounter(db, {
+				runId,
+				locationId: id,
+				speciesId: null,
+				nickname: "",
+				outcome: "missed",
+			}),
+		).toThrow(/Location is not part of this run/);
+	});
+
+	it("keeps a hidden battle visible only in runs that completed it", () => {
+		const { db, runId, id, battle } = setupBattle();
+		const other = createRun(db, { name: "Other", gameId: FIRERED, rules: "" });
+		setBattleCompleted(db, { runId, locationId: id, completed: true });
+		setLocationHidden(db, { locationId: id, hidden: true });
+		expect(battle()).toBeDefined();
+		expect(battle(other.id)).toBeUndefined();
+	});
+
+	it("exports battles in game order without changing encounters", () => {
+		const { db, runId, id } = setupBattle();
+		const misty = addGameBattle(db, {
+			gameId: FIRERED,
+			name: "Misty",
+			levelCap: null,
+		});
+		const route = listRunLocations(db, runId).find(
+			(l) => l.locationName === "Route 1",
+		);
+		setLocationOrder(db, { gameId: FIRERED, orderedIds: [misty.id, id] });
+		setBattleCompleted(db, { runId, locationId: id, completed: true });
+		saveEncounter(db, {
+			runId,
+			locationId: route?.locationId ?? 0,
+			speciesId: null,
+			nickname: "",
+			outcome: "missed",
+		});
+
+		const { battles, encounters } = exportEncounters(db, runId);
+		expect(battles).toEqual([
+			{ name: "Misty", levelCap: null, completedAt: null },
+			{ name: "Brock", levelCap: 14, completedAt: expect.any(Date) },
+		]);
+		expect(encounters.map((e) => e.location)).toEqual(["Route 1"]);
+	});
+
+	it("deletes completions along with the run", () => {
+		const { db, runId, id } = setupBattle();
+		setBattleCompleted(db, { runId, locationId: id, completed: true });
+		deleteRun(db, runId);
+		const row = listGameLocations(db, FIRERED).find((l) => l.id === id);
+		expect(row?.completionCount).toBe(0);
 	});
 });
