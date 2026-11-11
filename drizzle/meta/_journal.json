@@ -36,6 +36,13 @@
       "when": 1793669537424,
       "tag": "0004_battles",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "6",
+      "when": 1794371768856,
+      "tag": "0005_hall_of_fame",
+      "breakpoints": true
     }
   ]
 }

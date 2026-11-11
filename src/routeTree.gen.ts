@@ -15,6 +15,7 @@ import { Route as ApiHealthRouteImport } from './routes/api/health'
 import { Route as RunsRunIdRouteImport } from './routes/runs/$runId'
 import { Route as RunsNewRouteImport } from './routes/runs/new'
 import { Route as RunsRunIdIndexRouteImport } from './routes/runs/$runId/index'
+import { Route as RunsRunIdHallOfFameRouteImport } from './routes/runs/$runId/hall-of-fame'
 import { Route as RunsRunIdTeamRouteImport } from './routes/runs/$runId/team'
 
 const IndexRoute = IndexRouteImport.update({
@@ -47,6 +48,11 @@ const RunsRunIdIndexRoute = RunsRunIdIndexRouteImport.update({
   path: '/',
   getParentRoute: () => RunsRunIdRoute,
 } as any)
+const RunsRunIdHallOfFameRoute = RunsRunIdHallOfFameRouteImport.update({
+  id: '/hall-of-fame',
+  path: '/hall-of-fame',
+  getParentRoute: () => RunsRunIdRoute,
+} as any)
 const RunsRunIdTeamRoute = RunsRunIdTeamRouteImport.update({
   id: '/team',
   path: '/team',
@@ -59,6 +65,7 @@ export interface FileRoutesByFullPath {
   '/api/health': typeof ApiHealthRoute
   '/runs/$runId': typeof RunsRunIdRouteWithChildren
   '/runs/new': typeof RunsNewRoute
+  '/runs/$runId/hall-of-fame': typeof RunsRunIdHallOfFameRoute
   '/runs/$runId/team': typeof RunsRunIdTeamRoute
   '/runs/$runId/': typeof RunsRunIdIndexRoute
 }
@@ -67,6 +74,7 @@ export interface FileRoutesByTo {
   '/admin/locations': typeof AdminLocationsRoute
   '/api/health': typeof ApiHealthRoute
   '/runs/new': typeof RunsNewRoute
+  '/runs/$runId/hall-of-fame': typeof RunsRunIdHallOfFameRoute
   '/runs/$runId/team': typeof RunsRunIdTeamRoute
   '/runs/$runId': typeof RunsRunIdIndexRoute
 }
@@ -77,6 +85,7 @@ export interface FileRoutesById {
   '/api/health': typeof ApiHealthRoute
   '/runs/$runId': typeof RunsRunIdRouteWithChildren
   '/runs/new': typeof RunsNewRoute
+  '/runs/$runId/hall-of-fame': typeof RunsRunIdHallOfFameRoute
   '/runs/$runId/team': typeof RunsRunIdTeamRoute
   '/runs/$runId/': typeof RunsRunIdIndexRoute
 }
@@ -88,6 +97,7 @@ export interface FileRouteTypes {
     | '/api/health'
     | '/runs/$runId'
     | '/runs/new'
+    | '/runs/$runId/hall-of-fame'
     | '/runs/$runId/team'
     | '/runs/$runId/'
   fileRoutesByTo: FileRoutesByTo
@@ -96,6 +106,7 @@ export interface FileRouteTypes {
     | '/admin/locations'
     | '/api/health'
     | '/runs/new'
+    | '/runs/$runId/hall-of-fame'
     | '/runs/$runId/team'
     | '/runs/$runId'
   id:
@@ -105,6 +116,7 @@ export interface FileRouteTypes {
     | '/api/health'
     | '/runs/$runId'
     | '/runs/new'
+    | '/runs/$runId/hall-of-fame'
     | '/runs/$runId/team'
     | '/runs/$runId/'
   fileRoutesById: FileRoutesById
@@ -161,6 +173,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RunsRunIdIndexRouteImport
       parentRoute: typeof RunsRunIdRoute
     }
+    '/runs/$runId/hall-of-fame': {
+      id: '/runs/$runId/hall-of-fame'
+      path: '/hall-of-fame'
+      fullPath: '/runs/$runId/hall-of-fame'
+      preLoaderRoute: typeof RunsRunIdHallOfFameRouteImport
+      parentRoute: typeof RunsRunIdRoute
+    }
     '/runs/$runId/team': {
       id: '/runs/$runId/team'
       path: '/team'
@@ -172,11 +191,13 @@ declare module '@tanstack/react-router' {
 }
 
 interface RunsRunIdRouteChildren {
+  RunsRunIdHallOfFameRoute: typeof RunsRunIdHallOfFameRoute
   RunsRunIdTeamRoute: typeof RunsRunIdTeamRoute
   RunsRunIdIndexRoute: typeof RunsRunIdIndexRoute
 }
 
 const RunsRunIdRouteChildren: RunsRunIdRouteChildren = {
+  RunsRunIdHallOfFameRoute: RunsRunIdHallOfFameRoute,
   RunsRunIdTeamRoute: RunsRunIdTeamRoute,
   RunsRunIdIndexRoute: RunsRunIdIndexRoute,
 }

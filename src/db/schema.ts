@@ -131,6 +131,30 @@ export const battleCompletions = sqliteTable(
 	(t) => [primaryKey({ columns: [t.runId, t.locationId] })],
 );
 
+export type HallOfFameMember = {
+	speciesId: number | null;
+	speciesName: string | null;
+	nickname: string;
+	types: string[];
+	metAt: string;
+};
+
+// A frozen copy of the party at the moment the run was won, so later box/evolve
+// changes don't rewrite history
+export const hallOfFame = sqliteTable("hall_of_fame", {
+	runId: integer("run_id")
+		.primaryKey()
+		.references(() => runs.id, { onDelete: "cascade" }),
+	members: text("members", { mode: "json" })
+		.$type<HallOfFameMember[]>()
+		.notNull(),
+	battlesWon: integer("battles_won").notNull().default(0),
+	deaths: integer("deaths").notNull().default(0),
+	inductedAt: integer("inducted_at", { mode: "timestamp" })
+		.notNull()
+		.default(sql`(unixepoch())`),
+});
+
 export type Game = typeof games.$inferSelect;
 export type Species = typeof species.$inferSelect;
 export type Location = typeof locations.$inferSelect;

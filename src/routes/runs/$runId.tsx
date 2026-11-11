@@ -88,6 +88,11 @@ function RunLayout() {
 					[
 						{ to: "/runs/$runId", label: "Encounters", exact: true },
 						{ to: "/runs/$runId/team", label: "Team", exact: false },
+						{
+							to: "/runs/$runId/hall-of-fame",
+							label: "Hall of Fame",
+							exact: false,
+						},
 					] as const
 				).map((tab) => (
 					<Link
