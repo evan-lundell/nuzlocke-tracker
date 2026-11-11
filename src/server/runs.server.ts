@@ -35,6 +35,7 @@ export function getRun(db: Db, id: number) {
 			createdAt: runs.createdAt,
 			gameId: runs.gameId,
 			gameName: games.name,
+			generation: games.generation,
 		})
 		.from(runs)
 		.innerJoin(games, eq(games.id, runs.gameId))
