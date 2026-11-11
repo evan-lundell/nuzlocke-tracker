@@ -9,21 +9,30 @@ import {
 	PopoverContent,
 	PopoverTrigger,
 } from "#/components/ui/popover";
-import { suggestNicknamesFn } from "#/server/nicknames.functions";
+import { cn } from "#/lib/utils";
+import {
+	type NicknameMode,
+	suggestNicknamesFn,
+} from "#/server/nicknames.functions";
 
 /**
- * Dice button that asks Claude for nickname ideas for a row's catch. Remount
- * it (via key) when the species changes so old ideas don't linger.
+ * Dice button with nickname ideas for a row's catch: from Claude (free-text
+ * theme) or the built-in lists (pick a theme). Remount it (via key) when the
+ * species changes so old ideas don't linger.
  */
 export function NicknameSuggester({
 	runId,
 	locationId,
+	mode,
+	themes,
 	disabled,
 	nicknameInput,
 	onPick,
 }: {
 	runId: number;
 	locationId: number;
+	mode: NicknameMode;
+	themes: string[];
 	disabled: boolean;
 	nicknameInput: RefObject<HTMLInputElement | null>;
 	onPick: (name: string) => void;
@@ -37,12 +46,12 @@ export function NicknameSuggester({
 	const latest = useRef(0);
 	const picked = useRef(false);
 
-	const fetchNames = async () => {
+	const fetchNames = async (forTheme = theme) => {
 		const id = ++latest.current;
 		setLoading(true);
 		try {
 			const result = await suggest({
-				data: { runId, locationId, theme: theme.trim() || undefined },
+				data: { runId, locationId, theme: forTheme.trim() || undefined },
 			});
 			if (id === latest.current) setNames(result);
 		} catch (err) {
@@ -94,7 +103,8 @@ export function NicknameSuggester({
 				<div className="flex min-h-9 flex-wrap items-center gap-1.5">
 					{loading ? (
 						<span className="flex items-center gap-2 text-sm text-muted-foreground">
-							<Loader2Icon className="size-4 animate-spin" /> Thinking of names…
+							<Loader2Icon className="size-4 animate-spin" />{" "}
+							{mode === "claude" ? "Thinking of names…" : "Rolling…"}
 						</span>
 					) : names.length === 0 ? (
 						<span className="text-sm text-muted-foreground">
@@ -118,25 +128,65 @@ export function NicknameSuggester({
 						))
 					)}
 				</div>
-				<form
-					className="flex gap-2"
-					onSubmit={(e) => {
-						e.preventDefault();
-						fetchNames();
-					}}
-				>
-					<Input
-						value={theme}
-						onChange={(e) => setTheme(e.target.value)}
-						placeholder="Theme (optional)"
-						aria-label="Nickname theme"
-						maxLength={60}
-						className="h-8"
-					/>
-					<Button type="submit" size="sm" variant="outline" disabled={loading}>
-						<RefreshCwIcon /> Reroll
-					</Button>
-				</form>
+				{mode === "claude" ? (
+					<form
+						className="flex gap-2"
+						onSubmit={(e) => {
+							e.preventDefault();
+							fetchNames();
+						}}
+					>
+						<Input
+							value={theme}
+							onChange={(e) => setTheme(e.target.value)}
+							placeholder="Theme (optional)"
+							aria-label="Nickname theme"
+							maxLength={60}
+							className="h-8"
+						/>
+						<Button
+							type="submit"
+							size="sm"
+							variant="outline"
+							disabled={loading}
+						>
+							<RefreshCwIcon /> Reroll
+						</Button>
+					</form>
+				) : (
+					<div className="space-y-2 border-t pt-3">
+						<fieldset className="flex flex-wrap gap-1" aria-label="Theme">
+							{["", ...themes].map((t) => (
+								<button
+									key={t || "type"}
+									type="button"
+									aria-pressed={theme === t}
+									onClick={() => {
+										setTheme(t);
+										fetchNames(t);
+									}}
+									className={cn(
+										"rounded-full border px-2.5 py-0.5 text-xs text-muted-foreground hover:text-foreground",
+										theme === t &&
+											"border-primary bg-primary text-primary-foreground hover:text-primary-foreground",
+									)}
+								>
+									{t || "By type"}
+								</button>
+							))}
+						</fieldset>
+						<Button
+							type="button"
+							size="sm"
+							variant="outline"
+							className="w-full"
+							disabled={loading}
+							onClick={() => fetchNames()}
+						>
+							<RefreshCwIcon /> Reroll
+						</Button>
+					</div>
+				)}
 			</PopoverContent>
 		</Popover>
 	);

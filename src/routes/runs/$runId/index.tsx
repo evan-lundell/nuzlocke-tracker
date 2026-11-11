@@ -57,7 +57,7 @@ export const Route = createFileRoute("/runs/$runId/")({
 			runId,
 			locations,
 			species,
-			nicknameSuggestions: nicknameFeature.enabled,
+			nicknameFeature,
 		};
 	},
 	component: EncountersPage,
@@ -76,8 +76,7 @@ const FILTERS = ["all", "todo", "logged"] as const;
 type Filter = (typeof FILTERS)[number];
 
 function EncountersPage() {
-	const { runId, locations, species, nicknameSuggestions } =
-		Route.useLoaderData();
+	const { runId, locations, species, nicknameFeature } = Route.useLoaderData();
 	const { gameId } = useLoaderData({ from: "/runs/$runId" });
 	const [filter, setFilter] = useState<Filter>("all");
 	const lineRoots = useMemo(() => buildLineRoots(species), [species]);
@@ -152,7 +151,7 @@ function EncountersPage() {
 							species={species}
 							locations={locations}
 							lineRoots={lineRoots}
-							nicknameSuggestions={nicknameSuggestions}
+							nicknameFeature={nicknameFeature}
 						/>
 					),
 				)}
@@ -208,14 +207,14 @@ function EncounterRow({
 	species,
 	locations,
 	lineRoots,
-	nicknameSuggestions,
+	nicknameFeature,
 }: {
 	runId: number;
 	row: LocationRow;
 	species: (SpeciesOption & { types: string[] })[];
 	locations: LocationRow[];
 	lineRoots: Map<number, number>;
-	nicknameSuggestions: boolean;
+	nicknameFeature: Awaited<ReturnType<typeof getNicknameFeatureFn>>;
 }) {
 	const nicknameInput = useRef<HTMLInputElement>(null);
 	// Evolution lines caught elsewhere in the run (this row's own catch excluded)
@@ -317,12 +316,14 @@ function EncounterRow({
 						}
 					}}
 				/>
-				{nicknameSuggestions && outcome === "caught" && (
+				{outcome === "caught" && (
 					<NicknameSuggester
 						// fresh ideas when the species changes
 						key={row.speciesId}
 						runId={runId}
 						locationId={row.locationId}
+						mode={nicknameFeature.mode}
+						themes={nicknameFeature.themes}
 						// the server reads the saved species, so wait for it to land
 						disabled={!row.speciesId || speciesId !== row.speciesId}
 						nicknameInput={nicknameInput}
