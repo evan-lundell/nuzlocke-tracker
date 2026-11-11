@@ -2,6 +2,7 @@ import Anthropic from "@anthropic-ai/sdk";
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 import { getDb } from "#/db/client.server";
+import { NICKNAME_THEMES, pickListNicknames } from "#/lib/nickname-lists";
 import { listCaught, listRunLocations } from "./encounters.server";
 import {
 	maxNicknameLength,
@@ -18,8 +19,12 @@ function getClient() {
 	return globalForClient.__anthropic;
 }
 
+export type NicknameMode = "claude" | "lists";
+
+/** Claude when an API key is set; otherwise the built-in lists. */
 export const getNicknameFeatureFn = createServerFn().handler(() => ({
-	enabled: nicknamesEnabled(),
+	mode: (nicknamesEnabled() ? "claude" : "lists") as NicknameMode,
+	themes: NICKNAME_THEMES,
 }));
 
 export const suggestNicknamesFn = createServerFn({ method: "POST" })
@@ -31,9 +36,6 @@ export const suggestNicknamesFn = createServerFn({ method: "POST" })
 		}),
 	)
 	.handler(async ({ data }) => {
-		if (!nicknamesEnabled()) {
-			throw new Error("Nickname suggestions aren't set up on this server");
-		}
 		// Everything but the theme comes from the database, not the request
 		const db = getDb();
 		const run = getRun(db, data.runId);
@@ -47,13 +49,30 @@ export const suggestNicknamesFn = createServerFn({ method: "POST" })
 			.filter((m) => m.id !== row.encounterId && m.nickname)
 			.map((m) => m.nickname);
 
+		const types = row.speciesTypes ?? [];
+		const maxLength = maxNicknameLength(run.generation);
+		const theme = data.theme || undefined;
+
+		if (!nicknamesEnabled()) {
+			const names = pickListNicknames({
+				types,
+				theme,
+				takenNicknames,
+				maxLength,
+			});
+			if (names.length === 0) {
+				throw new Error("Out of ideas for this one. Try another theme.");
+			}
+			return names;
+		}
+
 		return suggestNicknames(getClient(), {
 			speciesName: row.speciesName,
-			types: row.speciesTypes ?? [],
+			types,
 			locationName: row.locationName,
 			gameName: run.gameName,
-			maxLength: maxNicknameLength(run.generation),
+			maxLength,
 			takenNicknames,
-			theme: data.theme || undefined,
+			theme,
 		});
 	});

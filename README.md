@@ -73,8 +73,11 @@ The SQLite database lives at `./data/nuzlocke.db`. To back it up, stop the conta
 
 Environment variables (with defaults in the image): `PORT=3000`, `DATABASE_PATH=/data/nuzlocke.db`.
 
-### Nickname suggestions (optional)
+### Nickname suggestions
 
-Set `ANTHROPIC_API_KEY` to show a dice button next to each nickname box. It asks Claude (Opus 5.5) for five nicknames that fit the Pokémon, its types, where it was caught, and the names already on your team, with an optional theme. Each roll costs roughly 1¢ in API usage. Without the key the button is hidden and nothing is sent anywhere. Suggestions respect the game's nickname limit (10 characters through Gen 5, 12 from Gen 6).
+Caught Pokémon get a dice button next to the nickname box with five nickname ideas. Suggestions respect the game's nickname limit (10 characters through Gen 5, 12 from Gen 6) and skip names already on your team.
+
+- **Built in (default):** names drawn from lists for the Pokémon's types, or from a theme you pick (Mythology, Food, Space, …). Free, works offline.
+- **Claude (optional):** set `ANTHROPIC_API_KEY` (an API key from the Claude Console, which is separate from a Claude subscription) and the ideas come from Claude Opus 5.5 instead, tailored to the species, where it was caught and any theme you type. Each roll costs roughly 1¢. Nothing is sent anywhere without the key.
 
 Keep the key out of `docker-compose.yml`: put `ANTHROPIC_API_KEY=sk-ant-...` in a `nuzlocke.env` file next to it (`chmod 600`, not committed), uncomment the `env_file` lines, and run `docker compose up -d` (a plain `restart` won't pick up the change). A dedicated key with a low spend limit is a good idea.
