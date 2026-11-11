@@ -72,3 +72,7 @@ The running build is shown in the page footer and at `/api/health` (`version` is
 The SQLite database lives at `./data/nuzlocke.db`. To back it up, stop the container and copy the file, or run `sqlite3 data/nuzlocke.db ".backup backup.db"` while it's running.
 
 Environment variables (with defaults in the image): `PORT=3000`, `DATABASE_PATH=/data/nuzlocke.db`.
+
+### Nickname suggestions (optional)
+
+Set `ANTHROPIC_API_KEY` to show a dice button next to each nickname box. It asks Claude (Opus 5.5) for five nicknames that fit the Pokémon, its types, where it was caught, and the names already on your team, with an optional theme. Each roll costs roughly 1¢ in API usage. Without the key the button is hidden and nothing is sent anywhere.

@@ -7,7 +7,8 @@ import {
 	Trash2Icon,
 	XIcon,
 } from "lucide-react";
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
+import { NicknameSuggester } from "#/components/nickname-suggester";
 import { RuleTypePicker } from "#/components/rule-type-picker";
 import { type SpeciesOption, SpeciesPicker } from "#/components/species-picker";
 import { Button } from "#/components/ui/button";
@@ -41,16 +42,23 @@ import {
 	saveEncounterFn,
 	setBattleCompletedFn,
 } from "#/server/encounters.functions";
+import { getNicknameFeatureFn } from "#/server/nicknames.functions";
 import { getSpeciesFn } from "#/server/refdata.functions";
 
 export const Route = createFileRoute("/runs/$runId/")({
 	loader: async ({ params }) => {
 		const runId = Number(params.runId);
-		const [locations, species] = await Promise.all([
+		const [locations, species, nicknameFeature] = await Promise.all([
 			getRunLocationsFn({ data: { runId } }),
 			getSpeciesFn(),
+			getNicknameFeatureFn(),
 		]);
-		return { runId, locations, species };
+		return {
+			runId,
+			locations,
+			species,
+			nicknameSuggestions: nicknameFeature.enabled,
+		};
 	},
 	component: EncountersPage,
 });
@@ -68,7 +76,8 @@ const FILTERS = ["all", "todo", "logged"] as const;
 type Filter = (typeof FILTERS)[number];
 
 function EncountersPage() {
-	const { runId, locations, species } = Route.useLoaderData();
+	const { runId, locations, species, nicknameSuggestions } =
+		Route.useLoaderData();
 	const { gameId } = useLoaderData({ from: "/runs/$runId" });
 	const [filter, setFilter] = useState<Filter>("all");
 	const lineRoots = useMemo(() => buildLineRoots(species), [species]);
@@ -143,6 +152,7 @@ function EncountersPage() {
 							species={species}
 							locations={locations}
 							lineRoots={lineRoots}
+							nicknameSuggestions={nicknameSuggestions}
 						/>
 					),
 				)}
@@ -198,13 +208,16 @@ function EncounterRow({
 	species,
 	locations,
 	lineRoots,
+	nicknameSuggestions,
 }: {
 	runId: number;
 	row: LocationRow;
 	species: (SpeciesOption & { types: string[] })[];
 	locations: LocationRow[];
 	lineRoots: Map<number, number>;
+	nicknameSuggestions: boolean;
 }) {
+	const nicknameInput = useRef<HTMLInputElement>(null);
 	// Evolution lines caught elsewhere in the run (this row's own catch excluded)
 	const dupeLines = useMemo(
 		() => caughtLines(locations, lineRoots, row.locationId),
@@ -258,7 +271,7 @@ function EncounterRow({
 	};
 
 	return (
-		<div className="grid grid-cols-1 items-center gap-2 px-3 py-2 sm:grid-cols-[minmax(0,1fr)_12rem_9rem_10rem_4.5rem]">
+		<div className="grid grid-cols-1 items-center gap-2 px-3 py-2 sm:grid-cols-[minmax(0,1fr)_12rem_11rem_10rem_4.5rem]">
 			<div className="flex min-w-0 items-center gap-2">
 				<span className="truncate font-medium">{row.locationName}</span>
 				{row.isCustom && (
@@ -291,17 +304,35 @@ function EncounterRow({
 				}}
 			/>
 
-			<Input
-				value={nickname}
-				placeholder="Nickname"
-				disabled={outcome !== "caught"}
-				onChange={(e) => setNickname(e.target.value)}
-				onBlur={() => {
-					if (nickname !== (row.nickname ?? "")) {
-						persist({});
-					}
-				}}
-			/>
+			<div className="flex items-center gap-1">
+				<Input
+					ref={nicknameInput}
+					value={nickname}
+					placeholder="Nickname"
+					disabled={outcome !== "caught"}
+					onChange={(e) => setNickname(e.target.value)}
+					onBlur={() => {
+						if (nickname !== (row.nickname ?? "")) {
+							persist({});
+						}
+					}}
+				/>
+				{nicknameSuggestions && outcome === "caught" && (
+					<NicknameSuggester
+						// fresh ideas when the species changes
+						key={row.speciesId}
+						runId={runId}
+						locationId={row.locationId}
+						// the server reads the saved species, so wait for it to land
+						disabled={!row.speciesId || speciesId !== row.speciesId}
+						nicknameInput={nicknameInput}
+						onPick={(name) => {
+							setNickname(name);
+							persist({ nickname: name });
+						}}
+					/>
+				)}
+			</div>
 
 			<Select
 				value={outcome ?? ""}
