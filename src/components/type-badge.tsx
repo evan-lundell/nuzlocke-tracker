@@ -1,6 +1,6 @@
 import { cn } from "#/lib/utils";
 
-const TYPE_COLORS: Record<string, string> = {
+export const TYPE_COLORS: Record<string, string> = {
 	normal: "#9fa19f",
 	fire: "#e62829",
 	water: "#2980ef",
