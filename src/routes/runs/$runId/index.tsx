@@ -137,7 +137,7 @@ function EncountersPage() {
 						/>
 					) : (
 						<EncounterRow
-							key={`${loc.locationId}:${loc.encounterId ?? "new"}:${loc.outcome}:${loc.speciesId}:${loc.ruleType}`}
+							key={loc.locationId}
 							runId={runId}
 							row={loc}
 							species={species}
@@ -215,6 +215,19 @@ function EncounterRow({
 	const [nickname, setNickname] = useState(row.nickname ?? "");
 	const [outcome, setOutcome] = useState<EncounterOutcome | null>(row.outcome);
 	const [ruleType, setRuleType] = useState(row.ruleType);
+
+	// The row stays mounted across saves so focus survives (remounting would
+	// drop it). When persisted data changes underneath us (a save landing, a
+	// clear), adopt only the fields the server changed, so in-progress edits to
+	// other fields (e.g. a nickname typed while a save is in flight) survive.
+	const [synced, setSynced] = useState(row);
+	if (synced !== row) {
+		if (row.speciesId !== synced.speciesId) setSpeciesId(row.speciesId);
+		if (row.nickname !== synced.nickname) setNickname(row.nickname ?? "");
+		if (row.outcome !== synced.outcome) setOutcome(row.outcome);
+		if (row.ruleType !== synced.ruleType) setRuleType(row.ruleType);
+		setSynced(row);
+	}
 	const types = species.find((s) => s.id === speciesId)?.types ?? [];
 
 	const [save, saving] = useAction(useServerFn(saveEncounterFn));
@@ -256,7 +269,6 @@ function EncounterRow({
 						<RuleTypePicker
 							types={types}
 							value={ruleType}
-							disabled={busy}
 							onChange={(type) => {
 								setRuleType(type);
 								persist({ ruleType: type });
@@ -269,7 +281,6 @@ function EncounterRow({
 			<SpeciesPicker
 				species={species}
 				value={speciesId}
-				disabled={busy}
 				dupeOf={dupeOf}
 				onChange={(id) => {
 					const nextOutcome = outcome ?? (id ? "caught" : null);
@@ -283,7 +294,7 @@ function EncounterRow({
 			<Input
 				value={nickname}
 				placeholder="Nickname"
-				disabled={busy || outcome !== "caught"}
+				disabled={outcome !== "caught"}
 				onChange={(e) => setNickname(e.target.value)}
 				onBlur={() => {
 					if (nickname !== (row.nickname ?? "")) {
@@ -294,7 +305,6 @@ function EncounterRow({
 
 			<Select
 				value={outcome ?? ""}
-				disabled={busy}
 				onValueChange={(v) => {
 					const next = v as EncounterOutcome;
 					setOutcome(next);
