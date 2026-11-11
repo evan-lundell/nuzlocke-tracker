@@ -2,6 +2,7 @@ import { describe, expect, it, vi } from "vitest";
 import {
 	buildPrompt,
 	cleanSuggestions,
+	maxNicknameLength,
 	type NicknameClient,
 	type NicknameRequest,
 	nicknamesEnabled,
@@ -13,6 +14,7 @@ const request: NicknameRequest = {
 	types: ["fire"],
 	locationName: "Pallet Town",
 	gameName: "FireRed",
+	maxLength: 10,
 	takenNicknames: ["Birdie", "Splash"],
 };
 
@@ -36,7 +38,9 @@ describe("buildPrompt", () => {
 		});
 		expect(prompt).toContain("Charmander (water/flying type)");
 		expect(prompt).toContain("Pallet Town");
-		expect(prompt).toContain("FireRed");
+		expect(prompt).toContain(
+			"FireRed (nicknames can be at most 10 characters)",
+		);
 		expect(prompt).toContain("Birdie, Splash");
 		expect(prompt).toContain("Theme: Greek gods");
 	});
@@ -54,18 +58,37 @@ describe("cleanSuggestions", () => {
 			cleanSuggestions(
 				[" Ember ", "", "Ember", "ember", "birdie", "Waytoolongname", "Cinder"],
 				["Birdie"],
+				12,
 			),
 		).toEqual(["Ember", "Cinder"]);
 	});
 
-	it("caps the list at five", () => {
-		expect(cleanSuggestions(["A", "B", "C", "D", "E", "F", "G"], [])).toEqual([
-			"A",
-			"B",
-			"C",
-			"D",
-			"E",
+	it("applies the game's length limit", () => {
+		const names = ["Hephaestus", "Hephaestus2", "Aphrodite12"];
+		// 10 chars fits everywhere; 11 only fits gen 6+
+		expect(cleanSuggestions(names, [], maxNicknameLength(3))).toEqual([
+			"Hephaestus",
 		]);
+		expect(cleanSuggestions(names, [], maxNicknameLength(8))).toEqual(names);
+	});
+
+	it("counts accented letters as one character", () => {
+		expect(cleanSuggestions(["Pokémoné123"], [], 11)).toEqual(["Pokémoné123"]);
+	});
+
+	it("caps the list at five", () => {
+		expect(
+			cleanSuggestions(["A", "B", "C", "D", "E", "F", "G"], [], 12),
+		).toEqual(["A", "B", "C", "D", "E"]);
+	});
+});
+
+describe("maxNicknameLength", () => {
+	it("is 10 through gen 5 and 12 from gen 6", () => {
+		expect(maxNicknameLength(1)).toBe(10);
+		expect(maxNicknameLength(5)).toBe(10);
+		expect(maxNicknameLength(6)).toBe(12);
+		expect(maxNicknameLength(9)).toBe(12);
 	});
 });
 

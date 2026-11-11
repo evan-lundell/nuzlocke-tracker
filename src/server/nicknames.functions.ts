@@ -3,7 +3,11 @@ import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 import { getDb } from "#/db/client.server";
 import { listCaught, listRunLocations } from "./encounters.server";
-import { nicknamesEnabled, suggestNicknames } from "./nicknames.server";
+import {
+	maxNicknameLength,
+	nicknamesEnabled,
+	suggestNicknames,
+} from "./nicknames.server";
 import { getRun } from "./runs.server";
 
 // Cached on globalThis so dev-server HMR doesn't build a new client per reload
@@ -48,6 +52,7 @@ export const suggestNicknamesFn = createServerFn({ method: "POST" })
 			types: row.speciesTypes ?? [],
 			locationName: row.locationName,
 			gameName: run.gameName,
+			maxLength: maxNicknameLength(run.generation),
 			takenNicknames,
 			theme: data.theme || undefined,
 		});

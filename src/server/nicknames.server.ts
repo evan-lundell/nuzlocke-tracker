@@ -4,14 +4,17 @@ import { z } from "zod";
 
 export const NICKNAME_MODEL = "claude-opus-5-5";
 export const SUGGESTION_COUNT = 5;
-// Gen 6+ allow 12 characters; older games allow 10
-export const MAX_NICKNAME_LENGTH = 12;
+/** In-game nickname limit: 10 characters in gens 1-5, 12 from X/Y (gen 6) on. */
+export function maxNicknameLength(generation: number) {
+	return generation >= 6 ? 12 : 10;
+}
 
 export type NicknameRequest = {
 	speciesName: string;
 	types: string[];
 	locationName: string;
 	gameName: string;
+	maxLength: number;
 	takenNicknames: string[];
 	theme?: string;
 };
@@ -25,7 +28,7 @@ const SYSTEM = `You suggest nicknames for Pokémon caught during a Nuzlocke run.
 
 Rules:
 - Suggest exactly ${SUGGESTION_COUNT} nicknames, each a different style.
-- Each must be at most ${MAX_NICKNAME_LENGTH} characters including spaces. Shorter is better; older games only allow 10.
+- Each must fit the game's nickname limit given below, counting spaces.
 - Don't reuse any name the player already has on this run.
 - Don't just use the species name.
 - If the player gives a theme, every suggestion should fit it.`;
@@ -36,7 +39,7 @@ export function buildPrompt(input: NicknameRequest) {
 	const lines = [
 		`Pokémon: ${input.speciesName} (${input.types.join("/")} type)`,
 		`Caught at: ${input.locationName}`,
-		`Game: ${input.gameName}`,
+		`Game: ${input.gameName} (nicknames can be at most ${input.maxLength} characters)`,
 		input.takenNicknames.length > 0
 			? `Names already used on this run: ${input.takenNicknames.join(", ")}`
 			: "No nicknames used on this run yet.",
@@ -46,13 +49,19 @@ export function buildPrompt(input: NicknameRequest) {
 }
 
 /** Trims, drops unusable or repeated names, and caps the list. */
-export function cleanSuggestions(names: string[], taken: string[]) {
+export function cleanSuggestions(
+	names: string[],
+	taken: string[],
+	maxLength: number,
+) {
 	const seen = new Set(taken.map((n) => n.trim().toLowerCase()));
 	const out: string[] = [];
 	for (const raw of names) {
 		const name = raw.trim();
 		const key = name.toLowerCase();
-		if (!name || name.length > MAX_NICKNAME_LENGTH || seen.has(key)) continue;
+		// count characters, not UTF-16 units, so accented names aren't penalised
+		const length = [...name].length;
+		if (!name || length > maxLength || seen.has(key)) continue;
 		seen.add(key);
 		out.push(name);
 		if (out.length === SUGGESTION_COUNT) break;
@@ -84,6 +93,7 @@ export async function suggestNicknames(
 	const names = cleanSuggestions(
 		response.parsed_output.nicknames,
 		input.takenNicknames,
+		input.maxLength,
 	);
 	if (names.length === 0) {
 		throw new Error("Couldn't come up with nicknames this time. Try again.");
