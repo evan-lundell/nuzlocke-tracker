@@ -43,6 +43,13 @@
       "when": 1794371768856,
       "tag": "0005_hall_of_fame",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "6",
+      "when": 1794757559261,
+      "tag": "0006_species_stats_evolutions",
+      "breakpoints": true
     }
   ]
 }

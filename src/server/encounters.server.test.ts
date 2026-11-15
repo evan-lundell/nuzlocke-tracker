@@ -274,6 +274,25 @@ describe("evolution", () => {
 		expect(catchOne(19).mon.evolutions).toEqual([]);
 	});
 
+	it("includes base stats, the slug, and how to evolve in the run's game", () => {
+		const { mon } = catchOne(133);
+		expect(mon).toMatchObject({
+			speciesSlug: "eevee",
+			hp: 55,
+			attack: 55,
+			defense: 50,
+			specialAttack: 45,
+			specialDefense: 65,
+			speed: 55,
+		});
+		const [vaporeon, jolteon] = mon.evolutions;
+		expect(vaporeon).toMatchObject({
+			methods: [{ trigger: "use-item", item: "water-stone" }],
+			varies: false,
+		});
+		expect(jolteon).toMatchObject({ methods: [], varies: false });
+	});
+
 	it("keeps the rule type by default and lets a dual type switch", () => {
 		const { db, runId, mon } = catchOne(129);
 		expect(mon.ruleType).toBe("water");

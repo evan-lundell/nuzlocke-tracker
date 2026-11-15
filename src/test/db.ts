@@ -12,6 +12,8 @@ export const fixture = {
 			name: "FireRed",
 			generation: 3,
 			versionGroup: "firered-leafgreen",
+			versionGroupOrder: 11,
+			regions: ["kanto"],
 		},
 		{
 			id: 11,
@@ -19,6 +21,8 @@ export const fixture = {
 			name: "LeafGreen",
 			generation: 3,
 			versionGroup: "firered-leafgreen",
+			versionGroupOrder: 11,
+			regions: ["kanto"],
 		},
 	],
 	species: [
@@ -40,13 +44,43 @@ export const fixture = {
 			types: ["water", "flying"],
 			evolvesFromId: 129,
 		},
-		{ id: 133, slug: "eevee", name: "Eevee", types: ["normal"] },
+		{
+			id: 133,
+			slug: "eevee",
+			name: "Eevee",
+			types: ["normal"],
+			hp: 55,
+			attack: 55,
+			defense: 50,
+			specialAttack: 45,
+			specialDefense: 65,
+			speed: 55,
+		},
 		{
 			id: 134,
 			slug: "vaporeon",
 			name: "Vaporeon",
 			types: ["water"],
 			evolvesFromId: 133,
+			evolutionMethods: [
+				{
+					versionGroup: "red-blue",
+					versionGroupName: "Red/Blue",
+					versionGroupOrder: 3,
+					generation: 1,
+					trigger: "use-item",
+					item: "water-stone",
+				},
+				// from a later game than FireRed, so it shouldn't show there
+				{
+					versionGroup: "sword-shield",
+					versionGroupName: "Sword/Shield",
+					versionGroupOrder: 22,
+					generation: 8,
+					trigger: "level-up",
+					minLevel: 99,
+				},
+			],
 		},
 		{
 			id: 135,

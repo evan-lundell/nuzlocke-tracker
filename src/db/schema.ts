@@ -16,7 +16,55 @@ export const games = sqliteTable("games", {
 	name: text("name").notNull(),
 	generation: integer("generation").notNull(),
 	versionGroup: text("version_group").notNull(),
+	// PokeAPI version-group order, for picking the evolution methods that
+	// apply to a game (methods change between games, e.g. Leafeon)
+	versionGroupOrder: integer("version_group_order").notNull().default(0),
+	// regions the game is set in, e.g. ["kanto", "johto"] for HeartGold
+	regions: text("regions", { mode: "json" })
+		.$type<string[]>()
+		.notNull()
+		.default([]),
 });
+
+/**
+ * One way to evolve into a species from its evolvesFromId, as of a version
+ * group. Only conditions that apply are set. Slugs are PokeAPI's.
+ */
+export type EvolutionMethod = {
+	versionGroup: string | null;
+	// "Sun/Moon"
+	versionGroupName: string | null;
+	// 0 when PokeAPI gives no version group (applies to every game)
+	versionGroupOrder: number;
+	generation: number | null;
+	trigger: string;
+	minLevel?: number;
+	item?: string;
+	heldItem?: string;
+	knownMove?: string;
+	knownMoveType?: string;
+	location?: string;
+	// the region `location` is in
+	locationRegion?: string;
+	// only works while in this region (Alolan Raichu)
+	region?: string;
+	timeOfDay?: string;
+	gender?: "female" | "male";
+	minHappiness?: number;
+	minAffection?: number;
+	minBeauty?: number;
+	// 1 = Attack > Defense, -1 = Attack < Defense, 0 = equal
+	relativePhysicalStats?: number;
+	partySpecies?: string;
+	partyType?: string;
+	tradeSpecies?: string;
+	needsOverworldRain?: boolean;
+	turnUpsideDown?: boolean;
+	usedMove?: string;
+	minMoveCount?: number;
+	minSteps?: number;
+	minDamageTaken?: number;
+};
 
 export const species = sqliteTable("species", {
 	id: integer("id").primaryKey(), // national dex number
@@ -25,6 +73,18 @@ export const species = sqliteTable("species", {
 	types: text("types", { mode: "json" }).$type<string[]>().notNull(),
 	// the species this one evolves from; null for base forms
 	evolvesFromId: integer("evolves_from_id"),
+	// how to evolve into this species, across games; empty for base forms
+	evolutionMethods: text("evolution_methods", { mode: "json" })
+		.$type<EvolutionMethod[]>()
+		.notNull()
+		.default([]),
+	// base stats of the default form, as of the latest games
+	hp: integer("hp"),
+	attack: integer("attack"),
+	defense: integer("defense"),
+	specialAttack: integer("special_attack"),
+	specialDefense: integer("special_defense"),
+	speed: integer("speed"),
 });
 
 export const locationKinds = ["location", "battle"] as const;
