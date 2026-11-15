@@ -4,12 +4,14 @@ import {
 	battleCompletions,
 	type EncounterOutcome,
 	encounters,
+	games,
 	type LocationKind,
 	locations,
 	type PokemonState,
 	runs,
 	species,
 } from "#/db/schema";
+import { methodsForGame } from "#/lib/evolution-methods";
 import { getRun } from "./runs.server";
 
 export const PARTY_SIZE = 6;
@@ -137,7 +139,14 @@ export function listCaught(db: Db, runId: number) {
 			id: encounters.id,
 			speciesId: encounters.speciesId,
 			speciesName: species.name,
+			speciesSlug: species.slug,
 			types: species.types,
+			hp: species.hp,
+			attack: species.attack,
+			defense: species.defense,
+			specialAttack: species.specialAttack,
+			specialDefense: species.specialDefense,
+			speed: species.speed,
 			ruleType: encounters.ruleType,
 			nickname: encounters.nickname,
 			state: encounters.state,
@@ -162,17 +171,37 @@ export function listCaught(db: Db, runId: number) {
 					name: species.name,
 					types: species.types,
 					evolvesFromId: species.evolvesFromId,
+					evolutionMethods: species.evolutionMethods,
 				})
 				.from(species)
 				.where(inArray(species.evolvesFromId, speciesIds))
 				.orderBy(species.id)
 				.all()
 		: [];
+	// Which game's evolution methods to show
+	const game = evolutions.length
+		? db
+				.select({
+					versionGroup: games.versionGroup,
+					versionGroupOrder: games.versionGroupOrder,
+					regions: games.regions,
+				})
+				.from(runs)
+				.innerJoin(games, eq(games.id, runs.gameId))
+				.where(eq(runs.id, runId))
+				.get()
+		: undefined;
 	return caught.map((c) => ({
 		...c,
 		evolutions: evolutions
 			.filter((e) => e.evolvesFromId === c.speciesId)
-			.map(({ evolvesFromId: _, ...e }) => e),
+			.map(({ evolvesFromId: _, evolutionMethods, ...e }) => ({
+				...e,
+				// methods is empty when this game has no way to evolve it
+				...(game
+					? methodsForGame(evolutionMethods, game)
+					: { methods: [], varies: false }),
+			})),
 	}));
 }
 

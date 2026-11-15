@@ -1,7 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
-import { ArchiveIcon, SkullIcon, SparklesIcon, UsersIcon } from "lucide-react";
-import { useState } from "react";
+import {
+	ArchiveIcon,
+	ExternalLinkIcon,
+	InfoIcon,
+	SkullIcon,
+	SparklesIcon,
+	UsersIcon,
+} from "lucide-react";
+import { useRef, useState } from "react";
 import { RuleTypePicker } from "#/components/rule-type-picker";
 import { Sprite } from "#/components/sprite";
 import { TypeBadge } from "#/components/type-badge";
@@ -16,6 +23,7 @@ import {
 import { Input } from "#/components/ui/input";
 import { Label } from "#/components/ui/label";
 import type { PokemonState } from "#/db/schema";
+import { formatEvolutionMethod } from "#/lib/evolution-methods";
 import { useAction } from "#/lib/use-action";
 import { cn } from "#/lib/utils";
 import {
@@ -50,6 +58,7 @@ function TeamPage() {
 	const [evolve, evolving] = useAction(useServerFn(evolvePokemonFn));
 	const [dying, setDying] = useState<Mon | null>(null);
 	const [evolvingMon, setEvolvingMon] = useState<Mon | null>(null);
+	const [infoMon, setInfoMon] = useState<Mon | null>(null);
 
 	const move = (mon: Mon, state: PokemonState) => {
 		if (state === "dead") {
@@ -90,6 +99,7 @@ function TeamPage() {
 										disabled={pending || evolving}
 										onMove={(state) => move(mon, state)}
 										onEvolve={() => setEvolvingMon(mon)}
+										onInfo={() => setInfoMon(mon)}
 									/>
 								))
 							)}
@@ -97,6 +107,8 @@ function TeamPage() {
 					);
 				})}
 			</div>
+
+			<InfoDialog mon={infoMon} onClose={() => setInfoMon(null)} />
 
 			<EvolveDialog
 				key={evolvingMon?.id}
@@ -132,11 +144,13 @@ function MonCard({
 	disabled,
 	onMove,
 	onEvolve,
+	onInfo,
 }: {
 	mon: Mon;
 	disabled: boolean;
 	onMove: (state: PokemonState) => void;
 	onEvolve: () => void;
+	onInfo: () => void;
 }) {
 	const title = mon.nickname || mon.speciesName || "Unknown";
 
@@ -191,11 +205,21 @@ function MonCard({
 							</Button>
 						);
 					})}
-				{mon.state !== "dead" && mon.evolutions.length > 0 && (
+				{mon.speciesId !== null && (
 					<Button
 						size="sm"
 						variant="ghost"
 						className="ml-auto h-7 px-2 text-xs"
+						onClick={onInfo}
+					>
+						<InfoIcon /> Info
+					</Button>
+				)}
+				{mon.state !== "dead" && mon.evolutions.length > 0 && (
+					<Button
+						size="sm"
+						variant="ghost"
+						className="h-7 px-2 text-xs"
 						disabled={disabled}
 						onClick={onEvolve}
 					>
@@ -263,7 +287,10 @@ function EvolveDialog({
 									)}
 								>
 									<Sprite speciesId={o.id} name={o.name} />
-									<span className="truncate">{o.name}</span>
+									<span className="min-w-0">
+										<span className="block truncate">{o.name}</span>
+										<EvolutionHint evolution={o} />
+									</span>
 								</button>
 							))}
 						</fieldset>
@@ -274,7 +301,10 @@ function EvolveDialog({
 							{options.length === 1 && (
 								<div className="flex items-center gap-2">
 									<Sprite speciesId={target.id} name={target.name} />
-									<span className="font-medium">{target.name}</span>
+									<span>
+										<span className="block font-medium">{target.name}</span>
+										<EvolutionHint evolution={target} />
+									</span>
 								</div>
 							)}
 							{target.types.length > 1 && (
@@ -296,6 +326,191 @@ function EvolveDialog({
 						</Button>
 					</DialogFooter>
 				</form>
+			</DialogContent>
+		</Dialog>
+	);
+}
+
+const STATS = [
+	["hp", "HP"],
+	["attack", "Attack"],
+	["defense", "Defense"],
+	["specialAttack", "Sp. Atk"],
+	["specialDefense", "Sp. Def"],
+	["speed", "Speed"],
+] as const;
+
+// Roughly pokemondb's bands
+const statColor = (v: number) =>
+	v < 50
+		? "bg-red-500"
+		: v < 80
+			? "bg-orange-400"
+			: v < 100
+				? "bg-yellow-400"
+				: v < 130
+					? "bg-lime-500"
+					: "bg-emerald-500";
+
+type Evolution = Mon["evolutions"][number];
+
+// Alcremie alone has 21 ways; past this, point to Pokémon Database
+const MAX_METHODS = 3;
+
+function EvolutionHint({
+	evolution: { methods, varies },
+}: {
+	evolution: Pick<Evolution, "methods" | "varies">;
+}) {
+	if (methods.length === 0) {
+		return (
+			<span className="block text-xs text-muted-foreground">
+				Not possible in this game
+			</span>
+		);
+	}
+	const shown = methods.slice(0, MAX_METHODS);
+	const more = methods.length - shown.length;
+	return (
+		<span className="block text-xs text-muted-foreground">
+			{varies && <span className="block italic">Varies by game:</span>}
+			{shown.map((m) => {
+				const text = formatEvolutionMethod(m);
+				return (
+					<span key={`${m.versionGroup}:${text}`} className="block">
+						{text}
+						{varies && m.versionGroupName && ` (${m.versionGroupName})`}
+					</span>
+				);
+			})}
+			{more > 0 && (
+				<span className="block">
+					…and {more} other {more === 1 ? "way" : "ways"}
+				</span>
+			)}
+		</span>
+	);
+}
+
+function InfoDialog({
+	mon: openMon,
+	onClose,
+}: {
+	mon: Mon | null;
+	onClose: () => void;
+}) {
+	// Keep showing the last Pokémon while the dialog animates closed
+	const last = useRef(openMon);
+	if (openMon) last.current = openMon;
+	const mon = openMon ?? last.current;
+	const stats = mon
+		? STATS.map(([key, label]) => ({ key, label, value: mon[key] }))
+		: [];
+	const hasStats = stats.every((s) => s.value !== null);
+	const total = stats.reduce((sum, s) => sum + (s.value ?? 0), 0);
+
+	return (
+		<Dialog open={openMon !== null} onOpenChange={(open) => !open && onClose()}>
+			<DialogContent>
+				<DialogHeader>
+					<DialogTitle className="flex items-center gap-2">
+						<Sprite
+							speciesId={mon?.speciesId ?? null}
+							name={mon?.speciesName}
+						/>
+						<span className="min-w-0">
+							<span className="block truncate">
+								{mon?.nickname || mon?.speciesName}
+							</span>
+							{mon?.nickname && (
+								<span className="block text-sm font-normal text-muted-foreground">
+									{mon.speciesName}
+								</span>
+							)}
+						</span>
+						<span className="ml-auto flex gap-1">
+							{mon?.types?.map((t) => (
+								<TypeBadge key={t} type={t} />
+							))}
+						</span>
+					</DialogTitle>
+				</DialogHeader>
+
+				<section className="space-y-1">
+					<h3 className="text-sm font-medium">Base stats</h3>
+					{hasStats ? (
+						<table className="w-full text-sm">
+							<tbody>
+								{stats.map((s) => (
+									<tr key={s.key}>
+										<th className="w-16 py-0.5 pr-2 text-left font-normal text-muted-foreground">
+											{s.label}
+										</th>
+										<td className="w-10 pr-2 text-right tabular-nums">
+											{s.value}
+										</td>
+										<td>
+											<div
+												className={cn(
+													"h-2 rounded-full",
+													statColor(s.value ?? 0),
+												)}
+												// 255 is the highest any base stat goes
+												style={{ width: `${((s.value ?? 0) / 255) * 100}%` }}
+											/>
+										</td>
+									</tr>
+								))}
+								<tr className="border-t">
+									<th className="pt-1 pr-2 text-left font-normal text-muted-foreground">
+										Total
+									</th>
+									<td className="pt-1 pr-2 text-right font-medium tabular-nums">
+										{total}
+									</td>
+									<td />
+								</tr>
+							</tbody>
+						</table>
+					) : (
+						<p className="text-sm text-muted-foreground">No stats available.</p>
+					)}
+				</section>
+
+				<section className="space-y-1">
+					<h3 className="text-sm font-medium">Evolves into</h3>
+					{mon?.evolutions.length ? (
+						<ul className="space-y-1">
+							{mon.evolutions.map((e) => (
+								<li key={e.id} className="flex items-center gap-2 text-sm">
+									<Sprite speciesId={e.id} name={e.name} />
+									<span className="min-w-0">
+										<span className="block">{e.name}</span>
+										<EvolutionHint evolution={e} />
+									</span>
+								</li>
+							))}
+						</ul>
+					) : (
+						<p className="text-sm text-muted-foreground">
+							Doesn't evolve any further.
+						</p>
+					)}
+				</section>
+
+				{mon?.speciesSlug && (
+					<DialogFooter>
+						<Button variant="outline" asChild>
+							<a
+								href={`https://pokemondb.net/pokedex/${mon.speciesSlug}`}
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								View on Pokémon Database <ExternalLinkIcon />
+							</a>
+						</Button>
+					</DialogFooter>
+				)}
 			</DialogContent>
 		</Dialog>
 	);
