@@ -1,12 +1,15 @@
 import { describe, expect, it, vi } from "vitest";
+import { THEME_NAMES, TYPE_NAMES } from "#/lib/nickname-lists";
 import {
 	buildPrompt,
+	CLAUDE_UNAVAILABLE_NOTICE,
 	cleanSuggestions,
 	maxNicknameLength,
 	type NicknameClient,
 	type NicknameRequest,
 	nicknamesEnabled,
 	suggestNicknames,
+	suggestNicknamesWithFallback,
 } from "./nicknames.server";
 
 const request: NicknameRequest = {
@@ -125,6 +128,66 @@ describe("suggestNicknames", () => {
 		await expect(suggestNicknames(client, request)).rejects.toThrow(
 			/Try again/,
 		);
+	});
+});
+
+describe("suggestNicknamesWithFallback", () => {
+	it("uses Claude when it works", async () => {
+		const { client } = fakeClient({
+			stop_reason: "end_turn",
+			parsed_output: { nicknames: ["Ember", "Toasty"] },
+		});
+		await expect(
+			suggestNicknamesWithFallback(client, request),
+		).resolves.toEqual({
+			names: ["Ember", "Toasty"],
+			source: "claude",
+		});
+	});
+
+	it("falls back to the lists with a notice when Claude fails", async () => {
+		const parse = vi
+			.fn()
+			.mockRejectedValue(new Error("400 Your credit balance is too low"));
+		const client = {
+			beta: { messages: { parse } },
+		} as unknown as NicknameClient;
+		const log = vi.fn();
+
+		const result = await suggestNicknamesWithFallback(client, request, log);
+		expect(result.source).toBe("lists");
+		expect(result.notice).toBe(CLAUDE_UNAVAILABLE_NOTICE);
+		expect(result.names).toHaveLength(5);
+		for (const n of result.names) expect(TYPE_NAMES.fire).toContain(n);
+		expect(log).toHaveBeenCalledWith(
+			expect.stringContaining("credit balance is too low"),
+		);
+	});
+
+	it("falls back when Claude refuses", async () => {
+		const { client } = fakeClient({
+			stop_reason: "refusal",
+			parsed_output: null,
+		});
+		const result = await suggestNicknamesWithFallback(client, request, vi.fn());
+		expect(result.source).toBe("lists");
+		expect(result.notice).toBe(CLAUDE_UNAVAILABLE_NOTICE);
+	});
+
+	it("uses the lists without a notice when there's no client", async () => {
+		const result = await suggestNicknamesWithFallback(null, {
+			...request,
+			theme: "Mythology",
+		});
+		expect(result.source).toBe("lists");
+		expect(result.notice).toBeUndefined();
+		for (const n of result.names) expect(THEME_NAMES.Mythology).toContain(n);
+	});
+
+	it("throws when even the lists have nothing left", async () => {
+		await expect(
+			suggestNicknamesWithFallback(null, { ...request, types: [] }),
+		).rejects.toThrow(/Out of ideas/);
 	});
 });
 

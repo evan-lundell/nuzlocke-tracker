@@ -1,6 +1,7 @@
 import type Anthropic from "@anthropic-ai/sdk";
 import { betaZodOutputFormat } from "@anthropic-ai/sdk/helpers/beta/zod";
 import { z } from "zod";
+import { pickListNicknames } from "#/lib/nickname-lists";
 
 export const NICKNAME_MODEL = "claude-opus-5-5";
 export const SUGGESTION_COUNT = 5;
@@ -99,6 +100,53 @@ export async function suggestNicknames(
 		throw new Error("Couldn't come up with nicknames this time. Try again.");
 	}
 	return names;
+}
+
+export type NicknameSuggestions = {
+	names: string[];
+	source: "claude" | "lists";
+	/** Set when Claude was configured but the lists had to stand in. */
+	notice?: string;
+};
+
+export const CLAUDE_UNAVAILABLE_NOTICE =
+	"Claude isn't available right now, so these are built-in names.";
+
+/**
+ * Asks Claude when a client is given, falling back to the built-in lists if
+ * there's no client or the call fails for any reason (out of credits, outage,
+ * rate limit, revoked key, refusal), so a roll always has names.
+ */
+export async function suggestNicknamesWithFallback(
+	client: NicknameClient | null,
+	input: NicknameRequest,
+	log: (message: string) => void = console.error,
+): Promise<NicknameSuggestions> {
+	let notice: string | undefined;
+	if (client) {
+		try {
+			return { names: await suggestNicknames(client, input), source: "claude" };
+		} catch (err) {
+			log(
+				`Nickname suggestions from Claude failed, using built-in lists: ${
+					err instanceof Error ? err.message : String(err)
+				}`,
+			);
+			notice = CLAUDE_UNAVAILABLE_NOTICE;
+		}
+	}
+
+	const names = pickListNicknames({
+		types: input.types,
+		// a free-text Claude theme that isn't a list theme falls back to types
+		theme: input.theme,
+		takenNicknames: input.takenNicknames,
+		maxLength: input.maxLength,
+	});
+	if (names.length === 0) {
+		throw new Error("Out of ideas for this one. Try another theme.");
+	}
+	return { names, source: "lists", notice };
 }
 
 export function nicknamesEnabled(env: NodeJS.ProcessEnv = process.env) {

@@ -40,6 +40,7 @@ export function NicknameSuggester({
 	const suggest = useServerFn(suggestNicknamesFn);
 	const [open, setOpen] = useState(false);
 	const [names, setNames] = useState<string[]>([]);
+	const [notice, setNotice] = useState<string | undefined>();
 	const [theme, setTheme] = useState("");
 	const [loading, setLoading] = useState(false);
 	// Ignore answers to requests that a reroll has since replaced
@@ -53,7 +54,10 @@ export function NicknameSuggester({
 			const result = await suggest({
 				data: { runId, locationId, theme: forTheme.trim() || undefined },
 			});
-			if (id === latest.current) setNames(result);
+			if (id === latest.current) {
+				setNames(result.names);
+				setNotice(result.notice);
+			}
 		} catch (err) {
 			if (id === latest.current) {
 				toast.error(
@@ -100,6 +104,11 @@ export function NicknameSuggester({
 					}
 				}}
 			>
+				{notice && !loading && (
+					<p className="text-xs text-muted-foreground" role="status">
+						{notice}
+					</p>
+				)}
 				<div className="flex min-h-9 flex-wrap items-center gap-1.5">
 					{loading ? (
 						<span className="flex items-center gap-2 text-sm text-muted-foreground">

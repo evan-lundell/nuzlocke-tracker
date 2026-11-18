@@ -2,12 +2,12 @@ import Anthropic from "@anthropic-ai/sdk";
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 import { getDb } from "#/db/client.server";
-import { NICKNAME_THEMES, pickListNicknames } from "#/lib/nickname-lists";
+import { NICKNAME_THEMES } from "#/lib/nickname-lists";
 import { listCaught, listRunLocations } from "./encounters.server";
 import {
 	maxNicknameLength,
 	nicknamesEnabled,
-	suggestNicknames,
+	suggestNicknamesWithFallback,
 } from "./nicknames.server";
 import { getRun } from "./runs.server";
 
@@ -49,30 +49,16 @@ export const suggestNicknamesFn = createServerFn({ method: "POST" })
 			.filter((m) => m.id !== row.encounterId && m.nickname)
 			.map((m) => m.nickname);
 
-		const types = row.speciesTypes ?? [];
-		const maxLength = maxNicknameLength(run.generation);
-		const theme = data.theme || undefined;
-
-		if (!nicknamesEnabled()) {
-			const names = pickListNicknames({
-				types,
-				theme,
+		return suggestNicknamesWithFallback(
+			nicknamesEnabled() ? getClient() : null,
+			{
+				speciesName: row.speciesName,
+				types: row.speciesTypes ?? [],
+				locationName: row.locationName,
+				gameName: run.gameName,
+				maxLength: maxNicknameLength(run.generation),
 				takenNicknames,
-				maxLength,
-			});
-			if (names.length === 0) {
-				throw new Error("Out of ideas for this one. Try another theme.");
-			}
-			return names;
-		}
-
-		return suggestNicknames(getClient(), {
-			speciesName: row.speciesName,
-			types,
-			locationName: row.locationName,
-			gameName: run.gameName,
-			maxLength,
-			takenNicknames,
-			theme,
-		});
+				theme: data.theme || undefined,
+			},
+		);
 	});
