@@ -2,11 +2,12 @@ import Anthropic from "@anthropic-ai/sdk";
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 import { getDb } from "#/db/client.server";
+import { NICKNAME_THEMES } from "#/lib/nickname-lists";
 import { listCaught, listRunLocations } from "./encounters.server";
 import {
 	maxNicknameLength,
 	nicknamesEnabled,
-	suggestNicknames,
+	suggestNicknamesWithFallback,
 } from "./nicknames.server";
 import { getRun } from "./runs.server";
 
@@ -18,8 +19,12 @@ function getClient() {
 	return globalForClient.__anthropic;
 }
 
+export type NicknameMode = "claude" | "lists";
+
+/** Claude when an API key is set; otherwise the built-in lists. */
 export const getNicknameFeatureFn = createServerFn().handler(() => ({
-	enabled: nicknamesEnabled(),
+	mode: (nicknamesEnabled() ? "claude" : "lists") as NicknameMode,
+	themes: NICKNAME_THEMES,
 }));
 
 export const suggestNicknamesFn = createServerFn({ method: "POST" })
@@ -31,9 +36,6 @@ export const suggestNicknamesFn = createServerFn({ method: "POST" })
 		}),
 	)
 	.handler(async ({ data }) => {
-		if (!nicknamesEnabled()) {
-			throw new Error("Nickname suggestions aren't set up on this server");
-		}
 		// Everything but the theme comes from the database, not the request
 		const db = getDb();
 		const run = getRun(db, data.runId);
@@ -47,13 +49,16 @@ export const suggestNicknamesFn = createServerFn({ method: "POST" })
 			.filter((m) => m.id !== row.encounterId && m.nickname)
 			.map((m) => m.nickname);
 
-		return suggestNicknames(getClient(), {
-			speciesName: row.speciesName,
-			types: row.speciesTypes ?? [],
-			locationName: row.locationName,
-			gameName: run.gameName,
-			maxLength: maxNicknameLength(run.generation),
-			takenNicknames,
-			theme: data.theme || undefined,
-		});
+		return suggestNicknamesWithFallback(
+			nicknamesEnabled() ? getClient() : null,
+			{
+				speciesName: row.speciesName,
+				types: row.speciesTypes ?? [],
+				locationName: row.locationName,
+				gameName: run.gameName,
+				maxLength: maxNicknameLength(run.generation),
+				takenNicknames,
+				theme: data.theme || undefined,
+			},
+		);
 	});

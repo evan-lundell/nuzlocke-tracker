@@ -7,7 +7,8 @@ services:
     volumes:
       # Must be writable by uid 1000: mkdir -p data && sudo chown 1000:1000 data
       - ./data:/data
-    # Optional: enables Claude nickname suggestions (about 1¢ per roll).
+    # Optional: Claude-powered nickname suggestions (about 1¢ per roll);
+    # without a key the app uses its built-in name lists.
     # Put ANTHROPIC_API_KEY=sk-ant-... in nuzlocke.env (chmod 600, keep it out
     # of git) rather than writing the key in this file.
     # env_file:
